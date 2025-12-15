@@ -1,0 +1,58 @@
+# ===========================
+# ARCHIVOS PRIVADOS Y SECRETOS
+# ===========================
+.env
+.env.local
+.env.production
+.env.development
+*.env
+
+# ===========================
+# VERCEL
+# ===========================
+.vercel
+.vercel.json
+
+# ===========================
+# NODE / NPM
+# ===========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# ===========================
+# SISTEMA OPERATIVO
+# ===========================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ===========================
+# EDITORES
+# ===========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ===========================
+# LOGS Y TEMPORALES
+# ===========================
+*.log
+*.backup
+*.tmp
+.cache/
+
+# ===========================
+# OTROS
+# ===========================
+.git/
+dist/
+build/

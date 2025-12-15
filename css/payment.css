@@ -1,0 +1,298 @@
+/* ===========================
+   Página de Pago - Estilos Específicos
+   =========================== */
+
+.payment-section {
+    min-height: 100vh;
+    padding: 120px 0 80px;
+    background-color: var(--color-off-white);
+}
+
+.payment-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ===========================
+   Resumen del Pedido
+   =========================== */
+.order-summary {
+    background-color: var(--color-white);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    height: fit-content;
+    sticky: top;
+    top: 100px;
+}
+
+.order-summary h2 {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+    color: var(--color-dark);
+}
+
+.product-item {
+    padding: 1.5rem;
+    background-color: var(--color-off-white);
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
+
+.product-item h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-dark);
+}
+
+.product-item p {
+    color: var(--color-gray);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.product-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.product-features span {
+    font-size: 0.875rem;
+    color: var(--color-gray);
+}
+
+.price-breakdown {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--color-gray-light);
+    border-bottom: 1px solid var(--color-gray-light);
+    margin-bottom: 1.5rem;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.price-row:last-child {
+    margin-bottom: 0;
+}
+
+.price-row.total {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-top: 1rem;
+}
+
+.discount-amount {
+    color: var(--color-success);
+}
+
+.coupon-section {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.coupon-section input {
+    flex: 1;
+    padding: 0.875rem 1rem;
+    border: 2px solid var(--color-gray-light);
+    border-radius: 8px;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+}
+
+.coupon-section input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.btn-coupon {
+    padding: 0.875rem 1.5rem;
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.btn-coupon:hover {
+    background-color: var(--color-primary);
+}
+
+/* ===========================
+   Formulario de Pago
+   =========================== */
+.payment-form-container {
+    background-color: var(--color-white);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+}
+
+.payment-form-container h2 {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+    color: var(--color-dark);
+}
+
+.form-section {
+    margin-bottom: 2.5rem;
+}
+
+.form-section h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-dark);
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--color-gray-light);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-row:last-child {
+    margin-bottom: 0;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-dark);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid var(--color-gray-light);
+    border-radius: 8px;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+    background-color: var(--color-white);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* MercadoPago containers */
+#mercadopago-button,
+#wallet_container {
+    margin-top: 1.5rem;
+}
+
+.payment-info {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: var(--color-off-white);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.payment-info p {
+    margin-bottom: 0.5rem;
+    color: var(--color-gray);
+    font-size: 0.875rem;
+}
+
+.payment-info p:last-child {
+    margin-bottom: 0;
+}
+
+/* Botón de volver */
+.btn-back {
+    padding: 0.5rem 1.5rem;
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    border-radius: 8px;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+}
+
+.btn-back:hover {
+    background-color: var(--color-primary);
+}
+
+/* Footer Simple */
+.footer-simple {
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.footer-simple p {
+    color: var(--color-gray-light);
+}
+
+/* Estados de carga */
+.loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border: 3px solid var(--color-gray-light);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ===========================
+   Responsive
+   =========================== */
+@media (max-width: 768px) {
+    .payment-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .order-summary {
+        position: static;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-form-container,
+    .order-summary {
+        padding: 1.5rem;
+    }
+}

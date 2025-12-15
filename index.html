@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Capacitación en IA para Arquitectos, Estudios y Empresas. Desarrollo del pensamiento crítico aplicado a la arquitectura.">
+    <meta name="keywords" content="IA arquitectura, inteligencia artificial arquitectos, capacitación IA, curso IA arquitectura">
+    <meta name="author" content="Leo - Capacitador en IA">
+
+    <title>Leo IA | Transformando la Arquitectura con Inteligencia Artificial</title>
+
+    <link rel="stylesheet" href="css/styles-v2.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar Minimal -->
+    <nav class="navbar-minimal">
+        <div class="nav-container">
+            <div class="logo-minimal">
+                <img src="images/logo.png" alt="Leo IA" style="height: 40px; width: auto;">
+            </div>
+            <button class="menu-toggle" id="menu-toggle">
+                <span class="menu-text">MENÚ</span>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Overlay Menu Fullscreen -->
+    <div class="overlay-menu" id="overlay-menu">
+        <div class="overlay-content">
+            <button class="close-menu" id="close-menu">
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="menu-split">
+                <!-- Navegación Principal -->
+                <div class="menu-nav">
+                    <ul class="main-menu">
+                        <li><a href="#home" class="menu-link" data-number="01">Inicio</a></li>
+                        <li><a href="#sobre-mi" class="menu-link" data-number="02">Sobre Mí</a></li>
+                        <li><a href="#curso" class="menu-link open-curso-modal" data-number="03">El Curso</a></li>
+                        <li><a href="#consultoria" class="menu-link" data-number="04">Consultoría</a></li>
+                        <li><a href="#empresas" class="menu-link" data-number="05">Empresas</a></li>
+                        <li><a href="#testimonios" class="menu-link" data-number="06">Testimonios</a></li>
+                        <li><a href="#contacto" class="menu-link" data-number="07">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Info de Contacto en Menú -->
+                <div class="menu-info">
+                    <div class="menu-contact">
+                        <h3>Contacto</h3>
+                        <p><a href="mailto:leodiazdt@gmail.com">leodiazdt@gmail.com</a></p>
+                        <p><a href="tel:+543816274439">+54 381 627 4439</a></p>
+                    </div>
+                    <div class="menu-social">
+                        <a href="https://www.linkedin.com/in/leo-iml" target="_blank">LinkedIn</a>
+                        <a href="https://www.instagram.com/soy.leo_ai/" target="_blank">Instagram</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Fullscreen con Imagen -->
+    <section id="home" class="hero-fullscreen">
+        <div class="hero-bg" style="background-image: url('images/escritorio-monitor.png');"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content-center">
+            <h1 class="hero-title-large">
+                La <span class="highlight-text">Inteligencia Artificial</span><br>
+                revoluciona los flujos de trabajo
+            </h1>
+            <p class="hero-subtitle-large">Aprende a dominar las herramientas que definen el futuro de la profesión</p>
+            <div class="hero-cta">
+                <a href="#contacto" class="btn-primary-large">Agendar consulta</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Mí Section -->
+    <section id="sobre-mi" class="sobre-mi-section">
+        <div class="container-large">
+            <div class="sobre-mi-grid">
+                <div class="sobre-mi-image">
+                    <div class="image-frame">
+                        <img src="images/leo-foto.jpg" alt="Leo - Capacitador IA">
+                    </div>
+                </div>
+                <div class="sobre-mi-content">
+                    <span class="section-label">SOBRE MÍ</span>
+                    <h2 class="section-title-large">Transformando la forma en que los arquitectos trabajan</h2>
+                    <div class="sobre-mi-text">
+                        <p>Soy Leo, especialista en la implementación de Inteligencia Artificial aplicada a la arquitectura y el diseño. Mi misión es capacitar a arquitectos, estudios y empresas para que aprovechen al máximo las herramientas de IA sin perder la esencia creativa que define la profesión.</p>
+
+                        <p>Con más de 50 arquitectos capacitados y 10 empresas transformadas, he desarrollado un método único que combina el <strong>pensamiento crítico</strong> con las capacidades de la IA generativa.</p>
+
+                        <p>No se trata solo de usar herramientas, sino de <strong>repensar el proceso creativo</strong> para multiplicar tu productividad sin sacrificar la calidad del diseño.</p>
+                    </div>
+                    <div class="sobre-mi-stats">
+                        <div class="stat-box">
+                            <span class="stat-num">50+</span>
+                            <span class="stat-label">Arquitectos formados</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-num">10+</span>
+                            <span class="stat-label">Empresas</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-num">100%</span>
+                            <span class="stat-label">Satisfacción</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curso Preview Section con Imagen de Fondo -->
+    <section id="curso" class="curso-preview-section">
+        <div class="curso-bg" style="background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1920&q=80');"></div>
+        <div class="curso-overlay"></div>
+        <div class="container-large">
+            <div class="curso-preview-content">
+                <span class="section-label light">EL PROGRAMA</span>
+                <h2 class="section-title-large light">Desarrollo del Pensamiento Crítico con IA</h2>
+                <p class="curso-intro">Un curso diseñado para arquitectos que quieren dominar la IA sin perder el control creativo de sus proyectos</p>
+                <button class="btn-primary-large open-curso-modal">Ver detalles del curso</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal del Curso -->
+    <div class="modal-curso" id="modal-curso">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="modal-close" id="close-curso-modal">
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-label">PROGRAMA COMPLETO</span>
+                    <h2>IA en Arquitectura<br>Transformando Flujos de Trabajo Profesionales</h2>
+                </div>
+
+                <div class="modal-body">
+                    <!-- Introducción -->
+                    <div class="curso-intro-box">
+                        <h3>Recupera 10+ horas semanales y duplica tu productividad</h3>
+                        <p>Este programa te enseña a <strong>automatizar tareas operativas con IA</strong> mientras mantienes el control creativo de tus proyectos. Aprende a pasar de 4 a 8-10 proyectos mensuales sin perder calidad.</p>
+                        <p><strong>Modalidad:</strong> 10 encuentros intensivos durante 6 semanas | <strong>Inversión:</strong> 5-6 horas semanales (clases + práctica)</p>
+                        <p><strong>Garantía:</strong> Si al finalizar no optimizas 10 horas semanales, el programa continúa sin costo adicional hasta lograrlo.</p>
+                    </div>
+
+                    <!-- Módulos del Curso -->
+                    <div class="curso-modulos">
+                        <h3>Módulos del Programa</h3>
+
+                        <div class="modulo-item">
+                            <div class="modulo-number">01</div>
+                            <div class="modulo-content">
+                                <h4>Fundamentos de IA y ML</h4>
+                                <ul>
+                                    <li>Comprensión del funcionamiento de Inteligencia Artificial y Machine Learning</li>
+                                    <li>Ingeniería de prompts efectivos</li>
+                                    <li>Desarrollo de pensamiento crítico para aplicación en el trabajo diario</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="modulo-item">
+                            <div class="modulo-number">02</div>
+                            <div class="modulo-content">
+                                <h4>Optimización de Diseños</h4>
+                                <ul>
+                                    <li>Automatización de programas de necesidades</li>
+                                    <li>Generación de croquis mediante IA</li>
+                                    <li>Desarrollo de ideas preliminares sin trazo manual</li>
+                                    <li>Auditoría de diseños</li>
+                                    <li>Extracción rápida de información de planos</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="modulo-item">
+                            <div class="modulo-number">03</div>
+                            <div class="modulo-content">
+                                <h4>Optimización y Seguimiento</h4>
+                                <ul>
+                                    <li>Creación de dashboards con información crítica</li>
+                                    <li>Gestión de curvas de inversión, presupuestos y cronogramas</li>
+                                    <li>Automatización de documentación para oficinas estatales</li>
+                                    <li>Seguimiento de procesos en ejecución</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="modulo-item">
+                            <div class="modulo-number">04</div>
+                            <div class="modulo-content">
+                                <h4>Optimización de Presupuestos</h4>
+                                <ul>
+                                    <li>Web scraping para recolección de datos</li>
+                                    <li>Automatización de cómputos de materiales</li>
+                                    <li>Presupuestos de mano de obra automatizados</li>
+                                    <li>⭐ El módulo más solicitado por los participantes</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="modulo-item">
+                            <div class="modulo-number">05</div>
+                            <div class="modulo-content">
+                                <h4>Aplicaciones Personalizadas</h4>
+                                <ul>
+                                    <li>Creación de mini aplicaciones locales</li>
+                                    <li>Dominación de Claude Code y Gemini CLI</li>
+                                    <li>Iteración con IA para soluciones personalizadas</li>
+                                    <li>Desarrollo de herramientas para flujos específicos</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Qué Incluye -->
+                    <div class="curso-incluye">
+                        <h3>Qué incluye el curso</h3>
+                        <div class="incluye-grid">
+                            <div class="incluye-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>16 horas de contenido en vivo y grabado</span>
+                            </div>
+                            <div class="incluye-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>Material descargable y plantillas</span>
+                            </div>
+                            <div class="incluye-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>Acceso de por vida a actualizaciones</span>
+                            </div>
+                            <div class="incluye-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>Comunidad privada de arquitectos</span>
+                            </div>
+                            <div class="incluye-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>Certificado de finalización</span>
+                            </div>
+                            <div class="incluye-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>Sesiones de Q&A mensuales</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Final -->
+                    <div class="curso-cta-box">
+                        <h3>¿Listo para transformar tu práctica?</h3>
+                        <p>Libera 10+ horas semanales y duplica tu productividad</p>
+                        <div class="cta-buttons">
+                            <a href="#contacto" class="btn-primary-large">Agendar consulta gratuita</a>
+                            <a href="https://leoscd.github.io/IA_arquitectura/" target="_blank" class="btn-secondary-large">Ver programa completo →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Consultoría Section -->
+    <section id="consultoria" class="consultoria-section">
+        <div class="container-large">
+            <span class="section-label">CONSULTORÍA</span>
+            <h2 class="section-title-large">Implementación personalizada para tu estudio</h2>
+
+            <div class="consultoria-grid">
+                <div class="consultoria-card">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        </svg>
+                    </div>
+                    <h3>Análisis</h3>
+                    <p>Evaluación profunda de tu flujo de trabajo actual e identificación de oportunidades de optimización con IA</p>
+                </div>
+                <div class="consultoria-card">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                            <path d="M3 9h18M9 21V9"></path>
+                        </svg>
+                    </div>
+                    <h3>Estrategia</h3>
+                    <p>Diseño de un plan personalizado de implementación adaptado a las necesidades específicas de tu estudio</p>
+                </div>
+                <div class="consultoria-card">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Acompañamiento</h3>
+                    <p>Soporte continuo durante todo el proceso de adopción para garantizar el éxito de la implementación</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Empresas Section con Imagen -->
+    <section id="empresas" class="empresas-section">
+        <div class="empresas-bg" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80');"></div>
+        <div class="empresas-overlay"></div>
+        <div class="container-large">
+            <div class="empresas-content">
+                <span class="section-label light">EMPRESAS</span>
+                <h2 class="section-title-large light">Capacitación corporativa</h2>
+                <p class="empresas-intro">Programas a medida para transformar equipos completos</p>
+
+                <div class="empresas-grid">
+                    <div class="empresa-card">
+                        <span class="empresa-num">01</span>
+                        <h3>Consultoría</h3>
+                        <p>Asesoramiento personalizado para implementar IA en tu estudio o empresa</p>
+                    </div>
+                    <div class="empresa-card">
+                        <span class="empresa-num">02</span>
+                        <h3>Programas</h3>
+                        <p>Transformación integral de 3-6 meses con acompañamiento continuo</p>
+                    </div>
+                    <div class="empresa-card">
+                        <span class="empresa-num">03</span>
+                        <h3>Mentorías</h3>
+                        <p>Sesiones personalizadas para proyectos específicos</p>
+                    </div>
+                </div>
+
+                <a href="#contacto" class="btn-primary-large">Agendar consulta gratuita</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios Section -->
+    <section id="testimonios" class="testimonios-section">
+        <div class="container-large">
+            <span class="section-label">TESTIMONIOS</span>
+            <h2 class="section-title-large">Lo que dicen quienes ya se capacitaron</h2>
+
+            <div class="testimonios-grid" id="testimonios-container">
+                <!-- Testimonios -->
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="images/testimonials/Pilar-Cichero.jpg" alt="Pilar Cichero" class="testimonial-photo">
+                        <div class="testimonial-info">
+                            <h4>Pilar Cichero</h4>
+                            <p class="testimonial-role">Arquitecta/Doctora en Arq/Docente FAU UNT</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <p class="testimonial-text">El curso transformó completamente mi forma de trabajar, entendí como automatizar mis tareas manuales</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="images/testimonials/Julian-Barrionuevo.jpg" alt="Julian Barrionuevo" class="testimonial-photo">
+                        <div class="testimonial-info">
+                            <h4>Julian Barrionuevo</h4>
+                            <p class="testimonial-role">Director, BIM Manager</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <p class="testimonial-text">Gracias Leo por ayudarme a meterme en el manejo de la IA, la verdad que le saqué provecho porque pude acelerar procesos de trabajo, sobre todo en la generacion rapida de presupuestos y mostrarlo en un render, tambien pude hacer estudios y esquemas en minutos sobre documentacion pesada, que me hubiera llevado mucho tiempo si lo hacía de manera 'tradicional'. Realmente te abre la cabeza a posibilidades casi infinitas estas nuevas tecnologias!</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="images/testimonials/ana-lopez.png" alt="Ana López" class="testimonial-photo">
+                        <div class="testimonial-info">
+                            <h4>Ana López</h4>
+                            <p class="testimonial-role">Arquitecta Senior</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <p class="testimonial-text">Leo tiene un don para explicar conceptos complejos de manera simple. Ahora uso IA diariamente en mis proyectos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto Section -->
+    <section id="contacto" class="contacto-section">
+        <div class="container-large">
+            <div class="contacto-grid">
+                <div class="contacto-info">
+                    <span class="section-label">CONTACTO</span>
+                    <h2 class="section-title-large">Hablemos de tu proyecto</h2>
+                    <p>Estoy aquí para ayudarte a transformar tu práctica arquitectónica con IA</p>
+
+                    <div class="contacto-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Email</span>
+                            <a href="mailto:leodiazdt@gmail.com">leodiazdt@gmail.com</a>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Teléfono</span>
+                            <a href="tel:+543816274439">+54 381 627 4439</a>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">LinkedIn</span>
+                            <a href="https://www.linkedin.com/in/leo-iml" target="_blank">linkedin.com/in/leo-iml</a>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Instagram</span>
+                            <a href="https://www.instagram.com/soy.leo_ai/" target="_blank">@soy.leo_ai</a>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contacto-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                    <!-- Configuración Web3Forms -->
+                    <input type="hidden" name="access_key" value="d13a018a-540d-4e02-ac1c-6554d017cfb1">
+                    <input type="hidden" name="subject" value="Nuevo contacto desde Leo IA Website">
+                    <input type="hidden" name="redirect" id="form-redirect" value="">
+
+                    <div class="form-field">
+                        <input type="text" id="name" name="name" required placeholder=" ">
+                        <label for="name">Nombre completo</label>
+                    </div>
+                    <div class="form-field">
+                        <input type="email" id="email" name="email" required placeholder=" ">
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="form-field">
+                        <input type="tel" id="phone" name="phone" placeholder=" ">
+                        <label for="phone">Teléfono</label>
+                    </div>
+                    <div class="form-field">
+                        <select id="service" name="service" required>
+                            <option value="">Selecciona un servicio</option>
+                            <option value="Curso para arquitectos">Curso para arquitectos</option>
+                            <option value="Consultoría personalizada">Consultoría personalizada</option>
+                            <option value="Capacitación para empresas">Capacitación para empresas</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                        <label for="service">Servicio de interés</label>
+                    </div>
+                    <div class="form-field">
+                        <textarea id="message" name="message" required placeholder=" " rows="4"></textarea>
+                        <label for="message">Mensaje</label>
+                    </div>
+                    <button type="submit" class="btn-primary-large">Enviar mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Minimal -->
+    <footer class="footer-minimal">
+        <div class="container-large">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <span class="footer-logo">LEO IA</span>
+                    <p>Transformando los flujos de trabajo con IA</p>
+                </div>
+                <div class="footer-right">
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/leo-iml" target="_blank">LinkedIn</a>
+                        <a href="https://www.instagram.com/soy.leo_ai/" target="_blank">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Leo IA. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main-v2.js"></script>
+</body>
+</html><!-- Updated: Mon Oct 27 18:37:10 -03 2025 -->

@@ -1,0 +1,23 @@
+{
+  "name": "soyleoai-website",
+  "version": "1.0.0",
+  "description": "Sitio web profesional de capacitación en IA para arquitectos - SoyLeoAI.com",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python3 -m http.server 8080",
+    "start": "python3 -m http.server 8080"
+  },
+  "keywords": [
+    "IA",
+    "arquitectura",
+    "capacitacion",
+    "inteligencia-artificial",
+    "curso"
+  ],
+  "author": "Leo Díaz <leodiazdt@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "mercadopago": "^1.5.17",
+    "stripe": "^14.0.0"
+  }
+}

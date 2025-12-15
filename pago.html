@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago - Leo IA</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/payment.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- SDK de MercadoPago -->
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <img src="images/logo.png" alt="Leo IA Logo" id="logo-img">
+                    <span>Leo IA</span>
+                </div>
+                <a href="index.html" class="btn-back">← Volver al sitio</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Payment Section -->
+    <section class="payment-section">
+        <div class="container">
+            <div class="payment-wrapper">
+                <!-- Resumen del Pedido -->
+                <div class="order-summary">
+                    <h2>Resumen del pedido</h2>
+
+                    <div class="product-item" id="selected-product">
+                        <h3>Curso de IA para Arquitectos</h3>
+                        <p>Programa completo de capacitación en inteligencia artificial aplicada a la arquitectura</p>
+                        <div class="product-features">
+                            <span>✓ Acceso de por vida</span>
+                            <span>✓ Material descargable</span>
+                            <span>✓ Certificado de finalización</span>
+                            <span>✓ Soporte personalizado</span>
+                        </div>
+                    </div>
+
+                    <div class="price-breakdown">
+                        <div class="price-row">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">$0</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Descuento:</span>
+                            <span id="discount" class="discount-amount">-$0</span>
+                        </div>
+                        <div class="price-row total">
+                            <span>Total:</span>
+                            <span id="total">$0</span>
+                        </div>
+                    </div>
+
+                    <div class="coupon-section">
+                        <input type="text" id="coupon-input" placeholder="Código de descuento">
+                        <button type="button" class="btn-coupon" id="apply-coupon">Aplicar</button>
+                    </div>
+                </div>
+
+                <!-- Formulario de Pago -->
+                <div class="payment-form-container">
+                    <h2>Información de pago</h2>
+
+                    <form id="payment-form">
+                        <!-- Datos del comprador -->
+                        <div class="form-section">
+                            <h3>Datos personales</h3>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="buyer-name">Nombre completo *</label>
+                                    <input type="text" id="buyer-name" name="buyer-name" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="buyer-email">Email *</label>
+                                    <input type="email" id="buyer-email" name="buyer-email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="buyer-phone">Teléfono</label>
+                                    <input type="tel" id="buyer-phone" name="buyer-phone">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="buyer-document">DNI/Documento *</label>
+                                    <input type="text" id="buyer-document" name="buyer-document" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Método de pago MercadoPago -->
+                        <div class="form-section">
+                            <h3>Método de pago</h3>
+
+                            <!-- Container donde MercadoPago renderizará el formulario de pago -->
+                            <div id="mercadopago-button"></div>
+
+                            <!-- Alternativa: Botón de pago directo -->
+                            <div id="wallet_container"></div>
+                        </div>
+
+                        <div class="payment-info">
+                            <p>🔒 Pago 100% seguro procesado por MercadoPago</p>
+                            <p>Al completar la compra aceptas nuestros términos y condiciones</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Simple -->
+    <footer class="footer-simple">
+        <div class="container">
+            <p>&copy; 2025 Leo IA. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/payment.js"></script>
+</body>
+</html>
