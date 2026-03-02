@@ -198,35 +198,107 @@ function loadPlaceholderTestimonials() {
 }
 
 // ===========================
-// Formulario de Contacto - FormSubmit
+// Formulario de Contacto - Web3Forms (fetch API)
 // ===========================
 const contactForm = document.getElementById('contact-form');
+const submitBtn = document.getElementById('submit-btn');
+const formMessage = document.getElementById('form-message');
 
-// Configurar URL de redirect dinámicamente
-const redirectInput = document.getElementById('form-redirect');
-const currentUrl = window.location.origin + window.location.pathname;
-redirectInput.value = currentUrl + '?success=true';
+// --- Validación client-side ---
+function validateForm(formData) {
+    const name = formData.get('name') ? formData.get('name').trim() : '';
+    const email = formData.get('email') ? formData.get('email').trim() : '';
+    const service = formData.get('service') ? formData.get('service').trim() : '';
+    const message = formData.get('message') ? formData.get('message').trim() : '';
 
-// Mostrar estado de "Enviando..." al enviar
-contactForm.addEventListener('submit', (e) => {
-    const submitButton = contactForm.querySelector('button[type="submit"]');
-    submitButton.textContent = 'Enviando...';
-    submitButton.disabled = true;
-
-    console.log('Formulario enviado a FormSubmit');
-    // El formulario se envía normalmente (no prevenir default)
-});
-
-// Detectar cuando regresa con éxito
-window.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('success') === 'true') {
-        alert('✅ ¡Mensaje enviado correctamente! Me pondré en contacto contigo pronto.');
-
-        // Limpiar el parámetro de la URL
-        window.history.replaceState({}, document.title, window.location.pathname);
+    if (!name) {
+        return 'Por favor ingresá tu nombre completo.';
     }
-});
+    if (!email) {
+        return 'Por favor ingresá tu email.';
+    }
+    // Validación básica de formato email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        return 'Por favor ingresá un email válido.';
+    }
+    if (!service) {
+        return 'Por favor seleccioná un servicio de interés.';
+    }
+    if (!message) {
+        return 'Por favor escribí un mensaje.';
+    }
+    return null; // null = sin errores
+}
+
+// --- Mostrar mensaje de estado ---
+function showFormMessage(type, text) {
+    formMessage.className = 'form-message form-message--' + type;
+    formMessage.textContent = text;
+    formMessage.style.display = 'block';
+    // Scroll suave al mensaje
+    formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function hideFormMessage() {
+    formMessage.style.display = 'none';
+    formMessage.className = 'form-message';
+    formMessage.textContent = '';
+}
+
+// --- Submit handler con fetch ---
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        hideFormMessage();
+
+        const formData = new FormData(contactForm);
+
+        // Validación client-side
+        const validationError = validateForm(formData);
+        if (validationError) {
+            showFormMessage('error', validationError);
+            return;
+        }
+
+        // Estado: loading
+        submitBtn.textContent = 'Enviando...';
+        submitBtn.disabled = true;
+        submitBtn.classList.add('btn--loading');
+
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+                // Estado: éxito
+                showFormMessage('success', '¡Mensaje enviado correctamente! Me pondre en contacto con vos pronto.');
+                contactForm.reset();
+                submitBtn.textContent = 'Mensaje enviado';
+                // Restaurar botón después de 4 segundos
+                setTimeout(() => {
+                    submitBtn.textContent = 'Enviar mensaje';
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('btn--loading');
+                }, 4000);
+            } else {
+                throw new Error(data.message || 'Error al enviar');
+            }
+
+        } catch (error) {
+            console.error('Error al enviar formulario Web3Forms:', error);
+            // Estado: error
+            showFormMessage('error', 'Hubo un error al enviar. Por favor intentá de nuevo o escribinos directamente a leodiazdt@gmail.com');
+            submitBtn.textContent = 'Enviar mensaje';
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('btn--loading');
+        }
+    });
+}
 
 // ===========================
 // Parallax en Hero

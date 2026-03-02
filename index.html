@@ -444,11 +444,14 @@
                     </div>
                 </div>
 
-                <form class="contacto-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                <form class="contacto-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
                     <!-- Configuración Web3Forms -->
                     <input type="hidden" name="access_key" value="d13a018a-540d-4e02-ac1c-6554d017cfb1">
-                    <input type="hidden" name="subject" value="Nuevo contacto desde Leo IA Website">
-                    <input type="hidden" name="redirect" id="form-redirect" value="">
+                    <input type="hidden" name="subject" value="Nueva solicitud de videollamada - SoyLeoAI">
+                    <input type="hidden" name="redirect" value="https://soyleoai.com">
+
+                    <!-- Mensaje de estado del formulario -->
+                    <div id="form-message" class="form-message" aria-live="polite"></div>
 
                     <div class="form-field">
                         <input type="text" id="name" name="name" required placeholder=" ">
@@ -476,7 +479,7 @@
                         <textarea id="message" name="message" required placeholder=" " rows="4"></textarea>
                         <label for="message">Mensaje</label>
                     </div>
-                    <button type="submit" class="btn-primary-large">Enviar mensaje</button>
+                    <button type="submit" class="btn-primary-large" id="submit-btn">Enviar mensaje</button>
                 </form>
             </div>
         </div>
