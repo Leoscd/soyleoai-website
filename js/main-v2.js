@@ -370,24 +370,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ===========================
-// Navbar Scroll Effect
+// Navbar Scroll Effect — transparente en hero, blanca al scrollear
 // ===========================
-let lastScroll = 0;
 const navbar = document.querySelector('.navbar-minimal');
+const heroThreshold = window.innerHeight * 0.6;
 
 window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-
-    if (currentScroll > 100) {
-        navbar.style.padding = '16px 0';
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+    if (window.pageYOffset > heroThreshold) {
+        navbar.classList.add('navbar-scrolled');
     } else {
-        navbar.style.padding = '24px 0';
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+        navbar.classList.remove('navbar-scrolled');
     }
-
-    lastScroll = currentScroll;
-});
+}, { passive: true });
 
 // ===========================
 // Inicialización
