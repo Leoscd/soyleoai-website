@@ -101,7 +101,7 @@ ia-arquitectos-website/
 - [ ] Verificar sitio en https://soyleoai.com con SSL activo
 
 ### FASE 2 — FORMULARIO DE CONTACTO
-- [ ] Reemplazar FormSubmit (tenía error 524) por Web3Forms
+- [x] Reemplazar FormSubmit (tenía error 524) por Web3Forms
   - Obtener Access Key en https://web3forms.com
   - Actualizar `action` en el formulario de `index.html`
   - Actualizar redirect URL de localhost a `https://soyleoai.com`
