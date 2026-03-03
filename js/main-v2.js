@@ -113,8 +113,8 @@ async function loadTestimonials() {
             container.appendChild(card);
         });
 
-        // Boot the carousel after all cards are in the DOM
-        initCarousel();
+        // Duplicar cards para loop infinito del marquee
+        initMarquee();
 
     } catch (error) {
         console.error('❌ Error cargando testimonios:', error);
@@ -180,165 +180,20 @@ function generateStars(rating) {
 }
 
 // ===========================
-// Carousel Engine
+// Marquee — loop infinito (la animación la maneja CSS)
 // ===========================
-function initCarousel() {
-    const track       = document.getElementById('testimonios-container');
-    const wrapper     = track ? track.closest('.testimonios-carousel-wrapper') : null;
-    const dotsContainer = document.getElementById('carousel-dots');
-    const prevBtn     = wrapper ? wrapper.querySelector('.carousel-prev') : null;
-    const nextBtn     = wrapper ? wrapper.querySelector('.carousel-next') : null;
+function initMarquee() {
+    const track = document.getElementById('testimonios-container');
+    if (!track || track.children.length === 0) return;
 
-    if (!track || !wrapper || !dotsContainer || !prevBtn || !nextBtn) return;
-
-    const cards = Array.from(track.querySelectorAll('.testimonial-card'));
-    if (cards.length === 0) return;
-
-    // ── How many cards are visible at current viewport ──
-    function getVisibleCount() {
-        const w = window.innerWidth;
-        if (w >= 1024) return 3;
-        if (w >= 768)  return 2;
-        return 1;
-    }
-
-    // ── State ──
-    let currentIndex  = 0;
-    let visibleCount  = getVisibleCount();
-    let autoTimer     = null;
-    let isInteracting = false; // true while user touches / hovers
-
-    // ── Total number of "pages" (stops) ──
-    function totalStops() {
-        return Math.max(1, cards.length - visibleCount + 1);
-    }
-
-    // ── Move the track to show the card at `index` ──
-    function goTo(index) {
-        const stops = totalStops();
-
-        // Loop clamp — wrap around at boundaries
-        if (index >= stops) index = 0;
-        if (index < 0)      index = stops - 1;
-
-        currentIndex = index;
-
-        // Card width includes the 32px gap between cards
-        const cardEl        = cards[0];
-        const cardWidth     = cardEl.getBoundingClientRect().width;
-        const computedGap   = 32; // matches CSS gap: 32px on .testimonios-track
-        const offset        = currentIndex * (cardWidth + computedGap);
-
-        track.style.transform = `translateX(-${offset}px)`;
-
-        // Update dots
-        const dots = dotsContainer.querySelectorAll('.carousel-dot');
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === currentIndex);
-        });
-    }
-
-    // ── Build dots based on current stop count ──
-    function buildDots() {
-        dotsContainer.innerHTML = '';
-        const stops = totalStops();
-
-        for (let i = 0; i < stops; i++) {
-            const dot = document.createElement('button');
-            dot.className = 'carousel-dot' + (i === currentIndex ? ' active' : '');
-            dot.setAttribute('aria-label', `Ir al testimonio ${i + 1}`);
-            dot.addEventListener('click', () => {
-                goTo(i);
-                resetAutoTimer();
-            });
-            dotsContainer.appendChild(dot);
-        }
-    }
-
-    // ── Auto-advance ──
-    function startAutoTimer() {
-        stopAutoTimer();
-        autoTimer = setInterval(() => {
-            if (!isInteracting) {
-                goTo(currentIndex + 1);
-            }
-        }, 4000);
-    }
-
-    function stopAutoTimer() {
-        if (autoTimer) {
-            clearInterval(autoTimer);
-            autoTimer = null;
-        }
-    }
-
-    function resetAutoTimer() {
-        stopAutoTimer();
-        startAutoTimer();
-    }
-
-    // ── Pause on mouse hover (desktop) ──
-    wrapper.addEventListener('mouseenter', () => {
-        isInteracting = true;
+    // Clonar todas las cards originales y appendearlas al final.
+    // La animación CSS mueve el track -50% → exactamente un set completo.
+    const originals = Array.from(track.children);
+    originals.forEach(card => {
+        const clone = card.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
     });
-    wrapper.addEventListener('mouseleave', () => {
-        isInteracting = false;
-    });
-
-    // ── Pause on touch (mobile) ──
-    wrapper.addEventListener('touchstart', () => {
-        isInteracting = true;
-    }, { passive: true });
-    wrapper.addEventListener('touchend', () => {
-        // Resume after a brief delay so the last swipe gesture doesn't immediately advance
-        setTimeout(() => { isInteracting = false; }, 800);
-    }, { passive: true });
-
-    // ── Swipe support (touch) ──
-    let touchStartX = 0;
-    wrapper.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-    }, { passive: true });
-    wrapper.addEventListener('touchend', (e) => {
-        const delta = touchStartX - e.changedTouches[0].clientX;
-        if (Math.abs(delta) > 40) {
-            goTo(delta > 0 ? currentIndex + 1 : currentIndex - 1);
-            resetAutoTimer();
-        }
-    }, { passive: true });
-
-    // ── Prev / Next buttons ──
-    prevBtn.addEventListener('click', () => {
-        goTo(currentIndex - 1);
-        resetAutoTimer();
-    });
-    nextBtn.addEventListener('click', () => {
-        goTo(currentIndex + 1);
-        resetAutoTimer();
-    });
-
-    // ── Rebuild on resize (debounced) ──
-    let resizeTimer = null;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-            const newVisible = getVisibleCount();
-            if (newVisible !== visibleCount) {
-                visibleCount = newVisible;
-                // Clamp current index so it doesn't exceed new stop count
-                if (currentIndex >= totalStops()) {
-                    currentIndex = totalStops() - 1;
-                }
-                buildDots();
-                goTo(currentIndex);
-            }
-        }, 150);
-    }, { passive: true });
-
-    // ── Initial render ──
-    buildDots();
-    goTo(0);
-    startAutoTimer();
 }
 
 function loadPlaceholderTestimonials() {
@@ -369,8 +224,7 @@ function loadPlaceholderTestimonials() {
         container.appendChild(card);
     });
 
-    // Boot carousel for fallback data as well
-    initCarousel();
+    initMarquee();
 }
 
 // ===========================

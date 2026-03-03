@@ -292,13 +292,19 @@ button {
     transform: scale(1.1);
 }
 
+.hero-bg--hidden {
+    display: none; /* VANTA reemplaza la imagen de fondo */
+}
+
 .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+    /* Gradiente suave para contraste del texto sobre la red de VANTA */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.45));
+    z-index: 1;
 }
 
 .hero-content-center {
@@ -1265,38 +1271,45 @@ button {
     overflow: hidden;
 }
 
-/* Flex track — JS drives translateX for sliding */
+/* ─── Marquee continuo: animación CSS, JS solo clona las cards ─── */
+@keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
 .testimonios-track {
     display: flex;
     gap: 32px;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    width: max-content;
+    animation: marquee-scroll 50s linear infinite;
     will-change: transform;
-    /* Align-items stretch makes all cards same height in a row */
     align-items: stretch;
 }
 
-/* ─── Card sizing ─── */
+/* Pausa al hover sobre el wrapper */
+.testimonios-carousel-wrapper:hover .testimonios-track {
+    animation-play-state: paused;
+}
 
-/* Desktop: 3 visible (1024px+) */
+/* ─── Card sizing: ancho fijo para que el marquee funcione ─── */
 .testimonios-track .testimonial-card {
-    flex: 0 0 calc(33.333% - 22px); /* 3 cols with 32px gap */
+    flex: 0 0 380px;
+    width: 380px;
     min-height: 280px;
     display: flex;
     flex-direction: column;
 }
 
-/* Tablet: 2 visible (768px – 1023px) */
-@media (max-width: 1023px) {
+@media (max-width: 767px) {
     .testimonios-track .testimonial-card {
-        flex: 0 0 calc(50% - 16px); /* 2 cols with 32px gap */
+        flex: 0 0 300px;
+        width: 300px;
     }
 }
 
-/* Mobile: 1 visible (< 768px) */
-@media (max-width: 767px) {
-    .testimonios-track .testimonial-card {
-        flex: 0 0 100%;
-    }
+/* Ocultar controles (no aplican al marquee) */
+.carousel-controls {
+    display: none;
 }
 
 /* ─── Highlight variant — Pilar Cichero (caso estrella) ─── */
@@ -1389,7 +1402,7 @@ button {
 /* ─── Reduced motion accessibility ─── */
 @media (prefers-reduced-motion: reduce) {
     .testimonios-track {
-        transition: none;
+        animation: none;
     }
     .carousel-btn,
     .carousel-dot {
