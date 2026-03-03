@@ -18,6 +18,13 @@
 
     --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* ─── Dark theme surface tokens ─── */
+    --color-surface: #1a1a1a;       /* card / panel backgrounds */
+    --color-surface-2: #242424;     /* hover state of cards */
+    --color-text-primary: #f0f0f0;  /* main body text */
+    --color-text-secondary: rgba(255, 255, 255, 0.65); /* secondary / muted text */
+    --color-border: rgba(255, 255, 255, 0.08); /* subtle borders */
 }
 
 /* ===========================
@@ -36,8 +43,8 @@ html {
 
 body {
     font-family: var(--font-body);
-    color: var(--color-black);
-    background: var(--color-white);
+    color: var(--color-text-primary);
+    background: #0f0f0f;
     line-height: 1.6;
     overflow-x: hidden;
 }
@@ -80,11 +87,11 @@ button {
     transition: background 0.4s ease, border-color 0.4s ease;
 }
 
-/* Estado al hacer scroll: vuelve al blanco */
+/* Estado al hacer scroll: fondo oscuro semi-transparente */
 .navbar-minimal.navbar-scrolled {
-    background: rgba(255, 255, 255, 0.97);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    background: rgba(15, 15, 15, 0.95);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--color-border);
     padding: 16px 0;
 }
 
@@ -104,29 +111,44 @@ button {
     letter-spacing: -0.02em;
 }
 
+/* ─── Typographic logo: LEO IA ─── */
+/* Dark theme: navbar is always dark-bg (transparent on hero, dark-blur on scroll)
+   so the logo text is always white in both states */
+.logo-text {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-white);
+    transition: color 0.4s ease;
+}
+
+.logo-accent {
+    color: var(--color-accent); /* #FFDD00 — always yellow */
+}
+
 .menu-toggle {
     display: flex;
     align-items: center;
     gap: 16px;
     padding: 12px 24px;
-    border: 1px solid var(--color-black);
+    /* Dark theme: always use white/dim border since bg is dark */
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 50px;
+    color: var(--color-white);
     transition: var(--transition);
 }
 
-/* Navbar transparente sobre hero oscuro → botón en blanco */
-.navbar-minimal:not(.navbar-scrolled) .menu-toggle {
-    border-color: rgba(255, 255, 255, 0.6);
-    color: var(--color-white);
-}
-
+/* Dark theme: navbar is always dark (transparent over hero, dark-blur when scrolled)
+   so the button is always white-on-dark — no override needed per state */
 .navbar-minimal:not(.navbar-scrolled) .menu-toggle:hover {
     background: rgba(255, 255, 255, 0.15);
     border-color: var(--color-white);
 }
 
 .menu-toggle:hover {
-    background: var(--color-black);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-white);
     color: var(--color-white);
 }
 
@@ -327,6 +349,48 @@ button {
     z-index: 1;
 }
 
+/* ─── Yellow light orb — warm depth point over VANTA NET ─── */
+/* Sits at z-index 1 (same layer as overlay) to not block content */
+.hero-light-point {
+    position: absolute;
+    top: -10%;
+    right: 10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(
+        circle at center,
+        rgba(255, 221, 0, 0.12) 0%,
+        rgba(255, 180, 0, 0.06) 40%,
+        transparent 70%
+    );
+    border-radius: 50%;
+    z-index: 1;
+    pointer-events: none;
+    /* Slow breathing pulse for organic depth */
+    animation: lightPulse 6s ease-in-out infinite;
+}
+
+@keyframes lightPulse {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50%       { opacity: 1;   transform: scale(1.15); }
+}
+
+@media (max-width: 768px) {
+    .hero-light-point {
+        width: 300px;
+        height: 300px;
+        top: -5%;
+        right: -10%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-light-point {
+        animation: none;
+        opacity: 0.8;
+    }
+}
+
 .hero-content-center {
     position: relative;
     z-index: 2;
@@ -349,10 +413,10 @@ button {
 
 .hero-title-large {
     font-family: var(--font-display);
-    font-size: clamp(36px, 6vw, 72px);
+    font-size: clamp(32px, 5.5vw, 80px);
     font-weight: 700;
     color: var(--color-white);
-    line-height: 1.05;
+    line-height: 1.0;
     margin-bottom: 24px;
     letter-spacing: -0.02em;
 }
@@ -483,7 +547,7 @@ button {
    =========================== */
 .sobre-mi-section {
     padding: 160px 0;
-    background: var(--color-white);
+    background: #0f0f0f;
 }
 
 .sobre-mi-grid {
@@ -512,12 +576,16 @@ button {
 .sobre-mi-text {
     font-size: 18px;
     line-height: 1.8;
-    color: var(--color-gray-700);
+    color: var(--color-text-secondary);
     margin-bottom: 48px;
 }
 
 .sobre-mi-text p {
     margin-bottom: 24px;
+}
+
+.sobre-mi-text strong {
+    color: var(--color-text-primary);
 }
 
 .sobre-mi-stats {
@@ -542,7 +610,7 @@ button {
 
 .stat-label {
     font-size: 14px;
-    color: var(--color-gray-700);
+    color: var(--color-text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -822,7 +890,7 @@ button {
    =========================== */
 .consultoria-section {
     padding: 160px 0;
-    background: var(--color-gray-100);
+    background: #141414;
 }
 
 .consultoria-grid {
@@ -833,7 +901,8 @@ button {
 }
 
 .consultoria-card {
-    background: var(--color-white);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
     padding: 48px;
     border-radius: 12px;
     transition: var(--transition);
@@ -841,7 +910,8 @@ button {
 
 .consultoria-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.1);
+    background: var(--color-surface-2);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
 }
 
 .card-icon {
@@ -862,7 +932,7 @@ button {
 }
 
 .consultoria-card p {
-    color: var(--color-gray-700);
+    color: var(--color-text-secondary);
     line-height: 1.7;
 }
 
@@ -946,7 +1016,7 @@ button {
    =========================== */
 .testimonios-section {
     padding: 160px 0;
-    background: var(--color-white);
+    background: #0f0f0f;
 }
 
 .testimonios-grid {
@@ -957,7 +1027,9 @@ button {
 }
 
 .testimonial-card {
-    background: var(--color-gray-100);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
     padding: 40px;
     border-radius: 12px;
     transition: var(--transition);
@@ -965,7 +1037,8 @@ button {
 
 .testimonial-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.08);
+    background: var(--color-surface-2);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
 }
 
 .testimonial-header {
@@ -1006,13 +1079,13 @@ button {
 
 .testimonial-role {
     font-size: 14px;
-    color: var(--color-gray-700);
+    color: var(--color-text-secondary);
 }
 
 .testimonial-text {
     font-size: 16px;
     line-height: 1.7;
-    color: var(--color-gray-700);
+    color: var(--color-text-secondary);
     font-style: italic;
 }
 
@@ -1097,6 +1170,12 @@ button {
     border-bottom-color: var(--color-accent);
 }
 
+/* Dark theme placeholders */
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
 .form-field label {
     position: absolute;
     left: 0;
@@ -1121,15 +1200,15 @@ button {
     -webkit-appearance: auto;
     -moz-appearance: auto;
     cursor: pointer;
-    background-color: var(--color-white);
-    color: var(--color-black) !important;
+    background-color: #1a1a1a;
+    color: var(--color-text-primary) !important;
     padding-top: 28px;
     padding-bottom: 12px;
 }
 
 .form-field select option {
-    background-color: var(--color-white) !important;
-    color: #000000 !important;
+    background-color: #1a1a1a !important;
+    color: var(--color-text-primary) !important;
     padding: 10px;
     font-weight: 500;
 }
@@ -1198,7 +1277,7 @@ button {
 }
 
 .footer-left p {
-    color: var(--color-gray-700);
+    color: var(--color-text-secondary);
     margin-top: 8px;
 }
 
@@ -1208,7 +1287,7 @@ button {
 }
 
 .footer-social a {
-    color: var(--color-gray-700);
+    color: var(--color-text-secondary);
     transition: var(--transition);
 }
 
@@ -1218,7 +1297,7 @@ button {
 
 .footer-bottom {
     text-align: center;
-    color: var(--color-gray-700);
+    color: var(--color-text-secondary);
     font-size: 14px;
 }
 
@@ -1257,8 +1336,9 @@ button {
 
 @media (max-width: 768px) {
     .hero-title-large {
-        font-size: 32px;
-        line-height: 1.1;
+        font-size: clamp(28px, 8vw, 40px);
+        line-height: 1.05;
+        letter-spacing: -0.01em;
     }
 
     .section-title-large {
@@ -1332,10 +1412,11 @@ button {
     display: none;
 }
 
-/* ─── Highlight variant — Pilar Cichero (caso estrella) ─── */
+/* ─── Highlight variant — Pilar Cichero (caso estrella) — dark theme ─── */
 .testimonial-card--highlight {
     border-left: 3px solid var(--color-accent);
-    background: #f9f7e8; /* very subtle warm tint, consistent with #FFDD00 brand */
+    background: #1f1d10; /* very subtle warm dark tint, consistent with #FFDD00 brand */
+    border-color: var(--color-accent);
 }
 
 /* ─── Testimonial text: fills remaining height so cards align ─── */
