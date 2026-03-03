@@ -71,13 +71,19 @@
         </div>
     </div>
 
-    <!-- Hero Fullscreen — fondo de cubos isométricos via Canvas -->
+    <!-- Hero Fullscreen — VANTA.js NET fondo animado -->
     <section id="home" class="hero-fullscreen">
-        <!-- canvas se inyecta aquí por hero-canvas.js (z-index 0) -->
+        <div class="hero-bg hero-bg--hidden"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content-center">
-            <h1 class="hero-title-large">Soy Leo</h1>
-            <p class="hero-subtitle-large">Aprende a dominar las herramientas que definen el futuro de la profesión</p>
+            <h1 class="hero-title-large">
+                El arquitecto del&nbsp;<span class="flip-word" role="text" aria-label="FUTURO, también PRESENTE">
+                    <span class="flip-word__a">FUTURO</span>
+                    <span class="flip-word__b">PRESENTE</span>
+                </span><br>
+                trabaja hoy con IA
+            </h1>
+            <p class="hero-subtitle-large">Sin dibujar una línea. Con estrategia e IA.</p>
             <div class="hero-cta">
                 <a href="#contacto" class="btn-primary-large">Agendar consulta</a>
             </div>
@@ -469,7 +475,26 @@
     </footer>
 
     <script src="js/main-v2.js"></script>
-    <!-- Fondo isométrico de cubos — sin dependencias externas -->
-    <script src="js/hero-canvas.js"></script>
+    <!-- VANTA.js NET — fondo animado del hero -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js"></script>
+    <script>
+        VANTA.NET({
+            el: "#home",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200,
+            minWidth: 200,
+            scale: 1.0,
+            scaleMobile: 0.75,
+            color: 0xFFDD00,
+            backgroundColor: 0x0a0a0a,
+            points: 11,
+            maxDistance: 22,
+            spacing: 18,
+            showDots: true
+        });
+    </script>
 </body>
 </html><!-- Updated: Mon Oct 27 18:37:10 -03 2025 -->
