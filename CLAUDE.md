@@ -11,7 +11,7 @@
 **Dominio:** soyleoai.com (comprado en GoDaddy)
 **Repositorio:** https://github.com/Leoscd/soyleoai-website
 **Hosting:** Vercel (plan gratuito)
-**Último commit:** `c8d1cde` — Initial commit con landing completa
+**Último commit:** `86acd58` — feat: dark theme + logo texto + hero light orb + título
 
 ---
 
@@ -33,18 +33,32 @@ ia-arquitectos-website/
 │   ├── main-v2.js          ← JavaScript principal
 │   └── payment.js          ← Lógica de pagos (pendiente integración real)
 ├── data/
-│   └── testimonials.json   ← 3 testimonios reales cargados dinámicamente
+│   └── testimonials.json   ← 6 testimonios reales cargados dinámicamente
 ├── images/
-│   ├── logo.png
+│   ├── logo.png             ← YA NO SE USA (reemplazado por logo texto CSS)
 │   ├── leo-foto.jpg
 │   ├── escritorio-monitor.png
 │   └── testimonials/
 │       ├── Pilar-Cichero.jpg
 │       ├── Julian-Barrionuevo.jpg
-│       └── ana-lopez.png
+│       ├── ana-lopez.png
+│       └── (pendiente: Santiago, Horacio, Jose Inigo)
+├── js/
+│   └── hero-canvas.js      ← Canvas isométrico creado pero NO referenciado en HTML
+├── .claude/
+│   ├── agents/
+│   │   ├── premium-frontend-designer.md   ← Agente de diseño visual
+│   │   ├── soyleoai-backend-builder.md    ← Agente de backend/APIs
+│   │   └── responsive-layout-expert.md   ← Agente responsive (nuevo)
+│   └── commands/
+│       └── audit-responsive.md           ← Skill /audit-responsive
 └── docs/
     ├── Claude.md                    ← Plan detallado por fases (referencia)
     └── ESTADO-ACTUAL-27-OCT-2025.md ← Historial de trabajo anterior
+
+### Ramas git:
+- `main` — versión estable con carousel y Web3Forms
+- `feature/vanta-hero` — rama activa con VANTA.NET + dark theme + flip-word (EN REVISIÓN)
 ```
 
 ---
@@ -75,13 +89,34 @@ ia-arquitectos-website/
 
 ### Completado:
 - [x] Diseño y maquetado del sitio (95% completo)
-- [x] Testimonios reales cargando desde JSON
+- [x] Testimonios reales cargando desde JSON (6 testimonios: Pilar, Julian, Santiago, Horacio, Jose, Ana)
 - [x] Logo, imágenes y branding definidos
 - [x] Repositorio en GitHub: `Leoscd/soyleoai-website`
 - [x] Vercel conectado al repositorio
 - [x] `vercel.json` configurado con headers de seguridad
 - [x] `.gitignore` y `.env.local` configurados
 - [x] Dominio `soyleoai.com` conectado a Vercel (pendiente propagación DNS)
+- [x] Formulario de contacto con Web3Forms (reemplazó FormSubmit)
+- [x] Carrusel marquee continuo (CSS animation 50s, clonado JS, pausa en hover)
+- [x] Fondo VANTA.NET en hero (Three.js r134 + VANTA 0.5.24, color #FFDD00)
+- [x] Navbar transparente en hero → oscura al scroll (JS threshold 60% viewport)
+- [x] Título hero con flip-word TRABAJO/DISEÑO (hover amarillo → blanco)
+- [x] Logo PNG → texto CSS "LEO IA" con acento amarillo
+- [x] Punto de luz amarillo animado en hero (radial-gradient + lightPulse)
+- [x] Tema oscuro global (body #0f0f0f, cards dark, form inputs dark)
+- [x] 3 agentes Claude creados (.claude/agents/)
+- [x] Comando /audit-responsive creado
+
+### Decisiones de producto:
+- **FASE 3 (Pagos) CANCELADA** — Leo usa Skool para gestionar clientes, no necesita pasarela
+
+### Pendiente inmediato (feature/vanta-hero):
+- [ ] Leo prueba en http://localhost:8080 y aprueba o pide ajustes
+- [ ] Fotos de perfil para: Santiago Manzanares, Horacio d'Oliveira, Jose Inigo
+- [ ] Roles de cada testimonial (Leo los proveerá)
+- [ ] Video de Pilar → subir a YouTube (unlisted) y crear sección Caso de Éxito
+- [ ] Reestructura del embudo: sección "Lo que podés hacer" + Caso de Éxito + mover testimonios
+- [ ] Merge feature/vanta-hero → main cuando Leo apruebe
 
 ### Bloqueante actual:
 - [ ] **Confirmar baja de system.io** y cambio de DNS en GoDaddy a Vercel:
@@ -107,21 +142,8 @@ ia-arquitectos-website/
   - Actualizar redirect URL de localhost a `https://soyleoai.com`
 - **Subagente sugerido:** `claude "implementa Web3Forms en el formulario de contacto de index.html"`
 
-### FASE 3 — PASARELAS DE PAGO
-- [ ] Crear carpeta `/api/`
-- [ ] Crear `/api/mercadopago/create-preference.js`
-- [ ] Crear `/api/mercadopago/webhook.js`
-- [ ] Crear `/api/stripe/create-checkout.js`
-- [ ] Crear `/api/stripe/webhook.js`
-- [ ] Actualizar `js/payment.js` para llamar a las APIs
-- [ ] Crear `success.html`, `failure.html`, `pending.html`
-- [ ] Configurar variables de entorno en Vercel Dashboard:
-  ```
-  MP_PUBLIC_KEY, MP_ACCESS_TOKEN
-  STRIPE_PUBLISHABLE_KEY, STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET
-  SITE_URL=https://soyleoai.com
-  ```
-- **Subagente sugerido:** `claude "crea las APIs serverless de Mercado Pago en /api/mercadopago/"`
+### FASE 3 — PASARELAS DE PAGO ~~(CANCELADA — se usa Skool)~~
+- ~~Toda esta fase fue descartada por Leo. Los clientes se gestionan en Skool.~~
 
 ### FASE 4 — SISTEMA DE RESERVAS
 - [ ] Configurar Calendly (https://calendly.com)
