@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sistema de IA para arquitectos: por qué las herramientas sueltas no alcanzan | Leo Díaz</title>
+  <meta name="description" content="Muchos arquitectos aprenden IA y no implementan nada. El problema no es la herramienta: es la falta de un sistema. Descubrí cómo construirlo.">
+  <meta name="author" content="Leo Díaz">
+  <link rel="canonical" href="https://soyleoai.com/blog/sistema-ia-arquitectura.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://soyleoai.com/blog/sistema-ia-arquitectura.html">
+  <meta property="og:title" content="Sistema de IA para arquitectos: por qué las herramientas sueltas no alcanzan">
+  <meta property="og:description" content="Muchos arquitectos aprenden IA y no implementan nada. El problema no es la herramienta: es la falta de un sistema.">
+  <meta property="og:image" content="https://soyleoai.com/images/og-image.jpg">
+  <meta property="og:locale" content="es_AR">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sistema de IA para arquitectos: por qué las herramientas sueltas no alcanzan">
+  <meta name="twitter:description" content="Muchos arquitectos aprenden IA y no implementan nada. El problema no es la herramienta: es la falta de un sistema.">
+  <meta name="twitter:image" content="https://soyleoai.com/images/og-image.jpg">
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Un curso de IA sin sistema es como herramientas sueltas en un taller: nadie las usa",
+    "description": "Muchos arquitectos aprenden IA y no implementan nada. El problema no es la herramienta: es la falta de un sistema.",
+    "author": {
+      "@type": "Person",
+      "name": "Leo Díaz",
+      "url": "https://soyleoai.com"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Leo Díaz",
+      "url": "https://soyleoai.com"
+    },
+    "datePublished": "2026-03-25",
+    "url": "https://soyleoai.com/blog/sistema-ia-arquitectura.html",
+    "inLanguage": "es-AR",
+    "keywords": ["sistema de IA para arquitectos", "inteligencia artificial arquitectura", "automatización estudio de arquitectura"]
+  }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black:   #0a0a0a;
+      --surface: #1a1a1a;
+      --surface2:#242424;
+      --text:    #e5e5e5;
+      --muted:   rgba(255,255,255,0.55);
+      --accent:  #FFDD00;
+      --accent-h:#FFCC00;
+      --border:  rgba(255,255,255,0.08);
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body:    'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: #0f0f0f;
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-back {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.25s;
+    }
+
+    .nav-back:hover { color: var(--accent); }
+
+    .nav-back svg { width: 16px; height: 16px; }
+
+    /* ── HERO DEL POST ── */
+    .post-hero {
+      background: linear-gradient(180deg, #111111 0%, #0f0f0f 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 72px 5% 56px;
+      text-align: center;
+    }
+
+    .post-tag {
+      display: inline-block;
+      background: rgba(255,221,0,0.12);
+      color: var(--accent);
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,221,0,0.25);
+      margin-bottom: 24px;
+    }
+
+    .post-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.2;
+      max-width: 820px;
+      margin: 0 auto 20px;
+      color: #ffffff;
+    }
+
+    .post-hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .post-meta {
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+
+    .post-meta strong { color: var(--text); }
+
+    /* ── CONTENIDO ── */
+    .post-wrapper {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 56px 5% 80px;
+    }
+
+    .post-body p {
+      margin-bottom: 1.5rem;
+      font-size: 1.0625rem;
+      color: var(--text);
+    }
+
+    .post-body h2 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 2.5rem 0 1rem;
+      line-height: 1.3;
+    }
+
+    .post-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 2rem 0 0.75rem;
+    }
+
+    .post-body ul {
+      margin: 0 0 1.5rem 1.25rem;
+    }
+
+    .post-body ul li {
+      margin-bottom: 0.6rem;
+      font-size: 1.0625rem;
+      color: var(--text);
+    }
+
+    .post-body strong { color: #ffffff; }
+
+    .highlight-box {
+      background: rgba(255,221,0,0.06);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 20px 24px;
+      margin: 2rem 0;
+    }
+
+    .highlight-box p {
+      margin: 0;
+      font-style: italic;
+      color: rgba(255,255,255,0.85);
+    }
+
+    /* ── DIVISOR ── */
+    .post-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 2.5rem 0;
+    }
+
+    /* ── CTA ── */
+    .post-cta {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 36px;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .post-cta h2 {
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .post-cta p {
+      color: var(--muted);
+      font-size: 0.9375rem;
+      margin-bottom: 28px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0a0a0a;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.9375rem;
+      padding: 12px 28px;
+      border-radius: 8px;
+      display: inline-block;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--accent-h); transform: translateY(-1px); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      padding: 12px 28px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      display: inline-block;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: rgba(255,255,255,0.3); color: #ffffff; }
+
+    /* ── FOOTER ── */
+    .post-footer {
+      background: #0a0a0a;
+      border-top: 1px solid var(--border);
+      padding: 32px 5%;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+
+    .post-footer a { color: var(--accent); }
+    .post-footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .post-hero { padding: 48px 5% 40px; }
+      .post-wrapper { padding: 40px 5% 60px; }
+      .post-cta { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="../index.html" class="nav-logo">LEO <span>IA</span></a>
+    <a href="../index.html" class="nav-back">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M10 12L6 8l4-4"/>
+      </svg>
+      Volver al inicio
+    </a>
+  </nav>
+
+  <!-- HERO DEL POST -->
+  <header class="post-hero">
+    <div class="post-tag">Sistema de IA para arquitectos</div>
+    <h1>Un curso de IA sin sistema es como herramientas sueltas en un taller: <em>nadie las usa</em></h1>
+    <p class="post-meta">Por <strong>Leo Díaz</strong> &nbsp;·&nbsp; 25 de marzo de 2026 &nbsp;·&nbsp; 6 min de lectura</p>
+  </header>
+
+  <!-- CONTENIDO -->
+  <main class="post-wrapper">
+    <article class="post-body">
+
+      <p>
+        Hay un patrón que vi repetirse una y otra vez trabajando con arquitectos y estudios:
+        hacen un curso de IA, quedan entusiasmados, prueban ChatGPT un par de veces, y a las
+        dos semanas volvieron a trabajar exactamente igual que antes. No porque sean flojos.
+        No porque la herramienta sea mala. Sino porque <strong>nadie les enseñó a construir
+        un sistema</strong>.
+      </p>
+
+      <p>
+        Y sin sistema, cada herramienta nueva que aprendés es una fricción más. Una app más
+        que abrir. Una contraseña más que recordar. Un paso más que justificar antes de
+        empezar a trabajar de verdad.
+      </p>
+
+      <h2>La diferencia entre aprender herramientas y tener un sistema</h2>
+
+      <p>
+        Aprender a usar Claude, Gemini o NotebookLM por separado es útil. Pero lo que
+        transforma un estudio es cuando esas herramientas dejan de ser aplicaciones
+        individuales y pasan a ser partes de un flujo que tiene principio, medio y fin.
+      </p>
+
+      <p>
+        Un sistema tiene tres características que una herramienta suelta no tiene:
+      </p>
+
+      <ul>
+        <li><strong>Flujo definido:</strong> sabés exactamente en qué momento usás cada herramienta y para qué.</li>
+        <li><strong>Memoria:</strong> el sistema recuerda el contexto de tus proyectos, tus clientes, tus materiales habituales — no empezás de cero cada vez.</li>
+        <li><strong>Ejecución repetible:</strong> podés delegar partes del proceso, ya sea a un colaborador o a un agente de IA, porque el proceso está documentado y es predecible.</li>
+      </ul>
+
+      <div class="highlight-box">
+        <p>
+          "Un taller lleno de herramientas sin orden no produce nada. Un taller con procesos
+          claros produce en serie." La diferencia no está en las herramientas — está en cómo
+          están organizadas.
+        </p>
+      </div>
+
+      <h2>Lo que construimos en el curso: un sistema operativo de IA para tu estudio</h2>
+
+      <p>
+        En el programa trabajamos algo concreto: un repositorio en GitHub que funciona como
+        el sistema operativo de IA de tu estudio. No es una carpeta de archivos genérica.
+        Es una estructura que contiene la información que tu agente de IA necesita para
+        trabajar con vos — y para vos.
+      </p>
+
+      <p>
+        Este repositorio se ejecuta desde Claude Code Desktop y le da a tu agente acceso a:
+      </p>
+
+      <ul>
+        <li>Tus proyectos activos y su estado actual</li>
+        <li>Tu base de datos de proveedores y materiales</li>
+        <li>Tus plantillas de propuestas, presupuestos y reportes</li>
+        <li>El historial de decisiones importantes de cada obra</li>
+      </ul>
+
+      <p>
+        El resultado: tenés un agente que conoce tu estudio. Que no te pide que le expliques
+        el contexto cada vez. Que puede tomar un briefing nuevo y cruzarlo con todo lo que ya
+        sabe de tu forma de trabajar para darte algo útil desde la primera respuesta.
+      </p>
+
+      <h3>¿Por qué GitHub y no Google Drive?</h3>
+
+      <p>
+        Porque un repositorio tiene control de versiones, tiene estructura, y es exactamente
+        el formato que los agentes de IA más capaces del mercado saben leer y ejecutar.
+        Google Drive es un lugar donde guardás archivos. GitHub es un lugar donde construís
+        sistemas.
+      </p>
+
+      <p>
+        No hace falta que sepas programar para usarlo. En el curso arrancamos desde cero
+        y al final de las primeras sesiones ya tenés tu repositorio configurado y funcionando.
+      </p>
+
+      <h2>El costo real de no tener un sistema</h2>
+
+      <p>
+        Cada vez que abrís ChatGPT o Claude sin contexto previo, estás pagando un costo
+        invisible: el tiempo que tardás en explicar quién sos, qué proyecto es, qué ya
+        decidiste, qué no querés repetir. Ese costo se acumula. Y hace que la IA parezca
+        lenta, imprecisa, poco práctica.
+      </p>
+
+      <p>
+        Con un sistema, ese costo desaparece. El agente ya tiene el contexto. Vos llegás,
+        decís qué necesitás, y el trabajo empieza.
+      </p>
+
+      <div class="highlight-box">
+        <p>
+          No es magia. Es arquitectura de información aplicada a tu propio estudio. Y es
+          exactamente lo que un arquitecto — alguien que organiza espacios y flujos por
+          profesión — puede construir mejor que nadie.
+        </p>
+      </div>
+
+      <h2>Por qué los cursos genéricos de IA no resuelven esto</h2>
+
+      <p>
+        La mayoría de los cursos de IA que encontrás online están pensados para cualquier
+        perfil profesional. Te enseñan prompting genérico, te muestran demos de herramientas,
+        y te mandan a casa con una lista de apps para probar.
+      </p>
+
+      <p>
+        El problema es que la arquitectura tiene necesidades muy específicas: planos, normativas,
+        presupuestos por ítem, relación con clientes y proveedores, seguimiento de obra, reportes,
+        propuestas comerciales. Un flujo de trabajo genérico no se adapta a eso — hay que
+        construirlo desde adentro.
+      </p>
+
+      <p>
+        Por eso el programa está diseñado exclusivamente para arquitectos. Cada ejercicio,
+        cada herramienta, cada sistema que construís está orientado a los problemas reales
+        que aparecen en un estudio o en una empresa constructora.
+      </p>
+
+      <div class="post-divider"></div>
+
+      <!-- CTA -->
+      <div class="post-cta">
+        <h2>Construí tu sistema de IA desde cero</h2>
+        <p>
+          En el curso aprendés a armar ese repositorio paso a paso, adaptado a tu estudio,
+          con casos reales de arquitectura. Sin programación, sin curva de aprendizaje técnica.
+        </p>
+        
+          <a href="../index.html" class="btn-primary">Conocé más acá</a>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="post-footer">
+    <p>
+      &copy; 2026 <a href="../index.html">SoyLeoAI.com</a> &nbsp;·&nbsp;
+      Leo Díaz — IA aplicada a arquitectura &nbsp;·&nbsp;
+      <a href="https://www.instagram.com/soy.leo_ai" target="_blank" rel="noopener">@soy.leo_ai</a>
+    </p>
+  </footer>
+
+</body>
+</html>

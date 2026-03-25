@@ -367,6 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transition = 'all 0.6s ease-out';
         observer.observe(el);
     });
+
 });
 
 // ===========================
@@ -885,4 +886,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Auto-abrir modal del curso si se llega desde el blog
+    if (sessionStorage.getItem('openCursoModal') === '1') {
+        sessionStorage.removeItem('openCursoModal');
+        setTimeout(() => {
+            modalCurso.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }, 1200);
+    }
 });
