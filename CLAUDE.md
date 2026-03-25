@@ -12,6 +12,7 @@
 **Repositorio:** https://github.com/Leoscd/soyleoai-website
 **Hosting:** Vercel (plan gratuito)
 **Último commit:** `86acd58` — feat: dark theme + logo texto + hero light orb + título
+**Última sesión:** `14/03/2026` — Rediseño completo de secciones, videos, recursos, FAQ, modal curso
 
 ---
 
@@ -30,36 +31,35 @@ ia-arquitectos-website/
 │   ├── styles-v2.css       ← Estilos principales
 │   └── payment.css         ← Estilos de la página de pagos
 ├── js/
-│   ├── main-v2.js          ← JavaScript principal
+│   ├── main-v2.js          ← JavaScript principal (FAQ accordion + skill modal + precio toggle)
 │   └── payment.js          ← Lógica de pagos (pendiente integración real)
 ├── data/
 │   └── testimonials.json   ← 6 testimonios reales cargados dinámicamente
 ├── images/
-│   ├── logo.png             ← YA NO SE USA (reemplazado por logo texto CSS)
+│   ├── logo.png            ← YA NO SE USA (reemplazado por logo texto CSS)
 │   ├── leo-foto.jpg
 │   ├── escritorio-monitor.png
-│   └── testimonials/
-│       ├── Pilar-Cichero.jpg
-│       ├── Julian-Barrionuevo.jpg
-│       ├── ana-lopez.png
-│       └── (pendiente: Santiago, Horacio, Jose Inigo)
+│   ├── testimonials/
+│   │   ├── Pilar-Cichero.jpg
+│   │   ├── Julian-Barrionuevo.jpg
+│   │   ├── ana-lopez.png
+│   │   └── (pendiente: Santiago, Horacio, Jose Inigo)
+│   └── casos/
+│       ├── honorarios-santiago.mp4   ← App de honorarios (Santiago)
+│       ├── web-santiago.mp4          ← Web del estudio (Santiago)
+│       ├── presupuesto.mp4           ← Presupuesto de fundaciones
+│       ├── render-eugenia.mp4        ← Render controlado con IA (Eugenia)
+│       └── pilar-propuesta.jpg       ← PENDIENTE — Leo consigue la imagen de Pilar
 ├── js/
 │   └── hero-canvas.js      ← Canvas isométrico creado pero NO referenciado en HTML
-├── .claude/
-│   ├── agents/
-│   │   ├── premium-frontend-designer.md   ← Agente de diseño visual
-│   │   ├── soyleoai-backend-builder.md    ← Agente de backend/APIs
-│   │   └── responsive-layout-expert.md   ← Agente responsive (nuevo)
-│   └── commands/
-│       └── audit-responsive.md           ← Skill /audit-responsive
-└── docs/
-    ├── Claude.md                    ← Plan detallado por fases (referencia)
-    └── ESTADO-ACTUAL-27-OCT-2025.md ← Historial de trabajo anterior
+└── .claude/
+    ├── agents/             ← 8 agentes especializados
+    └── commands/           ← Skills /audit-* /setup-* /optimize-*
+```
 
 ### Ramas git:
-- `main` — versión estable con carousel y Web3Forms
-- `feature/vanta-hero` — rama activa con VANTA.NET + dark theme + flip-word (EN REVISIÓN)
-```
+- `main` — versión anterior estable
+- `feature/vanta-hero` — rama activa (LISTA PARA MERGE, falta solo pilar-propuesta.jpg)
 
 ---
 
@@ -74,7 +74,7 @@ ia-arquitectos-website/
   - Negro: `#0a0a0a`
   - Blanco: `#ffffff`
 - **Servidor local:** `python3 -m http.server 8080` → http://localhost:8080
-- **Deploy:** `git push origin main` → Vercel despliega automáticamente
+- **Deploy:** `git push origin feature/vanta-hero` → luego merge a main
 
 ### Reglas para subagentes:
 - No modificar `index.html` sin leer el archivo completo primero
@@ -85,179 +85,137 @@ ia-arquitectos-website/
 
 ---
 
-## ESTADO ACTUAL — Marzo 2026
+## ESTADO ACTUAL — Sesión 14/03/2026
 
-### Completado:
-- [x] Diseño y maquetado del sitio (95% completo)
-- [x] Testimonios reales cargando desde JSON (6 testimonios: Pilar, Julian, Santiago, Horacio, Jose, Ana)
-- [x] Logo, imágenes y branding definidos
-- [x] Repositorio en GitHub: `Leoscd/soyleoai-website`
-- [x] Vercel conectado al repositorio
-- [x] `vercel.json` configurado con headers de seguridad
-- [x] `.gitignore` y `.env.local` configurados
-- [x] Dominio `soyleoai.com` conectado a Vercel (pendiente propagación DNS)
-- [x] Formulario de contacto con Web3Forms (reemplazó FormSubmit)
-- [x] Carrusel marquee continuo (CSS animation 50s, clonado JS, pausa en hover)
-- [x] Fondo VANTA.NET en hero (Three.js r134 + VANTA 0.5.24, color #FFDD00)
-- [x] Navbar transparente en hero → oscura al scroll (JS threshold 60% viewport)
-- [x] Título hero con flip-word TRABAJO/DISEÑO (hover amarillo → blanco)
-- [x] Logo PNG → texto CSS "LEO IA" con acento amarillo
-- [x] Punto de luz amarillo animado en hero (radial-gradient + lightPulse)
-- [x] Tema oscuro global (body #0f0f0f, cards dark, form inputs dark)
-- [x] 3 agentes Claude creados (.claude/agents/)
-- [x] Comando /audit-responsive creado
+### Completado en sesiones anteriores:
+- [x] Diseño y maquetado del sitio
+- [x] Testimonios reales cargando desde JSON (6 testimonios)
+- [x] Logo texto CSS "LEO IA", branding definido
+- [x] Repositorio GitHub + Vercel + dominio soyleoai.com con SSL
+- [x] Formulario de contacto con Web3Forms
+- [x] Fondo VANTA.NET en hero + navbar scroll + flip-word + dark theme
+- [x] SEO técnico: sitemap.xml, robots.txt, Open Graph, Twitter Card, Schema JSON-LD
+- [x] Security headers en vercel.json: CSP, HSTS, Referrer-Policy, Permissions-Policy
+- [x] Performance: lazy loading, defer, preconnects
+- [x] 8 agentes Claude + 7 skills creados
 
-### Decisiones de producto:
-- **FASE 3 (Pagos) CANCELADA** — Leo usa Skool para gestionar clientes, no necesita pasarela
+### Completado en sesión 14/03/2026:
+- [x] **4 videos de demostración** copiados a `images/casos/` (honorarios, web, presupuesto, render-eugenia)
+- [x] **Sección "Lo que podés hacer"** rediseñada con 4 cards video glassmorphism + imagen de fondo arquitectónica
+- [x] **Casos de éxito** (Santiago + Pilar) con videos clicables en lightbox — paths actualizados
+- [x] **Carrusel de empresas** — QStudio, Sinergia, Estudio Ramos, CAN + relleno, loop infinito sin salto
+- [x] **Carrusel de herramientas** — texto puro sin cápsulas, duplicado antes Y después de #como-funciona
+- [x] **Sección Recursos gratuitos** con imagen de fondo + 3 cards glassmorphism:
+  - Video clase 11 min → https://youtu.be/7vYDKHOzATY
+  - Skill de Presupuestos → Google Drive (ZIP)
+  - Skill de Reportes de Obra → Google Drive
+- [x] **Modal de email para skills** — Web3Forms captura el lead + muestra link de descarga inmediata
+- [x] **Modal del curso rediseñado** — glassmorphism oscuro, 9 módulos actualizados, precio oculto $300 USD
+- [x] **Sección Consultoría** — botón "Agendar consultoría" con nota "Previo pago · Cupos limitados"
+- [x] **FAQ** con 8 preguntas + accordion JS animado (una a la vez)
+- [x] **Testimonios movidos** a después de #como-funciona
+- [x] **Orden de secciones actualizado** (ver abajo)
 
-### Pendiente inmediato (feature/vanta-hero):
-- [ ] Leo prueba en http://localhost:8080 y aprueba o pide ajustes
-- [ ] Fotos de perfil para: Santiago Manzanares, Horacio d'Oliveira, Jose Inigo
-- [ ] Roles de cada testimonial (Leo los proveerá)
-- [ ] Video de Pilar → subir a YouTube (unlisted) y crear sección Caso de Éxito
-- [ ] Reestructura del embudo: sección "Lo que podés hacer" + Caso de Éxito + mover testimonios
-- [ ] Merge feature/vanta-hero → main cuando Leo apruebe
+### Pendiente inmediato (pre-commit):
+- [ ] `images/casos/pilar-propuesta.jpg` — Leo consigue imagen de Pilar (screenshot de la propuesta)
+- [ ] URL del Skool → reemplazar `https://skool.com` en `#link-skool` del modal
+- [ ] Merge feature/vanta-hero → main + push a soyleoai.com
 
-### Bloqueante actual:
-- [ ] **Confirmar baja de system.io** y cambio de DNS en GoDaddy a Vercel:
-  ```
-  Tipo: A     | Nombre: @   | Valor: 76.76.21.21       | TTL: 600
-  Tipo: CNAME | Nombre: www | Valor: cname.vercel-dns.com | TTL: 600
-  ```
-  Verificar propagación en: https://dnschecker.org
+### Pendiente futuro (no bloquea el commit):
+- [ ] `images/og-image.jpg` (1200×630px) — Leo lo crea
+- [ ] Fotos de Santiago, Horacio, Jose Inigo → `images/testimonials/`
+- [ ] Roles de los 6 testimoniales
+- [ ] Nombres reales de las 3-4 empresas para reemplazar los ficticios del carrusel
+
+---
+
+## ORDEN DE SECCIONES ACTUAL (index.html)
+
+1. HERO (VANTA.NET)
+2. LO QUE PODÉS HACER — 4 cards video con fondo arquitectónico
+3. CASOS DE ÉXITO — Santiago + Pilar con videos lightbox + carrusel empresas
+4. RECURSOS GRATUITOS — video clase + 2 skills descargables con captura de email
+5. Carrusel herramientas (superior)
+6. EL PROGRAMA (#como-funciona)
+7. TESTIMONIOS — carousel con 6 testimonios reales
+8. Carrusel herramientas (inferior)
+9. SOBRE MÍ
+10. CURSO PREVIEW (#curso) → abre modal con 9 módulos + precio oculto
+11. CONSULTORÍA — 3 cards + botón agendar con pago previo
+12. EMPRESAS — sección con imagen de fondo para corporativo
+13. FAQ — 8 preguntas accordion
+14. CONTACTO + FOOTER
+
+---
+
+## MÓDULOS DEL CURSO (actualizados 14/03/2026)
+
+1. Herramientas de IA
+2. Introducción a la IA en Arquitectura
+3. Aplicaciones Prácticas (imágenes + chatbots)
+4. Extracción y Transformación de Datos
+5. Optimización de Presupuestos
+6. Tus Apps a Medida
+7. Skills (automatización)
+8. Modo Agentes (Gemini CLI + Claude Code)
+9. Freepik Renders con IA (Eugenia)
+
+**Precio:** $300 USD (oculto hasta que el usuario hace clic en "Ver inversión")
+**Plataforma:** Skool (URL pendiente de Leo)
+**Garantía:** Si no optimizás 10 horas semanales, continúa sin costo
+
+---
+
+## SKILLS DESCARGABLES (Recursos gratuitos)
+
+| Skill | Drive | Estado |
+|-------|-------|--------|
+| Skill de Presupuestos (ZIP) | `1BnE6SEAD8DkBxKOC2cTJclsNDL1_iH6g` | ✅ activo |
+| Skill de Reportes de Obra | `138BDHk8pI-xFtKRNBofcA-3MScui-6wF` | ✅ activo |
+
+Flujo: usuario ingresa email → Web3Forms notifica a Leo → usuario ve link de descarga en el modal.
 
 ---
 
 ## ROADMAP DE TAREAS
 
-### FASE 1 — DEPLOYMENT (COMPLETADA EXCEPTO DNS)
-- [x] Git + GitHub + Vercel conectados
-- [ ] DNS de GoDaddy apuntando a Vercel (esperando baja de system.io)
-- [ ] Verificar sitio en https://soyleoai.com con SSL activo
-
-### FASE 2 — FORMULARIO DE CONTACTO
-- [x] Reemplazar FormSubmit (tenía error 524) por Web3Forms
-  - Obtener Access Key en https://web3forms.com
-  - Actualizar `action` en el formulario de `index.html`
-  - Actualizar redirect URL de localhost a `https://soyleoai.com`
-- **Subagente sugerido:** `claude "implementa Web3Forms en el formulario de contacto de index.html"`
-
+### FASE 1 — DEPLOYMENT ✅ COMPLETADA
+### FASE 2 — FORMULARIO DE CONTACTO ✅ COMPLETADA
 ### FASE 3 — PASARELAS DE PAGO ~~(CANCELADA — se usa Skool)~~
-- ~~Toda esta fase fue descartada por Leo. Los clientes se gestionan en Skool.~~
 
 ### FASE 4 — SISTEMA DE RESERVAS
-- [ ] Configurar Calendly (https://calendly.com)
-  - Conectar con Google Calendar
-  - Evento: "Consulta Gratuita 30min"
-  - Colores: #FFDD00 y #0a0a0a
+- [ ] Verificar que Calendly siga activo y conectado a Google Calendar
 - [ ] Crear `reservas.html` con widget de Calendly embebido
-- [ ] Actualizar CTAs en `index.html` → apuntar a `/reservas.html`
-- **Subagente sugerido:** `claude "crea reservas.html con widget de Calendly embebido"`
+- [ ] Botón "Agendar consultoría" → apuntar a `/reservas.html` (actualmente va a #contacto)
 
-### FASE 5 — BLOG Y SEO
-- [ ] Crear carpeta `/blog/`
-- [ ] Crear `/blog/index.html` (lista de posts)
-- [ ] Crear `/blog/data/posts.json`
-- [ ] Crear 3 posts iniciales en HTML
-- [ ] Crear `sitemap.xml` y `robots.txt`
-- [ ] Agregar meta tags Open Graph en todas las páginas
-- [ ] Agregar Schema Markup (JSON-LD)
-- **Subagente sugerido:** `claude "crea la estructura del blog con 3 posts iniciales y SEO técnico"`
+### FASE 5 — BLOG Y SEO ✅ PARCIALMENTE COMPLETADA
+- [x] sitemap.xml, robots.txt, Open Graph, Twitter Card, Schema JSON-LD, canonical
+- [ ] Crear carpeta `/blog/` con 3 posts iniciales
 
 ### FASE 6 — EMAIL MARKETING
-- [ ] Registrarse en ConvertKit (https://convertkit.com)
-- [ ] Crear formulario de captura de emails en footer
-- [ ] Agregar exit-intent popup modal
-- [ ] Crear `/recursos/index.html` con lead magnets
-- [ ] Crear secuencia de 4 emails de bienvenida
-- [ ] Crear `privacidad.html`
-- **Subagente sugerido:** `claude "agrega formulario de captura de emails en footer de index.html"`
+- [x] Captura de email para descarga de skills (Web3Forms)
+- [ ] Formulario de captura en footer
+- [ ] Secuencia de bienvenida (ConvertKit o similar)
 
 ### FASE 7 — ANALYTICS
-- [ ] Instalar Google Analytics 4 (G-XXXXXXXXX en todas las páginas)
-- [ ] Crear `/js/analytics.js` con eventos personalizados
-- [ ] Instalar Microsoft Clarity
-- [ ] Comprimir imágenes con TinyPNG (objetivo: < 200KB cada una)
-- [ ] Agregar `loading="lazy"` a todas las imágenes
-- [ ] Test en PageSpeed Insights (objetivo: > 90)
-- **Subagente sugerido:** `claude "instala GA4 y Clarity en todas las páginas HTML del proyecto"`
+- [ ] Google Analytics 4
+- [ ] Microsoft Clarity
+- [ ] PageSpeed > 90
 
 ### FASE 8 — LANZAMIENTO
-- [ ] Cambiar credenciales de TEST a PRODUCCIÓN (Mercado Pago + Stripe)
-- [ ] Probar compra real con tarjeta propia
-- [ ] Checklist completo de QA (links, formularios, pagos, mobile)
-- [ ] Anuncio en redes sociales (@soy.leo_ai)
-
----
-
-## CÓMO USAR SUBAGENTES DESDE VSCODE
-
-Abrir terminal en VSCode (`Ctrl+\``) y ejecutar:
-
-```bash
-# Ir al proyecto
-cd ~/ia-arquitectos-website
-
-# Lanzar un subagente para una tarea específica
-claude "lee el CLAUDE.md y luego [descripción de la tarea]"
-```
-
-### Ejemplos de subagentes listos para usar:
-```bash
-# Formulario de contacto
-claude "lee el CLAUDE.md y reemplaza FormSubmit por Web3Forms en el formulario de index.html"
-
-# APIs de pago
-claude "lee el CLAUDE.md y crea las APIs serverless de Mercado Pago en /api/mercadopago/"
-
-# Página de reservas
-claude "lee el CLAUDE.md y crea reservas.html con widget de Calendly"
-
-# Blog
-claude "lee el CLAUDE.md y crea la estructura del blog en /blog/ con 3 posts iniciales"
-
-# Analytics
-claude "lee el CLAUDE.md y agrega Google Analytics 4 y Microsoft Clarity a todas las páginas HTML"
-```
+- [ ] Conseguir imagen de Pilar → pilar-propuesta.jpg
+- [ ] URL de Skool para el modal del curso
+- [ ] Merge feature/vanta-hero → main
+- [ ] Push a soyleoai.com
+- [ ] Anuncio en redes (@soy.leo_ai)
 
 ---
 
 ## CREDENCIALES Y SERVICIOS
 
-> Las credenciales reales van en `.env.local` (local) y en Vercel Dashboard → Settings → Environment Variables.
-> Nunca en el código.
-
-### Variables de entorno a configurar en Vercel:
-```
-MP_PUBLIC_KEY=           # Mercado Pago (TEST-xxx → luego PROD)
-MP_ACCESS_TOKEN=         # Mercado Pago
-STRIPE_PUBLISHABLE_KEY=  # Stripe (pk_test_xxx → luego pk_live_xxx)
-STRIPE_SECRET_KEY=       # Stripe
-STRIPE_WEBHOOK_SECRET=   # Stripe webhook
-SITE_URL=https://soyleoai.com
-GA4_MEASUREMENT_ID=      # Google Analytics
-CLARITY_ID=              # Microsoft Clarity
-```
-
-### Servicios pendientes de registro:
-- [ ] Mercado Pago Developers → https://www.mercadopago.com.ar/developers
-- [ ] Stripe → https://stripe.com
-- [ ] Calendly → https://calendly.com
-- [ ] ConvertKit → https://convertkit.com
-- [ ] Google Analytics → https://analytics.google.com
-- [ ] Google Search Console → https://search.google.com/search-console
-- [ ] Microsoft Clarity → https://clarity.microsoft.com
-
----
-
-## INFORMACIÓN DEL CURSO
-
-- **Título:** "IA en Arquitectura - Transformando Flujos de Trabajo Profesionales"
-- **Modalidad:** 10 encuentros intensivos, 6 semanas
-- **Garantía:** Si no optimizás 10 horas semanales, continúa sin costo
-- **Link externo actual:** https://leoscd.github.io/IA_arquitectura/
-- **LinkedIn:** linkedin.com/in/leo-iml
-- **Instagram:** @soy.leo_ai
+- **Web3Forms access_key:** `d13a018a-540d-4e02-ac1c-6554d017cfb1`
+- **Skool URL:** pendiente (Leo lo provee)
+- **GA4 / Clarity:** pendiente de instalar
 
 ---
 
@@ -268,12 +226,13 @@ CLARITY_ID=              # Microsoft Clarity
 cd ~/ia-arquitectos-website && python3 -m http.server 8080
 
 # Subir cambios a producción
-git add . && git commit -m "descripción" && git push origin main
+git add . && git commit -m "descripción" && git push origin feature/vanta-hero
 
 # Acceso desde Windows (WSL)
 # \\wsl$\Ubuntu\home\leodiazdt\ia-arquitectos-website
+# \\wsl.localhost\Ubuntu\home\leodiazdt\ia-arquitectos-website  (Windows 11)
 ```
 
 ---
 
-*Última actualización: Marzo 2026 — Mantenido por Claude Code*
+*Última actualización: 14/03/2026 — Mantenido por Claude Code*
