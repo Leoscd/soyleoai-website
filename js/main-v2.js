@@ -896,3 +896,191 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1200);
     }
 });
+
+// ═══════════════════════════════════════════════════════════════════
+// ███  REDISEÑO 2026 — motor de animaciones
+// ═══════════════════════════════════════════════════════════════════
+//   initTerminals()    → tipea las consolas de #recursos, en loop
+//   initCounters()     → cuenta 0 → N en las métricas del hero y #sobre-mi
+//   initScrollReveal() → entrada desde abajo para [data-reveal]
+// Todo respeta prefers-reduced-motion.
+// ═══════════════════════════════════════════════════════════════════
+
+const prefersReducedMotion = () =>
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
+// ─── Consolas de #recursos ─────────────────────────────────────────
+// Cada .term reproduce su secuencia cuando entra en viewport y la
+// repite en loop mientras siga visible. Las líneas con [data-type] se
+// escriben carácter por carácter; el resto aparece de golpe.
+function initTerminals() {
+    const terminals = document.querySelectorAll('[data-term]');
+    if (!terminals.length) return;
+
+    terminals.forEach(term => {
+        const lines = Array.from(term.querySelectorAll('.term__line'));
+        if (!lines.length) return;
+
+        // Guardamos el texto original: las líneas tipeadas se vacían al arrancar
+        lines.forEach(line => { line.dataset.text = line.textContent; });
+
+        // Reduced motion: mostramos todo estático y salimos
+        if (prefersReducedMotion()) {
+            term.classList.add('is-running');
+            lines.forEach(line => line.classList.add('is-shown'));
+            return;
+        }
+
+        let timers  = [];
+        let visible = false;
+        let running = false;
+
+        const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
+        const wait = (ms, fn) => { timers.push(setTimeout(fn, ms)); };
+
+        function reset() {
+            lines.forEach(line => {
+                line.classList.remove('is-shown', 'is-typing');
+                if (line.hasAttribute('data-type')) line.textContent = '';
+            });
+        }
+
+        // Tipeo con jitter para que no suene mecánico
+        function typeLine(el, done) {
+            const full = el.dataset.text;
+            el.textContent = '';
+            el.classList.add('is-shown', 'is-typing');
+            let i = 0;
+
+            (function step() {
+                if (!visible) return;
+                el.textContent = full.slice(0, ++i);
+                if (i < full.length) {
+                    wait(32 + Math.random() * 42, step);
+                } else {
+                    el.classList.remove('is-typing');
+                    wait(280, done);
+                }
+            })();
+        }
+
+        function play(index) {
+            if (!visible) return;
+
+            // Fin de la secuencia: pausa y vuelve a empezar
+            if (index >= lines.length) {
+                wait(4200, () => { if (visible) start(); });
+                return;
+            }
+
+            const el = lines[index];
+            if (el.hasAttribute('data-type')) {
+                typeLine(el, () => play(index + 1));
+            } else {
+                el.classList.add('is-shown');
+                wait(300, () => play(index + 1));
+            }
+        }
+
+        function start() {
+            clearTimers();
+            reset();
+            running = true;
+            term.classList.add('is-running');
+            wait(220, () => play(0));
+        }
+
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                visible = entry.isIntersecting;
+                if (visible && !running) {
+                    start();
+                } else if (!visible) {
+                    clearTimers();
+                    running = false;
+                }
+            });
+        }, { threshold: 0.4 });
+
+        io.observe(term);
+    });
+}
+
+
+// ─── Contadores numéricos ──────────────────────────────────────────
+// <span data-count-to="50" data-count-suffix="+">50+</span>
+function initCounters() {
+    const counters = document.querySelectorAll('[data-count-to]');
+    if (!counters.length) return;
+
+    const reduced = prefersReducedMotion();
+
+    const run = el => {
+        const target   = parseFloat(el.dataset.countTo);
+        const suffix   = el.dataset.countSuffix || '';
+        const duration = 1400;
+        const startTs  = performance.now();
+
+        if (reduced || Number.isNaN(target)) {
+            el.textContent = target + suffix;
+            return;
+        }
+
+        (function frame(now) {
+            const p = Math.min((now - startTs) / duration, 1);
+            // easeOutExpo — arranca rápido y frena suave
+            const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
+            el.textContent = Math.round(target * eased) + suffix;
+            if (p < 1) requestAnimationFrame(frame);
+        })(startTs);
+    };
+
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            run(entry.target);
+            io.unobserve(entry.target);   // una sola vez
+        });
+    }, { threshold: 0.6 });
+
+    counters.forEach(el => io.observe(el));
+}
+
+
+// ─── Scroll-reveal genérico ────────────────────────────────────────
+// Los elementos hermanos con [data-reveal] se escalonan solos.
+function initScrollReveal() {
+    const items = document.querySelectorAll('[data-reveal]');
+    if (!items.length) return;
+
+    if (prefersReducedMotion()) {
+        items.forEach(el => el.classList.add('is-revealed'));
+        return;
+    }
+
+    // Delay escalonado según la posición del elemento entre sus hermanos
+    items.forEach(el => {
+        const siblings = Array.from(el.parentElement.children)
+            .filter(child => child.hasAttribute('data-reveal'));
+        const index = siblings.indexOf(el);
+        if (index > 0) el.style.transitionDelay = `${Math.min(index, 5) * 90}ms`;
+    });
+
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-revealed');
+            io.unobserve(entry.target);
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    items.forEach(el => io.observe(el));
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    initTerminals();
+    initCounters();
+    initScrollReveal();
+});

@@ -116,6 +116,17 @@ ia-arquitectos-website/
 - [x] **Testimonios movidos** a después de #como-funciona
 - [x] **Orden de secciones actualizado** (ver abajo)
 
+### Rediseño 2026 — rama `feature/redesign-2026` (sin commitear):
+- [x] **Ventanas con chrome** (`.qph-window`) para los 4 videos de TRANSFORMACIÓN — barra de título, luces de semáforo que se encienden en hover, chip "EN VIVO", tilt 3D, reflejo diagonal y animación de arranque al entrar en viewport
+- [x] **Maquetas de consola** (`.term`) en las 3 cards de Recursos gratuitos — tipeo carácter por carácter en loop, con output realista por skill
+- [x] **Hero** — badge con punto pulsante, CTA secundario `.btn-ghost-large`, fila de métricas con contadores animados, indicador de scroll, entrada escalonada
+- [x] **El Programa** — número 01/02/03 como marca de agua + barra de acento que crece al entrar
+- [x] **Scroll-reveal genérico** `[data-reveal]` con stagger automático entre hermanos
+- [x] **Contraste corregido** en `.btn-primary-large` — el texto era blanco sobre amarillo (~1.7:1, ilegible); ahora negro (~15:1)
+- [x] Todo respeta `prefers-reduced-motion`
+
+> El CSS nuevo está appendeado al final de `styles-v2.css` bajo el header `███ REDISEÑO 2026`; el JS al final de `main-v2.js`. No se reescribieron las reglas previas.
+
 ### Pendiente inmediato (pre-commit):
 - [ ] `images/casos/pilar-propuesta.jpg` — Leo consigue imagen de Pilar (screenshot de la propuesta)
 - [ ] URL del Skool → reemplazar `https://skool.com` en `#link-skool` del modal

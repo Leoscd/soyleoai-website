@@ -145,20 +145,51 @@
         <!-- Warm yellow light orb — interacts visually with VANTA NET nodes -->
         <div class="hero-light-point"></div>
         <div class="hero-content-center">
+            <!-- Eyebrow badge — señal de actividad -->
+            <div class="hero-badge" data-stagger="0">
+                <span class="hero-badge__pulse" aria-hidden="true"></span>
+                +50 arquitectos ya construyen sus sistemas con IA
+            </div>
+
             <!-- Word swap: "mercado" ↔ "futuro" on hover, clip-path wipe top→bottom -->
             <!-- initWordSwap() in main-v2.js handles mouseenter/mouseleave -->
-            <h1 class="hero-title-large">
+            <h1 class="hero-title-large" data-stagger="1">
                 El arquitecto que usa IA<br>
                 no compite por precio. Lidera el
                 <span class="word-swap" data-word-a="mercado" data-word-b="futuro">mercado</span>.
             </h1>
             <!-- Tagline: static, no animation, smaller muted text -->
-            <p class="hero-tagline">Con IA, el límite es tu imaginación.</p>
-            <p class="hero-subtitle-large">Automatizá. Presentá. Ganás proyectos.</p>
-            <div class="hero-cta">
+            <p class="hero-tagline" data-stagger="2">Con IA, el límite es tu imaginación.</p>
+            <p class="hero-subtitle-large" data-stagger="3">Automatizá. Presentá. Ganás proyectos.</p>
+            <div class="hero-cta" data-stagger="4">
                 <a href="#contacto" class="btn-primary-large">Agendar consulta</a>
+                <a href="#recursos" class="btn-ghost-large">Ver recursos gratis</a>
+            </div>
+
+            <!-- Métricas de credibilidad -->
+            <div class="hero-metrics" data-stagger="5">
+                <div class="hero-metric">
+                    <span class="hero-metric__num" data-count-to="50" data-count-suffix="+">0</span>
+                    <span class="hero-metric__label">Arquitectos formados</span>
+                </div>
+                <span class="hero-metric__sep" aria-hidden="true"></span>
+                <div class="hero-metric">
+                    <span class="hero-metric__num" data-count-to="10" data-count-suffix="+">0</span>
+                    <span class="hero-metric__label">Empresas</span>
+                </div>
+                <span class="hero-metric__sep" aria-hidden="true"></span>
+                <div class="hero-metric">
+                    <span class="hero-metric__num">2 días <span class="hero-metric__arrow">→</span> 1 tarde</span>
+                    <span class="hero-metric__label">Armar una propuesta</span>
+                </div>
             </div>
         </div>
+
+        <!-- Indicador de scroll -->
+        <a href="#que-podes-hacer" class="hero-scroll" aria-label="Bajar a la siguiente sección">
+            <span class="hero-scroll__text">SCROLL</span>
+            <span class="hero-scroll__line" aria-hidden="true"></span>
+        </a>
     </section>
 
     <!-- ====================================================
@@ -170,7 +201,7 @@
         <div class="qph-overlay"></div>
         <div class="container-large">
 
-            <div class="qph-header">
+            <div class="qph-header" data-reveal>
                 <span class="section-label">TRANSFORMACIÓN</span>
                 <h2 class="section-title-large">
                     Lo que podés hacer con <span class="qph-ia-accent">IA</span>
@@ -203,25 +234,32 @@
                         <p class="qph-after-text">Tu propia app que calcula honorarios <span class="qph-highlight">al instante</span></p>
                         <p class="qph-after-category">Cálculo de honorarios</p>
                     </div>
-                    <!-- Thumbnail cliqueable → Lightbox — card 1: video -->
-                    <div class="qph-thumb qph-thumb--video"
-                         data-lightbox-type="video"
-                         data-lightbox-src="images/casos/honorarios-santiago.mp4"
-                         data-lightbox-alt="App de cálculo de honorarios creada con IA"
-                         role="button"
-                         tabindex="0"
-                         aria-label="Ver ejemplo: app de honorarios (abre en pantalla completa)">
-                        <video class="qph-thumb__media"
-                               src="images/casos/honorarios-santiago.mp4"
-                               autoplay muted loop playsinline
-                               tabindex="-1"
-                               aria-hidden="true">
-                        </video>
-                        <div class="qph-thumb__overlay">
-                            <svg class="qph-thumb__play" xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="currentColor" stroke-width="1" fill-opacity="1"/>
-                                <polygon points="10,8 17,12 10,16" fill="#FFDD00"/>
-                            </svg>
+                    <!-- Ventana con chrome — card 1: video -->
+                    <div class="qph-window">
+                        <div class="qph-window__bar" aria-hidden="true">
+                            <span class="qph-window__dots"><i></i><i></i><i></i></span>
+                            <span class="qph-window__title">calculadora-honorarios.app</span>
+                            <span class="qph-window__live">EN VIVO</span>
+                        </div>
+                        <div class="qph-thumb qph-thumb--video"
+                             data-lightbox-type="video"
+                             data-lightbox-src="images/casos/honorarios-santiago.mp4"
+                             data-lightbox-alt="App de cálculo de honorarios creada con IA"
+                             role="button"
+                             tabindex="0"
+                             aria-label="Ver ejemplo: app de honorarios (abre en pantalla completa)">
+                            <video class="qph-thumb__media"
+                                   src="images/casos/honorarios-santiago.mp4"
+                                   autoplay muted loop playsinline
+                                   tabindex="-1"
+                                   aria-hidden="true">
+                            </video>
+                            <div class="qph-thumb__overlay">
+                                <svg class="qph-thumb__play" xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="currentColor" stroke-width="1" fill-opacity="1"/>
+                                    <polygon points="10,8 17,12 10,16" fill="#FFDD00"/>
+                                </svg>
+                            </div>
                         </div>
                     </div>
                     <p class="qph-thumb__caption">Santiago creó su propia app de honorarios con IA en una sola sesión</p>
@@ -250,25 +288,32 @@
                         <p class="qph-after-text">Presupuesto de estructura <span class="qph-highlight">preciso y automático</span> en minutos</p>
                         <p class="qph-after-category">Optimización de presupuestos</p>
                     </div>
-                    <!-- Thumbnail cliqueable → Lightbox — card 2: video -->
-                    <div class="qph-thumb qph-thumb--video"
-                         data-lightbox-type="video"
-                         data-lightbox-src="images/casos/presupuesto.mp4"
-                         data-lightbox-alt="Presupuesto de estructura de fundaciones calculado con IA"
-                         role="button"
-                         tabindex="0"
-                         aria-label="Ver ejemplo: presupuesto automatizado (abre en pantalla completa)">
-                        <video class="qph-thumb__media"
-                               src="images/casos/presupuesto.mp4"
-                               autoplay muted loop playsinline
-                               tabindex="-1"
-                               aria-hidden="true">
-                        </video>
-                        <div class="qph-thumb__overlay">
-                            <svg class="qph-thumb__play" xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="currentColor" stroke-width="1" fill-opacity="1"/>
-                                <polygon points="10,8 17,12 10,16" fill="#FFDD00"/>
-                            </svg>
+                    <!-- Ventana con chrome — card 2: video -->
+                    <div class="qph-window">
+                        <div class="qph-window__bar" aria-hidden="true">
+                            <span class="qph-window__dots"><i></i><i></i><i></i></span>
+                            <span class="qph-window__title">presupuesto-fundaciones.xlsx</span>
+                            <span class="qph-window__live">EN VIVO</span>
+                        </div>
+                        <div class="qph-thumb qph-thumb--video"
+                             data-lightbox-type="video"
+                             data-lightbox-src="images/casos/presupuesto.mp4"
+                             data-lightbox-alt="Presupuesto de estructura de fundaciones calculado con IA"
+                             role="button"
+                             tabindex="0"
+                             aria-label="Ver ejemplo: presupuesto automatizado (abre en pantalla completa)">
+                            <video class="qph-thumb__media"
+                                   src="images/casos/presupuesto.mp4"
+                                   autoplay muted loop playsinline
+                                   tabindex="-1"
+                                   aria-hidden="true">
+                            </video>
+                            <div class="qph-thumb__overlay">
+                                <svg class="qph-thumb__play" xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="currentColor" stroke-width="1" fill-opacity="1"/>
+                                    <polygon points="10,8 17,12 10,16" fill="#FFDD00"/>
+                                </svg>
+                            </div>
                         </div>
                     </div>
                     <p class="qph-thumb__caption">Presupuesto de estructura de fundaciones calculado con IA. Preciso, sin errores.</p>
@@ -297,25 +342,32 @@
                         <p class="qph-after-text">Web del estudio creada <span class="qph-highlight">en horas</span>, sin escribir una línea de código</p>
                         <p class="qph-after-category">Presencia digital</p>
                     </div>
-                    <!-- Thumbnail cliqueable → Lightbox — card 3: video -->
-                    <div class="qph-thumb qph-thumb--video"
-                         data-lightbox-type="video"
-                         data-lightbox-src="images/casos/web-santiago.mp4"
-                         data-lightbox-alt="Web profesional del estudio creada con IA"
-                         role="button"
-                         tabindex="0"
-                         aria-label="Ver ejemplo: web del estudio creada con IA (abre en pantalla completa)">
-                        <video class="qph-thumb__media"
-                               src="images/casos/web-santiago.mp4"
-                               autoplay muted loop playsinline
-                               tabindex="-1"
-                               aria-hidden="true">
-                        </video>
-                        <div class="qph-thumb__overlay">
-                            <svg class="qph-thumb__play" xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="currentColor" stroke-width="1" fill-opacity="1"/>
-                                <polygon points="10,8 17,12 10,16" fill="#FFDD00"/>
-                            </svg>
+                    <!-- Ventana con chrome — card 3: video (browser) -->
+                    <div class="qph-window qph-window--browser">
+                        <div class="qph-window__bar" aria-hidden="true">
+                            <span class="qph-window__dots"><i></i><i></i><i></i></span>
+                            <span class="qph-window__title">estudio-santiago.com</span>
+                            <span class="qph-window__live">EN VIVO</span>
+                        </div>
+                        <div class="qph-thumb qph-thumb--video"
+                             data-lightbox-type="video"
+                             data-lightbox-src="images/casos/web-santiago.mp4"
+                             data-lightbox-alt="Web profesional del estudio creada con IA"
+                             role="button"
+                             tabindex="0"
+                             aria-label="Ver ejemplo: web del estudio creada con IA (abre en pantalla completa)">
+                            <video class="qph-thumb__media"
+                                   src="images/casos/web-santiago.mp4"
+                                   autoplay muted loop playsinline
+                                   tabindex="-1"
+                                   aria-hidden="true">
+                            </video>
+                            <div class="qph-thumb__overlay">
+                                <svg class="qph-thumb__play" xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="currentColor" stroke-width="1" fill-opacity="1"/>
+                                    <polygon points="10,8 17,12 10,16" fill="#FFDD00"/>
+                                </svg>
+                            </div>
                         </div>
                     </div>
                     <p class="qph-thumb__caption">Su web profesional, construida con IA en pocas horas. Sin programar.</p>
@@ -344,25 +396,32 @@
                         <p class="qph-after-text">Renders de forma <span class="qph-highlight">controlada y eficaz</span>, auditables, explicables</p>
                         <p class="qph-after-category">Renders con IA</p>
                     </div>
-                    <!-- Thumbnail cliqueable → Lightbox — card 4: video -->
-                    <div class="qph-thumb qph-thumb--video"
-                         data-lightbox-type="video"
-                         data-lightbox-src="images/casos/render-eugenia.mp4"
-                         data-lightbox-alt="Renders controlados con IA — Eugenia"
-                         role="button"
-                         tabindex="0"
-                         aria-label="Ver ejemplo: renders controlados con IA (abre en pantalla completa)">
-                        <video class="qph-thumb__media"
-                               src="images/casos/render-eugenia.mp4"
-                               autoplay muted loop playsinline
-                               tabindex="-1"
-                               aria-hidden="true">
-                        </video>
-                        <div class="qph-thumb__overlay">
-                            <svg class="qph-thumb__play" xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="currentColor" stroke-width="1" fill-opacity="1"/>
-                                <polygon points="10,8 17,12 10,16" fill="#FFDD00"/>
-                            </svg>
+                    <!-- Ventana con chrome — card 4: video -->
+                    <div class="qph-window">
+                        <div class="qph-window__bar" aria-hidden="true">
+                            <span class="qph-window__dots"><i></i><i></i><i></i></span>
+                            <span class="qph-window__title">render-control.ai</span>
+                            <span class="qph-window__live">EN VIVO</span>
+                        </div>
+                        <div class="qph-thumb qph-thumb--video"
+                             data-lightbox-type="video"
+                             data-lightbox-src="images/casos/render-eugenia.mp4"
+                             data-lightbox-alt="Renders controlados con IA — Eugenia"
+                             role="button"
+                             tabindex="0"
+                             aria-label="Ver ejemplo: renders controlados con IA (abre en pantalla completa)">
+                            <video class="qph-thumb__media"
+                                   src="images/casos/render-eugenia.mp4"
+                                   autoplay muted loop playsinline
+                                   tabindex="-1"
+                                   aria-hidden="true">
+                            </video>
+                            <div class="qph-thumb__overlay">
+                                <svg class="qph-thumb__play" xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="currentColor" stroke-width="1" fill-opacity="1"/>
+                                    <polygon points="10,8 17,12 10,16" fill="#FFDD00"/>
+                                </svg>
+                            </div>
                         </div>
                     </div>
                     <p class="qph-thumb__caption">Eugenia muestra cómo mantener el control total del proceso de render con IA.</p>
@@ -380,7 +439,7 @@
     <section id="casos-de-exito" class="casos-section">
         <div class="container-large">
 
-            <div class="casos-header">
+            <div class="casos-header" data-reveal>
                 <span class="section-label">CASOS DE ÉXITO</span>
                 <h2 class="section-title-large">Resultados reales de arquitectos reales</h2>
             </div>
@@ -587,7 +646,7 @@
         <div class="recursos-bg" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80');"></div>
         <div class="recursos-overlay"></div>
         <div class="container-large">
-            <div class="recursos-header">
+            <div class="recursos-header" data-reveal>
                 <span class="section-label">RECURSOS GRATUITOS</span>
                 <h2 class="section-title-large">Probá antes de comprometerte</h2>
                 <p class="recursos-intro">Accedé gratis a contenido real del programa.</p>
@@ -596,7 +655,7 @@
             <div class="recursos-grid">
 
                 <!-- Card 1: Video clase skills -->
-                <div class="recurso-card">
+                <div class="recurso-card" data-reveal>
                     <div class="recurso-card__badge">VIDEO CLASE · 11 MIN</div>
                     <div class="recurso-card__icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -606,6 +665,23 @@
                     </div>
                     <h3>Cómo crear tu primera Skill con Claude</h3>
                     <p>Clase grabada completa: en 11 minutos aprendés a construir una skill personalizada para automatizar tareas repetitivas en tu estudio.</p>
+
+                    <!-- Maqueta de consola — preview del flujo de la clase -->
+                    <div class="term" data-term aria-hidden="true">
+                        <div class="term__bar">
+                            <span class="term__dots"><i></i><i></i><i></i></span>
+                            <span class="term__title">claude code</span>
+                        </div>
+                        <div class="term__body">
+                            <span class="term__line term__line--cmd" data-type>claude skill create</span>
+                            <span class="term__line term__line--in">&gt; una skill que arme reportes de obra</span>
+                            <span class="term__line term__line--ok">✓ Analizando tu flujo de trabajo</span>
+                            <span class="term__line term__line--ok">✓ Skill «reporte-obra» creada</span>
+                            <span class="term__line term__line--dim">→ .claude/skills/reporte-obra/</span>
+                            <span class="term__line term__line--done">Listo en 11 min</span>
+                        </div>
+                    </div>
+
                     <a href="https://youtu.be/7vYDKHOzATY" class="recurso-card__cta recurso-card__cta--video" id="link-video-skill" target="_blank" rel="noopener">
                         Ver clase gratis
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -613,7 +689,7 @@
                 </div>
 
                 <!-- Card 2: Skill de Presupuestos -->
-                <div class="recurso-card recurso-card--featured">
+                <div class="recurso-card recurso-card--featured" data-reveal>
                     <div class="recurso-card__badge recurso-card__badge--accent">SKILL DESCARGABLE · ZIP</div>
                     <div class="recurso-card__icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -624,6 +700,23 @@
                     </div>
                     <h3>Skill de Presupuestos para Claude</h3>
                     <p>La skill completa con scripts, ejemplos y documentación. Automatizá presupuestos de obra directamente desde Claude Code.</p>
+
+                    <!-- Maqueta de consola — preview de la skill de presupuestos -->
+                    <div class="term" data-term aria-hidden="true">
+                        <div class="term__bar">
+                            <span class="term__dots"><i></i><i></i><i></i></span>
+                            <span class="term__title">skill · presupuestos</span>
+                        </div>
+                        <div class="term__body">
+                            <span class="term__line term__line--cmd" data-type>/presupuesto duplex-42m2.xlsx</span>
+                            <span class="term__line term__line--ok">✓ 148 ítems computados</span>
+                            <span class="term__line term__line--ok">✓ Materiales + mano de obra</span>
+                            <span class="term__line term__line--dim">Subtotal &nbsp;&nbsp;$ 18.420.000</span>
+                            <span class="term__line term__line--val">Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ 22.310.000</span>
+                            <span class="term__line term__line--done">Generado en 38 s</span>
+                        </div>
+                    </div>
+
                     <a href="#skill-presupuesto-email" class="recurso-card__cta recurso-card__cta--download" id="link-skill-presupuesto" data-drive="https://drive.google.com/uc?export=download&id=1BnE6SEAD8DkBxKOC2cTJclsNDL1_iH6g">
                         Recibir skill por email
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
@@ -631,7 +724,7 @@
                 </div>
 
                 <!-- Card 3: Skill de Reportes de Obra -->
-                <div class="recurso-card">
+                <div class="recurso-card" data-reveal>
                     <div class="recurso-card__badge">SKILL DESCARGABLE</div>
                     <div class="recurso-card__icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -644,6 +737,23 @@
                     </div>
                     <h3>Skill de Reportes de Obra</h3>
                     <p>Generá reportes de avance de obra completos y profesionales en minutos. Documentación lista para entregar a clientes o contratistas.</p>
+
+                    <!-- Maqueta de consola — preview de la skill de reportes -->
+                    <div class="term" data-term aria-hidden="true">
+                        <div class="term__bar">
+                            <span class="term__dots"><i></i><i></i><i></i></span>
+                            <span class="term__title">skill · reportes</span>
+                        </div>
+                        <div class="term__body">
+                            <span class="term__line term__line--cmd" data-type>/reporte-obra semana-12</span>
+                            <span class="term__line term__line--ok">✓ 34 fotos procesadas</span>
+                            <span class="term__line term__line--val">✓ Avance 62% &nbsp;(+8% vs S11)</span>
+                            <span class="term__line term__line--warn">! 3 desvíos detectados</span>
+                            <span class="term__line term__line--dim">→ reporte-s12.pdf</span>
+                            <span class="term__line term__line--done">Listo para enviar</span>
+                        </div>
+                    </div>
+
                     <a href="#skill-reportes-email" class="recurso-card__cta recurso-card__cta--download" id="link-skill-reportes" data-drive="https://drive.google.com/uc?export=download&id=138BDHk8pI-xFtKRNBofcA-3MScui-6wF">
                         Recibir skill por email
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
@@ -677,7 +787,7 @@
     <section id="como-funciona" class="como-funciona-section">
         <div class="container-large">
 
-            <div class="cf-header">
+            <div class="cf-header" data-reveal>
                 <span class="section-label">EL PROGRAMA</span>
                 <h2 class="section-title-large">Un sistema construido para tu estudio</h2>
                 <p class="cf-subtitle">6 semanas · 12 encuentros · Acompañamiento directo</p>
@@ -697,6 +807,7 @@
                             <line x1="3" y1="10" x2="21" y2="10"></line>
                         </svg>
                     </div>
+                    <span class="cf-block__step" aria-hidden="true">01</span>
                     <h3 class="cf-block__title">El programa</h3>
                     <p class="cf-block__body">Construimos juntos un sistema que se adapta a tu estudio o empresa, enfocado en eliminar las tareas repetitivas, tediosas y propensas a error humano. Con mi acompañamiento directo en cada encuentro.</p>
                     <span class="cf-block__tag">12 encuentros · 6 semanas</span>
@@ -713,6 +824,7 @@
                             <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                         </svg>
                     </div>
+                    <span class="cf-block__step" aria-hidden="true">02</span>
                     <h3 class="cf-block__title">Aula + Comunidad</h3>
                     <p class="cf-block__body">Accedés al aula Skool con clases grabadas y herramientas listas para usar desde el día uno. Más una comunidad exclusiva de arquitectos y empresas enfocados en optimizar sus procesos.</p>
                     <span class="cf-block__tag">Acceso inmediato</span>
@@ -726,6 +838,7 @@
                             <path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.133-8-12.739-8-4.585 0-4.585 8 0 8 5.606 0 7.644-8 12.739-8z"></path>
                         </svg>
                     </div>
+                    <span class="cf-block__step" aria-hidden="true">03</span>
                     <h3 class="cf-block__title">Acceso permanente</h3>
                     <p class="cf-block__body">Cuando terminás tus 12 encuentros, el acceso no se corta. Seguís con todas las clases, recursos y actualizaciones futuras que incorpore el programa.</p>
                     <span class="cf-block__tag">Sin fecha de vencimiento</span>
@@ -787,15 +900,15 @@
                     </div>
                     <div class="sobre-mi-stats">
                         <div class="stat-box">
-                            <span class="stat-num">50+</span>
+                            <span class="stat-num" data-count-to="50" data-count-suffix="+">50+</span>
                             <span class="stat-label">Arquitectos formados</span>
                         </div>
                         <div class="stat-box">
-                            <span class="stat-num">10+</span>
+                            <span class="stat-num" data-count-to="10" data-count-suffix="+">10+</span>
                             <span class="stat-label">Empresas</span>
                         </div>
                         <div class="stat-box">
-                            <span class="stat-num">100%</span>
+                            <span class="stat-num" data-count-to="100" data-count-suffix="%">100%</span>
                             <span class="stat-label">Satisfacción</span>
                         </div>
                     </div>
@@ -956,7 +1069,7 @@
             <h2 class="section-title-large">Implementación personalizada para tu estudio</h2>
 
             <div class="consultoria-grid">
-                <div class="consultoria-card">
+                <div class="consultoria-card" data-reveal>
                     <div class="card-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
@@ -965,7 +1078,7 @@
                     <h3>Análisis</h3>
                     <p>Evaluación profunda de tu flujo de trabajo actual e identificación de oportunidades de optimización con IA</p>
                 </div>
-                <div class="consultoria-card">
+                <div class="consultoria-card" data-reveal>
                     <div class="card-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                             <rect x="3" y="3" width="18" height="18" rx="2"></rect>
@@ -975,7 +1088,7 @@
                     <h3>Estrategia</h3>
                     <p>Diseño de un plan personalizado de implementación adaptado a las necesidades específicas de tu estudio</p>
                 </div>
-                <div class="consultoria-card">
+                <div class="consultoria-card" data-reveal>
                     <div class="card-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
@@ -1004,17 +1117,17 @@
                 <p class="empresas-intro">Programas a medida para transformar equipos completos</p>
 
                 <div class="empresas-grid">
-                    <div class="empresa-card">
+                    <div class="empresa-card" data-reveal>
                         <span class="empresa-num">01</span>
                         <h3>Consultoría</h3>
                         <p>Asesoramiento personalizado para implementar IA en tu estudio o empresa</p>
                     </div>
-                    <div class="empresa-card">
+                    <div class="empresa-card" data-reveal>
                         <span class="empresa-num">02</span>
                         <h3>Programas</h3>
                         <p>Transformación integral de 3-6 meses con acompañamiento continuo</p>
                     </div>
-                    <div class="empresa-card">
+                    <div class="empresa-card" data-reveal>
                         <span class="empresa-num">03</span>
                         <h3>Mentorías</h3>
                         <p>Sesiones personalizadas para proyectos específicos</p>
@@ -1029,14 +1142,14 @@
     <!-- FAQ Section -->
     <section id="faq" class="faq-section">
         <div class="container-large">
-            <div class="faq-header">
+            <div class="faq-header" data-reveal>
                 <span class="section-label">PREGUNTAS FRECUENTES</span>
                 <h2 class="section-title-large">Todo lo que necesitás saber</h2>
             </div>
 
             <div class="faq-list">
 
-                <div class="faq-item">
+                <div class="faq-item" data-reveal>
                     <button class="faq-question" aria-expanded="false">
                         ¿Necesito saber programar para tomar el programa?
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -1046,7 +1159,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item" data-reveal>
                     <button class="faq-question" aria-expanded="false">
                         ¿En qué plataforma se dictan las clases?
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -1056,7 +1169,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item" data-reveal>
                     <button class="faq-question" aria-expanded="false">
                         ¿Puedo seguir el programa a mi propio ritmo?
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -1066,7 +1179,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item" data-reveal>
                     <button class="faq-question" aria-expanded="false">
                         ¿Cuánto tiempo necesito dedicar por semana?
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -1076,7 +1189,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item" data-reveal>
                     <button class="faq-question" aria-expanded="false">
                         ¿Qué pasa si no logro los resultados prometidos?
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -1086,7 +1199,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item" data-reveal>
                     <button class="faq-question" aria-expanded="false">
                         ¿El programa se actualiza con nuevas herramientas de IA?
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -1096,7 +1209,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item" data-reveal>
                     <button class="faq-question" aria-expanded="false">
                         ¿Puedo unirme si no tengo experiencia con tecnología?
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -1106,7 +1219,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item" data-reveal>
                     <button class="faq-question" aria-expanded="false">
                         ¿Las skills que creo son mías o solo sirven dentro del curso?
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>

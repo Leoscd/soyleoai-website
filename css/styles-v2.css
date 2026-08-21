@@ -3958,3 +3958,753 @@ button {
     .faq-section { padding: 70px 0; }
     .faq-question { font-size: 0.92rem; }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   ███  REDISEÑO 2026 — capa moderna
+   ═══════════════════════════════════════════════════════════════════
+   Este bloque va al final a propósito: gana por cascada sobre las
+   reglas de arriba sin tener que reescribirlas. Contiene:
+     1. Tokens nuevos (easing, sombras, radios)
+     2. Hero: badge, métricas, CTA fantasma, scroll cue
+     3. .qph-window — chrome de ventana para los 4 videos de TRANSFORMACIÓN
+     4. .term — maqueta de consola de #recursos
+     5. cf-block: numeración + conector
+     6. Sistema genérico de scroll-reveal [data-reveal]
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+    /* Curvas de animación */
+    --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    /* Elevación */
+    --shadow-window:  0 24px 64px rgba(0, 0, 0, 0.55),
+                      0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-glow:    0 0 0 1px rgba(255, 221, 0, 0.35),
+                      0 18px 50px rgba(255, 221, 0, 0.10);
+
+    /* Tipografía mono para consolas */
+    --font-mono: 'SF Mono', 'JetBrains Mono', 'Fira Code', ui-monospace,
+                 SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+
+/* ═══ 1. HERO ══════════════════════════════════════════════════════ */
+
+/* — Badge superior con punto pulsante — */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 18px 8px 14px;
+    margin-bottom: 28px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 100px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.hero-badge__pulse {
+    position: relative;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    flex-shrink: 0;
+}
+
+/* Anillo que se expande y desvanece */
+.hero-badge__pulse::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--color-accent);
+    animation: badgePing 2.4s var(--ease-out-expo) infinite;
+}
+
+@keyframes badgePing {
+    0%   { transform: scale(1);   opacity: 0.7; }
+    70%  { transform: scale(3.2); opacity: 0; }
+    100% { transform: scale(3.2); opacity: 0; }
+}
+
+/* — Entrada escalonada del contenido del hero — */
+/* El contenedor ya tenía animation: fadeInUp; la anulamos para animar hijo por hijo */
+.hero-content-center {
+    animation: none;
+}
+
+.hero-content-center [data-stagger] {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: heroRise 0.9s var(--ease-out-expo) forwards;
+}
+
+.hero-content-center [data-stagger="0"] { animation-delay: 0.10s; }
+.hero-content-center [data-stagger="1"] { animation-delay: 0.22s; }
+.hero-content-center [data-stagger="2"] { animation-delay: 0.34s; }
+.hero-content-center [data-stagger="3"] { animation-delay: 0.44s; }
+.hero-content-center [data-stagger="4"] { animation-delay: 0.54s; }
+.hero-content-center [data-stagger="5"] { animation-delay: 0.66s; }
+
+@keyframes heroRise {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* — Título: un pelo más apretado y con mejor equilibrio de líneas — */
+.hero-title-large {
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+}
+
+.hero-tagline {
+    margin-bottom: 6px;
+}
+
+.hero-subtitle-large {
+    margin-bottom: 36px;
+}
+
+/* — CTA secundario tipo "ghost" — */
+.btn-ghost-large {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 40px;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: background 0.3s var(--ease-out-expo),
+                border-color 0.3s var(--ease-out-expo),
+                transform 0.3s var(--ease-out-expo);
+}
+
+.btn-ghost-large:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.32);
+    transform: translateY(-2px);
+}
+
+/* — Fila de métricas bajo los CTA — */
+.hero-metrics {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin-top: 52px;
+}
+
+.hero-metric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.hero-metric__num {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-white);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.hero-metric__arrow {
+    color: var(--color-accent);
+    margin: 0 2px;
+}
+
+.hero-metric__label {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.hero-metric__sep {
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(255, 255, 255, 0.18),
+        transparent
+    );
+}
+
+/* — Indicador de scroll — */
+.hero-scroll {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.3s ease;
+}
+
+.hero-scroll:hover { color: var(--color-accent); }
+
+.hero-scroll__text {
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    font-weight: 600;
+}
+
+/* Línea con un "pulso" que la recorre de arriba a abajo */
+.hero-scroll__line {
+    position: relative;
+    width: 1px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.15);
+    overflow: hidden;
+}
+
+.hero-scroll__line::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to bottom, transparent, var(--color-accent));
+    animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+    0%   { top: -50%; }
+    100% { top: 100%; }
+}
+
+@media (max-width: 768px) {
+    .hero-badge {
+        font-size: 0.7rem;
+        padding: 7px 14px 7px 11px;
+        margin-bottom: 20px;
+    }
+    .hero-metrics {
+        gap: 18px;
+        margin-top: 36px;
+    }
+    .hero-metric__num  { font-size: 1.15rem; }
+    .hero-metric__label { font-size: 0.62rem; }
+    .hero-metric__sep  { display: none; }
+    .btn-ghost-large   { padding: 16px 30px; font-size: 15px; }
+    .hero-scroll       { display: none; }
+}
+
+
+/* ═══ 2. VENTANAS DE TRANSFORMACIÓN ════════════════════════════════
+   Los 4 videos de #que-podes-hacer estaban sueltos sobre un rectángulo
+   plano. Ahora viven dentro de una ventana con barra de título, luces
+   de semáforo y animación de "arranque" al entrar en viewport.
+   ═════════════════════════════════════════════════════════════════ */
+
+/* La ventana ocupa el ancho completo de la card (antes: sólo columna 3) */
+.qph-card .qph-window {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-top: 24px;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #0d0d0d;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: var(--shadow-window);
+    /* Perspectiva para el tilt en hover */
+    transform-style: preserve-3d;
+    transition: transform 0.5s var(--ease-out-expo),
+                box-shadow 0.5s var(--ease-out-expo),
+                border-color 0.5s var(--ease-out-expo);
+}
+
+/* Reflejo diagonal que barre la ventana al pasar el mouse por la card */
+.qph-card .qph-window::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background: linear-gradient(
+        115deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.10) 45%,
+        rgba(255, 221, 0, 0.08) 50%,
+        transparent 65%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.9s var(--ease-out-expo);
+}
+
+.qph-card:hover .qph-window::after {
+    transform: translateX(120%);
+}
+
+.qph-card:hover .qph-window {
+    transform: perspective(1200px) rotateX(2.4deg) translateY(-6px) scale(1.012);
+    border-color: rgba(255, 221, 0, 0.35);
+    box-shadow: var(--shadow-window), var(--shadow-glow);
+}
+
+/* — Barra de título — */
+.qph-window__bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 14px;
+    background: linear-gradient(to bottom, #1e1e1e, #171717);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    z-index: 2;
+}
+
+/* Luces de semáforo */
+.qph-window__dots {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.qph-window__dots i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.16);
+    transition: background 0.4s ease;
+}
+
+/* Al hacer hover se "encienden" con los colores reales, en cascada */
+.qph-card:hover .qph-window__dots i:nth-child(1) { background: #FF5F57; transition-delay: 0ms; }
+.qph-card:hover .qph-window__dots i:nth-child(2) { background: #FEBC2E; transition-delay: 60ms; }
+.qph-card:hover .qph-window__dots i:nth-child(3) { background: #28C840; transition-delay: 120ms; }
+
+.qph-window__title {
+    flex: 1;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.42);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.4s ease;
+}
+
+.qph-card:hover .qph-window__title {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Chip "EN VIVO" con punto parpadeante */
+.qph-window__live {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: rgba(255, 221, 0, 0.65);
+    padding: 3px 8px;
+    border-radius: 100px;
+    background: rgba(255, 221, 0, 0.08);
+    border: 1px solid rgba(255, 221, 0, 0.18);
+}
+
+.qph-window__live::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    animation: liveBlink 1.8s ease-in-out infinite;
+}
+
+@keyframes liveBlink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.25; }
+}
+
+/* Variante navegador: la barra lleva una "URL" en vez de nombre de archivo */
+.qph-window--browser .qph-window__title {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 100px;
+    padding: 3px 12px;
+    max-width: 60%;
+    margin: 0 auto;
+}
+
+/* — El thumb ahora vive dentro de la ventana: anulamos su grid antiguo — */
+.qph-card .qph-window .qph-thumb {
+    grid-column: auto;
+    grid-row: auto;
+    margin-top: 0;
+    border-radius: 0;
+    aspect-ratio: 16 / 9;
+}
+
+/* El hover/scale ahora lo hace la ventana entera, no el thumb */
+.qph-card .qph-window .qph-thumb:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* El ícono de play vuelve a tamaño grande — ahora hay lugar de sobra */
+.qph-card .qph-window .qph-thumb__play {
+    width: 46px;
+    height: 46px;
+}
+
+/* Caption a ancho completo, debajo de la ventana */
+.qph-card .qph-thumb__caption {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 0.78rem;
+}
+
+/* — Animación de arranque: la ventana "bootea" al entrar en pantalla — */
+.qph-card .qph-window {
+    opacity: 0;
+    transform: perspective(1200px) rotateX(9deg) translateY(30px) scale(0.96);
+}
+
+.qph-card--visible .qph-window {
+    opacity: 1;
+    transform: perspective(1200px) rotateX(0) translateY(0) scale(1);
+    transition: opacity 0.75s var(--ease-out-expo) 0.15s,
+                transform 0.85s var(--ease-out-expo) 0.15s,
+                box-shadow 0.5s var(--ease-out-expo),
+                border-color 0.5s var(--ease-out-expo);
+}
+
+/* El video aparece un instante después que el chrome — refuerza el "boot" */
+.qph-card .qph-window .qph-thumb__media {
+    opacity: 0;
+    transition: opacity 0.6s ease 0.5s, transform 0.4s var(--ease-out-expo);
+}
+
+.qph-card--visible .qph-window .qph-thumb__media {
+    opacity: 1;
+}
+
+/* Mobile: sin tilt 3D (marea en pantallas chicas y cuesta GPU) */
+@media (max-width: 768px) {
+    .qph-card .qph-window {
+        grid-column: auto;
+        grid-row: auto;
+        margin-top: 16px;
+    }
+    .qph-card .qph-thumb__caption {
+        grid-column: auto;
+        grid-row: auto;
+    }
+    .qph-card:hover .qph-window {
+        transform: none;
+    }
+    .qph-window__live { display: none; }
+    .qph-window__title { font-size: 0.65rem; }
+    .qph-card .qph-window .qph-thumb__play {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .qph-card .qph-window,
+    .qph-card--visible .qph-window {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+    .qph-card .qph-window .qph-thumb__media { opacity: 1; transition: none; }
+    .qph-card .qph-window::after { display: none; }
+    .qph-window__live::before { animation: none; }
+    .hero-badge__pulse::after { animation: none; }
+    .hero-scroll__line::after { animation: none; }
+    .hero-content-center [data-stagger] {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+}
+
+
+/* ═══ 3. MAQUETA DE CONSOLA (#recursos) ════════════════════════════ */
+
+.term {
+    margin-top: 4px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #0b0b0b;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04),
+                0 8px 24px rgba(0, 0, 0, 0.4);
+    transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.recurso-card:hover .term {
+    border-color: rgba(255, 221, 0, 0.28);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06),
+                0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.term__bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 11px;
+    background: #151515;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.term__dots {
+    display: flex;
+    gap: 5px;
+}
+
+.term__dots i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.term__title {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.term__body {
+    padding: 12px 13px 14px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    line-height: 1.85;
+    /* Altura fija: evita que la card salte mientras se escriben las líneas */
+    min-height: 156px;
+}
+
+.term__line {
+    display: block;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Estado inicial: todas las líneas ocultas hasta que initTerminals() las revela */
+.term[data-term] .term__line {
+    opacity: 0;
+}
+
+.term[data-term].is-running .term__line.is-shown {
+    opacity: 1;
+    animation: termLineIn 0.28s var(--ease-out-expo);
+}
+
+@keyframes termLineIn {
+    from { opacity: 0; transform: translateY(3px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* — Colores por tipo de línea — */
+.term__line--cmd  { color: #fff; font-weight: 500; }
+.term__line--cmd::before {
+    content: '$ ';
+    color: var(--color-accent);
+    font-weight: 700;
+}
+.term__line--in   { color: rgba(255, 255, 255, 0.55); }
+.term__line--ok   { color: #4ADE80; }
+.term__line--warn { color: #FBBF24; }
+.term__line--val  { color: var(--color-accent); font-weight: 600; }
+.term__line--dim  { color: rgba(255, 255, 255, 0.34); }
+.term__line--done {
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+    margin-top: 4px;
+}
+
+/* Cursor que parpadea al final de la línea que se está escribiendo */
+.term__line.is-typing::after {
+    content: '';
+    display: inline-block;
+    width: 7px;
+    height: 1em;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    background: var(--color-accent);
+    animation: termCaret 0.9s step-end infinite;
+}
+
+@keyframes termCaret {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0; }
+}
+
+/* La card de recursos necesita un poco más de aire con la consola adentro */
+.recurso-card {
+    gap: 14px;
+}
+
+.recurso-card p {
+    flex: 0 1 auto;
+}
+
+@media (max-width: 768px) {
+    .term__body {
+        font-size: 0.66rem;
+        min-height: 146px;
+    }
+}
+
+/* Sin JS o con reduced-motion: las líneas se muestran fijas */
+@media (prefers-reduced-motion: reduce) {
+    .term[data-term] .term__line { opacity: 1; }
+    .term__line.is-typing::after { animation: none; }
+}
+
+
+/* ═══ 4. EL PROGRAMA — numeración + conector ═══════════════════════ */
+
+.cf-block {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Número gigante como marca de agua en la esquina */
+.cf-block__step {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    font-family: var(--font-display);
+    font-size: 3.4rem;
+    font-weight: 700;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.05);
+    letter-spacing: -0.04em;
+    pointer-events: none;
+    transition: color 0.45s var(--ease-out-expo),
+                transform 0.45s var(--ease-out-expo);
+}
+
+.cf-block:hover .cf-block__step {
+    color: rgba(255, 221, 0, 0.14);
+    transform: translateY(-2px) scale(1.04);
+}
+
+/* Barra de acento que crece desde la izquierda al entrar en viewport */
+.cf-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--color-accent), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.8s var(--ease-out-expo);
+}
+
+.cf-block--visible::before {
+    transform: scaleX(1);
+}
+
+.cf-block--visible:nth-child(1)::before { transition-delay: 0.25s; }
+.cf-block--visible:nth-child(2)::before { transition-delay: 0.40s; }
+.cf-block--visible:nth-child(3)::before { transition-delay: 0.55s; }
+
+@media (max-width: 768px) {
+    .cf-block__step { font-size: 2.6rem; top: 10px; right: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cf-block::before { transform: scaleX(1); transition: none; }
+    .cf-block__step { transition: none; }
+}
+
+
+/* ═══ 5. SCROLL-REVEAL GENÉRICO ════════════════════════════════════
+   Cualquier elemento con [data-reveal] entra desde abajo al aparecer.
+   initScrollReveal() en main-v2.js le agrega .is-revealed.
+   ═════════════════════════════════════════════════════════════════ */
+
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.7s var(--ease-out-expo),
+                transform 0.7s var(--ease-out-expo);
+}
+
+[data-reveal].is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+
+/* ═══ 6. CORRECCIONES DE LA PASADA DE REVISIÓN ════════════════════ */
+
+/* Contraste: el texto blanco sobre amarillo #FFDD00 daba ~1.7:1 (ilegible).
+   En negro sube a ~15:1 y además queda consistente con .recurso-card__cta--download,
+   que ya usaba texto oscuro sobre amarillo. */
+.btn-primary-large {
+    color: #0a0a0a;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.btn-primary-large:hover {
+    color: #0a0a0a;
+}
+
+/* Alineación: los textos "Antes"/"Con IA" tienen distinto largo, así que las
+   ventanas de cada card arrancaban a distinta altura. Fijamos una altura
+   mínima para la primera fila y quedan todas a la misma línea. */
+@media (min-width: 769px) {
+    .qph-card {
+        /* 144px cubre el caso más alto (3 líneas de texto + categoría, ~133px),
+           así todas las primeras filas miden lo mismo y las ventanas
+           arrancan a la misma altura en toda la grilla. */
+        grid-template-rows: minmax(144px, auto) auto auto;
+    }
+
+    /* Con la fila ya fijada, alineamos arriba en vez de centrar:
+       si un texto crece, la ventana no se desplaza. */
+    .qph-card .qph-after {
+        align-self: start;
+    }
+
+    /* La columna "Antes" se estira: así su borde derecho queda como una
+       línea divisoria de altura completa en vez de un tramo suelto. */
+    .qph-card .qph-before {
+        align-self: stretch;
+    }
+}
