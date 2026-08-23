@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
+    <!-- Iconos -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     <title>Leo Díaz | IA para Arquitectos — Transformá tu Estudio con Inteligencia Artificial</title>
-    <meta name="description" content="Aprendé a usar IA en tu estudio de arquitectura. Reducí de 2 días a 30 minutos la creación de propuestas. Curso online para arquitectos hispanohablantes.">
+    <meta name="description" content="Aprendé a usar IA en tu estudio de arquitectura. Sistemas de IA para estudios y empresas: automatizá la parte repetitiva de la producción y quedate con el criterio. Formación y consultoría para arquitectos.">
     <meta name="author" content="Leo Díaz">
     <link rel="canonical" href="https://soyleoai.com/">
 
@@ -14,7 +18,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://soyleoai.com/">
     <meta property="og:title" content="Leo Díaz | IA para Arquitectos">
-    <meta property="og:description" content="Transformá tu estudio de arquitectura con Inteligencia Artificial. De 2 días a 30 minutos en propuestas.">
+    <meta property="og:description" content="Sistemas de IA para estudios de arquitectura y empresas. Automatizá la producción repetitiva y quedate con el criterio.">
     <meta property="og:image" content="https://soyleoai.com/images/og-image.jpg">
     <meta property="og:locale" content="es_AR">
 
@@ -80,7 +84,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="css/styles-v2.css">
+    <link rel="stylesheet" href="css/styles-v2.css?v=20260823b">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -118,7 +122,8 @@
                         <li><a href="#consultoria" class="menu-link" data-number="04">Consultoría</a></li>
                         <li><a href="#empresas" class="menu-link" data-number="05">Empresas</a></li>
                         <li><a href="#testimonios" class="menu-link" data-number="06">Testimonios</a></li>
-                        <li><a href="#contacto" class="menu-link" data-number="07">Contacto</a></li>
+                        <li><a href="blog/" class="menu-link" data-number="07">Blog</a></li>
+                        <li><a href="#contacto" class="menu-link" data-number="08">Contacto</a></li>
                     </ul>
                 </div>
 
@@ -127,7 +132,6 @@
                     <div class="menu-contact">
                         <h3>Contacto</h3>
                         <p><a href="mailto:leodiazdt@gmail.com">leodiazdt@gmail.com</a></p>
-                        <p><a href="tel:+543816274439">+54 381 627 4439</a></p>
                     </div>
                     <div class="menu-social">
                         <a href="https://www.linkedin.com/in/leo-iml" target="_blank">LinkedIn</a>
@@ -138,238 +142,242 @@
         </div>
     </div>
 
-    <!-- Hero Fullscreen — VANTA.js NET fondo animado -->
+    <!-- Hero Fullscreen — celosía paramétrica CSS, sin librerías -->
     <section id="home" class="hero-fullscreen">
-        <div class="hero-bg hero-bg--hidden"></div>
-        <div class="hero-overlay"></div>
-        <!-- Warm yellow light orb — interacts visually with VANTA NET nodes -->
-        <div class="hero-light-point"></div>
+        <!-- Celosía paramétrica: 46 lamas que abren y cierran en onda viajera.
+             CSS puro, sin librerías (reemplaza VANTA.NET + three.js). -->
+        <div class="hero-lattice" aria-hidden="true">
+            <span style="--i:0"></span>
+            <span style="--i:1"></span>
+            <span style="--i:2"></span>
+            <span style="--i:3"></span>
+            <span style="--i:4"></span>
+            <span style="--i:5"></span>
+            <span style="--i:6"></span>
+            <span style="--i:7"></span>
+            <span style="--i:8"></span>
+            <span style="--i:9"></span>
+            <span style="--i:10"></span>
+            <span style="--i:11"></span>
+            <span style="--i:12"></span>
+            <span style="--i:13"></span>
+            <span style="--i:14"></span>
+            <span style="--i:15"></span>
+            <span style="--i:16"></span>
+            <span style="--i:17"></span>
+            <span style="--i:18"></span>
+            <span style="--i:19"></span>
+            <span style="--i:20"></span>
+            <span style="--i:21"></span>
+            <span style="--i:22"></span>
+            <span style="--i:23"></span>
+            <span style="--i:24"></span>
+            <span style="--i:25"></span>
+            <span style="--i:26"></span>
+            <span style="--i:27"></span>
+            <span style="--i:28"></span>
+            <span style="--i:29"></span>
+            <span style="--i:30"></span>
+            <span style="--i:31"></span>
+            <span style="--i:32"></span>
+            <span style="--i:33"></span>
+            <span style="--i:34"></span>
+            <span style="--i:35"></span>
+            <span style="--i:36"></span>
+            <span style="--i:37"></span>
+            <span style="--i:38"></span>
+            <span style="--i:39"></span>
+            <span style="--i:40"></span>
+            <span style="--i:41"></span>
+            <span style="--i:42"></span>
+            <span style="--i:43"></span>
+            <span style="--i:44"></span>
+            <span style="--i:45"></span>
+        </div>
+        <!-- Entrepisos: dan escala de edificio -->
+        <div class="hero-floors" aria-hidden="true">
+            <i style="top:18%"></i><i style="top:36%"></i><i style="top:54%"></i><i style="top:72%"></i>
+        </div>
+        <div class="hero-scrim" aria-hidden="true"></div>
+
         <div class="hero-content-center">
-            <!-- Word swap: "mercado" ↔ "futuro" on hover, clip-path wipe top→bottom -->
-            <!-- initWordSwap() in main-v2.js handles mouseenter/mouseleave -->
-            <h1 class="hero-title-large">
+            <div class="hero-badge" data-stagger="0">
+                <span class="hero-badge__pulse" aria-hidden="true"></span>
+                +100 arquitectos ya construyen sus sistemas con IA
+            </div>
+
+            <h1 class="hero-title-large" data-stagger="1">
                 El arquitecto que usa IA<br>
                 no compite por precio. Lidera el
                 <span class="word-swap" data-word-a="mercado" data-word-b="futuro">mercado</span>.
             </h1>
-            <!-- Tagline: static, no animation, smaller muted text -->
-            <p class="hero-tagline">Con IA, el límite es tu imaginación.</p>
-            <p class="hero-subtitle-large">Automatizá. Presentá. Ganás proyectos.</p>
-            <div class="hero-cta">
+            <p class="hero-tagline" data-stagger="2">Con IA, el l&iacute;mite es tu imaginaci&oacute;n.</p>
+            <p class="hero-subtitle-large" data-stagger="3">Automatiz&aacute;. Present&aacute;. Gan&aacute;s proyectos.</p>
+
+            <div class="hero-cta" data-stagger="4">
                 <a href="#contacto" class="btn-primary-large">Agendar consulta</a>
+                <a href="#recursos" class="btn-ghost-large">Ver recursos gratis</a>
+            </div>
+
+            <div class="hero-metrics" data-stagger="5">
+                <div class="hero-metric">
+                    <span class="hero-metric__num" data-count-to="100" data-count-suffix="+">0</span>
+                    <span class="hero-metric__label">Arquitectos formados</span>
+                </div>
+                <span class="hero-metric__sep" aria-hidden="true"></span>
+                <div class="hero-metric">
+                    <span class="hero-metric__num" data-count-to="20" data-count-suffix="+">0</span>
+                    <span class="hero-metric__label">Empresas</span>
+                </div>
             </div>
         </div>
+
+        <a href="#que-podes-hacer" class="hero-scroll" aria-label="Bajar a la siguiente secci&oacute;n">
+            <span class="hero-scroll__text">SCROLL</span>
+            <span class="hero-scroll__line" aria-hidden="true"></span>
+        </a>
     </section>
 
     <!-- ====================================================
          Lo que podés hacer — Before/After transformation cards
          Inserted after hero, before Sobre Mí
          ==================================================== -->
-    <section id="que-podes-hacer" class="qph-section">
-        <div class="qph-bg" style="background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1920&q=80');"></div>
-        <div class="qph-overlay"></div>
-        <div class="container-large">
+    <section id="que-podes-hacer" class="qph-section pt-sec qph--n0" data-pt-tabs>
+      <div class="pt-grid" aria-hidden="true"></div>
+      <div class="container-large">
 
-            <div class="qph-header">
-                <span class="section-label">TRANSFORMACIÓN</span>
-                <h2 class="section-title-large">
-                    Lo que podés hacer con <span class="qph-ia-accent">IA</span>
-                </h2>
+        <div class="qph-header" data-reveal>
+          <span class="section-label">TRANSFORMACIÓN</span>
+          <h2 class="section-title-large">Lo que podés hacer con <span class="qph-ia-accent">IA</span></h2>
+          <p class="pt-lede">Cuatro casos reales del programa. Elegí uno para ver el antes, el después y la pieza que quedó funcionando.</p>
+        </div>
+
+        <div class="pt-idx">
+          <div class="pt-idx__row">
+        <button class="pt-tab" data-i="0" type="button">
+          <span class="pt-tab__n">01</span>
+          <span class="pt-tab__t">Cálculo de honorarios</span>
+        </button>
+        <button class="pt-tab" data-i="1" type="button">
+          <span class="pt-tab__n">02</span>
+          <span class="pt-tab__t">Presupuestos de obra</span>
+        </button>
+        <button class="pt-tab" data-i="2" type="button">
+          <span class="pt-tab__n">03</span>
+          <span class="pt-tab__t">Presencia digital</span>
+        </button>
+        <button class="pt-tab" data-i="3" type="button">
+          <span class="pt-tab__n">04</span>
+          <span class="pt-tab__t">Renders con IA</span>
+        </button>
+          </div>
+          <div class="pt-idx__track"><span class="pt-idx__bar"></span></div>
+        </div>
+
+        <div class="pt-stage">
+      <div class="pt-panel" data-i="0">
+        <div class="pt-flow">
+          <div class="pt-flow__head pt-flow__head--before">Antes</div>
+          <p class="pt-flow__text">Calcular honorarios: proceso manual, tedioso, con margen de error.</p>
+          <div class="pt-conn"><span class="pt-conn__arrow"></span></div>
+          <div class="pt-flow__head pt-flow__head--after">Con IA</div>
+          <p class="pt-flow__text pt-flow__text--after">Tu propia app que calcula honorarios <span class="pt-hl">al instante</span>.</p>
+          <div class="pt-cota"><span class="pt-cota__cap"></span><span class="pt-cota__line"></span><span class="pt-cota__txt">Cálculo de honorarios</span></div>
+        </div>
+          <div class="pt-plate">
+            <div class="pt-plate__meta">
+              <span class="pt-plate__file">calculadora-honorarios.app</span>
+              <span class="pt-plate__live"><span class="pt-dot"></span>EN VIVO</span>
             </div>
+            <div class="qph-thumb qph-thumb--video pt-plate__frame"
+                 data-lightbox-type="video" data-lightbox-src="images/casos/honorarios-santiago.mp4"
+                 data-lightbox-alt="App de cálculo de honorarios creada con IA" role="button" tabindex="0"
+                 aria-label="Ver video: App de cálculo de honorarios creada con IA (abre en pantalla completa)">
+              <span class="pt-tick pt-tick--tl"></span><span class="pt-tick pt-tick--br"></span>
+              <video data-lazyvideo preload="none" poster="images/casos/poster/honorarios-santiago.jpg" class="qph-thumb__media" src="images/casos/preview/honorarios-santiago.mp4" muted loop playsinline tabindex="-1" aria-hidden="true"></video>
+              <div class="qph-thumb__overlay"><svg class="qph-thumb__play" width="52" height="52" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="#FFDD00" stroke-width="1"/><polygon points="10,8 17,12 10,16" fill="#FFDD00"/></svg></div>
+            </div>
+            <p class="pt-plate__cap">Santiago creó su propia app de honorarios con IA en una sola sesión.</p>
+          </div>
+      </div>
+      <div class="pt-panel" data-i="1">
+        <div class="pt-flow">
+          <div class="pt-flow__head pt-flow__head--before">Antes</div>
+          <p class="pt-flow__text">Presupuestar fundaciones: días de cómputos manuales.</p>
+          <div class="pt-conn"><span class="pt-conn__arrow"></span></div>
+          <div class="pt-flow__head pt-flow__head--after">Con IA</div>
+          <p class="pt-flow__text pt-flow__text--after">Presupuesto de estructura <span class="pt-hl">preciso y automático</span> en minutos.</p>
+          <div class="pt-cota"><span class="pt-cota__cap"></span><span class="pt-cota__line"></span><span class="pt-cota__txt">Optimización de presupuestos</span></div>
+        </div>
+          <div class="pt-plate">
+            <div class="pt-plate__meta">
+              <span class="pt-plate__file">presupuesto-fundaciones.xlsx</span>
+              <span class="pt-plate__live"><span class="pt-dot"></span>EN VIVO</span>
+            </div>
+            <div class="qph-thumb qph-thumb--video pt-plate__frame"
+                 data-lightbox-type="video" data-lightbox-src="images/casos/presupuesto.mp4"
+                 data-lightbox-alt="Presupuesto de fundaciones calculado con IA" role="button" tabindex="0"
+                 aria-label="Ver video: Presupuesto de fundaciones calculado con IA (abre en pantalla completa)">
+              <span class="pt-tick pt-tick--tl"></span><span class="pt-tick pt-tick--br"></span>
+              <video data-lazyvideo preload="none" poster="images/casos/poster/presupuesto.jpg" class="qph-thumb__media" src="images/casos/preview/presupuesto.mp4" muted loop playsinline tabindex="-1" aria-hidden="true"></video>
+              <div class="qph-thumb__overlay"><svg class="qph-thumb__play" width="52" height="52" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="#FFDD00" stroke-width="1"/><polygon points="10,8 17,12 10,16" fill="#FFDD00"/></svg></div>
+            </div>
+            <p class="pt-plate__cap">Presupuesto de estructura de fundaciones calculado con IA. Preciso, sin errores.</p>
+          </div>
+      </div>
+      <div class="pt-panel" data-i="2">
+        <div class="pt-flow">
+          <div class="pt-flow__head pt-flow__head--before">Antes</div>
+          <p class="pt-flow__text">Sin presencia digital, dependiendo de recomendaciones de boca en boca.</p>
+          <div class="pt-conn"><span class="pt-conn__arrow"></span></div>
+          <div class="pt-flow__head pt-flow__head--after">Con IA</div>
+          <p class="pt-flow__text pt-flow__text--after">Web del estudio creada <span class="pt-hl">en horas</span>, sin escribir una línea de código.</p>
+          <div class="pt-cota"><span class="pt-cota__cap"></span><span class="pt-cota__line"></span><span class="pt-cota__txt">Presencia digital</span></div>
+        </div>
+          <div class="pt-plate">
+            <div class="pt-plate__meta">
+              <span class="pt-plate__file">estudio-santiago.com</span>
+              <span class="pt-plate__live"><span class="pt-dot"></span>EN VIVO</span>
+            </div>
+            <div class="qph-thumb qph-thumb--video pt-plate__frame"
+                 data-lightbox-type="video" data-lightbox-src="images/casos/web-santiago.mp4"
+                 data-lightbox-alt="Web profesional del estudio de Santiago" role="button" tabindex="0"
+                 aria-label="Ver video: Web profesional del estudio de Santiago (abre en pantalla completa)">
+              <span class="pt-tick pt-tick--tl"></span><span class="pt-tick pt-tick--br"></span>
+              <video data-lazyvideo preload="none" poster="images/casos/poster/web-santiago.jpg" class="qph-thumb__media" src="images/casos/preview/web-santiago.mp4" muted loop playsinline tabindex="-1" aria-hidden="true"></video>
+              <div class="qph-thumb__overlay"><svg class="qph-thumb__play" width="52" height="52" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="#FFDD00" stroke-width="1"/><polygon points="10,8 17,12 10,16" fill="#FFDD00"/></svg></div>
+            </div>
+            <p class="pt-plate__cap">Su web profesional, construida con IA en pocas horas. Sin programar.</p>
+          </div>
+      </div>
+      <div class="pt-panel" data-i="3">
+        <div class="pt-flow">
+          <div class="pt-flow__head pt-flow__head--before">Antes</div>
+          <p class="pt-flow__text">Renders sin control del proceso: dependés del resultado que devuelve la IA.</p>
+          <div class="pt-conn"><span class="pt-conn__arrow"></span></div>
+          <div class="pt-flow__head pt-flow__head--after">Con IA</div>
+          <p class="pt-flow__text pt-flow__text--after">Renders de forma <span class="pt-hl">controlada y eficaz</span>, auditables, explicables.</p>
+          <div class="pt-cota"><span class="pt-cota__cap"></span><span class="pt-cota__line"></span><span class="pt-cota__txt">Renders con IA</span></div>
+        </div>
+          <div class="pt-plate">
+            <div class="pt-plate__meta">
+              <span class="pt-plate__file">render-control.ai</span>
+              <span class="pt-plate__live"><span class="pt-dot"></span>EN VIVO</span>
+            </div>
+            <div class="qph-thumb qph-thumb--video pt-plate__frame"
+                 data-lightbox-type="video" data-lightbox-src="images/casos/render-eugenia.mp4"
+                 data-lightbox-alt="Render controlado con IA por Eugenia" role="button" tabindex="0"
+                 aria-label="Ver video: Render controlado con IA por Eugenia (abre en pantalla completa)">
+              <span class="pt-tick pt-tick--tl"></span><span class="pt-tick pt-tick--br"></span>
+              <video data-lazyvideo preload="none" poster="images/casos/poster/render-eugenia.jpg" class="qph-thumb__media" src="images/casos/preview/render-eugenia.mp4" muted loop playsinline tabindex="-1" aria-hidden="true"></video>
+              <div class="qph-thumb__overlay"><svg class="qph-thumb__play" width="52" height="52" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="#FFDD00" stroke-width="1"/><polygon points="10,8 17,12 10,16" fill="#FFDD00"/></svg></div>
+            </div>
+            <p class="pt-plate__cap">Eugenia muestra cómo mantener el control total del proceso de render con IA.</p>
+          </div>
+      </div>
+        </div>
 
-            <div class="qph-grid">
-
-                <!-- Card 1: Honorarios profesionales -->
-                <div class="qph-card" data-delay="0">
-                    <div class="qph-before">
-                        <div class="qph-side-label qph-side-label--before">
-                            <!-- Clock icon -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            Antes
-                        </div>
-                        <p class="qph-before-text">Calcular honorarios: proceso manual, tedioso, con margen de error</p>
-                    </div>
-                    <div class="qph-arrow" aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </div>
-                    <div class="qph-after">
-                        <div class="qph-side-label qph-side-label--after">Con IA</div>
-                        <p class="qph-after-text">Tu propia app que calcula honorarios <span class="qph-highlight">al instante</span></p>
-                        <p class="qph-after-category">Cálculo de honorarios</p>
-                    </div>
-                    <!-- Thumbnail cliqueable → Lightbox — card 1: video -->
-                    <div class="qph-thumb qph-thumb--video"
-                         data-lightbox-type="video"
-                         data-lightbox-src="images/casos/honorarios-santiago.mp4"
-                         data-lightbox-alt="App de cálculo de honorarios creada con IA"
-                         role="button"
-                         tabindex="0"
-                         aria-label="Ver ejemplo: app de honorarios (abre en pantalla completa)">
-                        <video class="qph-thumb__media"
-                               src="images/casos/honorarios-santiago.mp4"
-                               autoplay muted loop playsinline
-                               tabindex="-1"
-                               aria-hidden="true">
-                        </video>
-                        <div class="qph-thumb__overlay">
-                            <svg class="qph-thumb__play" xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="currentColor" stroke-width="1" fill-opacity="1"/>
-                                <polygon points="10,8 17,12 10,16" fill="#FFDD00"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <p class="qph-thumb__caption">Santiago creó su propia app de honorarios con IA en una sola sesión</p>
-                </div>
-
-                <!-- Card 2: Presupuesto automatizado -->
-                <div class="qph-card" data-delay="1">
-                    <div class="qph-before">
-                        <div class="qph-side-label qph-side-label--before">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            Antes
-                        </div>
-                        <p class="qph-before-text">Presupuestar fundaciones: días de cómputos manuales</p>
-                    </div>
-                    <div class="qph-arrow" aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </div>
-                    <div class="qph-after">
-                        <div class="qph-side-label qph-side-label--after">Con IA</div>
-                        <p class="qph-after-text">Presupuesto de estructura <span class="qph-highlight">preciso y automático</span> en minutos</p>
-                        <p class="qph-after-category">Optimización de presupuestos</p>
-                    </div>
-                    <!-- Thumbnail cliqueable → Lightbox — card 2: video -->
-                    <div class="qph-thumb qph-thumb--video"
-                         data-lightbox-type="video"
-                         data-lightbox-src="images/casos/presupuesto.mp4"
-                         data-lightbox-alt="Presupuesto de estructura de fundaciones calculado con IA"
-                         role="button"
-                         tabindex="0"
-                         aria-label="Ver ejemplo: presupuesto automatizado (abre en pantalla completa)">
-                        <video class="qph-thumb__media"
-                               src="images/casos/presupuesto.mp4"
-                               autoplay muted loop playsinline
-                               tabindex="-1"
-                               aria-hidden="true">
-                        </video>
-                        <div class="qph-thumb__overlay">
-                            <svg class="qph-thumb__play" xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="currentColor" stroke-width="1" fill-opacity="1"/>
-                                <polygon points="10,8 17,12 10,16" fill="#FFDD00"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <p class="qph-thumb__caption">Presupuesto de estructura de fundaciones calculado con IA. Preciso, sin errores.</p>
-                </div>
-
-                <!-- Card 3: Web profesional del estudio -->
-                <div class="qph-card" data-delay="2">
-                    <div class="qph-before">
-                        <div class="qph-side-label qph-side-label--before">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            Antes
-                        </div>
-                        <p class="qph-before-text">Sin presencia digital, dependiendo de recomendaciones de boca en boca</p>
-                    </div>
-                    <div class="qph-arrow" aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </div>
-                    <div class="qph-after">
-                        <div class="qph-side-label qph-side-label--after">Con IA</div>
-                        <p class="qph-after-text">Web del estudio creada <span class="qph-highlight">en horas</span>, sin escribir una línea de código</p>
-                        <p class="qph-after-category">Presencia digital</p>
-                    </div>
-                    <!-- Thumbnail cliqueable → Lightbox — card 3: video -->
-                    <div class="qph-thumb qph-thumb--video"
-                         data-lightbox-type="video"
-                         data-lightbox-src="images/casos/web-santiago.mp4"
-                         data-lightbox-alt="Web profesional del estudio creada con IA"
-                         role="button"
-                         tabindex="0"
-                         aria-label="Ver ejemplo: web del estudio creada con IA (abre en pantalla completa)">
-                        <video class="qph-thumb__media"
-                               src="images/casos/web-santiago.mp4"
-                               autoplay muted loop playsinline
-                               tabindex="-1"
-                               aria-hidden="true">
-                        </video>
-                        <div class="qph-thumb__overlay">
-                            <svg class="qph-thumb__play" xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="currentColor" stroke-width="1" fill-opacity="1"/>
-                                <polygon points="10,8 17,12 10,16" fill="#FFDD00"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <p class="qph-thumb__caption">Su web profesional, construida con IA en pocas horas. Sin programar.</p>
-                </div>
-
-                <!-- Card 4: Renders con IA -->
-                <div class="qph-card" data-delay="3">
-                    <div class="qph-before">
-                        <div class="qph-side-label qph-side-label--before">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            Antes
-                        </div>
-                        <p class="qph-before-text">Renders sin control del proceso: dependés del resultado que devuelve la IA</p>
-                    </div>
-                    <div class="qph-arrow" aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </div>
-                    <div class="qph-after">
-                        <div class="qph-side-label qph-side-label--after">Con IA</div>
-                        <p class="qph-after-text">Renders de forma <span class="qph-highlight">controlada y eficaz</span>, auditables, explicables</p>
-                        <p class="qph-after-category">Renders con IA</p>
-                    </div>
-                    <!-- Thumbnail cliqueable → Lightbox — card 4: video -->
-                    <div class="qph-thumb qph-thumb--video"
-                         data-lightbox-type="video"
-                         data-lightbox-src="images/casos/render-eugenia.mp4"
-                         data-lightbox-alt="Renders controlados con IA — Eugenia"
-                         role="button"
-                         tabindex="0"
-                         aria-label="Ver ejemplo: renders controlados con IA (abre en pantalla completa)">
-                        <video class="qph-thumb__media"
-                               src="images/casos/render-eugenia.mp4"
-                               autoplay muted loop playsinline
-                               tabindex="-1"
-                               aria-hidden="true">
-                        </video>
-                        <div class="qph-thumb__overlay">
-                            <svg class="qph-thumb__play" xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="currentColor" stroke-width="1" fill-opacity="1"/>
-                                <polygon points="10,8 17,12 10,16" fill="#FFDD00"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <p class="qph-thumb__caption">Eugenia muestra cómo mantener el control total del proceso de render con IA.</p>
-                </div>
-
-            </div><!-- /.qph-grid -->
-        </div><!-- /.container-large -->
+      </div>
     </section><!-- /#que-podes-hacer -->
 
     <!-- ====================================================
@@ -377,281 +385,250 @@
          Position: after #que-podes-hacer, before #como-funciona
          Thumbnails reuse the .qph-thumb / #qph-lightbox system
          ==================================================== -->
-    <section id="casos-de-exito" class="casos-section">
-        <div class="container-large">
+    <section id="casos-de-exito" class="casos-section pt-sec res--open0" data-pt-acc>
+      <div class="pt-grid" aria-hidden="true"></div>
+      <div class="container-large">
 
-            <div class="casos-header">
-                <span class="section-label">CASOS DE ÉXITO</span>
-                <h2 class="section-title-large">Resultados reales de arquitectos reales</h2>
+        <div class="casos-header" data-reveal>
+          <span class="section-label">CASOS DE ÉXITO</span>
+          <h2 class="section-title-large">Resultados reales de estudios y empresas</h2>
+          <p class="pt-lede">Abrí un caso para ver los objetivos con los que arrancó, lo que logró y la pieza que quedó funcionando.</p>
+        </div>
+
+        <div class="pt-caso" data-i="0">
+          <button class="pt-caso__head" type="button" aria-expanded="true">
+            <span class="pt-caso__n">CASO 01</span>
+            <h3 class="pt-caso__q">"No sabía programar. Hoy tiene su propia app y su web profesional."</h3>
+            <span class="pt-caso__who">
+              <img src="images/testimonials/santiago.jpg" alt="Santiago Manzanares" loading="lazy">
+              <span><span class="pt-caso__name">Santiago Manzanares</span><span class="pt-caso__role">Arquitecto en Sinergia</span></span>
+            </span>
+            <span class="pt-caso__sign" aria-hidden="true"></span>
+          </button>
+          <div class="pt-caso__body"><div class="pt-caso__inner"><div class="pt-caso__cols">
+            <div>
+              <p class="pt-sub">Sus objetivos cuando arrancó</p>
+              <ul class="pt-obj">
+                <li>Dejar de calcular honorarios a mano</li>
+                <li>Tener presencia digital sin contratar un programador</li>
+              </ul>
+              <p class="pt-sub">Lo que consiguió</p>
+              <div class="pt-logros">
+                <div class="pt-logro"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Creó su propia app de honorarios en una sesión de trabajo</span></div>
+                <div class="pt-logro"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Lanzó su web profesional en horas, sin escribir una línea de código</span></div>
+              </div>
+              <blockquote class="pt-quote">
+                <p>"El curso de Leo apunta directo a lo que necesitaba. Su acompañamiento fue claro, práctico y muy útil. Lo recomiendo al 100%."</p>
+                <cite>Santiago Manzanares</cite>
+              </blockquote>
             </div>
-
-            <!-- ── Caso 01: Santiago Manzanares ── -->
-            <div class="caso-card caso-card--entrada">
-                <div class="caso-card__meta">
-                    <span class="caso-pill">CASO 01 — SANTIAGO MANZANARES · Arquitecto en Sinergia</span>
+            <div class="pt-plates">
+              <div class="pt-plate">
+                <div class="pt-plate__meta"><span class="pt-plate__file">calculadora-honorarios.app</span><span class="pt-plate__live"><span class="pt-dot"></span>EN VIVO</span></div>
+                <div class="qph-thumb qph-thumb--video pt-plate__frame"
+                     data-lightbox-type="video" data-lightbox-src="images/casos/honorarios-santiago.mp4"
+                     data-lightbox-alt="App calculadora de honorarios de Santiago" role="button" tabindex="0"
+                     aria-label="Ver video: App calculadora de honorarios de Santiago (abre en pantalla completa)">
+                  <span class="pt-tick pt-tick--tl"></span><span class="pt-tick pt-tick--br"></span>
+                  <video data-lazyvideo preload="none" poster="images/casos/poster/honorarios-santiago.jpg" class="qph-thumb__media" src="images/casos/preview/honorarios-santiago.mp4" muted loop playsinline tabindex="-1" aria-hidden="true"></video>
+                  <div class="qph-thumb__overlay"><svg class="qph-thumb__play" width="52" height="52" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="#FFDD00" stroke-width="1"/><polygon points="10,8 17,12 10,16" fill="#FFDD00"/></svg></div>
                 </div>
-
-                <div class="caso-card__body">
-                    <!-- Left: copy block -->
-                    <div class="caso-card__copy">
-                        <h3 class="caso-title">"No sabía programar. Hoy tiene su propia app y su web profesional."</h3>
-
-                        <div class="caso-objetivos">
-                            <p class="caso-objetivos__label">Sus objetivos cuando arrancó:</p>
-                            <ul class="caso-objetivos__list">
-                                <li>Dejar de calcular honorarios a mano</li>
-                                <li>Tener presencia digital sin contratar un programador</li>
-                            </ul>
-                        </div>
-
-                        <div class="caso-logros">
-                            <div class="caso-logro-item">
-                                <!-- Yellow checkmark icon -->
-                                <svg class="caso-logro-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                                <span>Creó su propia app de honorarios en una sesión de trabajo</span>
-                            </div>
-                            <div class="caso-logro-item">
-                                <svg class="caso-logro-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                                <span>Lanzó su web profesional en horas, sin escribir una línea de código</span>
-                            </div>
-                        </div>
-
-                        <blockquote class="caso-quote">
-                            <p>"El curso de Leo apunta directo a lo que necesitaba. Su acompañamiento fue claro, práctico y muy útil. Lo recomiendo al 100%."</p>
-                            <cite>— Santiago Manzanares</cite>
-                        </blockquote>
-                    </div>
-
-                    <!-- Right: two thumbnails stacked -->
-                    <div class="caso-card__media">
-                        <!-- Thumb 1: App de honorarios (video) -->
-                        <div class="qph-thumb qph-thumb--video caso-thumb"
-                             data-lightbox-type="video"
-                             data-lightbox-src="images/casos/honorarios-santiago.mp4"
-                             data-lightbox-alt="App calculadora de honorarios de Santiago"
-                             role="button"
-                             tabindex="0"
-                             aria-label="Ver video: app calculadora de honorarios (abre en pantalla completa)">
-                            <video class="qph-thumb__media"
-                                   src="images/casos/honorarios-santiago.mp4"
-                                   autoplay muted loop playsinline
-                                   tabindex="-1"
-                                   aria-hidden="true">
-                            </video>
-                            <div class="qph-thumb__overlay">
-                                <svg class="qph-thumb__play" xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" aria-hidden="true">
-                                    <circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="#FFDD00" stroke-width="1"/>
-                                    <polygon points="10,8 17,12 10,16" fill="#FFDD00"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <p class="qph-thumb__caption">App calculadora de honorarios</p>
-
-                        <!-- Thumb 2: Web profesional (video) -->
-                        <div class="qph-thumb qph-thumb--video caso-thumb"
-                             data-lightbox-type="video"
-                             data-lightbox-src="images/casos/web-santiago.mp4"
-                             data-lightbox-alt="Web profesional del estudio de Santiago"
-                             role="button"
-                             tabindex="0"
-                             aria-label="Ver video: web profesional del estudio (abre en pantalla completa)">
-                            <video class="qph-thumb__media"
-                                   src="images/casos/web-santiago.mp4"
-                                   autoplay muted loop playsinline
-                                   tabindex="-1"
-                                   aria-hidden="true">
-                            </video>
-                            <div class="qph-thumb__overlay">
-                                <svg class="qph-thumb__play" xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" aria-hidden="true">
-                                    <circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="#FFDD00" stroke-width="1"/>
-                                    <polygon points="10,8 17,12 10,16" fill="#FFDD00"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <p class="qph-thumb__caption">Web profesional del estudio</p>
-                    </div>
-                </div><!-- /.caso-card__body -->
-            </div><!-- /.caso-card (Santiago) -->
-
-            <!-- ── Caso 02: Pilar Cichero ── -->
-            <div class="caso-card caso-card--entrada">
-                <div class="caso-card__meta">
-                    <span class="caso-pill">CASO 02 — PILAR CICHERO · Arquitecta · Doctora en Arq. · Docente FAU UNT</span>
+                <p class="pt-plate__cap">App calculadora de honorarios</p>
+              </div>
+              <div class="pt-plate">
+                <div class="pt-plate__meta"><span class="pt-plate__file">estudio-santiago.com</span><span class="pt-plate__live"><span class="pt-dot"></span>EN VIVO</span></div>
+                <div class="qph-thumb qph-thumb--video pt-plate__frame"
+                     data-lightbox-type="video" data-lightbox-src="images/casos/web-santiago.mp4"
+                     data-lightbox-alt="Web profesional del estudio de Santiago" role="button" tabindex="0"
+                     aria-label="Ver video: Web profesional del estudio de Santiago (abre en pantalla completa)">
+                  <span class="pt-tick pt-tick--tl"></span><span class="pt-tick pt-tick--br"></span>
+                  <video data-lazyvideo preload="none" poster="images/casos/poster/web-santiago.jpg" class="qph-thumb__media" src="images/casos/preview/web-santiago.mp4" muted loop playsinline tabindex="-1" aria-hidden="true"></video>
+                  <div class="qph-thumb__overlay"><svg class="qph-thumb__play" width="52" height="52" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="#FFDD00" stroke-width="1"/><polygon points="10,8 17,12 10,16" fill="#FFDD00"/></svg></div>
                 </div>
-
-                <div class="caso-card__body caso-card__body--reversed">
-                    <!-- Left: media block (reversed layout) -->
-                    <div class="caso-card__media">
-                        <!-- Thumb: Propuesta de inversión Dúplex 42m² (video) -->
-                        <div class="qph-thumb qph-thumb--video caso-thumb"
-                             data-lightbox-type="video"
-                             data-lightbox-src="images/casos/pilar-propuesta.mp4"
-                             data-lightbox-alt="Propuesta de inversión Dúplex 42m² — Pilar Cichero"
-                             role="button"
-                             tabindex="0"
-                             aria-label="Ver video: propuesta de inversión Dúplex 42m² (abre en pantalla completa)">
-                            <video class="qph-thumb__media"
-                                   src="images/casos/pilar-propuesta.mp4"
-                                   autoplay muted loop playsinline
-                                   tabindex="-1"
-                                   aria-hidden="true">
-                            </video>
-                            <div class="qph-thumb__overlay">
-                                <svg class="qph-thumb__play" xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" aria-hidden="true">
-                                    <circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="#FFDD00" stroke-width="1"/>
-                                    <polygon points="10,8 17,12 10,16" fill="#FFDD00"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <p class="qph-thumb__caption">Propuesta de inversión — Dúplex 42m² armada con IA en una tarde</p>
-                    </div>
-
-                    <!-- Right: copy block -->
-                    <div class="caso-card__copy">
-                        <h3 class="caso-title">"Cerramos un anteproyecto sin dibujar una línea."</h3>
-
-                        <p class="caso-subtitle">Propuesta completa — presupuesto + memoria descriptiva — armada con IA en una tarde.</p>
-
-                        <!-- Resultado destacado con badge -->
-                        <div class="caso-resultado">
-                            <span class="caso-resultado__before">2 días</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" aria-hidden="true">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
-                            <span class="caso-resultado__after">1 tarde</span>
-                        </div>
-
-                        <blockquote class="caso-quote">
-                            <p>"Conseguimos cerrar un anteproyecto con un cliente 'sin dibujar una línea.' Armamos el presupuesto y la memoria descriptiva a partir de las expectativas del cliente."</p>
-                            <cite>— Pilar Cichero</cite>
-                        </blockquote>
-                    </div>
-                </div><!-- /.caso-card__body (Pilar) -->
-            </div><!-- /.caso-card (Pilar) -->
-
-            <!-- Empresas — carrusel marquee moderno -->
-            <div class="casos-empresas">
-                <p class="casos-empresas__label">Estudios y empresas que ya construyen sistemas con IA</p>
-                <div class="casos-empresas__track-wrapper">
-                    <div class="casos-empresas__track" id="empresas-track">
-                        <span class="empresa-badge">QStudio</span>
-                        <span class="empresa-badge empresa-badge--dot">·</span>
-                        <span class="empresa-badge">Sinergia</span>
-                        <span class="empresa-badge empresa-badge--dot">·</span>
-                        <span class="empresa-badge">Estudio Ramos</span>
-                        <span class="empresa-badge empresa-badge--dot">·</span>
-                        <span class="empresa-badge">CAN</span>
-                        <span class="empresa-badge empresa-badge--dot">·</span>
-                        <span class="empresa-badge">Vértice Arquitectos</span>
-                        <span class="empresa-badge empresa-badge--dot">·</span>
-                        <span class="empresa-badge">Cero + Uno</span>
-                        <span class="empresa-badge empresa-badge--dot">·</span>
-                        <span class="empresa-badge">ARQ Studio</span>
-                        <span class="empresa-badge empresa-badge--dot">·</span>
-                        <span class="empresa-badge">Estudio Norte</span>
-                        <span class="empresa-badge empresa-badge--dot">·</span>
-                        <!-- Set 2 — clon para loop infinito -->
-                        <span class="empresa-badge" aria-hidden="true">QStudio</span>
-                        <span class="empresa-badge empresa-badge--dot" aria-hidden="true">·</span>
-                        <span class="empresa-badge" aria-hidden="true">Sinergia</span>
-                        <span class="empresa-badge empresa-badge--dot" aria-hidden="true">·</span>
-                        <span class="empresa-badge" aria-hidden="true">Estudio Ramos</span>
-                        <span class="empresa-badge empresa-badge--dot" aria-hidden="true">·</span>
-                        <span class="empresa-badge" aria-hidden="true">CAN</span>
-                        <span class="empresa-badge empresa-badge--dot" aria-hidden="true">·</span>
-                        <span class="empresa-badge" aria-hidden="true">Vértice Arquitectos</span>
-                        <span class="empresa-badge empresa-badge--dot" aria-hidden="true">·</span>
-                        <span class="empresa-badge" aria-hidden="true">Cero + Uno</span>
-                        <span class="empresa-badge empresa-badge--dot" aria-hidden="true">·</span>
-                        <span class="empresa-badge" aria-hidden="true">ARQ Studio</span>
-                        <span class="empresa-badge empresa-badge--dot" aria-hidden="true">·</span>
-                        <span class="empresa-badge" aria-hidden="true">Estudio Norte</span>
-                        <span class="empresa-badge empresa-badge--dot" aria-hidden="true">·</span>
-                    </div>
-                </div>
+                <p class="pt-plate__cap">Web profesional del estudio</p>
+              </div>
             </div>
+          </div></div></div>
+        </div>
 
-        </div><!-- /.container-large -->
+        <div class="pt-caso" data-i="1">
+          <button class="pt-caso__head" type="button" aria-expanded="false">
+            <span class="pt-caso__n">CASO 02</span>
+            <h3 class="pt-caso__q">"Dejaron de mirar avisos a mano: el sistema les marca la zona y el precio."</h3>
+            <span class="pt-caso__who pt-caso__who--org">
+              <span class="pt-caso__mark" aria-hidden="true"></span>
+              <span><span class="pt-caso__name">Empresa de inversión inmobiliaria</span><span class="pt-caso__role">Compra · Refacción · Reventa</span></span>
+            </span>
+            <span class="pt-caso__sign" aria-hidden="true"></span>
+          </button>
+          <div class="pt-caso__body"><div class="pt-caso__inner"><div class="pt-caso__cols">
+            <div>
+              <p class="pt-sub">Sus objetivos cuando arrancó</p>
+              <ul class="pt-obj">
+                <li>Dejar de revisar los portales aviso por aviso para encontrar oportunidades</li>
+                <li>Saber en qué zona conviene comprar antes de que se note en el precio</li>
+                <li>No perder negociaciones por no contestar a tiempo</li>
+              </ul>
+              <p class="pt-sub">Lo que consiguió</p>
+              <div class="pt-logros">
+                <div class="pt-logro"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Un CRM propio que ordena las zonas por potencial, con el score calculado sobre los avisos reales de los portales</span></div>
+                <div class="pt-logro"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Análisis escrito por IA de cada zona: mediana, demanda, tendencia a 30 días y qué significa para comprar o para revender</span></div>
+                <div class="pt-logro"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Un bot que lleva la negociación y les avisa sólo cuando hace falta que decida una persona</span></div>
+              </div>
+            </div>
+            <div class="pt-plates">
+              <div class="pt-plate">
+                <div class="pt-plate__meta"><span class="pt-plate__file">crm-inmobiliario · zonas y negociaciones</span><span class="pt-plate__live"><span class="pt-dot"></span>EN VIVO</span></div>
+                <div class="qph-thumb qph-thumb--video pt-plate__frame pt-plate__frame--wide"
+                     data-lightbox-type="video" data-lightbox-src="images/casos/crm-inmobiliario.mp4"
+                     data-lightbox-alt="CRM inmobiliario a medida: scoring de zonas, listado de propiedades y negociación asistida" role="button" tabindex="0"
+                     aria-label="Ver video: CRM inmobiliario a medida (abre en pantalla completa)">
+                  <span class="pt-tick pt-tick--tl"></span><span class="pt-tick pt-tick--br"></span>
+                  <video data-lazyvideo preload="none" poster="images/casos/poster/crm-inmobiliario.jpg" class="qph-thumb__media" src="images/casos/crm-inmobiliario.mp4" muted loop playsinline tabindex="-1" aria-hidden="true"></video>
+                  <div class="qph-thumb__overlay"><svg class="qph-thumb__play" width="52" height="52" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="#FFDD00" stroke-width="1"/><polygon points="10,8 17,12 10,16" fill="#FFDD00"/></svg></div>
+                </div>
+                <p class="pt-plate__cap">Zonas por potencial, listado de propiedades y negociación asistida — sistema a medida</p>
+              </div>
+            </div>
+          </div></div></div>
+        </div>
+
+        <div class="pt-marq">
+          <p class="pt-marq__label">Estudios y empresas que ya construyen sistemas con IA</p>
+          <div class="pt-marq__mask"><div class="pt-marq__track">
+            <span class="pt-marq__item">QStudio</span><span class="pt-marq__item pt-marq__sep">·</span>
+            <span class="pt-marq__item">Sinergia</span><span class="pt-marq__item pt-marq__sep">·</span>
+            <span class="pt-marq__item">Estudio Ramos</span><span class="pt-marq__item pt-marq__sep">·</span>
+            <span class="pt-marq__item">CAN</span><span class="pt-marq__item pt-marq__sep">·</span>
+            <span class="pt-marq__item">Vértice Arquitectos</span><span class="pt-marq__item pt-marq__sep">·</span>
+            <span class="pt-marq__item">Cero + Uno</span><span class="pt-marq__item pt-marq__sep">·</span>
+            <span class="pt-marq__item">QStudio</span><span class="pt-marq__item pt-marq__sep">·</span>
+            <span class="pt-marq__item">Sinergia</span><span class="pt-marq__item pt-marq__sep">·</span>
+            <span class="pt-marq__item">Estudio Ramos</span><span class="pt-marq__item pt-marq__sep">·</span>
+            <span class="pt-marq__item">CAN</span><span class="pt-marq__item pt-marq__sep">·</span>
+            <span class="pt-marq__item">Vértice Arquitectos</span><span class="pt-marq__item pt-marq__sep">·</span>
+            <span class="pt-marq__item">Cero + Uno</span><span class="pt-marq__item pt-marq__sep">·</span>
+          </div></div>
+        </div>
+
+      </div>
     </section><!-- /#casos-de-exito -->
 
     <!-- ====================================================
          Recursos gratuitos — Free content preview
          ==================================================== -->
-    <section id="recursos" class="recursos-section">
-        <!-- Imagen de fondo estilo seccion #curso -->
-        <div class="recursos-bg" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80');"></div>
-        <div class="recursos-overlay"></div>
-        <div class="container-large">
-            <div class="recursos-header">
-                <span class="section-label">RECURSOS GRATUITOS</span>
-                <h2 class="section-title-large">Probá antes de comprometerte</h2>
-                <p class="recursos-intro">Accedé gratis a contenido real del programa.</p>
-            </div>
+    <!-- ═══ RECURSOS GRATUITOS — filas con consola, sin cajas ═══ -->
+    <section id="recursos" class="recursos-section pt-sec">
+      <div class="pt-grid" aria-hidden="true"></div>
+      <div class="container-large">
 
-            <div class="recursos-grid">
-
-                <!-- Card 1: Video clase skills -->
-                <div class="recurso-card">
-                    <div class="recurso-card__badge">VIDEO CLASE · 11 MIN</div>
-                    <div class="recurso-card__icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"></polygon>
-                        </svg>
-                    </div>
-                    <h3>Cómo crear tu primera Skill con Claude</h3>
-                    <p>Clase grabada completa: en 11 minutos aprendés a construir una skill personalizada para automatizar tareas repetitivas en tu estudio.</p>
-                    <a href="https://youtu.be/7vYDKHOzATY" class="recurso-card__cta recurso-card__cta--video" id="link-video-skill" target="_blank" rel="noopener">
-                        Ver clase gratis
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </a>
-                </div>
-
-                <!-- Card 2: Skill de Presupuestos -->
-                <div class="recurso-card recurso-card--featured">
-                    <div class="recurso-card__badge recurso-card__badge--accent">SKILL DESCARGABLE · ZIP</div>
-                    <div class="recurso-card__icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="7 10 12 15 17 10"></polyline>
-                            <line x1="12" y1="15" x2="12" y2="3"></line>
-                        </svg>
-                    </div>
-                    <h3>Skill de Presupuestos para Claude</h3>
-                    <p>La skill completa con scripts, ejemplos y documentación. Automatizá presupuestos de obra directamente desde Claude Code.</p>
-                    <a href="#skill-presupuesto-email" class="recurso-card__cta recurso-card__cta--download" id="link-skill-presupuesto" data-drive="https://drive.google.com/uc?export=download&id=1BnE6SEAD8DkBxKOC2cTJclsNDL1_iH6g">
-                        Recibir skill por email
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                    </a>
-                </div>
-
-                <!-- Card 3: Skill de Reportes de Obra -->
-                <div class="recurso-card">
-                    <div class="recurso-card__badge">SKILL DESCARGABLE</div>
-                    <div class="recurso-card__icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                            <line x1="16" y1="13" x2="8" y2="13"></line>
-                            <line x1="16" y1="17" x2="8" y2="17"></line>
-                            <polyline points="10 9 9 9 8 9"></polyline>
-                        </svg>
-                    </div>
-                    <h3>Skill de Reportes de Obra</h3>
-                    <p>Generá reportes de avance de obra completos y profesionales en minutos. Documentación lista para entregar a clientes o contratistas.</p>
-                    <a href="#skill-reportes-email" class="recurso-card__cta recurso-card__cta--download" id="link-skill-reportes" data-drive="https://drive.google.com/uc?export=download&id=138BDHk8pI-xFtKRNBofcA-3MScui-6wF">
-                        Recibir skill por email
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                    </a>
-                </div>
-
-            </div>
+        <div class="rec-header" data-reveal>
+          <span class="section-label">RECURSOS GRATUITOS</span>
+          <h2 class="section-title-large">Probá el sistema antes de comprometerte</h2>
+          <p class="pt-lede">Tres piezas reales del programa, funcionando. No son demos: son las mismas skills que usan los estudios con los que trabajo.</p>
+          <div class="pt-cota-bar">
+            <span class="pt-cota-bar__end"></span>
+            <span class="pt-cota-bar__rule"></span>
+            <span class="pt-cota-bar__txt">1 clase + 2 skills · Gratis · Sin tarjeta</span>
+            <span class="pt-cota-bar__rule pt-cota-bar__rule--r"></span>
+            <span class="pt-cota-bar__end"></span>
+          </div>
         </div>
+
+        <div class="rec-list">
+
+          <article class="rec-item" data-reveal>
+            <span class="rec-item__n" aria-hidden="true">01</span>
+            <div class="rec-item__main">
+              <span class="rec-item__kind">Video clase · 11 min</span>
+              <h3>Cómo crear tu primera Skill con Claude</h3>
+              <p>En once minutos construís una skill que automatiza una tarea repetitiva de tu estudio. La clase entera, sin recorte ni registro previo.</p>
+              <a href="https://youtu.be/7vYDKHOzATY" class="rec-item__cta" id="link-video-skill" target="_blank" rel="noopener">
+                Ver clase gratis
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            </div>
+            <div class="rec-item__demo">
+              <div class="term term--pt" data-term aria-hidden="true">
+                <span class="pt-tick pt-tick--tl"></span><span class="pt-tick pt-tick--br"></span>
+                <div class="term__bar">
+                  <span class="term__dots"><i></i><i></i><i></i></span>
+                  <span class="term__title">claude code</span>
+                </div>
+                <div class="term__body">
+                  <span class="term__line term__line--cmd" data-type>claude skill create</span>
+                  <span class="term__line term__line--in">&gt; una skill que arme reportes de obra</span>
+                  <span class="term__line term__line--ok">✓ Analizando tu flujo de trabajo</span>
+                  <span class="term__line term__line--ok">✓ Skill «reporte-obra» creada</span>
+                  <span class="term__line term__line--dim">→ .claude/skills/reporte-obra/</span>
+                  <span class="term__line term__line--done">Listo en 11 min</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="rec-item rec-item--featured" data-reveal>
+            <span class="rec-item__n" aria-hidden="true">02</span>
+            <div class="rec-item__main">
+              <span class="rec-item__kind rec-item__kind--accent">Skill descargable · ZIP</span>
+              <h3>Skill de Presupuestos para Claude</h3>
+              <p>Scripts, ejemplos y documentación. Cargás la planilla y salen los ítems computados con materiales y mano de obra separados.</p>
+              <a href="#skill-presupuesto-email" class="rec-item__cta rec-item__cta--accent" id="link-skill-presupuesto" data-drive="https://drive.google.com/uc?export=download&id=1BnE6SEAD8DkBxKOC2cTJclsNDL1_iH6g">
+                Recibir skill por email
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              </a>
+            </div>
+            <div class="rec-item__demo">
+              <div class="term term--pt" data-term aria-hidden="true">
+                <span class="pt-tick pt-tick--tl"></span><span class="pt-tick pt-tick--br"></span>
+                <div class="term__bar">
+                  <span class="term__dots"><i></i><i></i><i></i></span>
+                  <span class="term__title">skill · presupuestos</span>
+                </div>
+                <div class="term__body">
+                  <span class="term__line term__line--cmd" data-type>/presupuesto duplex-42m2.xlsx</span>
+                  <span class="term__line term__line--ok">✓ 148 ítems computados</span>
+                  <span class="term__line term__line--ok">✓ Materiales + mano de obra</span>
+                  <span class="term__line term__line--dim">Subtotal &nbsp;&nbsp;$ 18.420.000</span>
+                  <span class="term__line term__line--val">Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ 22.310.000</span>
+                  <span class="term__line term__line--done">Generado en 38 s</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="rec-item" data-reveal>
+            <span class="rec-item__n" aria-hidden="true">03</span>
+            <div class="rec-item__main">
+              <span class="rec-item__kind">Skill descargable</span>
+              <h3>Skill de Reportes de Obra</h3>
+              <p>Le pasás las fotos de la semana y devuelve el avance, los desvíos detectados y el PDF listo para mandarle al cliente o al contratista.</p>
+              <a href="#skill-reportes-email" class="rec-item__cta" id="link-skill-reportes" data-drive="https://drive.google.com/uc?export=download&id=138BDHk8pI-xFtKRNBofcA-3MScui-6wF">
+                Recibir skill por email
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              </a>
+            </div>
+            <div class="rec-item__demo">
+              <div class="term term--pt" data-term aria-hidden="true">
+                <span class="pt-tick pt-tick--tl"></span><span class="pt-tick pt-tick--br"></span>
+                <div class="term__bar">
+                  <span class="term__dots"><i></i><i></i><i></i></span>
+                  <span class="term__title">skill · reportes</span>
+                </div>
+                <div class="term__body">
+                  <span class="term__line term__line--cmd" data-type>/reporte-obra semana-12</span>
+                  <span class="term__line term__line--ok">✓ 34 fotos procesadas</span>
+                  <span class="term__line term__line--val">✓ Avance 62% &nbsp;(+8% vs S11)</span>
+                  <span class="term__line term__line--warn">! 3 desvíos detectados</span>
+                  <span class="term__line term__line--dim">→ reporte-s12.pdf</span>
+                  <span class="term__line term__line--done">Listo para enviar</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
     </section><!-- /#recursos -->
 
     <!-- Carrusel herramientas — superior (antes de #como-funciona) -->
@@ -674,76 +651,84 @@
          Cómo Funciona / El Programa — 3-block grid
          Position: after #casos-de-exito, before #sobre-mi
          ==================================================== -->
-    <section id="como-funciona" class="como-funciona-section">
-        <div class="container-large">
+    <section id="como-funciona" class="como-funciona-section pt-sec prog--n0" data-pt-nodes>
+      <div class="pt-dots" aria-hidden="true"></div>
+      <div class="container-large">
 
-            <div class="cf-header">
-                <span class="section-label">EL PROGRAMA</span>
-                <h2 class="section-title-large">Un sistema construido para tu estudio</h2>
-                <p class="cf-subtitle">6 semanas · 12 encuentros · Acompañamiento directo</p>
-            </div>
+        <div class="cf-header pt-center" data-reveal>
+          <span class="section-label">EL PROGRAMA</span>
+          <h2 class="section-title-large">Un sistema construido para tu estudio</h2>
+          <div class="pt-cota-bar">
+            <span class="pt-cota-bar__end"></span>
+            <span class="pt-cota-bar__rule"></span>
+            <span class="pt-cota-bar__txt">6 semanas · 12 encuentros · Acompañamiento directo</span>
+            <span class="pt-cota-bar__rule pt-cota-bar__rule--r"></span>
+            <span class="pt-cota-bar__end"></span>
+          </div>
+        </div>
 
-            <!-- 3-column grid desktop / 1-column mobile -->
-            <div class="cf-grid">
+        <div class="pt-diag">
+          <div class="pt-diag__rail" aria-hidden="true"></div>
+          <div class="pt-diag__nodes">
+          <button class="pt-node" data-i="0" type="button">
+            <span class="pt-node__n">01</span>
+            <span class="pt-node__dot"><i></i></span>
+            <span class="pt-node__t">El programa</span>
+            <span class="pt-node__drop"></span>
+          </button>
+          <button class="pt-node" data-i="1" type="button">
+            <span class="pt-node__n">02</span>
+            <span class="pt-node__dot"><i></i></span>
+            <span class="pt-node__t">Aula + Comunidad</span>
+            <span class="pt-node__drop"></span>
+          </button>
+          <button class="pt-node" data-i="2" type="button">
+            <span class="pt-node__n">03</span>
+            <span class="pt-node__dot"><i></i></span>
+            <span class="pt-node__t">Acceso permanente</span>
+            <span class="pt-node__drop"></span>
+          </button>
+          </div>
+        </div>
 
-                <!-- Bloque 1: El programa -->
-                <div class="cf-block cf-block--entrada">
-                    <div class="cf-block__icon" aria-hidden="true">
-                        <!-- Calendar / construction icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                            <line x1="16" y1="2" x2="16" y2="6"></line>
-                            <line x1="8" y1="2" x2="8" y2="6"></line>
-                            <line x1="3" y1="10" x2="21" y2="10"></line>
-                        </svg>
-                    </div>
-                    <h3 class="cf-block__title">El programa</h3>
-                    <p class="cf-block__body">Construimos juntos un sistema que se adapta a tu estudio o empresa, enfocado en eliminar las tareas repetitivas, tediosas y propensas a error humano. Con mi acompañamiento directo en cada encuentro.</p>
-                    <span class="cf-block__tag">12 encuentros · 6 semanas</span>
-                </div>
+        <div class="pt-detail">
+        <div class="pt-dpanel" data-i="0">
+          <span class="pt-dpanel__ico"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></span>
+          <div>
+            <h3>El programa</h3>
+            <p>Construimos juntos un sistema que se adapta a tu estudio o empresa, enfocado en eliminar las tareas repetitivas, tediosas y propensas a error humano. Con mi acompañamiento directo en cada encuentro.</p>
+            <span class="pt-tag">12 encuentros · 6 semanas</span>
+          </div>
+        </div>
+        <div class="pt-dpanel" data-i="1">
+          <span class="pt-dpanel__ico"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
+          <div>
+            <h3>Aula + Comunidad</h3>
+            <p>Accedés al aula Skool con clases grabadas y herramientas listas para usar desde el día uno. Más una comunidad exclusiva de arquitectos y empresas enfocados en optimizar sus procesos.</p>
+            <span class="pt-tag">Acceso inmediato</span>
+          </div>
+        </div>
+        <div class="pt-dpanel" data-i="2">
+          <span class="pt-dpanel__ico"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.133-8-12.739-8-4.585 0-4.585 8 0 8 5.606 0 7.644-8 12.739-8z"></path></svg></span>
+          <div>
+            <h3>Acceso permanente</h3>
+            <p>Cuando terminás tus 12 encuentros, el acceso no se corta. Seguís con todas las clases, recursos y actualizaciones futuras que incorpore el programa.</p>
+            <span class="pt-tag">Sin fecha de vencimiento</span>
+          </div>
+        </div>
+        </div>
 
-                <!-- Bloque 2: Aula + Comunidad -->
-                <div class="cf-block cf-block--entrada">
-                    <div class="cf-block__icon" aria-hidden="true">
-                        <!-- Community / network icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
-                    </div>
-                    <h3 class="cf-block__title">Aula + Comunidad</h3>
-                    <p class="cf-block__body">Accedés al aula Skool con clases grabadas y herramientas listas para usar desde el día uno. Más una comunidad exclusiva de arquitectos y empresas enfocados en optimizar sus procesos.</p>
-                    <span class="cf-block__tag">Acceso inmediato</span>
-                </div>
+        <div class="cf-cta pt-center">
+          <button class="btn-primary-large open-curso-modal">Quiero transformar mi estudio</button>
+          <p class="cf-cta__sub">Próxima cohorte · Cupos limitados</p>
+        </div>
 
-                <!-- Bloque 3: Acceso permanente -->
-                <div class="cf-block cf-block--entrada">
-                    <div class="cf-block__icon" aria-hidden="true">
-                        <!-- Infinity / unlock icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.133-8-12.739-8-4.585 0-4.585 8 0 8 5.606 0 7.644-8 12.739-8z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="cf-block__title">Acceso permanente</h3>
-                    <p class="cf-block__body">Cuando terminás tus 12 encuentros, el acceso no se corta. Seguís con todas las clases, recursos y actualizaciones futuras que incorpore el programa.</p>
-                    <span class="cf-block__tag">Sin fecha de vencimiento</span>
-                </div>
-
-            </div><!-- /.cf-grid -->
-
-            <!-- CTA final -->
-            <div class="cf-cta">
-                <button class="btn-primary-large open-curso-modal">Quiero transformar mi estudio</button>
-                <p class="cf-cta__sub">Próxima cohorte · Cupos limitados</p>
-            </div>
-
-        </div><!-- /.container-large -->
+      </div>
     </section><!-- /#como-funciona -->
 
     <!-- Testimonios Section -->
-    <section id="testimonios" class="testimonios-section">
+    <section id="testimonios" class="testimonios-section pt-sec">
+      <div class="pt-dots" aria-hidden="true"></div>
         <div class="container-large">
             <span class="section-label">TESTIMONIOS</span>
             <h2 class="section-title-large">Lo que dicen quienes ya se capacitaron</h2>
@@ -766,64 +751,230 @@
         </div>
     </section>
 
-    <!-- Sobre Mí Section -->
-    <section id="sobre-mi" class="sobre-mi-section">
-        <div class="container-large">
-            <div class="sobre-mi-grid">
-                <div class="sobre-mi-image">
-                    <div class="image-frame">
-                        <img src="images/leo-foto.jpg" alt="Leo - Capacitador IA" loading="lazy">
-                    </div>
-                </div>
-                <div class="sobre-mi-content">
-                    <span class="section-label">SOBRE MÍ</span>
-                    <h2 class="section-title-large">Transformando la forma en que los arquitectos trabajan</h2>
-                    <div class="sobre-mi-text">
-                        <p>Soy Leo, especialista en la implementación de Inteligencia Artificial aplicada a la arquitectura y el diseño. Mi misión es capacitar a arquitectos, estudios y empresas para que aprovechen al máximo las herramientas de IA sin perder la esencia creativa que define la profesión.</p>
+    <!-- ═══ MODALIDAD DE TRABAJO — sesiones reales sobre el flujo del cliente ═══ -->
+    <section id="modalidad" class="modalidad-section pt-sec">
+      <div class="pt-grid" aria-hidden="true"></div>
+      <div class="container-large">
 
-                        <p>Con formación como <strong>Científico de Datos y Machine Learning Engineer</strong> y más de 2 años de experiencia en la industria IT, traduzco conceptos técnicos complejos en herramientas concretas que los arquitectos pueden usar desde el primer día.</p>
-
-                        <p>No se trata solo de usar herramientas, sino de <strong>repensar el proceso creativo</strong> para multiplicar tu productividad sin sacrificar la calidad del diseño.</p>
-                    </div>
-                    <div class="sobre-mi-stats">
-                        <div class="stat-box">
-                            <span class="stat-num">50+</span>
-                            <span class="stat-label">Arquitectos formados</span>
-                        </div>
-                        <div class="stat-box">
-                            <span class="stat-num">10+</span>
-                            <span class="stat-label">Empresas</span>
-                        </div>
-                        <div class="stat-box">
-                            <span class="stat-num">100%</span>
-                            <span class="stat-label">Satisfacción</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="md-header" data-reveal>
+          <span class="section-label">ASÍ TRABAJAMOS</span>
+          <h2 class="section-title-large">Sobre tu flujo de trabajo, no sobre ejemplos de manual</h2>
+          <p class="pt-lede">Cada encuentro es una sesión de pantalla compartida sobre un cuello de botella real de tu producción. No mirás una clase: al final de la sesión la pieza queda funcionando y el proceso deja de depender de que alguien se acuerde de hacerlo.</p>
+          <div class="pt-cota-bar">
+            <span class="pt-cota-bar__end"></span>
+            <span class="pt-cota-bar__rule"></span>
+            <span class="pt-cota-bar__txt">Pantalla compartida · Sobre tu proyecto · La pieza queda funcionando</span>
+            <span class="pt-cota-bar__rule pt-cota-bar__rule--r"></span>
+            <span class="pt-cota-bar__end"></span>
+          </div>
         </div>
-    </section>
 
-    <!-- Curso Preview Section con Imagen de Fondo -->
-    <section id="curso" class="curso-preview-section">
-        <div class="curso-bg" style="background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1920&q=80');"></div>
-        <div class="curso-overlay"></div>
-        <div class="container-large">
-            <div class="curso-preview-content">
-                <span class="section-label light">EL PROGRAMA</span>
-                <h2 class="section-title-large light">Desarrollo del Pensamiento Crítico con IA</h2>
-                <p class="curso-intro">Un curso diseñado para arquitectos que quieren dominar la IA sin perder el control creativo de sus proyectos</p>
-                <button class="btn-primary-large open-curso-modal">Ver detalles del curso</button>
+        <div class="md-grid">
+
+          <article class="md-work" data-reveal>
+            <div class="pt-plate__meta">
+              <span class="md-work__n">SESIÓN 01</span>
+              <span class="pt-plate__file">revit · control de documentación</span>
+              <span class="pt-plate__live"><span class="pt-dot"></span>EN VIVO</span>
             </div>
+            <div class="qph-thumb qph-thumb--video pt-plate__frame pt-plate__frame--wide"
+                 data-lightbox-type="video" data-lightbox-src="images/sobre-mi/sesion-revit-mcp.mp4"
+                 data-lightbox-alt="Sesión de trabajo: control de documentación en Revit asistido por IA"
+                 role="button" tabindex="0"
+                 aria-label="Ver video: sesión de control de documentación en Revit (abre en pantalla completa)">
+              <span class="pt-tick pt-tick--tl"></span><span class="pt-tick pt-tick--br"></span>
+              <video data-lazyvideo preload="none" poster="images/sobre-mi/poster/sesion-revit-mcp.jpg" class="qph-thumb__media" src="images/sobre-mi/sesion-revit-mcp.mp4" muted loop playsinline tabindex="-1" aria-hidden="true"></video>
+              <div class="qph-thumb__overlay"><svg class="qph-thumb__play" width="52" height="52" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="#FFDD00" stroke-width="1"/><polygon points="10,8 17,12 10,16" fill="#FFDD00"/></svg></div>
+            </div>
+            <div class="md-work__body">
+              <p class="md-work__prob"><span class="md-work__lbl">El problema</span>Planta y alzados que se contradicen y nadie lo ve hasta que el plano ya salió a obra.</p>
+              <p class="md-work__sol"><span class="md-work__lbl">Lo que hicimos</span>Conectamos Revit al modelo por MCP. La IA lee la planta, la cruza contra los cuatro alzados y devuelve la tabla de incoherencias de cota — alféizares, dinteles, cabeceras — con la causa de cada una.</p>
+              <span class="pt-tag">Estudio de arquitectura</span>
+            </div>
+          </article>
+
+          <article class="md-work" data-reveal>
+            <div class="pt-plate__meta">
+              <span class="md-work__n">SESIÓN 02</span>
+              <span class="pt-plate__file">materiales · envíos y trazabilidad</span>
+              <span class="pt-plate__live"><span class="pt-dot"></span>EN VIVO</span>
+            </div>
+            <div class="qph-thumb qph-thumb--video pt-plate__frame pt-plate__frame--wide"
+                 data-lightbox-type="video" data-lightbox-src="images/sobre-mi/sesion-lagos-app.mp4"
+                 data-lightbox-alt="Sesión de trabajo: app a medida de envíos y trazabilidad para una empresa de materiales de construcción"
+                 role="button" tabindex="0"
+                 aria-label="Ver video: sesión de construcción de una app de envíos a medida (abre en pantalla completa)">
+              <span class="pt-tick pt-tick--tl"></span><span class="pt-tick pt-tick--br"></span>
+              <video data-lazyvideo preload="none" poster="images/sobre-mi/poster/sesion-lagos-app.jpg" class="qph-thumb__media" src="images/sobre-mi/sesion-lagos-app.mp4" muted loop playsinline tabindex="-1" aria-hidden="true"></video>
+              <div class="qph-thumb__overlay"><svg class="qph-thumb__play" width="52" height="52" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.55)" stroke="#FFDD00" stroke-width="1"/><polygon points="10,8 17,12 10,16" fill="#FFDD00"/></svg></div>
+            </div>
+            <div class="md-work__body">
+              <p class="md-work__prob"><span class="md-work__lbl">El problema</span>Una empresa de materiales de construcción que llevaba órdenes, lotes y envíos en planillas sueltas: sin trazabilidad y con la misma carga hecha dos veces.</p>
+              <p class="md-work__sol"><span class="md-work__lbl">Lo que hicimos</span>Armamos en sesión la app que hoy usa el equipo: alta de órdenes, control de stock y trazabilidad por lote en un solo lugar, con la etiqueta que se imprime desde la misma pantalla.</p>
+              <span class="pt-tag">Empresa de materiales de construcción</span>
+              <p class="md-work__note">Datos del cliente desenfocados a pedido.</p>
+            </div>
+          </article>
+
         </div>
-    </section>
+
+      </div>
+    </section><!-- /#modalidad -->
+
+    <!-- ═══ SOBRE MÍ — muro de autoridad ═══ -->
+    <section id="sobre-mi" class="sobre-mi-section pt-sec">
+      <div class="pt-dots" aria-hidden="true"></div>
+      <div class="container-large">
+        <div class="sm-cols">
+
+          <div class="sm-media" data-reveal>
+            <figure class="sm-hero">
+              <span class="pt-tick pt-tick--tl"></span><span class="pt-tick pt-tick--br"></span>
+              <img src="images/sobre-mi/expocon-escenario.jpg" width="1200" height="1600"
+                   alt="Leo Díaz dando una charla sobre IA aplicada a la producción en ExpoCon" loading="lazy">
+            </figure>
+            <p class="sm-hero__meta">Leo Díaz · San Miguel de Tucumán, AR</p>
+
+            <div class="sm-strip">
+              <figure class="sm-slot">
+                <span class="pt-tick pt-tick--tl"></span><span class="pt-tick pt-tick--br"></span>
+                <video data-lazyvideo preload="none" poster="images/sobre-mi/poster/fau-clase.jpg" src="images/sobre-mi/fau-clase.mp4" muted loop playsinline aria-label="Leo Díaz dando una clase sobre IA en la FAU UNT"></video>
+                <figcaption>FAU UNT</figcaption>
+              </figure>
+              <figure class="sm-slot">
+                <span class="pt-tick pt-tick--tl"></span><span class="pt-tick pt-tick--br"></span>
+                <img src="images/sobre-mi/up-foro-retrato.jpg" width="720" height="761"
+                     alt="Leo Díaz en la Universidad de Palermo" loading="lazy">
+                <figcaption>U. de Palermo</figcaption>
+              </figure>
+              <figure class="sm-slot">
+                <span class="pt-tick pt-tick--tl"></span><span class="pt-tick pt-tick--br"></span>
+                <video data-lazyvideo preload="none" poster="images/sobre-mi/poster/expocon-charla.jpg" src="images/sobre-mi/expocon-charla.mp4" muted loop playsinline aria-label="Leo Díaz en escena durante su charla en ExpoCon"></video>
+                <figcaption>ExpoCon</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="sm-copy">
+            <span class="section-label">SOBRE MÍ</span>
+            <h2 class="section-title-large">Vengo de construir. No sólo arquitectura.</h2>
+            <div class="sm-text">
+              <p>Soy Leo Díaz, <strong>Científico de Datos y Machine Learning Engineer</strong>. Un edificio y un sistema de trabajo se levantan igual: hay que entender el terreno, resolver la estructura y que después se sostenga solo. Yo construyo la segunda parte — <strong>los sistemas que hacen que un proceso deje de depender de que alguien se acuerde de hacerlo</strong>.</p>
+              <p>Por eso no empiezo por la herramienta de moda. Empiezo por <strong>dónde se te va el tiempo</strong>: el presupuesto que rehacés tres veces, la documentación que se contradice entre planta y alzado, el reporte de obra que armás a mano un domingo. Eso es lo que se automatiza, y eso es lo que medimos.</p>
+              <p>Lo que es criterio de proyecto queda bajo tu criterio. La IA no decide qué solución sirve para este cliente y este terreno — se ocupa de lo repetitivo para que vos tengas el tiempo de decidirlo.</p>
+            </div>
+
+            <ul class="sm-creds">
+              <li>ExpoCon · Charla sobre IA aplicada a la producción</li>
+              <li>FAU UNT · Clase sobre IA en arquitectura</li>
+              <li>Universidad de Palermo · Foro de innovación</li>
+              <li>+2 años en la industria IT · Acompañamiento directo en cada cohorte</li>
+            </ul>
+
+            <div class="sm-stats">
+              <div class="sm-stat">
+                <span class="sm-stat__rule"></span>
+                <span class="sm-stat__n" data-count-to="100" data-count-suffix="+">100+</span>
+                <span class="sm-stat__l">Arquitectos formados</span>
+              </div>
+              <div class="sm-stat">
+                <span class="sm-stat__rule"></span>
+                <span class="sm-stat__n" data-count-to="20" data-count-suffix="+">20+</span>
+                <span class="sm-stat__l">Empresas</span>
+              </div>
+              <div class="sm-stat">
+                <span class="sm-stat__rule"></span>
+                <span class="sm-stat__n" data-count-to="100" data-count-suffix="%">100%</span>
+                <span class="sm-stat__l">Satisfacción</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- /#sobre-mi -->
+
+    <!-- ═══ EL PROGRAMA — Pensamiento Crítico. Rail de 4 hábitos con auto-avance ═══ -->
+    <section id="curso" class="curso-preview-section pt-sec pc--n0" data-pt-rail>
+      <div class="pc-hatch" aria-hidden="true"></div>
+      <div class="container-large">
+        <div class="pc-cols">
+
+          <div class="pc-intro" data-reveal>
+            <span class="section-label">EL PROGRAMA</span>
+            <h2 class="section-title-large">Desarrollo del Pensamiento Crítico con IA</h2>
+            <p class="pt-lede">No vengo a enseñarte herramientas: vengo a resolver tus dudas y a dejarte armado el sistema que tu estudio va a usar todos los días. Estos son los cuatro hábitos con los que trabajamos.</p>
+            <button class="btn-primary-large open-curso-modal pc-cta">
+              Ver detalles del curso
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+          </div>
+
+          <div class="pc-rail" data-reveal>
+            <div class="pc-step" data-i="0">
+              <span class="pc-step__node" aria-hidden="true"></span>
+              <button class="pc-step__head" type="button" aria-expanded="true">
+                <span class="pc-step__n">01</span>
+                <h3 class="pc-step__t">Empezamos por tu problema</h3>
+              </button>
+              <div class="pc-step__body"><div class="pc-step__inner">
+                <p class="pc-step__p">Antes de tocar una herramienta ponemos en claro qué te está costando tiempo, con qué datos contás y bajo qué restricciones trabajás — normativa, presupuesto, plazos. Sin eso, la IA devuelve cualquier cosa con mucha seguridad.</p>
+                <span class="pc-step__prog" aria-hidden="true"><i></i></span>
+              </div></div>
+            </div>
+
+            <div class="pc-step" data-i="1">
+              <span class="pc-step__node" aria-hidden="true"></span>
+              <button class="pc-step__head" type="button" aria-expanded="false">
+                <span class="pc-step__n">02</span>
+                <h3 class="pc-step__t">Tu criterio sigue siendo tuyo</h3>
+              </button>
+              <div class="pc-step__body"><div class="pc-step__inner">
+                <p class="pc-step__p">La IA propone, vos decidís. Lo que hace que una solución sirva para este cliente y este terreno es criterio de proyecto, y ese trabajo no se delega. Te saco de encima lo repetitivo, nunca las decisiones.</p>
+                <span class="pc-step__prog" aria-hidden="true"><i></i></span>
+              </div></div>
+            </div>
+
+            <div class="pc-step" data-i="2">
+              <span class="pc-step__node" aria-hidden="true"></span>
+              <button class="pc-step__head" type="button" aria-expanded="false">
+                <span class="pc-step__n">03</span>
+                <h3 class="pc-step__t">Te enseño a verificar, no a confiar</h3>
+              </button>
+              <div class="pc-step__body"><div class="pc-step__inner">
+                <p class="pc-step__p">Los números se ejecutan, no se interpretan. Vas a saber contrastar cada resultado contra la fuente: si no podés explicar de dónde salió un dato, ese dato no entra al proyecto ni sale a obra.</p>
+                <span class="pc-step__prog" aria-hidden="true"><i></i></span>
+              </div></div>
+            </div>
+
+            <div class="pc-step" data-i="3">
+              <span class="pc-step__node" aria-hidden="true"></span>
+              <button class="pc-step__head" type="button" aria-expanded="false">
+                <span class="pc-step__n">04</span>
+                <h3 class="pc-step__t">Te queda un sistema, no un apunte</h3>
+              </button>
+              <div class="pc-step__body"><div class="pc-step__inner">
+                <p class="pc-step__p">Lo que funciona una vez lo dejamos como proceso repetible — una skill, una plantilla, un flujo documentado — para que lo use tu estudio entero y no dependa de que estés vos ese día.</p>
+                <span class="pc-step__prog" aria-hidden="true"><i></i></span>
+              </div></div>
+            </div>
+
+            <p class="pc-rail__foot">
+              <span class="pc-foot--auto">Avanza solo · <span class="pc-hl-foot pc-foot--mouse">pasá el mouse para pausar</span><span class="pc-hl-foot pc-foot--touch">tocá un paso para verlo</span></span>
+              <span class="pc-foot--static">Abrí cada paso <span class="pc-hl-foot">haciendo clic en su título</span></span>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- /#curso -->
 
     <!-- Modal del Curso -->
     <div class="modal-curso" id="modal-curso">
         <div class="modal-overlay"></div>
         <div class="modal-container">
-            <!-- Imagen arquitectónica de fondo, muy oscurecida (brightness 0.18) -->
-            <div class="modal-bg" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80');"></div>
+            <!-- Fondo de grilla técnica, CSS puro (sin imagen externa) -->
+            <div class="modal-bg" aria-hidden="true"></div>
             <!-- Overlay de gradiente oscuro sobre la imagen -->
             <div class="modal-overlay-bg"></div>
 
@@ -941,8 +1092,11 @@
                         <p>Sumate a la comunidad y empezá a construir tus sistemas con IA</p>
                         <div class="cta-buttons">
                             <a href="#contacto" class="btn-primary-large">Agendar consulta gratuita</a>
-                            <a href="#contacto" class="btn-secondary-large" id="link-skool">Unirme a la comunidad →</a>
+                            <!-- El acceso a Skool es posterior al pago, así que no hay URL pública
+                                 que linkear acá. El botón lleva al contacto, que es el paso real. -->
+                            <a href="#contacto" class="btn-secondary-large" id="link-skool">Quiero sumarme →</a>
                         </div>
+                        <p class="curso-cta-nota">El acceso a la comunidad se envía por mail una vez confirmada la inscripción.</p>
                     </div>
                 </div>
             </div>
@@ -950,93 +1104,128 @@
     </div>
 
     <!-- Consultoría Section -->
-    <section id="consultoria" class="consultoria-section">
-        <div class="container-large">
-            <span class="section-label">CONSULTORÍA</span>
-            <h2 class="section-title-large">Implementación personalizada para tu estudio</h2>
+    <!-- ═══ CONSULTORÍA — 3 fases; la elegida se ensancha ═══ -->
+    <section id="consultoria" class="consultoria-section pt-sec cons--n0" data-pt-fases>
+      <div class="pt-dots" aria-hidden="true"></div>
+      <div class="container-large">
 
-            <div class="consultoria-grid">
-                <div class="consultoria-card">
-                    <div class="card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                        </svg>
-                    </div>
-                    <h3>Análisis</h3>
-                    <p>Evaluación profunda de tu flujo de trabajo actual e identificación de oportunidades de optimización con IA</p>
-                </div>
-                <div class="consultoria-card">
-                    <div class="card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
-                            <path d="M3 9h18M9 21V9"></path>
-                        </svg>
-                    </div>
-                    <h3>Estrategia</h3>
-                    <p>Diseño de un plan personalizado de implementación adaptado a las necesidades específicas de tu estudio</p>
-                </div>
-                <div class="consultoria-card">
-                    <div class="card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                        </svg>
-                    </div>
-                    <h3>Acompañamiento</h3>
-                    <p>Soporte continuo durante todo el proceso de adopción para garantizar el éxito de la implementación</p>
-                </div>
-            </div>
-
-            <div class="consultoria-cta">
-                <a href="#contacto" class="btn-primary-large">Agendar consultoría</a>
-                <p class="consultoria-cta__nota">Sesión individual · Previo pago · Cupos limitados</p>
-            </div>
+        <div class="cons-header" data-reveal>
+          <span class="section-label">CONSULTORÍA</span>
+          <h2 class="section-title-large">Implementación personalizada para tu estudio</h2>
+          <p class="pt-lede">Tres fases, una sesión individual. Salimos con tu cuello de botella identificado y un plan que podés ejecutar. Elegí una fase para verla en detalle.</p>
         </div>
-    </section>
 
-    <!-- Empresas Section con Imagen -->
-    <section id="empresas" class="empresas-section">
-        <div class="empresas-bg" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80');"></div>
-        <div class="empresas-overlay"></div>
-        <div class="container-large">
-            <div class="empresas-content">
-                <span class="section-label light">EMPRESAS</span>
-                <h2 class="section-title-large light">Capacitación corporativa</h2>
-                <p class="empresas-intro">Programas a medida para transformar equipos completos</p>
+        <div class="cons-proc" aria-hidden="true"></div>
 
-                <div class="empresas-grid">
-                    <div class="empresa-card">
-                        <span class="empresa-num">01</span>
-                        <h3>Consultoría</h3>
-                        <p>Asesoramiento personalizado para implementar IA en tu estudio o empresa</p>
-                    </div>
-                    <div class="empresa-card">
-                        <span class="empresa-num">02</span>
-                        <h3>Programas</h3>
-                        <p>Transformación integral de 3-6 meses con acompañamiento continuo</p>
-                    </div>
-                    <div class="empresa-card">
-                        <span class="empresa-num">03</span>
-                        <h3>Mentorías</h3>
-                        <p>Sesiones personalizadas para proyectos específicos</p>
-                    </div>
-                </div>
+        <div class="cons-fases">
+          <button class="cons-fase" data-i="0" type="button">
+            <span class="cons-fase__cap" aria-hidden="true"></span>
+            <span class="cons-fase__n">Fase 01</span>
+            <span class="cons-fase__ico" aria-hidden="true">
+              <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+            </span>
+            <h3>Análisis</h3>
+            <span class="cons-fase__under" aria-hidden="true"></span>
+            <p>Repasamos tu flujo real, tarea por tarea, y marcamos dónde se te va el tiempo: lo que se rehace, lo que se carga dos veces y lo que depende de que alguien se acuerde.</p>
+          </button>
 
-                <a href="#contacto" class="btn-primary-large">Agendar consulta gratuita</a>
-            </div>
+          <button class="cons-fase" data-i="1" type="button">
+            <span class="cons-fase__cap" aria-hidden="true"></span>
+            <span class="cons-fase__n">Fase 02</span>
+            <span class="cons-fase__ico" aria-hidden="true">
+              <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M9 21V9"></path></svg>
+            </span>
+            <h3>Estrategia</h3>
+            <span class="cons-fase__under" aria-hidden="true"></span>
+            <p>Definimos qué se automatiza primero y con qué. Ordenado por lo que más tiempo te devuelve con el menor cambio de hábito, no por lo que suena más impresionante.</p>
+          </button>
+
+          <button class="cons-fase" data-i="2" type="button">
+            <span class="cons-fase__cap" aria-hidden="true"></span>
+            <span class="cons-fase__n">Fase 03</span>
+            <span class="cons-fase__ico" aria-hidden="true">
+              <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            </span>
+            <h3>Acompañamiento</h3>
+            <span class="cons-fase__under" aria-hidden="true"></span>
+            <p>Te acompaño mientras el equipo lo adopta, que es donde se cae la mayoría de las implementaciones. Ajustamos sobre la marcha hasta que el proceso se sostiene solo.</p>
+          </button>
         </div>
-    </section>
+
+        <div class="cons-foot">
+          <a href="#contacto" class="btn-primary-large">
+            Agendar consultoría
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <p>Sesión individual · Previo pago · Cupos limitados</p>
+        </div>
+
+      </div>
+    </section><!-- /#consultoria -->
+
+    <!-- ═══ EMPRESAS — filas numeradas con velo y barra de acento ═══ -->
+    <section id="empresas" class="empresas-section pt-sec">
+      <div class="emp-grid-bg" aria-hidden="true"></div>
+      <div class="container-large">
+
+        <div class="emp-head" data-reveal>
+          <div>
+            <span class="section-label">EMPRESAS</span>
+            <h2 class="section-title-large">Capacitación corporativa</h2>
+          </div>
+          <p class="emp-lede">Programas a medida para transformar equipos completos, no personas sueltas.</p>
+        </div>
+
+        <div class="emp-rows">
+          <a class="emp-row" href="#contacto" data-reveal>
+            <span class="emp-row__n" aria-hidden="true">01</span>
+            <h3>Consultoría</h3>
+            <p>Asesoramiento personalizado para implementar IA en tu estudio o empresa, con el diagnóstico hecho sobre tu operación real.</p>
+            <span class="emp-row__go" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </span>
+          </a>
+          <a class="emp-row" href="#contacto" data-reveal>
+            <span class="emp-row__n" aria-hidden="true">02</span>
+            <h3>Programas</h3>
+            <p>Transformación integral de 3 a 6 meses con acompañamiento continuo, hasta que el equipo entero trabaja con el sistema nuevo.</p>
+            <span class="emp-row__go" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </span>
+          </a>
+          <a class="emp-row" href="#contacto" data-reveal>
+            <span class="emp-row__n" aria-hidden="true">03</span>
+            <h3>Mentorías</h3>
+            <p>Sesiones puntuales sobre un proyecto concreto, cuando ya sabés qué querés resolver y necesitás que salga bien la primera vez.</p>
+            <span class="emp-row__go" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </span>
+          </a>
+        </div>
+
+        <div class="emp-foot">
+          <a href="#contacto" class="btn-primary-large">
+            Agendar consulta gratuita
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <p>Respuesta en 24 h · Presupuesto a medida</p>
+        </div>
+
+      </div>
+    </section><!-- /#empresas -->
 
     <!-- FAQ Section -->
-    <section id="faq" class="faq-section">
+    <section id="faq" class="faq-section pt-sec">
+      <div class="pt-dots" aria-hidden="true"></div>
         <div class="container-large">
-            <div class="faq-header">
+            <div class="faq-header" data-reveal>
                 <span class="section-label">PREGUNTAS FRECUENTES</span>
                 <h2 class="section-title-large">Todo lo que necesitás saber</h2>
             </div>
 
             <div class="faq-list">
 
-                <div class="faq-item">
+                <div class="faq-item" data-reveal>
                     <button class="faq-question" aria-expanded="false">
                         ¿Necesito saber programar para tomar el programa?
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -1046,7 +1235,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item" data-reveal>
                     <button class="faq-question" aria-expanded="false">
                         ¿En qué plataforma se dictan las clases?
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -1056,7 +1245,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item" data-reveal>
                     <button class="faq-question" aria-expanded="false">
                         ¿Puedo seguir el programa a mi propio ritmo?
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -1066,7 +1255,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item" data-reveal>
                     <button class="faq-question" aria-expanded="false">
                         ¿Cuánto tiempo necesito dedicar por semana?
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -1076,7 +1265,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item" data-reveal>
                     <button class="faq-question" aria-expanded="false">
                         ¿Qué pasa si no logro los resultados prometidos?
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -1086,7 +1275,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item" data-reveal>
                     <button class="faq-question" aria-expanded="false">
                         ¿El programa se actualiza con nuevas herramientas de IA?
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -1096,7 +1285,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item" data-reveal>
                     <button class="faq-question" aria-expanded="false">
                         ¿Puedo unirme si no tengo experiencia con tecnología?
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -1106,7 +1295,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item" data-reveal>
                     <button class="faq-question" aria-expanded="false">
                         ¿Las skills que creo son mías o solo sirven dentro del curso?
                         <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -1133,10 +1322,6 @@
                         <div class="detail-item">
                             <span class="detail-label">Email</span>
                             <a href="mailto:leodiazdt@gmail.com">leodiazdt@gmail.com</a>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Teléfono</span>
-                            <a href="tel:+543816274439">+54 381 627 4439</a>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">LinkedIn</span>
@@ -1285,38 +1470,19 @@
                 </div>
                 <div class="footer-right">
                     <div class="footer-social">
-                        <a href="https://www.linkedin.com/in/leo-iml" target="_blank">LinkedIn</a>
-                        <a href="https://www.instagram.com/soy.leo_ai/" target="_blank">Instagram</a>
+                        <a href="blog/">Blog</a>
+                        <a href="https://www.linkedin.com/in/leo-iml" target="_blank" rel="noopener">LinkedIn</a>
+                        <a href="https://www.instagram.com/soy.leo_ai/" target="_blank" rel="noopener">Instagram</a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Leo IA. Todos los derechos reservados.</p>
+                <p>&copy; 2026 Leo IA. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <script src="js/main-v2.js" defer></script>
-    <!-- VANTA.js NET — fondo animado del hero -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js"></script>
-    <script>
-        VANTA.NET({
-            el: "#home",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200,
-            minWidth: 200,
-            scale: 1.0,
-            scaleMobile: 0.75,
-            color: 0xFFDD00,
-            backgroundColor: 0x0a0a0a,
-            points: 11,
-            maxDistance: 22,
-            spacing: 18,
-            showDots: true
-        });
-    </script>
+    <script src="js/main-v2.js?v=20260823b" defer></script>
+
 </body>
 </html><!-- Updated: Mon Oct 27 18:37:10 -03 2025 -->

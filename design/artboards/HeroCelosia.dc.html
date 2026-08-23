@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; background: #000000; }
+    a { color: #FFDD00; text-decoration: none; }
+    a:hover { color: #FFCC00; }
+    .hero {
+      --accent: #FFDD00;
+      --ink: #f0f0f0;
+      --dim: rgba(255,255,255,0.62);
+      --faint: rgba(255,255,255,0.34);
+      --rule: rgba(255,255,255,0.13);
+      --exp: cubic-bezier(0.16, 1, 0.3, 1);
+      --mono: 'JetBrains Mono', 'SF Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      position: relative; width: 100%; height: 900px; overflow: hidden;
+      background: #000000; color: var(--ink);
+      font-family: 'Inter', system-ui, sans-serif; line-height: 1.6;
+      display: flex; align-items: center;
+    }
+    .scrim { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+    .stage { position: relative; z-index: 3; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 48px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 11px;
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(255,255,255,0.72); margin-bottom: 30px;
+    }
+    .badge i { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { opacity:1; transform:scale(1);} 50% { opacity:.35; transform:scale(.7);} }
+    h1 { font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; letter-spacing: -0.03em; margin: 0; }
+    h1 em { font-style: normal; color: var(--accent); }
+    .tag { color: var(--dim); }
+    .sub { color: var(--ink); }
+    .ctas { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .b1 {
+      display: inline-flex; align-items: center; gap: 11px; padding: 19px 44px; border-radius: 50px;
+      background: var(--accent); border: 2px solid var(--accent); color: #0a0a0a;
+      font-family: inherit; font-size: 16px; font-weight: 700; letter-spacing: -0.01em; cursor: pointer;
+      transition: transform .35s var(--exp), box-shadow .35s var(--exp), background .3s ease;
+    }
+    .b1:hover { background: #FFCC00; color: #0a0a0a; transform: translateY(-2px); box-shadow: 0 16px 48px rgba(255,221,0,.26); }
+    .b2 {
+      display: inline-flex; align-items: center; gap: 11px; padding: 19px 38px; border-radius: 50px;
+      background: none; border: 1px solid var(--rule); color: var(--ink);
+      font-family: inherit; font-size: 16px; font-weight: 500; cursor: pointer;
+      transition: border-color .35s var(--exp), color .35s var(--exp), transform .35s var(--exp);
+    }
+    .b2:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .mnum { font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); display: block; }
+    .mlab { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--faint); }
+    .arrow { color: var(--accent); }
+    .scroll { position: absolute; z-index: 3; display: flex; align-items: center; gap: 14px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.24em; color: var(--faint); }
+    .scroll i { display: block; width: 54px; height: 1px; background: linear-gradient(90deg, var(--accent), transparent); animation: sweep 2.6s var(--exp) infinite; }
+    @keyframes sweep { 0% { transform: scaleX(.2); transform-origin: left; opacity:.4 } 50% { transform: scaleX(1); opacity:1 } 100% { transform: scaleX(.2); transform-origin: left; opacity:.4 } }
+
+    /* ── Celosía: 46 lamas verticales en onda viajera ── */
+    .lattice { position: absolute; inset: 0; z-index: 1; display: flex; gap: 7px; align-items: center; padding: 0 40px; }
+    .lattice span {
+      flex: 1; height: 100%; transform-origin: center center;
+      background: linear-gradient(180deg, transparent, rgba(255,221,0,0.55) 22%, rgba(255,255,255,0.75) 50%, rgba(255,221,0,0.55) 78%, transparent);
+      animation: louver 5.6s ease-in-out infinite;
+      animation-delay: calc(var(--i) * -0.115s);
+    }
+    @keyframes louver {
+      0%, 100% { transform: scaleY(0.16); opacity: 0.13; }
+      50%      { transform: scaleY(0.92); opacity: 0.5; }
+    }
+    /* Entrepisos: líneas horizontales que dan escala de edificio */
+    .floors { position: absolute; inset: 0; z-index: 1; }
+    .floors i { position: absolute; left: 0; right: 0; height: 1px; background: rgba(255,255,255,0.055); }
+    .scrim {
+      background:
+        radial-gradient(ellipse 62% 52% at 50% 50%, rgba(0,0,0,0.93) 26%, rgba(0,0,0,0.55) 58%, transparent 82%),
+        linear-gradient(180deg, rgba(0,0,0,0.8), transparent 26%, transparent 72%, rgba(0,0,0,0.9));
+    }
+    .stage { text-align: center; padding-bottom: 86px; }
+    .stage h1 { font-size: 78px; line-height: 1.04; margin: 0 auto 26px; max-width: 17ch; }
+    .tag { font-size: 17px; margin: 0 0 8px; }
+    .sub { font-size: 20px; font-weight: 500; margin: 0 0 42px; }
+    .ctas { justify-content: center; }
+    .metrics { display: flex; align-items: center; justify-content: center; gap: 0; margin-top: 52px; }
+    .metrics > div { flex: 0 0 250px; text-align: center; }
+    .msep { flex: none; width: 1px; height: 40px; background: var(--rule); }
+    .mnum { font-size: 30px; margin-bottom: 5px; }
+    .scroll { bottom: 46px; left: 50%; transform: translateX(-50%); flex-direction: column; gap: 12px; }
+    .scroll i { width: 1px; height: 46px; background: linear-gradient(180deg, var(--accent), transparent); animation: sweepv 2.6s var(--exp) infinite; }
+    @keyframes sweepv { 0% { transform: scaleY(.2); transform-origin: top; opacity:.4 } 50% { transform: scaleY(1); opacity:1 } 100% { transform: scaleY(.2); transform-origin: top; opacity:.4 } }
+    @media (prefers-reduced-motion: reduce) { .lattice span, .scroll i, .badge i { animation: none; } .lattice span { transform: scaleY(0.55); opacity: .3; } }
+  </style>
+</helmet>
+<div class="hero">
+  <div class="lattice" aria-hidden="true">
+      <span style="--i:0"></span>
+      <span style="--i:1"></span>
+      <span style="--i:2"></span>
+      <span style="--i:3"></span>
+      <span style="--i:4"></span>
+      <span style="--i:5"></span>
+      <span style="--i:6"></span>
+      <span style="--i:7"></span>
+      <span style="--i:8"></span>
+      <span style="--i:9"></span>
+      <span style="--i:10"></span>
+      <span style="--i:11"></span>
+      <span style="--i:12"></span>
+      <span style="--i:13"></span>
+      <span style="--i:14"></span>
+      <span style="--i:15"></span>
+      <span style="--i:16"></span>
+      <span style="--i:17"></span>
+      <span style="--i:18"></span>
+      <span style="--i:19"></span>
+      <span style="--i:20"></span>
+      <span style="--i:21"></span>
+      <span style="--i:22"></span>
+      <span style="--i:23"></span>
+      <span style="--i:24"></span>
+      <span style="--i:25"></span>
+      <span style="--i:26"></span>
+      <span style="--i:27"></span>
+      <span style="--i:28"></span>
+      <span style="--i:29"></span>
+      <span style="--i:30"></span>
+      <span style="--i:31"></span>
+      <span style="--i:32"></span>
+      <span style="--i:33"></span>
+      <span style="--i:34"></span>
+      <span style="--i:35"></span>
+      <span style="--i:36"></span>
+      <span style="--i:37"></span>
+      <span style="--i:38"></span>
+      <span style="--i:39"></span>
+      <span style="--i:40"></span>
+      <span style="--i:41"></span>
+      <span style="--i:42"></span>
+      <span style="--i:43"></span>
+      <span style="--i:44"></span>
+      <span style="--i:45"></span>
+  </div>
+  <div class="floors" aria-hidden="true">
+    <i style="top:18%"></i><i style="top:36%"></i><i style="top:54%"></i><i style="top:72%"></i>
+  </div>
+  <div class="scrim"></div>
+  <div class="stage">
+    <span class="badge"><i></i>+100 arquitectos ya construyen sus sistemas con IA</span>
+    <h1>El arquitecto que usa IA no compite por precio. Lidera el <em>mercado</em>.</h1>
+    <p class="tag">Con IA, el límite es tu imaginación.</p>
+    <p class="sub">Automatizá. Presentá. Ganás proyectos.</p>
+    <div class="ctas">
+      <button class="b1">Agendar consulta</button>
+      <button class="b2">Ver recursos gratis</button>
+    </div>
+    <div class="metrics">
+      <div><span class="mnum">100+</span><span class="mlab">Arquitectos formados</span></div>
+      <span class="msep"></span>
+      <div><span class="mnum">20+</span><span class="mlab">Empresas</span></div>
+    </div>
+  </div>
+  <span class="scroll">SCROLL<i></i></span>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {}
+</script>
+</body>
+</html>

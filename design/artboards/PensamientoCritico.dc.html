@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; background: #000000; }
+    a { color: #FFDD00; text-decoration: none; }
+    a:hover { color: #FFCC00; }
+
+    .bp {
+      --accent: #FFDD00;
+      --ink: #f0f0f0;
+      --dim: rgba(255,255,255,0.62);
+      --faint: rgba(255,255,255,0.32);
+      --rule: rgba(255,255,255,0.11);
+      --exp: cubic-bezier(0.16, 1, 0.3, 1);
+      --mono: 'JetBrains Mono', 'SF Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      position: relative; background: #000000; color: var(--ink);
+      font-family: 'Inter', system-ui, sans-serif; line-height: 1.6;
+      padding: 120px 0 116px; overflow: hidden;
+    }
+    .bp::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: repeating-linear-gradient(115deg, rgba(255,255,255,0.028) 0 1px, transparent 1px 22px);
+      mask-image: radial-gradient(ellipse 90% 80% at 60% 40%, #000 5%, transparent 78%);
+      -webkit-mask-image: radial-gradient(ellipse 90% 80% at 60% 40%, #000 5%, transparent 78%);
+    }
+    .wrap { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 48px; }
+    .cols { display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 100px; align-items: start; }
+
+    .label { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin: 0 0 16px; }
+    .title { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 58px; font-weight: 700; line-height: 1.05; letter-spacing: -0.025em; margin: 0 0 24px; }
+    .lede { margin: 0 0 42px; color: var(--dim); font-size: 17px; line-height: 1.7; max-width: 42ch; }
+    .cta {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 20px 46px; border-radius: 50px;
+      background: var(--accent); border: 2px solid var(--accent);
+      color: #0a0a0a; font-family: inherit; font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
+      cursor: pointer; transition: transform 0.35s var(--exp), box-shadow 0.35s var(--exp), background 0.3s ease;
+    }
+    .cta:hover { background: #FFCC00; transform: translateY(-2px); box-shadow: 0 16px 48px rgba(255,221,0,0.24); }
+
+    /* ── Rail vertical de 4 pasos ── */
+    .rail { position: relative; padding-left: 42px; }
+    .rail::before { content: ''; position: absolute; left: 6px; top: 12px; bottom: 12px; width: 1px; background: var(--rule); }
+
+    .step { position: relative; padding: 0 0 4px; }
+    .step__head {
+      display: flex; align-items: baseline; gap: 18px;
+      width: 100%; padding: 20px 0; background: none; border: 0;
+      border-top: 1px solid var(--rule);
+      color: inherit; font-family: inherit; text-align: left; cursor: pointer;
+      transition: opacity 0.3s var(--exp);
+    }
+    .step:first-child .step__head { border-top: 0; }
+    .step__head:hover { opacity: 0.85; }
+    /* Nodo sobre el rail */
+    .step__node {
+      position: absolute; left: -42px; top: 26px;
+      width: 13px; height: 13px; border-radius: 50%;
+      border: 1px solid var(--rule); background: #000000;
+      transition: background 0.45s var(--exp), border-color 0.45s var(--exp), box-shadow 0.45s var(--exp), transform 0.45s var(--exp);
+    }
+    .step__n { font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em; color: var(--faint); transition: color 0.4s var(--exp); flex: none; }
+    .step__t {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-size: 24px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.3;
+      color: var(--faint); margin: 0; transition: color 0.4s var(--exp);
+    }
+    .step__body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.65s var(--exp); }
+    .step__inner { overflow: hidden; }
+    .step__p {
+      margin: 0 0 22px; color: var(--dim); font-size: 16.5px; line-height: 1.7; max-width: 52ch;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.45s var(--exp) 0.12s, transform 0.45s var(--exp) 0.12s;
+    }
+    /* Barra de progreso del auto-avance */
+    .step__prog { display: block; height: 2px; width: 100%; background: var(--rule); overflow: hidden; margin-bottom: 22px; opacity: 0; transition: opacity 0.3s ease; }
+    .step__prog i { display: block; height: 100%; width: 100%; background: var(--accent); transform-origin: left center; transform: scaleX(0); }
+
+    .pc--n0 .step[data-i="0"], .pc--n1 .step[data-i="1"],
+    .pc--n2 .step[data-i="2"], .pc--n3 .step[data-i="3"] { }
+    .pc--n0 .step[data-i="0"] .step__body, .pc--n1 .step[data-i="1"] .step__body,
+    .pc--n2 .step[data-i="2"] .step__body, .pc--n3 .step[data-i="3"] .step__body { grid-template-rows: 1fr; }
+    .pc--n0 .step[data-i="0"] .step__p, .pc--n1 .step[data-i="1"] .step__p,
+    .pc--n2 .step[data-i="2"] .step__p, .pc--n3 .step[data-i="3"] .step__p { opacity: 1; transform: none; }
+    .pc--n0 .step[data-i="0"] .step__t, .pc--n1 .step[data-i="1"] .step__t,
+    .pc--n2 .step[data-i="2"] .step__t, .pc--n3 .step[data-i="3"] .step__t { color: var(--ink); }
+    .pc--n0 .step[data-i="0"] .step__n, .pc--n1 .step[data-i="1"] .step__n,
+    .pc--n2 .step[data-i="2"] .step__n, .pc--n3 .step[data-i="3"] .step__n { color: var(--accent); }
+    .pc--n0 .step[data-i="0"] .step__node, .pc--n1 .step[data-i="1"] .step__node,
+    .pc--n2 .step[data-i="2"] .step__node, .pc--n3 .step[data-i="3"] .step__node {
+      background: var(--accent); border-color: var(--accent); transform: scale(1.25);
+      box-shadow: 0 0 0 5px rgba(255,221,0,0.13), 0 0 20px rgba(255,221,0,0.55);
+    }
+    .pc--n0 .step[data-i="0"] .step__prog, .pc--n1 .step[data-i="1"] .step__prog,
+    .pc--n2 .step[data-i="2"] .step__prog, .pc--n3 .step[data-i="3"] .step__prog { opacity: 1; }
+    .pc--n0 .step[data-i="0"] .step__prog i, .pc--n1 .step[data-i="1"] .step__prog i,
+    .pc--n2 .step[data-i="2"] .step__prog i, .pc--n3 .step[data-i="3"] .step__prog i {
+      animation: fill 6s linear forwards;
+    }
+    @keyframes fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+    .rail__foot { display: flex; align-items: center; gap: 12px; margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--rule); font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); }
+    .rail__foot span { color: rgba(255,221,0,0.8); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .step__prog i { animation: none !important; transform: scaleX(1); }
+    }
+  </style>
+</helmet>
+
+<div class="bp pc pc--n{{i}}">
+  <div class="wrap">
+    <div class="cols">
+
+      <div>
+        <p class="label">EL PROGRAMA</p>
+        <h2 class="title">Desarrollo del Pensamiento Crítico con IA</h2>
+        <p class="lede">Un curso diseñado para arquitectos que quieren dominar la IA sin perder el control creativo de sus proyectos. Estos son los cuatro hábitos que entrenamos.</p>
+        <button class="cta">
+          Ver detalles del curso
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </div>
+
+      <div class="rail" onMouseEnter="{{ hold }}" onMouseLeave="{{ resume }}">
+
+        <div class="step" data-i="0">
+          <span class="step__node"></span>
+          <button class="step__head" onClick="{{ p0 }}">
+            <span class="step__n">01</span>
+            <h3 class="step__t">Formular el problema</h3>
+          </button>
+          <div class="step__body"><div class="step__inner">
+            <p class="step__p">Lo que la IA devuelve depende de cómo plantees el problema. Antes de pedir nada se define qué querés resolver, con qué datos contás y bajo qué restricciones — normativa, presupuesto, plazos.</p>
+            <span class="step__prog"><i></i></span>
+          </div></div>
+        </div>
+
+        <div class="step" data-i="1">
+          <span class="step__node"></span>
+          <button class="step__head" onClick="{{ p1 }}">
+            <span class="step__n">02</span>
+            <h3 class="step__t">El criterio no se terceriza</h3>
+          </button>
+          <div class="step__body"><div class="step__inner">
+            <p class="step__p">La IA propone, vos decidís. Lo que hace que una solución sea buena para este cliente y este terreno sigue siendo criterio de proyecto — y ese es exactamente el trabajo que no se delega.</p>
+            <span class="step__prog"><i></i></span>
+          </div></div>
+        </div>
+
+        <div class="step" data-i="2">
+          <span class="step__node"></span>
+          <button class="step__head" onClick="{{ p2 }}">
+            <span class="step__n">03</span>
+            <h3 class="step__t">Verificar, no confiar</h3>
+          </button>
+          <div class="step__body"><div class="step__inner">
+            <p class="step__p">Los números se ejecutan, no se interpretan. Todo resultado se contrasta contra la fuente: si no podés explicar de dónde salió un dato, ese dato no entra al proyecto.</p>
+            <span class="step__prog"><i></i></span>
+          </div></div>
+        </div>
+
+        <div class="step" data-i="3">
+          <span class="step__node"></span>
+          <button class="step__head" onClick="{{ p3 }}">
+            <span class="step__n">04</span>
+            <h3 class="step__t">Convertirlo en sistema</h3>
+          </button>
+          <div class="step__body"><div class="step__inner">
+            <p class="step__p">Lo que funciona una vez se convierte en proceso repetible — una skill, una plantilla, un flujo documentado — para que lo use el estudio entero y no dependa de vos.</p>
+            <span class="step__prog"><i></i></span>
+          </div></div>
+        </div>
+
+        <p class="rail__foot">Avanza solo · <span>pasá el mouse para pausar</span></p>
+      </div>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":880}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { i: 0 };
+    this.timer = null;
+  }
+  componentDidMount() { this.start(); }
+  componentWillUnmount() { this.stop(); }
+  start() {
+    this.stop();
+    this.timer = setInterval(() => {
+      this.setState({ i: (this.state.i + 1) % 4 });
+    }, 6000);
+  }
+  stop() { if (this.timer) { clearInterval(this.timer); this.timer = null; } }
+  renderVals() {
+    const pick = (n) => () => { this.setState({ i: n }); this.start(); };
+    return {
+      i: this.state.i,
+      p0: pick(0), p1: pick(1), p2: pick(2), p3: pick(3),
+      hold: () => this.stop(),
+      resume: () => this.start()
+    };
+  }
+}
+</script>
+</body>
+</html>

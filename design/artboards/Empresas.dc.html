@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; background: #000000; }
+    a { color: #FFDD00; text-decoration: none; }
+    a:hover { color: #FFCC00; }
+
+    .bp {
+      --accent: #FFDD00;
+      --ink: #f0f0f0;
+      --dim: rgba(255,255,255,0.6);
+      --faint: rgba(255,255,255,0.3);
+      --rule: rgba(255,255,255,0.13);
+      --exp: cubic-bezier(0.16, 1, 0.3, 1);
+      --mono: 'JetBrains Mono', 'SF Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      position: relative; background: #000000; color: var(--ink);
+      font-family: 'Inter', system-ui, sans-serif; line-height: 1.6;
+      padding: 120px 0 116px; overflow: hidden;
+    }
+    .bp::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(180deg, #000, transparent 72%);
+      -webkit-mask-image: linear-gradient(180deg, #000, transparent 72%);
+    }
+    .wrap { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 48px; }
+
+    .head { display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: end; margin-bottom: 84px; }
+    .label { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin: 0 0 16px; }
+    .title { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 62px; font-weight: 700; line-height: 1.04; letter-spacing: -0.025em; margin: 0; }
+    .lede { margin: 0; color: var(--dim); font-size: 17px; max-width: 30ch; padding-bottom: 8px; }
+
+    /* ── Filas numeradas, sin caja, con barrido en hover ── */
+    .rows { display: flex; flex-direction: column; }
+    .row {
+      position: relative; display: grid;
+      grid-template-columns: 150px 1fr 1.15fr 64px;
+      gap: 40px; align-items: center;
+      width: 100%; padding: 40px 24px 40px 28px;
+      border-top: 1px solid var(--rule);
+      background: none; color: inherit; font-family: inherit; text-align: left; cursor: pointer;
+      overflow: hidden;
+    }
+    .row:last-child { border-bottom: 1px solid var(--rule); }
+    /* Velo permanente — cada fila tiene cuerpo aunque no la toques */
+    .row::before {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      background: linear-gradient(90deg, rgba(255,221,0,0.052), rgba(255,255,255,0.014) 46%, transparent 80%);
+      opacity: 1;
+      transition: opacity 0.6s var(--exp), background 0.6s var(--exp);
+    }
+    .row:hover::before {
+      background: linear-gradient(90deg, rgba(255,221,0,0.155), rgba(255,221,0,0.035) 56%, transparent 88%);
+    }
+    /* Barra de acento en el canto izquierdo */
+    .row::after {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; z-index: 1;
+      background: rgba(255,221,0,0.4); transform: scaleY(0.34); transform-origin: center;
+      transition: transform 0.6s var(--exp), background 0.5s var(--exp);
+    }
+    .row:hover::after { transform: scaleY(1); background: var(--accent); }
+    .row > * { position: relative; z-index: 2; }
+
+    .row__n {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-size: 76px; font-weight: 700; letter-spacing: -0.045em; line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(255,221,0,0.8);
+      text-stroke: 1.5px rgba(255,221,0,0.8);
+      transition: color 0.5s var(--exp), -webkit-text-stroke-color 0.5s var(--exp), transform 0.5s var(--exp);
+    }
+    .row:hover .row__n {
+      color: var(--accent);
+      -webkit-text-stroke-color: var(--accent);
+      transform: translateX(8px);
+    }
+    .row h3 {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-size: 34px; font-weight: 600; letter-spacing: -0.02em; margin: 0;
+      color: var(--accent);
+      transition: transform 0.5s var(--exp), text-shadow 0.5s var(--exp);
+    }
+    .row:hover h3 { transform: translateX(8px); text-shadow: 0 0 26px rgba(255,221,0,0.35); }
+    .row p { margin: 0; color: var(--dim); font-size: 16px; line-height: 1.6; }
+    .row__go {
+      justify-self: end; width: 46px; height: 46px; border-radius: 50%;
+      border: 1px solid var(--rule); display: grid; place-items: center; color: var(--faint);
+      transition: border-color 0.45s var(--exp), color 0.45s var(--exp), transform 0.45s var(--exp);
+    }
+    .row:hover .row__go { border-color: var(--accent); color: var(--accent); transform: translateX(6px); }
+
+    /* Entrada escalonada */
+    .row { opacity: 0; transform: translateY(18px); animation: enter 0.7s var(--exp) forwards; }
+    .row:nth-child(1) { animation-delay: 0.05s; }
+    .row:nth-child(2) { animation-delay: 0.17s; }
+    .row:nth-child(3) { animation-delay: 0.29s; }
+    @keyframes enter { to { opacity: 1; transform: none; } }
+
+    .foot { margin-top: 74px; display: flex; align-items: center; gap: 30px; flex-wrap: wrap; }
+    .cta {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 20px 48px; border-radius: 50px;
+      background: var(--accent); border: 2px solid var(--accent);
+      color: #0a0a0a; font-family: inherit; font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
+      cursor: pointer; transition: transform 0.35s var(--exp), box-shadow 0.35s var(--exp), background 0.3s ease;
+    }
+    .cta:hover { background: #FFCC00; transform: translateY(-2px); box-shadow: 0 16px 48px rgba(255,221,0,0.24); }
+    .foot p { margin: 0; font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .row { opacity: 1; transform: none; animation: none; }
+    }
+  </style>
+</helmet>
+
+<div class="bp">
+  <div class="wrap">
+
+    <div class="head">
+      <div>
+        <p class="label">EMPRESAS</p>
+        <h2 class="title">Capacitación corporativa</h2>
+      </div>
+      <p class="lede">Programas a medida para transformar equipos completos.</p>
+    </div>
+
+    <div class="rows">
+      <button class="row">
+        <span class="row__n">01</span>
+        <h3>Consultoría</h3>
+        <p>Asesoramiento personalizado para implementar IA en tu estudio o empresa.</p>
+        <span class="row__go">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </span>
+      </button>
+
+      <button class="row">
+        <span class="row__n">02</span>
+        <h3>Programas</h3>
+        <p>Transformación integral de 3 a 6 meses con acompañamiento continuo.</p>
+        <span class="row__go">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </span>
+      </button>
+
+      <button class="row">
+        <span class="row__n">03</span>
+        <h3>Mentorías</h3>
+        <p>Sesiones personalizadas para proyectos específicos.</p>
+        <span class="row__go">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </span>
+      </button>
+    </div>
+
+    <div class="foot">
+      <button class="cta">
+        Agendar consulta gratuita
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </button>
+      <p>Respuesta en 24 h · Presupuesto a medida</p>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":840}}'>
+class Component extends DCLogic {}
+</script>
+</body>
+</html>
