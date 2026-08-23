@@ -360,7 +360,7 @@ const observer = new IntersectionObserver((entries) => {
 
 // Observar elementos animables
 document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll('.consultoria-card, .empresa-card, .testimonial-card');
+    const animatedElements = document.querySelectorAll('.testimonial-card');
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -448,38 +448,6 @@ function initWordSwap() {
     });
 }
 
-// ===========================
-// "Lo que podés hacer" Section — IntersectionObserver entrance
-// Cards start at opacity:0 translateY(28px) via CSS.
-// Observer adds .qph-card--visible when they cross 15% threshold.
-// Stagger delays are encoded via data-delay attribute on each card.
-// ===========================
-function initQphCards() {
-    const cards = document.querySelectorAll('.qph-card');
-    if (!cards.length) return;
-
-    // Skip animation for users who prefer reduced motion (CSS also handles this,
-    // but the observer still needs to make cards visible immediately)
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('qph-card--visible');
-                observer.unobserve(entry.target); // Animate once
-            }
-        });
-    }, { threshold: 0.15 });
-
-    cards.forEach(card => {
-        if (prefersReduced) {
-            // Make visible immediately with no transition
-            card.classList.add('qph-card--visible');
-        } else {
-            observer.observe(card);
-        }
-    });
-}
 
 // ===========================
 // "Lo que podés hacer" — QPH Lightbox
@@ -535,6 +503,9 @@ function initQphLightbox() {
         activeThumbnailVideo = thumb.querySelector('video');
         if (activeThumbnailVideo) {
             activeThumbnailVideo.pause();
+            // Marca para initLazyVideos(): su IntersectionObserver no debe
+            // reanudar este video mientras el lightbox esté abierto encima.
+            activeThumbnailVideo.dataset.lockedByLightbox = '1';
         }
 
         // Record opener for focus restoration
@@ -565,6 +536,7 @@ function initQphLightbox() {
 
         // Resume the thumbnail autoplay
         if (activeThumbnailVideo) {
+            delete activeThumbnailVideo.dataset.lockedByLightbox;
             activeThumbnailVideo.play().catch(() => {
                 // Autoplay may be blocked on some browsers — silently ignore
             });
@@ -604,63 +576,7 @@ function initQphLightbox() {
     });
 }
 
-// ===========================
-// Casos de Éxito — IntersectionObserver entrance
-// .caso-card starts at opacity:0 translateY(32px) via CSS.
-// Observer adds .caso-card--visible when 15% of card is in view.
-// ===========================
-function initCasoCards() {
-    const cards = document.querySelectorAll('.caso-card');
-    if (!cards.length) return;
 
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('caso-card--visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.12 });
-
-    cards.forEach(card => {
-        if (prefersReduced) {
-            card.classList.add('caso-card--visible');
-        } else {
-            observer.observe(card);
-        }
-    });
-}
-
-// ===========================
-// Cómo Funciona — IntersectionObserver entrance
-// .cf-block starts at opacity:0 translateY(28px) via CSS.
-// Observer adds .cf-block--visible when 15% of block is in view.
-// ===========================
-function initCfBlocks() {
-    const blocks = document.querySelectorAll('.cf-block');
-    if (!blocks.length) return;
-
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('cf-block--visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.15 });
-
-    blocks.forEach(block => {
-        if (prefersReduced) {
-            block.classList.add('cf-block--visible');
-        } else {
-            observer.observe(block);
-        }
-    });
-}
 
 
 // ===========================
@@ -705,13 +621,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initWordSwap();
 
     // "Lo que podés hacer" cards scroll-entrance
-    initQphCards();
 
     // Casos de Éxito cards scroll-entrance
-    initCasoCards();
 
     // Cómo Funciona blocks scroll-entrance
-    initCfBlocks();
 
     // "Lo que podés hacer" lightbox — thumbnails → full-screen overlay
     // Note: initQphLightbox() binds to ALL .qph-thumb elements globally,
@@ -767,8 +680,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', e => {
                 e.preventDefault();
                 const driveLink = btn.dataset.drive;
-                // .rec-item es el contenedor nuevo de #recursos; .recurso-card era el viejo.
-                const card = btn.closest('.rec-item, .recurso-card');
+                const card = btn.closest('.rec-item');
                 const heading = card ? card.querySelector('h3') : null;
                 const skillName = heading ? heading.textContent.trim() : 'Skill';
 
@@ -1266,3 +1178,50 @@ document.addEventListener('DOMContentLoaded', () => {
     initPtRail();
     initPtFases();
 });
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ███  PLANO TÉCNICO 2026 — CIERRE
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/**
+ * Arranque perezoso de los videos de vista previa.
+ *
+ * Antes los <video> de los thumbnails llevaban `autoplay`, así que el
+ * navegador descargaba los 4 videos de #que-podes-hacer al abrir la home
+ * — unos 30 MB — aunque el visitante nunca bajara hasta ahí.
+ *
+ * Ahora van con preload="none" y un poster: no se descarga un solo byte
+ * hasta que la pieza entra en pantalla. Al salir se pausan, para no dejar
+ * media docena de videos decodificando en segundo plano.
+ *
+ * El lightbox sigue cargando el video completo aparte, recién al hacer clic.
+ */
+function initLazyVideos() {
+    const vids = document.querySelectorAll('video[data-lazyvideo]');
+    if (!vids.length) return;
+
+    // Sin soporte de IntersectionObserver, o con movimiento reducido:
+    // se dejan en el poster. Ninguna información se pierde — el video
+    // completo sigue a un clic de distancia, en el lightbox.
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced || !('IntersectionObserver' in window)) return;
+
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const v = entry.target;
+            if (entry.isIntersecting) {
+                // El lightbox pausa el thumbnail mientras está abierto;
+                // no lo pisamos reanudándolo por debajo.
+                if (v.dataset.lockedByLightbox === '1') return;
+                v.play().catch(() => { /* el navegador bloqueó el autoplay: queda el poster */ });
+            } else {
+                v.pause();
+            }
+        });
+    }, { rootMargin: '200px 0px', threshold: 0.01 });
+
+    vids.forEach(v => io.observe(v));
+}
+
+document.addEventListener('DOMContentLoaded', initLazyVideos);

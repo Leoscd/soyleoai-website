@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Iconos -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <title>Blog — IA aplicada a estudios de arquitectura | Leo Díaz</title>
+  <meta name="description" content="Artículos sobre IA aplicada a la producción en estudios de arquitectura: herramientas, sistemas de trabajo y el choque cultural de digitalizar un estudio.">
+  <meta name="author" content="Leo Díaz">
+  <link rel="canonical" href="https://soyleoai.com/blog/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://soyleoai.com/blog/">
+  <meta property="og:title" content="Blog — IA aplicada a estudios de arquitectura">
+  <meta property="og:description" content="Artículos sobre IA aplicada a la producción en estudios de arquitectura: herramientas, sistemas de trabajo y digitalización.">
+  <meta property="og:image" content="https://soyleoai.com/images/og-image.jpg">
+  <meta property="og:locale" content="es_AR">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blog — IA aplicada a estudios de arquitectura">
+  <meta name="twitter:description" content="Artículos sobre IA aplicada a la producción en estudios de arquitectura.">
+  <meta name="twitter:image" content="https://soyleoai.com/images/og-image.jpg">
+
+  <!-- Schema: listado del blog -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Blog de Leo Díaz — IA para arquitectos",
+    "description": "Artículos sobre IA aplicada a la producción en estudios de arquitectura.",
+    "url": "https://soyleoai.com/blog/",
+    "inLanguage": "es-AR",
+    "author": {
+      "@type": "Person",
+      "name": "Leo Díaz",
+      "url": "https://soyleoai.com"
+    },
+    "blogPost": [
+      {
+        "@type": "BlogPosting",
+        "headline": "Un curso de IA sin sistema es como herramientas sueltas en un taller",
+        "url": "https://soyleoai.com/blog/sistema-ia-arquitectura.html",
+        "datePublished": "2026-03-25"
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Las 5 herramientas de IA que usamos en el curso",
+        "url": "https://soyleoai.com/blog/herramientas-ia-arquitectos-2026.html",
+        "datePublished": "2026-03-25"
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "El mayor obstáculo para implementar IA en tu estudio no es la tecnología",
+        "url": "https://soyleoai.com/blog/cultura-digital-arquitectura.html",
+        "datePublished": "2026-03-25"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://soyleoai.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://soyleoai.com/blog/" }
+    ]
+  }
+  </script>
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3NEPPHYCB"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-E3NEPPHYCB');
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "w1hoo2jpu8");
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black:   #000000;
+      --text:    #e5e5e5;
+      --muted:   rgba(255,255,255,0.55);
+      --faint:   rgba(255,255,255,0.30);
+      --accent:  #FFDD00;
+      --border:  rgba(255,255,255,0.10);
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body:    'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ── NAVBAR — misma que los posts ── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-back {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.25s;
+    }
+
+    .nav-back:hover { color: var(--accent); }
+    .nav-back svg { width: 16px; height: 16px; }
+
+    /* ── CABECERA ── */
+    .blog-head {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 88px 5% 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .blog-head__label {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .blog-head h1 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 5vw, 3.1rem);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: #fff;
+      max-width: 18ch;
+    }
+
+    .blog-head p {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 58ch;
+    }
+
+    /* ── LISTA DE POSTS — filas numeradas, sin cajas ── */
+    .post-list {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 5% 96px;
+    }
+
+    .post-row {
+      display: grid;
+      grid-template-columns: 88px 1fr auto;
+      gap: 28px;
+      align-items: start;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      transition: background 0.3s ease;
+    }
+
+    /* Barra de acento que crece al pasar por encima */
+    .post-row::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2px;
+      height: 0;
+      background: var(--accent);
+      transition: height 0.35s ease;
+    }
+
+    .post-row:hover::before,
+    .post-row:focus-within::before { height: 100%; }
+
+    .post-row__num {
+      font-family: var(--font-display);
+      font-size: 2.6rem;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,0.30);
+      transition: color 0.35s ease, -webkit-text-stroke-color 0.35s ease;
+      padding-left: 18px;
+    }
+
+    .post-row:hover .post-row__num,
+    .post-row:focus-within .post-row__num {
+      color: var(--accent);
+      -webkit-text-stroke-color: var(--accent);
+    }
+
+    .post-row__tag {
+      font-family: var(--font-display);
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .post-row__main h2 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+      line-height: 1.28;
+      letter-spacing: -0.01em;
+      color: #fff;
+      transition: color 0.25s;
+    }
+
+    .post-row:hover .post-row__main h2 { color: var(--accent); }
+
+    .post-row__main p {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 62ch;
+    }
+
+    .post-row__meta {
+      margin-top: 16px;
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--faint);
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .post-row__cta {
+      align-self: center;
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .post-row:hover .post-row__cta,
+    .post-row:focus-within .post-row__cta {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* El enlace cubre toda la fila sin romper la semántica del encabezado */
+    .post-row__link::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+
+    .post-row__link:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    /* ── CIERRE ── */
+    .blog-foot {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 5% 96px;
+      text-align: center;
+    }
+
+    .blog-foot p {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .blog-foot a {
+      display: inline-block;
+      background: var(--accent);
+      color: #0a0a0a;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      padding: 14px 30px;
+      transition: background 0.25s, transform 0.25s;
+    }
+
+    .blog-foot a:hover { background: #FFCC00; transform: translateY(-2px); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 5%;
+      text-align: center;
+      color: var(--faint);
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 768px) {
+      .blog-head { padding-top: 56px; }
+
+      .post-row {
+        grid-template-columns: 56px 1fr;
+        gap: 18px;
+        padding: 32px 0;
+      }
+
+      .post-row__num { font-size: 1.7rem; padding-left: 12px; }
+
+      /* En mobile el CTA flotante no aporta: la fila entera ya es clicable */
+      .post-row__cta { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="../index.html" class="nav-logo">LEO <span>IA</span></a>
+    <a href="../index.html" class="nav-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      Volver al sitio
+    </a>
+  </nav>
+
+  <header class="blog-head">
+    <span class="blog-head__label">Blog</span>
+    <h1>IA aplicada a la producción de un estudio</h1>
+    <p>
+      Notas sobre dónde se va el tiempo en un estudio de arquitectura, qué parte del
+      proceso se puede automatizar y qué tiene que seguir bajo el criterio del arquitecto.
+    </p>
+  </header>
+
+  <main class="post-list">
+
+    <article class="post-row">
+      <span class="post-row__num" aria-hidden="true">01</span>
+      <div class="post-row__main">
+        <span class="post-row__tag">Sistema de IA para arquitectos</span>
+        <h2>
+          <a href="sistema-ia-arquitectura.html" class="post-row__link">
+            Un curso de IA sin sistema es como herramientas sueltas en un taller: nadie las usa
+          </a>
+        </h2>
+        <p>
+          Muchos arquitectos aprenden IA y no implementan nada. El problema no es la
+          herramienta: es la falta de un sistema que las ordene dentro del flujo de trabajo.
+        </p>
+        <div class="post-row__meta">
+          <time datetime="2026-03-25">25 mar 2026</time>
+          <span>6 min de lectura</span>
+        </div>
+      </div>
+      <span class="post-row__cta" aria-hidden="true">Leer →</span>
+    </article>
+
+    <article class="post-row">
+      <span class="post-row__num" aria-hidden="true">02</span>
+      <div class="post-row__main">
+        <span class="post-row__tag">Herramientas IA para arquitectos 2026</span>
+        <h2>
+          <a href="herramientas-ia-arquitectos-2026.html" class="post-row__link">
+            Las 5 herramientas de IA que usamos en el curso (y cómo aplicar cada una en arquitectura)
+          </a>
+        </h2>
+        <p>
+          Claude, Gemini, NotebookLM, Freepik y Abacus. Qué resuelve cada una en un estudio,
+          con casos concretos y no con promesas generales.
+        </p>
+        <div class="post-row__meta">
+          <time datetime="2026-03-25">25 mar 2026</time>
+          <span>8 min de lectura</span>
+        </div>
+      </div>
+      <span class="post-row__cta" aria-hidden="true">Leer →</span>
+    </article>
+
+    <article class="post-row">
+      <span class="post-row__num" aria-hidden="true">03</span>
+      <div class="post-row__main">
+        <span class="post-row__tag">Digitalización del estudio</span>
+        <h2>
+          <a href="cultura-digital-arquitectura.html" class="post-row__link">
+            El mayor obstáculo para implementar IA en tu estudio no es la tecnología
+          </a>
+        </h2>
+        <p>
+          Querés digitalizar tu estudio pero algo frena el proceso. El obstáculo real es el
+          choque cultural. Cómo resolverlo sin romper lo que ya funciona.
+        </p>
+        <div class="post-row__meta">
+          <time datetime="2026-03-25">25 mar 2026</time>
+          <span>7 min de lectura</span>
+        </div>
+      </div>
+      <span class="post-row__cta" aria-hidden="true">Leer →</span>
+    </article>
+
+  </main>
+
+  <section class="blog-foot">
+    <p>¿Querés aplicar esto a tu estudio?</p>
+    <a href="../index.html#contacto">Agendar una consulta</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Leo IA. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>

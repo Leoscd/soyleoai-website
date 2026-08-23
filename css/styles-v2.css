@@ -614,12 +614,6 @@ button {
     gap: 32px;
 }
 
-.stat-box {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
 .stat-num {
     font-family: var(--font-display);
     font-size: 48px;
@@ -759,7 +753,7 @@ button {
     z-index: 1;
 }
 
-/* Línea de luz amarilla en el borde superior — misma firma visual que .empresa-card */
+/* Línea de luz amarilla en el borde superior — firma visual compartida del sitio */
 .modal-container::before {
     content: '';
     position: absolute;
@@ -1057,20 +1051,6 @@ button {
     margin-top: 64px;
 }
 
-.consultoria-card {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    padding: 48px;
-    border-radius: 12px;
-    transition: var(--transition);
-}
-
-.consultoria-card:hover {
-    transform: translateY(-8px);
-    background: var(--color-surface-2);
-    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
-}
-
 .card-icon {
     width: 64px;
     height: 64px;
@@ -1081,16 +1061,6 @@ button {
     justify-content: center;
     margin-bottom: 24px;
     color: var(--color-white);
-}
-
-.consultoria-card h3 {
-    font-size: 24px;
-    margin-bottom: 16px;
-}
-
-.consultoria-card p {
-    color: var(--color-text-secondary);
-    line-height: 1.7;
 }
 
 /* ===========================
@@ -1140,14 +1110,6 @@ button {
     margin-bottom: 64px;
 }
 
-.empresa-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 40px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
 .empresa-num {
     display: block;
     font-family: var(--font-display);
@@ -1156,16 +1118,6 @@ button {
     color: var(--color-accent);
     margin-bottom: 16px;
     opacity: 0.5;
-}
-
-.empresa-card h3 {
-    font-size: 24px;
-    color: var(--color-white);
-    margin-bottom: 16px;
-}
-
-.empresa-card p {
-    color: rgba(255, 255, 255, 0.8);
 }
 
 /* ===========================
@@ -1842,49 +1794,6 @@ button {
     gap: 32px;
 }
 
-/* ─── Individual card ─── */
-/* Cards start invisible; .qph-card--visible is added by IntersectionObserver */
-/* Glassmorphism style consistent with .empresa-card (backdrop + translucent bg) */
-.qph-card {
-    background: rgba(255, 255, 255, 0.1);    /* glassmorphism — same as .empresa-card */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);  /* same as .empresa-card */
-    border-radius: 16px;
-    padding: 36px;
-    display: grid;
-    /* Layout: before-block | arrow | after-block */
-    grid-template-columns: 1fr 36px 1fr;
-    gap: 0;
-    align-items: center;
-    transition: background 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
-
-    /* Entrance animation state — invisible before IO fires */
-    opacity: 0;
-    transform: translateY(28px);
-}
-
-.qph-card:hover {
-    background: rgba(255, 255, 255, 0.15);   /* slightly brighter glass on hover */
-    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45);
-    transform: translateY(-4px);
-}
-
-/* Visible state — class added by IntersectionObserver */
-.qph-card--visible {
-    opacity: 1;
-    transform: translateY(0);
-    /* Transition on the entrance properties */
-    transition: opacity 0.55s ease, transform 0.55s ease,
-                background 0.35s ease, box-shadow 0.35s ease;
-}
-
-/* Staggered delays via data-delay attribute — set in JS */
-.qph-card--visible[data-delay="0"] { transition-delay: 0ms; }
-.qph-card--visible[data-delay="1"] { transition-delay: 110ms; }
-.qph-card--visible[data-delay="2"] { transition-delay: 220ms; }
-.qph-card--visible[data-delay="3"] { transition-delay: 330ms; }
-
 /* ─── Before column ─── */
 .qph-before {
     padding-right: 20px;
@@ -1975,13 +1884,6 @@ button {
         gap: 24px;
     }
 
-    /* On mobile switch card layout to vertical stack */
-    .qph-card {
-        grid-template-columns: 1fr;
-        gap: 16px;
-        padding: 28px 24px;
-    }
-
     .qph-before {
         padding-right: 0;
         padding-bottom: 16px;
@@ -2001,21 +1903,10 @@ button {
 }
 
 /* Tablet: keep 2-col but tighter padding */
-@media (max-width: 1024px) and (min-width: 769px) {
-    .qph-card {
-        padding: 28px 24px;
-        grid-template-columns: 1fr 32px 1fr;
-    }
-}
+
 
 /* ─── Reduced motion: skip entrance animation ─── */
-@media (prefers-reduced-motion: reduce) {
-    .qph-card {
-        opacity: 1;
-        transform: none;
-        transition: none;
-    }
-}
+
 
 /* ===================================================
    QPH Thumbnail + Lightbox
@@ -2119,14 +2010,6 @@ button {
     transform: scale(1);                /* elastic pop on hover */
 }
 
-/* In QPH cards the thumb is compact (~1/3 card width) — scale icon down
-   so it stays proportional to the smaller preview area.
-   .caso-thumb inherits the full-size values from the caso context below. */
-.qph-card .qph-thumb__play {
-    width: 24px;
-    height: 24px;
-}
-
 /* ── Caption below thumbnail ── */
 /* Col 3, row 3 — stacks directly under the compact thumb */
 .qph-thumb__caption {
@@ -2153,11 +2036,6 @@ button {
     .qph-thumb__caption {
         grid-column: auto;             /* same reset for caption on mobile */
         grid-row: auto;
-    }
-
-    .qph-card .qph-thumb__play {
-        width: 20px;                   /* slightly smaller on mobile */
-        height: 20px;
     }
 
     .qph-thumb:hover {
@@ -2355,39 +2233,6 @@ button {
     margin-bottom: 80px;
 }
 
-/* ── Individual case card ── */
-.caso-card {
-    background: var(--color-surface);           /* #1a1a1a */
-    border: 1px solid var(--color-border);      /* rgba(255,255,255,0.08) */
-    border-radius: 16px;
-    padding: 40px;
-    margin-bottom: 40px;
-    /* Entrance animation — starts hidden, JS adds .caso-card--visible */
-    opacity: 0;
-    transform: translateY(32px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.caso-card:last-child {
-    margin-bottom: 0;
-}
-
-/* Visible state added by IntersectionObserver */
-.caso-card--visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Stagger: second card enters 150ms after first */
-.caso-card--visible:nth-child(2) {
-    transition-delay: 150ms;
-}
-
-/* ── Meta row: pill label ── */
-.caso-card__meta {
-    margin-bottom: 28px;
-}
-
 .caso-pill {
     display: inline-block;
     font-size: 11px;
@@ -2399,23 +2244,6 @@ button {
     border: 1px solid rgba(255, 221, 0, 0.18);
     border-radius: 100px;
     padding: 6px 14px;
-}
-
-/* ── Card body: 2-column layout (copy | media) ── */
-.caso-card__body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: start;
-}
-
-/* Reversed: media on left, copy on right (Pilar's card) */
-.caso-card__body--reversed {
-    direction: rtl;                         /* flip column order */
-}
-
-.caso-card__body--reversed > * {
-    direction: ltr;                         /* restore text direction inside children */
 }
 
 /* ── Case title ── */
@@ -2546,13 +2374,6 @@ button {
     color: var(--color-accent);             /* #FFDD00 */
 }
 
-/* ── Media column: two stacked thumbnails ── */
-.caso-card__media {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
 /* Override qph-thumb margin for caso context — no grid-column needed */
 .caso-thumb {
     grid-column: unset;
@@ -2573,14 +2394,6 @@ button {
         padding: 100px 0 120px;
     }
 
-    .caso-card {
-        padding: 32px;
-    }
-
-    .caso-card__body {
-        gap: 32px;
-    }
-
     .caso-title {
         font-size: 20px;
     }
@@ -2590,26 +2403,6 @@ button {
 @media (max-width: 768px) {
     .casos-section {
         padding: 80px 0 100px;
-    }
-
-    .caso-card {
-        padding: 28px 20px;
-    }
-
-    .caso-card__body,
-    .caso-card__body--reversed {
-        grid-template-columns: 1fr;
-        gap: 32px;
-        direction: ltr;                     /* reset direction flip on mobile */
-    }
-
-    .caso-card__body--reversed > * {
-        direction: ltr;
-    }
-
-    /* On mobile: media block moves below copy */
-    .caso-card__body--reversed .caso-card__copy {
-        order: -1;                          /* copy always first on mobile */
     }
 
     .caso-title {
@@ -2622,13 +2415,6 @@ button {
 }
 
 /* Reduced motion: skip entrance on cases */
-@media (prefers-reduced-motion: reduce) {
-    .caso-card {
-        opacity: 1;
-        transform: none;
-        transition: none;
-    }
-}
 
 
 /* =====================================================
@@ -2662,84 +2448,6 @@ button {
     margin-bottom: 72px;
 }
 
-/* ── Individual block ── */
-.cf-block {
-    background: var(--color-surface);       /* #1a1a1a */
-    border: 1px solid var(--color-border);  /* rgba(255,255,255,0.08) */
-    border-top: 2px solid var(--color-accent);  /* yellow top accent stripe */
-    border-radius: 0 0 16px 16px;          /* flat top, rounded bottom */
-    padding: 36px 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    /* Entrance animation — JS adds .cf-block--visible */
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.55s ease, transform 0.55s ease,
-                background 0.3s ease, box-shadow 0.3s ease;
-}
-
-.cf-block:hover {
-    background: var(--color-surface-2);     /* #242424 */
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
-    transform: translateY(-4px);
-}
-
-/* Visible state added by IntersectionObserver */
-.cf-block--visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Stagger delays across the 3 blocks */
-.cf-block--visible:nth-child(1) { transition-delay: 0ms; }
-.cf-block--visible:nth-child(2) { transition-delay: 110ms; }
-.cf-block--visible:nth-child(3) { transition-delay: 220ms; }
-
-/* ── Block icon ── */
-.cf-block__icon {
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-accent);             /* #FFDD00 */
-    flex-shrink: 0;
-}
-
-/* ── Block title ── */
-.cf-block__title {
-    font-family: var(--font-display);
-    font-size: 19px;
-    font-weight: 600;
-    color: var(--color-text-primary);       /* #f0f0f0 */
-    line-height: 1.3;
-    margin: 0;
-}
-
-/* ── Block body copy ── */
-.cf-block__body {
-    font-size: 14px;
-    line-height: 1.75;
-    color: var(--color-text-secondary);     /* rgba(255,255,255,0.65) */
-    flex: 1;                                /* pushes tag to bottom */
-    margin: 0;
-}
-
-/* ── Small pill tag at bottom ── */
-.cf-block__tag {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-accent);
-    background: rgba(255, 221, 0, 0.1);
-    border-radius: 100px;
-    padding: 5px 12px;
-    align-self: flex-start;                 /* don't stretch full width */
-}
-
 /* ── CTA block ── */
 .cf-cta {
     display: flex;
@@ -2765,14 +2473,6 @@ button {
     .cf-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-
-    /* Third block spans both columns, centered */
-    .cf-block:nth-child(3) {
-        grid-column: 1 / -1;
-        max-width: 480px;
-        margin: 0 auto;
-        width: 100%;
-    }
 }
 
 /* ── Mobile: 1-column ── */
@@ -2786,28 +2486,9 @@ button {
         gap: 20px;
         margin-bottom: 52px;
     }
-
-    .cf-block {
-        padding: 28px 24px;
-    }
-
-    .cf-block:nth-child(3) {
-        grid-column: unset;
-        max-width: none;
-    }
 }
 
 /* Reduced motion: skip entrance on cf-blocks */
-@media (prefers-reduced-motion: reduce) {
-    .cf-block {
-        opacity: 1;
-        transform: none;
-        transition: background 0.3s ease, box-shadow 0.3s ease;
-    }
-    .cf-block:hover {
-        transform: none;
-    }
-}
 
 
 /* =====================================================
@@ -3381,119 +3062,6 @@ button {
     gap: 24px;
 }
 
-/* Cards: glassmorphism oscuro — mismo estilo que .cf-block */
-.recurso-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.10);
-    border-radius: 16px;
-    padding: 36px 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    transition: border-color 0.3s ease,
-                background 0.3s ease,
-                transform 0.3s ease,
-                box-shadow 0.3s ease;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-}
-
-.recurso-card:hover {
-    border-color: rgba(255,221,0,0.35);
-    background: rgba(255,255,255,0.07);
-    transform: translateY(-4px);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.4);
-}
-
-/* Featured card: tinte amarillo sutil */
-.recurso-card--featured {
-    border-color: rgba(255,221,0,0.30);
-    background: rgba(255,221,0,0.06);
-}
-
-.recurso-card--featured:hover {
-    border-color: rgba(255,221,0,0.50);
-    background: rgba(255,221,0,0.10);
-}
-
-.recurso-card__badge {
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.5);
-    background: rgba(255,255,255,0.06);
-    padding: 4px 10px;
-    border-radius: 100px;
-    width: fit-content;
-}
-
-.recurso-card__badge--accent {
-    color: #FFDD00;
-    background: rgba(255,221,0,0.12);
-}
-
-.recurso-card__icon {
-    color: #FFDD00;
-    width: 56px;
-    height: 56px;
-    background: rgba(255,221,0,0.08);
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.recurso-card h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #fff;
-    line-height: 1.3;
-}
-
-.recurso-card p {
-    font-size: 0.92rem;
-    color: rgba(255,255,255,0.55);
-    line-height: 1.65;
-    flex: 1;
-}
-
-.recurso-card__cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    padding: 12px 20px;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: all 0.25s;
-    width: fit-content;
-    margin-top: auto;
-}
-
-.recurso-card__cta--video {
-    background: rgba(255,255,255,0.06);
-    color: #fff;
-    border: 1px solid rgba(255,255,255,0.12);
-}
-
-.recurso-card__cta--video:hover {
-    background: rgba(255,255,255,0.1);
-    border-color: rgba(255,255,255,0.2);
-}
-
-.recurso-card__cta--download {
-    background: #FFDD00;
-    color: #0a0a0a;
-    border: 1px solid #FFDD00;
-}
-
-.recurso-card__cta--download:hover {
-    background: #FFE84D;
-    transform: translateY(-1px);
-}
-
 @media (max-width: 1024px) {
     .recursos-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -3979,10 +3547,12 @@ button {
    reglas de arriba sin tener que reescribirlas. Contiene:
      1. Tokens nuevos (easing, sombras, radios)
      2. Hero: badge, métricas, CTA fantasma, scroll cue
-     3. .qph-window — chrome de ventana para los 4 videos de TRANSFORMACIÓN
-     4. .term — maqueta de consola de #recursos
-     5. cf-block: numeración + conector
-     6. Sistema genérico de scroll-reveal [data-reveal]
+     3. .term — maqueta de consola de #recursos
+     4. Sistema genérico de scroll-reveal [data-reveal]
+
+   (El chrome de ventana .qph-window y la numeración de .cf-block vivían
+    acá; salieron al migrar esas secciones al plano técnico — .pt-plate y
+    los nodos de #como-funciona los reemplazaron.)
    ═══════════════════════════════════════════════════════════════════ */
 
 :root {
@@ -4231,226 +3801,20 @@ button {
    ═════════════════════════════════════════════════════════════════ */
 
 /* La ventana ocupa el ancho completo de la card (antes: sólo columna 3) */
-.qph-card .qph-window {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    margin-top: 24px;
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #0d0d0d;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: var(--shadow-window);
-    /* Perspectiva para el tilt en hover */
-    transform-style: preserve-3d;
-    transition: transform 0.5s var(--ease-out-expo),
-                box-shadow 0.5s var(--ease-out-expo),
-                border-color 0.5s var(--ease-out-expo);
-}
 
-/* Reflejo diagonal que barre la ventana al pasar el mouse por la card */
-.qph-card .qph-window::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 3;
-    pointer-events: none;
-    background: linear-gradient(
-        115deg,
-        transparent 30%,
-        rgba(255, 255, 255, 0.10) 45%,
-        rgba(255, 221, 0, 0.08) 50%,
-        transparent 65%
-    );
-    transform: translateX(-120%);
-    transition: transform 0.9s var(--ease-out-expo);
-}
-
-.qph-card:hover .qph-window::after {
-    transform: translateX(120%);
-}
-
-.qph-card:hover .qph-window {
-    transform: perspective(1200px) rotateX(2.4deg) translateY(-6px) scale(1.012);
-    border-color: rgba(255, 221, 0, 0.35);
-    box-shadow: var(--shadow-window), var(--shadow-glow);
-}
 
 /* — Barra de título — */
-.qph-window__bar {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 9px 14px;
-    background: linear-gradient(to bottom, #1e1e1e, #171717);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    position: relative;
-    z-index: 2;
-}
 
-/* Luces de semáforo */
-.qph-window__dots {
-    display: flex;
-    gap: 6px;
-    flex-shrink: 0;
-}
-
-.qph-window__dots i {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.16);
-    transition: background 0.4s ease;
-}
-
-/* Al hacer hover se "encienden" con los colores reales, en cascada */
-.qph-card:hover .qph-window__dots i:nth-child(1) { background: #FF5F57; transition-delay: 0ms; }
-.qph-card:hover .qph-window__dots i:nth-child(2) { background: #FEBC2E; transition-delay: 60ms; }
-.qph-card:hover .qph-window__dots i:nth-child(3) { background: #28C840; transition-delay: 120ms; }
-
-.qph-window__title {
-    flex: 1;
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: rgba(255, 255, 255, 0.42);
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition: color 0.4s ease;
-}
-
-.qph-card:hover .qph-window__title {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-/* Chip "EN VIVO" con punto parpadeante */
-.qph-window__live {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    flex-shrink: 0;
-    font-family: var(--font-mono);
-    font-size: 0.58rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: rgba(255, 221, 0, 0.65);
-    padding: 3px 8px;
-    border-radius: 100px;
-    background: rgba(255, 221, 0, 0.08);
-    border: 1px solid rgba(255, 221, 0, 0.18);
-}
-
-.qph-window__live::before {
-    content: '';
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--color-accent);
-    animation: liveBlink 1.8s ease-in-out infinite;
-}
 
 @keyframes liveBlink {
     0%, 100% { opacity: 1; }
     50%      { opacity: 0.25; }
 }
 
-/* Variante navegador: la barra lleva una "URL" en vez de nombre de archivo */
-.qph-window--browser .qph-window__title {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 100px;
-    padding: 3px 12px;
-    max-width: 60%;
-    margin: 0 auto;
-}
-
-/* — El thumb ahora vive dentro de la ventana: anulamos su grid antiguo — */
-.qph-card .qph-window .qph-thumb {
-    grid-column: auto;
-    grid-row: auto;
-    margin-top: 0;
-    border-radius: 0;
-    aspect-ratio: 16 / 9;
-}
-
-/* El hover/scale ahora lo hace la ventana entera, no el thumb */
-.qph-card .qph-window .qph-thumb:hover {
-    transform: none;
-    box-shadow: none;
-}
-
-/* El ícono de play vuelve a tamaño grande — ahora hay lugar de sobra */
-.qph-card .qph-window .qph-thumb__play {
-    width: 46px;
-    height: 46px;
-}
-
-/* Caption a ancho completo, debajo de la ventana */
-.qph-card .qph-thumb__caption {
-    grid-column: 1 / -1;
-    grid-row: 3;
-    margin-top: 10px;
-    text-align: center;
-    font-size: 0.78rem;
-}
-
-/* — Animación de arranque: la ventana "bootea" al entrar en pantalla — */
-.qph-card .qph-window {
-    opacity: 0;
-    transform: perspective(1200px) rotateX(9deg) translateY(30px) scale(0.96);
-}
-
-.qph-card--visible .qph-window {
-    opacity: 1;
-    transform: perspective(1200px) rotateX(0) translateY(0) scale(1);
-    transition: opacity 0.75s var(--ease-out-expo) 0.15s,
-                transform 0.85s var(--ease-out-expo) 0.15s,
-                box-shadow 0.5s var(--ease-out-expo),
-                border-color 0.5s var(--ease-out-expo);
-}
-
-/* El video aparece un instante después que el chrome — refuerza el "boot" */
-.qph-card .qph-window .qph-thumb__media {
-    opacity: 0;
-    transition: opacity 0.6s ease 0.5s, transform 0.4s var(--ease-out-expo);
-}
-
-.qph-card--visible .qph-window .qph-thumb__media {
-    opacity: 1;
-}
-
 /* Mobile: sin tilt 3D (marea en pantallas chicas y cuesta GPU) */
-@media (max-width: 768px) {
-    .qph-card .qph-window {
-        grid-column: auto;
-        grid-row: auto;
-        margin-top: 16px;
-    }
-    .qph-card .qph-thumb__caption {
-        grid-column: auto;
-        grid-row: auto;
-    }
-    .qph-card:hover .qph-window {
-        transform: none;
-    }
-    .qph-window__live { display: none; }
-    .qph-window__title { font-size: 0.65rem; }
-    .qph-card .qph-window .qph-thumb__play {
-        width: 40px;
-        height: 40px;
-    }
-}
+
 
 @media (prefers-reduced-motion: reduce) {
-    .qph-card .qph-window,
-    .qph-card--visible .qph-window {
-        opacity: 1;
-        transform: none;
-        transition: none;
-    }
-    .qph-card .qph-window .qph-thumb__media { opacity: 1; transition: none; }
-    .qph-card .qph-window::after { display: none; }
-    .qph-window__live::before { animation: none; }
     .hero-badge__pulse::after { animation: none; }
     .hero-scroll__line::after { animation: none; }
     .hero-content-center [data-stagger] {
@@ -4472,12 +3836,6 @@ button {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04),
                 0 8px 24px rgba(0, 0, 0, 0.4);
     transition: border-color 0.35s ease, box-shadow 0.35s ease;
-}
-
-.recurso-card:hover .term {
-    border-color: rgba(255, 221, 0, 0.28);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06),
-                0 12px 30px rgba(0, 0, 0, 0.5);
 }
 
 .term__bar {
@@ -4573,15 +3931,6 @@ button {
     50%      { opacity: 0; }
 }
 
-/* La card de recursos necesita un poco más de aire con la consola adentro */
-.recurso-card {
-    gap: 14px;
-}
-
-.recurso-card p {
-    flex: 0 1 auto;
-}
-
 @media (max-width: 768px) {
     .term__body {
         font-size: 0.66rem;
@@ -4593,66 +3942,6 @@ button {
 @media (prefers-reduced-motion: reduce) {
     .term[data-term] .term__line { opacity: 1; }
     .term__line.is-typing::after { animation: none; }
-}
-
-
-/* ═══ 4. EL PROGRAMA — numeración + conector ═══════════════════════ */
-
-.cf-block {
-    position: relative;
-    overflow: hidden;
-}
-
-/* Número gigante como marca de agua en la esquina */
-.cf-block__step {
-    position: absolute;
-    top: 14px;
-    right: 20px;
-    font-family: var(--font-display);
-    font-size: 3.4rem;
-    font-weight: 700;
-    line-height: 1;
-    color: rgba(255, 255, 255, 0.05);
-    letter-spacing: -0.04em;
-    pointer-events: none;
-    transition: color 0.45s var(--ease-out-expo),
-                transform 0.45s var(--ease-out-expo);
-}
-
-.cf-block:hover .cf-block__step {
-    color: rgba(255, 221, 0, 0.14);
-    transform: translateY(-2px) scale(1.04);
-}
-
-/* Barra de acento que crece desde la izquierda al entrar en viewport */
-.cf-block::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 2px;
-    width: 100%;
-    background: linear-gradient(90deg, var(--color-accent), transparent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.8s var(--ease-out-expo);
-}
-
-.cf-block--visible::before {
-    transform: scaleX(1);
-}
-
-.cf-block--visible:nth-child(1)::before { transition-delay: 0.25s; }
-.cf-block--visible:nth-child(2)::before { transition-delay: 0.40s; }
-.cf-block--visible:nth-child(3)::before { transition-delay: 0.55s; }
-
-@media (max-width: 768px) {
-    .cf-block__step { font-size: 2.6rem; top: 10px; right: 14px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .cf-block::before { transform: scaleX(1); transition: none; }
-    .cf-block__step { transition: none; }
 }
 
 
@@ -4685,7 +3974,7 @@ button {
 /* ═══ 6. CORRECCIONES DE LA PASADA DE REVISIÓN ════════════════════ */
 
 /* Contraste: el texto blanco sobre amarillo #FFDD00 daba ~1.7:1 (ilegible).
-   En negro sube a ~15:1 y además queda consistente con .recurso-card__cta--download,
+   En negro sube a ~15:1 y además queda consistente con los CTA en amarillo,
    que ya usaba texto oscuro sobre amarillo. */
 .btn-primary-large {
     color: #0a0a0a;
@@ -4700,26 +3989,6 @@ button {
 /* Alineación: los textos "Antes"/"Con IA" tienen distinto largo, así que las
    ventanas de cada card arrancaban a distinta altura. Fijamos una altura
    mínima para la primera fila y quedan todas a la misma línea. */
-@media (min-width: 769px) {
-    .qph-card {
-        /* 144px cubre el caso más alto (3 líneas de texto + categoría, ~133px),
-           así todas las primeras filas miden lo mismo y las ventanas
-           arrancan a la misma altura en toda la grilla. */
-        grid-template-rows: minmax(144px, auto) auto auto;
-    }
-
-    /* Con la fila ya fijada, alineamos arriba en vez de centrar:
-       si un texto crece, la ventana no se desplaza. */
-    .qph-card .qph-after {
-        align-self: start;
-    }
-
-    /* La columna "Antes" se estira: así su borde derecho queda como una
-       línea divisoria de altura completa en vez de un tramo suelto. */
-    .qph-card .qph-before {
-        align-self: stretch;
-    }
-}
 
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -5767,4 +5036,37 @@ button {
     .rec-item__main p { font-size: 15px; }
     .rec-item__cta { font-size: 10.5px; letter-spacing: 0.12em; }
     .term--pt .term__body { font-size: 0.68rem; min-height: 156px; padding: 13px 13px 15px; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ███  PLANO TÉCNICO 2026 — CIERRE
+   Overrides finales. No se reescriben las reglas de arriba: se pisan acá.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Fondo del modal del curso: grilla técnica CSS, sin imagen externa ──
+   Antes era una foto de Unsplash (único uso que quedaba en el sitio y la
+   única razón por la que images.unsplash.com seguía en el CSP).           */
+.modal-bg {
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        radial-gradient(ellipse 120% 80% at 50% 0%,
+            rgba(255, 221, 0, 0.07) 0%,
+            transparent 60%);
+    background-size: 48px 48px, 48px 48px, 100% 100%;
+    background-position: center;
+    /* La foto necesitaba brightness(0.18) para no competir con el texto.
+       La grilla ya nace tenue: el filtro la borraría. */
+    filter: none;
+}
+
+/* ── Nota al pie del CTA del modal del curso ──
+   El acceso a Skool llega después del pago; conviene decirlo donde se decide. */
+.curso-cta-nota {
+    margin-top: 18px;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.45);
+    text-align: center;
 }
