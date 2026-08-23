@@ -1,0 +1,183 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 1180,
+      "title": "Lo que podés hacer con IA",
+      "page": "page-1"
+    },
+    {
+      "file": "Resultados.dc.html",
+      "x": 1560,
+      "y": 0,
+      "w": 1440,
+      "h": 1320,
+      "title": "Resultados reales",
+      "page": "page-1"
+    },
+    {
+      "file": "Recursos.dc.html",
+      "x": 0,
+      "y": 1500,
+      "w": 1440,
+      "h": 1080,
+      "title": "Recursos gratuitos",
+      "page": "page-1"
+    },
+    {
+      "file": "Programa.dc.html",
+      "x": 1560,
+      "y": 1500,
+      "w": 1440,
+      "h": 1100,
+      "title": "El Programa",
+      "page": "page-1"
+    },
+    {
+      "file": "SobreMi.dc.html",
+      "x": 0,
+      "y": 2780,
+      "w": 1440,
+      "h": 1020,
+      "title": "Sobre mí",
+      "page": "page-1"
+    },
+    {
+      "file": "PensamientoCritico.dc.html",
+      "x": 1560,
+      "y": 2780,
+      "w": 1440,
+      "h": 880,
+      "title": "Pensamiento Crítico",
+      "page": "page-1"
+    },
+    {
+      "file": "Consultoria.dc.html",
+      "x": 0,
+      "y": 3980,
+      "w": 1440,
+      "h": 900,
+      "title": "Consultoría",
+      "page": "page-1"
+    },
+    {
+      "file": "Empresas.dc.html",
+      "x": 1560,
+      "y": 3980,
+      "w": 1440,
+      "h": 840,
+      "title": "Empresas",
+      "page": "page-1"
+    },
+    {
+      "file": "HeroCelosia.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 900,
+      "page": "page-2",
+      "title": "A · Celosía paramétrica ✔ ELEGIDA"
+    },
+    {
+      "file": "HeroDiagrid.dc.html",
+      "x": 0,
+      "y": 1080,
+      "w": 1440,
+      "h": 900,
+      "page": "page-2",
+      "title": "B · Fachada de apertura"
+    },
+    {
+      "file": "HeroEstratos.dc.html",
+      "x": 0,
+      "y": 2160,
+      "w": 1440,
+      "h": 900,
+      "page": "page-2",
+      "title": "C · Estratos paramétricos"
+    }
+  ],
+  "annotations": [
+    {
+      "id": "direccion",
+      "x": -420,
+      "y": 0,
+      "w": 300,
+      "text": "DIRECCIÓN: plano técnico sobre negro pleno.\n\nFondo #000000 en las 8 secciones, sin lavados de color. Cero cajas: lo que separa el contenido es grilla técnica, reglas de 1px, cotas tipo plano y líneas que se dibujan solas.\n\nTodo funciona: clickeá pestañas, nodos y flechas. Se respeta prefers-reduced-motion.\n\nAmarillo #FFDD00, Space Grotesk + Inter, tal cual styles-v2.css.",
+      "page": "page-1"
+    },
+    {
+      "id": "videos",
+      "x": 3120,
+      "y": 0,
+      "w": 290,
+      "text": "PLACAS DE VIDEO\n\nLos .mp4 reales no se pueden reproducir acá (no hay ffmpeg para sacar fotogramas). Cada placa lleva el nombre real del archivo — honorarios-santiago.mp4, etc. — y en el sitio va el video tal como está hoy.",
+      "page": "page-1"
+    },
+    {
+      "id": "autoridad",
+      "x": -420,
+      "y": 2780,
+      "w": 300,
+      "text": "SOBRE MÍ — falta material tuyo.\n\nDejé 3 huecos marcados para el material de autoridad: un video de charla o workshop, una foto capacitando en un estudio y un testimonio en cámara. No inventé nada, están vacíos a propósito.\n\nMétricas ya actualizadas: 100+ arquitectos y 20+ empresas.",
+      "page": "page-1"
+    },
+    {
+      "id": "copy-pc",
+      "x": 3120,
+      "y": 2780,
+      "w": 290,
+      "text": "PENSAMIENTO CRÍTICO\n\nLos 4 hábitos son copy borrador mío, armado a partir de lo que ya dice el sitio (módulo 4, «que la IA ejecute cálculos, no los interprete», y «sin perder el control creativo»).\n\nRevisalos y corregí el que no te represente — se editan en el lugar.",
+      "page": "page-1"
+    },
+    {
+      "id": "hero-intro",
+      "page": "page-2",
+      "x": -430,
+      "y": 0,
+      "w": 310,
+      "text": "✔ ELEGIDA: A · CELOSÍA PARAMÉTRICA\n\nYa está implementada en el sitio real: index.html + styles-v2.css. Se eliminaron three.js y vanta (128 KB de CDN); el fondo ahora es CSS puro.\n\nLos dos botones volvieron: Agendar consulta + Ver recursos gratis.\n\nB y C quedan abajo por si se quiere volver atrás.\n\nEl plan de lo que falta está en design/PLAN.md del repo."
+    },
+    {
+      "id": "hero-a",
+      "page": "page-2",
+      "x": 1560,
+      "y": 0,
+      "w": 300,
+      "text": "A · CELOSÍA PARAMÉTRICA\n\n46 lamas verticales que abren y cierran en onda viajera, como un brise-soleil. Las líneas de entrepiso dan escala de edificio.\n\nJerarquía: centrada y monumental, igual que hoy. Es la más literal como fachada y la más cercana a lo que ya tenés.\n\nEn contra: centrado = menos jerarquía editorial, todo pesa parecido."
+    },
+    {
+      "id": "hero-b",
+      "page": "page-2",
+      "x": 1560,
+      "y": 1080,
+      "w": 300,
+      "text": "B · FACHADA DE APERTURA\n\n240 rombos que abren y cierran de verdad, con el retardo en función de (columna + fila): la onda viaja en diagonal por la fachada. Es movimiento de la estructura, no una luz pasando por encima.\n\nLa referencia son los mashrabiya paramétricos tipo Al Bahar Towers — cerramientos que se abren y cierran según el sol.\n\nJerarquía: editorial a la izquierda, un solo CTA, métricas como franja técnica abajo."
+    },
+    {
+      "id": "hero-c",
+      "page": "page-2",
+      "x": 1560,
+      "y": 2160,
+      "w": 300,
+      "text": "C · ESTRATOS PARAMÉTRICOS\n\nNueve curvas senoidales calculadas, cada una derivando a distinta velocidad. Lee como corte topográfico o sección paramétrica.\n\nJerarquía: asimétrica, título gigante a la izquierda y métricas en columna sobre el canto derecho. La más moderna y la menos vista.\n\nEn contra: la más lejos de tu diseño actual, y las curvas compiten más con el texto."
+    }
+  ],
+  "launch": {
+    "view": "canvas",
+    "page": "page-2"
+  },
+  "pages": [
+    {
+      "id": "page-2",
+      "name": "Hero — direcciones"
+    },
+    {
+      "id": "page-1",
+      "name": "Secciones aprobadas"
+    }
+  ]
+}

@@ -767,7 +767,10 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', e => {
                 e.preventDefault();
                 const driveLink = btn.dataset.drive;
-                const skillName = btn.closest('.recurso-card').querySelector('h3').textContent.trim();
+                // .rec-item es el contenedor nuevo de #recursos; .recurso-card era el viejo.
+                const card = btn.closest('.rec-item, .recurso-card');
+                const heading = card ? card.querySelector('h3') : null;
+                const skillName = heading ? heading.textContent.trim() : 'Skill';
 
                 // Pasar datos al form oculto
                 nameField.value    = skillName;
@@ -1083,4 +1086,183 @@ document.addEventListener('DOMContentLoaded', () => {
     initTerminals();
     initCounters();
     initScrollReveal();
+});
+
+
+// ═══════════════════════════════════════════════════════════════════
+// ███  PLANO TÉCNICO 2026 — interactividad de las secciones
+// ═══════════════════════════════════════════════════════════════════
+//   initPtTabs()      → #que-podes-hacer: 4 pestañas, cambia qph--nN
+//   initPtAccordion() → #casos-de-exito: acordeón, cambia res--openN
+//   initPtNodes()     → #como-funciona: nodos 01/02/03, cambia prog--nN
+//   initPtRail()      → #curso: 4 hábitos con auto-avance, cambia pc--nN
+//   initPtFases()     → #consultoria: 3 fases, cambia cons--nN
+//
+// El patrón es siempre el mismo: el estado vive en UNA clase de la
+// sección raíz, y el CSS decide qué se ve. Sin manipular estilos
+// inline, así las transiciones las maneja el CSS entero.
+// Los <button> nativos ya dan Enter/Espacio y foco, no hace falta JS.
+// ═══════════════════════════════════════════════════════════════════
+
+function ptSwapClass(root, prefix, count, index) {
+    for (let i = 0; i < count; i++) root.classList.remove(prefix + i);
+    if (index !== null) root.classList.add(prefix + index);
+}
+
+function initPtTabs() {
+    const sec = document.querySelector('[data-pt-tabs]');
+    if (!sec) return;
+    sec.querySelectorAll('.pt-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            ptSwapClass(sec, 'qph--n', 4, tab.dataset.i);
+        });
+    });
+}
+
+function initPtAccordion() {
+    const sec = document.querySelector('[data-pt-acc]');
+    if (!sec) return;
+    const casos = Array.from(sec.querySelectorAll('.pt-caso'));
+
+    function sync() {
+        casos.forEach(c => {
+            const abierto = sec.classList.contains('res--open' + c.dataset.i);
+            c.querySelector('.pt-caso__head').setAttribute('aria-expanded', abierto ? 'true' : 'false');
+        });
+    }
+
+    casos.forEach(caso => {
+        caso.querySelector('.pt-caso__head').addEventListener('click', () => {
+            const i = caso.dataset.i;
+            const yaAbierto = sec.classList.contains('res--open' + i);
+            // Clic sobre el caso abierto lo cierra
+            ptSwapClass(sec, 'res--open', casos.length, yaAbierto ? null : i);
+            sync();
+        });
+    });
+    sync();
+}
+
+function initPtNodes() {
+    const sec = document.querySelector('[data-pt-nodes]');
+    if (!sec) return;
+
+    sec.querySelectorAll('.pt-node').forEach(node => {
+        node.addEventListener('click', () => {
+            ptSwapClass(sec, 'prog--n', 3, node.dataset.i);
+        });
+    });
+
+    // El riel se dibuja recién cuando el diagrama entra en pantalla
+    const diag = sec.querySelector('.pt-diag');
+    if (!diag) return;
+    if (!('IntersectionObserver' in window)) { diag.classList.add('is-drawn'); return; }
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            diag.classList.add('is-drawn');
+            io.unobserve(entry.target);
+        });
+    }, { threshold: 0.25 });
+    io.observe(diag);
+}
+
+// Pensamiento Crítico: el rail avanza solo cada 7 s. Se pausa con el mouse
+// encima y también cuando la sección no está en pantalla — si no, el usuario
+// vuelve y encuentra el paso 3 abierto sin haber visto pasar el 1 y el 2.
+function initPtRail() {
+    const sec = document.querySelector('[data-pt-rail]');
+    if (!sec) return;
+    const rail = sec.querySelector('.pc-rail');
+    const steps = Array.from(sec.querySelectorAll('.pc-step'));
+    if (!rail || !steps.length) return;
+
+    const STEP_MS = 7000;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let index = 0;
+    let timer = null;
+    // Arranca en true a propósito: el IntersectionObserver sólo PAUSA cuando la
+    // sección sale de pantalla. Si empezara en false y el observer no llegara a
+    // disparar, el rail se quedaría clavado en el paso 01 para siempre.
+    let visible = true;
+    let held = false;
+
+    function paint() {
+        ptSwapClass(sec, 'pc--n', steps.length, index);
+        steps.forEach((step, n) => {
+            const head = step.querySelector('.pc-step__head');
+            if (head) head.setAttribute('aria-expanded', String(n === index));
+        });
+    }
+
+    function stop() {
+        if (timer) { clearInterval(timer); timer = null; }
+        rail.classList.remove('is-running');
+    }
+
+    function start() {
+        stop();
+        if (reduced || !visible || held) return;
+        rail.classList.add('is-running');
+        timer = setInterval(() => {
+            index = (index + 1) % steps.length;
+            paint();
+            // Reinicia la animación de la barra de progreso del paso nuevo
+            rail.classList.remove('is-running');
+            void rail.offsetWidth;
+            rail.classList.add('is-running');
+        }, STEP_MS);
+    }
+
+    steps.forEach(step => {
+        const head = step.querySelector('.pc-step__head');
+        if (!head) return;
+        head.addEventListener('click', () => {
+            index = Number(step.dataset.i);
+            paint();
+            start();   // al elegir a mano, el reloj arranca de cero
+        });
+    });
+
+    rail.addEventListener('mouseenter', () => { held = true; stop(); });
+    rail.addEventListener('mouseleave', () => { held = false; start(); });
+    rail.addEventListener('focusin',  () => { held = true; stop(); });
+    rail.addEventListener('focusout', () => { held = false; start(); });
+
+    paint();
+
+    // Con movimiento reducido no hay auto-avance. El pie deja de prometer que
+    // «avanza solo» y pasa a decir que los pasos se abren a mano.
+    if (reduced) { rail.classList.add('is-static'); return; }
+
+    rail.classList.add('is-visible');
+    start();
+
+    if (!('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            visible = entry.isIntersecting;
+            rail.classList.toggle('is-visible', visible);
+            if (visible) start(); else stop();
+        });
+    }, { threshold: 0.15 });
+    io.observe(rail);
+}
+
+function initPtFases() {
+    const sec = document.querySelector('[data-pt-fases]');
+    if (!sec) return;
+    sec.querySelectorAll('.cons-fase').forEach(fase => {
+        fase.addEventListener('click', () => {
+            ptSwapClass(sec, 'cons--n', 3, fase.dataset.i);
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initPtTabs();
+    initPtAccordion();
+    initPtNodes();
+    initPtRail();
+    initPtFases();
 });

@@ -56,3 +56,10 @@ Thumbs.db
 .git/
 dist/
 build/
+
+# ===========================
+# MATERIAL FUENTE (originales pesados sin optimizar)
+# Los GIFs de autoridad suman ~104 MB. Al repo sólo van los .mp4/.jpg optimizados.
+# ===========================
+images/**/_fuente/
+*:Zone.Identifier

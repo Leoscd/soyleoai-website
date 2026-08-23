@@ -85,7 +85,93 @@ ia-arquitectos-website/
 
 ---
 
-## ESTADO ACTUAL — Sesión 14/03/2026
+## ESTADO ACTUAL — Sesión 21/08/2026 · REDISEÑO «PLANO TÉCNICO»
+
+> **Plan completo y decisiones tomadas: `design/PLAN.md`. Leerlo antes de seguir.**
+> Canvas de diseño: https://claude.ai/code/artifact/66bb6a20-62f2-4e0f-b730-005dfd3240fe
+
+**Rama activa:** `feature/redesign-2026` · **sin commitear**
+
+### Hecho en esta sesión
+- [x] **Hero rediseñado** — celosía paramétrica de 46 lamas, CSS puro. Verificado a 1440 y 390 px
+- [x] **VANTA.NET + three.js eliminados** — 128 KB comprimidos de CDN, fuera
+- [x] **CSP endurecido** — `cdnjs` y `jsdelivr` fuera de `script-src` en `vercel.json`
+- [x] **Números unificados** — 100+ arquitectos y 20+ empresas en los 4 lugares (antes 50/10)
+- [x] **8 secciones diseñadas y aprobadas** en el canvas, pendientes de implementar
+- [x] `design/` — artboards fuente + `canvas.json` + `PLAN.md`
+- [x] `images/sobre-mi/` — carpeta con `LEEME.txt` para el material de autoridad de Leo
+
+- [x] **Tanda 1 completa** — `#que-podes-hacer`, `#casos-de-exito` y `#como-funciona` migradas
+- [x] Fix: el hero se solapaba con el indicador de scroll a 1366×768
+
+### Hecho el 23/08/2026 — Tanda 2a
+- [x] **Material de autoridad de Leo recibido y optimizado** — 7 piezas en `images/sobre-mi/`.
+      Llegaron como GIF (104 MB, uno de 87 MB); convertidas a H.264 pesan 3,4 MB. Los
+      originales quedan en `images/sobre-mi/_fuente/`, ignorado por git.
+- [x] **`#modalidad` — sección NUEVA «Así trabajamos»**, va justo antes de `#sobre-mi`.
+      2 sesiones reales de pantalla compartida en ventanas 16:9 con lightbox:
+      Revit + MCP (control de documentación) y app de envíos a medida.
+      No estaba en el plan; se agregó porque el material eran dos historias distintas.
+- [x] **`#sobre-mi` rediagramado** — foto grande de ExpoCon que crece para emparejar
+      columnas + tira de 3 (FAU UNT · U. de Palermo · ExpoCon), credenciales como lista
+      técnica de 1px y métricas sin caja. Se rediagramó respecto del artboard porque
+      el material real es vertical, no 3 huecos 4:3 iguales.
+- [x] **Copy de `#sobre-mi` reescrito** bajo el eje nuevo: problemas de producción e
+      integración de IA en el flujo, no «esencia creativa».
+- [x] **Datos del cliente desenfocados** en `sesion-lagos-app.mp4` — quemado en el video
+      con ffmpeg, no por CSS: tabla de órdenes, URL, marca y las 2 etiquetas con su nombre.
+- [x] Verificado a 1440, 1024 y 390 px. HTML balanceado.
+
+### Hecho el 23/08/2026 — Tandas 2b y 3
+- [x] **`#curso`** → rail de 4 hábitos de Pensamiento Crítico con auto-avance cada 7 s,
+      pausa al hover/foco y al salir de pantalla. Copy reescrito con enfoque en el cliente:
+      «Empezamos por tu problema», «Tu criterio sigue siendo tuyo», «Te enseño a verificar,
+      no a confiar», «Te queda un sistema, no un apunte». Foto de Unsplash eliminada.
+- [x] **`#consultoria`** → 3 fases sin caja; la elegida se ensancha. Línea de proceso con
+      guiones en movimiento. En mobile se apila y la fase activa se marca con regla lateral.
+- [x] **`#empresas`** → filas numeradas con velo permanente, barra de acento que crece en
+      hover y número en contorno que se rellena. Foto de Unsplash eliminada.
+- [x] **`#testimonios`** → fondo a negro pleno, igual que el resto.
+- [x] **Teléfono personal eliminado** del menú lateral y de `#contacto`. Cero ocurrencias
+      en el repo. **No volver a publicarlo.**
+- [x] **Video de Franco** rotulado correctamente: empresa de materiales de construcción.
+- [x] **`#sobre-mi`** → el texto ya no arranca con «no vengo de la arquitectura».
+
+### Hecho el 23/08/2026 — Tanda 4 (cierre de secciones)
+- [x] **`#recursos`** → filas numeradas con la consola como pieza central. Cajas fuera,
+      negro pleno, foto de Unsplash eliminada. Se descartó el carrusel del artboard.
+- [x] **`#faq`** → negro pleno.
+- [x] **`#casos-de-exito`** → el caso de Pilar salió; entró **CRM inmobiliario**, una
+      empresa de flipping: scoring de zonas, análisis por IA y bot de negociación.
+      `images/casos/crm-inmobiliario.mp4` (480 KB, venía como GIF de 2,5 MB).
+- [x] **Cache-busting** `?v=20260823` en `css/styles-v2.css` y `js/main-v2.js`.
+      **Al tocar cualquiera de los dos, subir ese número.**
+- [x] **Bug corregido**: el modal de descarga de skills buscaba `.recurso-card`, que dejó
+      de existir al rediseñar `#recursos`. Los dos botones de skill estaban rotos.
+- [x] `initPtRail()` endurecido: el IntersectionObserver sólo pausa, no habilita.
+
+### Próximo paso
+Todas las secciones están migradas. Queda el cierre:
+- Sacar `images.unsplash.com` del CSP (1 solo uso: `.modal-bg` del modal del curso)
+- Borrar `js/hero-canvas.js` — archivo muerto
+- Limpiar el CSS de las cajas viejas (`.recurso-card`, `.consultoria-card`, `.empresa-card`,
+  `.qph-card`, `.caso-card`, `.cf-block`, `.stat-box`) y sus observers muertos en el JS
+- Auditoría responsive completa + PageSpeed
+- Commit y merge a `main`
+
+### Reglas de este rediseño
+- Sin cajas: nada de contenedores con borde y fondo. Reglas de 1px, cotas y grilla.
+- Fondo `#000000` pleno en todas las secciones.
+- El CSS nuevo **se appendea** al final de `styles-v2.css` bajo su header. No se reescribe lo previo.
+- Al migrar una sección con foto de Unsplash, la foto se elimina.
+- **Eje del copy:** todo apunta a resolver problemas de producción y a integrar IA en el
+  flujo de trabajo. Nada de «esencia creativa» ni de hablar de la herramienta en abstracto.
+- **Nunca subir GIFs al sitio.** Convertir a `.mp4` H.264 (mute + loop). No hay ffmpeg
+  instalado: usar el binario de `imageio_ffmpeg` (pip, sin sudo).
+
+---
+
+## ESTADO ANTERIOR — Sesión 14/03/2026
 
 ### Completado en sesiones anteriores:
 - [x] Diseño y maquetado del sitio
@@ -142,7 +228,7 @@ ia-arquitectos-website/
 
 ## ORDEN DE SECCIONES ACTUAL (index.html)
 
-1. HERO (VANTA.NET)
+1. HERO (celosía paramétrica CSS)
 2. LO QUE PODÉS HACER — 4 cards video con fondo arquitectónico
 3. CASOS DE ÉXITO — Santiago + Pilar con videos lightbox + carrusel empresas
 4. RECURSOS GRATUITOS — video clase + 2 skills descargables con captura de email
@@ -150,7 +236,8 @@ ia-arquitectos-website/
 6. EL PROGRAMA (#como-funciona)
 7. TESTIMONIOS — carousel con 6 testimonios reales
 8. Carrusel herramientas (inferior)
-9. SOBRE MÍ
+8.5. ASÍ TRABAJAMOS (#modalidad) — 2 sesiones de trabajo reales, screen-share 16:9
+9. SOBRE MÍ — muro de autoridad: ExpoCon, FAU UNT, U. de Palermo
 10. CURSO PREVIEW (#curso) → abre modal con 9 módulos + precio oculto
 11. CONSULTORÍA — 3 cards + botón agendar con pago previo
 12. EMPRESAS — sección con imagen de fondo para corporativo
@@ -246,4 +333,4 @@ git add . && git commit -m "descripción" && git push origin feature/vanta-hero
 
 ---
 
-*Última actualización: 14/03/2026 — Mantenido por Claude Code*
+*Última actualización: 23/08/2026 — Mantenido por Claude Code*

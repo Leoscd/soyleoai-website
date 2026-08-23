@@ -1,0 +1,244 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; background: #000000; }
+    a { color: #FFDD00; text-decoration: none; }
+    a:hover { color: #FFCC00; }
+
+    .bp {
+      --accent: #FFDD00;
+      --ink: #f0f0f0;
+      --dim: rgba(255,255,255,0.62);
+      --faint: rgba(255,255,255,0.36);
+      --rule: rgba(255,255,255,0.12);
+      --exp: cubic-bezier(0.16, 1, 0.3, 1);
+      --mono: 'JetBrains Mono', 'SF Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      position: relative; background: #000000; color: var(--ink);
+      font-family: 'Inter', system-ui, sans-serif; line-height: 1.6;
+      padding: 116px 0 108px; overflow: hidden;
+    }
+    .bp::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 70% at 18% 30%, #000 12%, transparent 76%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 18% 30%, #000 12%, transparent 76%);
+    }
+    .wrap { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 48px; }
+
+    .label { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin: 0 0 16px; }
+    .title { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 60px; font-weight: 700; line-height: 1.06; letter-spacing: -0.02em; margin: 0 0 20px; }
+    .lede { margin: 0; color: var(--dim); font-size: 17px; max-width: 34ch; }
+
+    /* ── Dos columnas: título fijo a la izquierda, carrusel a la derecha ── */
+    .cols { display: grid; grid-template-columns: 0.78fr 1.22fr; gap: 96px; align-items: start; }
+
+    /* Controles del carrusel bajo el título */
+    .ctrl { margin-top: 56px; }
+    .ctrl__row { display: flex; align-items: center; gap: 16px; margin-bottom: 26px; }
+    .nav {
+      width: 52px; height: 52px; border-radius: 50%;
+      border: 1px solid var(--rule); background: none; color: var(--ink);
+      display: grid; place-items: center; cursor: pointer;
+      transition: border-color 0.35s var(--exp), color 0.35s var(--exp), transform 0.35s var(--exp);
+    }
+    .nav:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .count { font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; color: var(--faint); margin-left: 8px; }
+    .count b { color: var(--accent); font-weight: 500; }
+    .seg { display: flex; gap: 6px; }
+    .seg span { height: 2px; width: 64px; background: var(--rule); transition: background 0.45s var(--exp); }
+    .rec--n0 .seg span:nth-child(1),
+    .rec--n1 .seg span:nth-child(2),
+    .rec--n2 .seg span:nth-child(3) { background: var(--accent); }
+
+    /* Viewport del carrusel */
+    .car { overflow: hidden; }
+    .car__track { display: flex; transition: transform 0.7s var(--exp); }
+    .slide { flex: 0 0 100%; min-width: 0; padding-right: 4px; }
+
+    .badge { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); margin-bottom: 22px; }
+    .badge::before { content: ''; width: 26px; height: 1px; background: var(--accent); }
+    .badge--accent { color: var(--accent); }
+    .slide h3 { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 36px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 16px; }
+    .slide p.desc { margin: 0 0 34px; color: var(--dim); font-size: 16px; max-width: 56ch; }
+
+    /* Consola sin caja: sólo regla de acento + líneas mono */
+    .term { padding-left: 22px; border-left: 1px solid rgba(255,221,0,0.4); margin-bottom: 40px; }
+    .term__head { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--faint); margin: 0 0 14px; }
+    .term__body { display: flex; flex-direction: column; gap: 7px; font-family: var(--mono); font-size: 13.5px; line-height: 1.5; }
+    .l-cmd { color: var(--accent); overflow: hidden; white-space: nowrap; width: 0; animation: type 2.4s steps(34) 0.3s infinite; }
+    @keyframes type { 0% { width: 0; } 42% { width: 100%; } 92% { width: 100%; } 100% { width: 0; } }
+    .l-cmd::before { content: '$ '; color: var(--faint); }
+    .l-in { color: rgba(255,255,255,0.55); }
+    .l-ok { color: rgba(255,255,255,0.82); }
+    .l-ok::before { content: '✓ '; color: #4ade80; }
+    .l-dim { color: var(--faint); }
+    .l-val { color: var(--accent); font-weight: 500; }
+    .l-warn { color: #fb923c; }
+    .l-done { color: rgba(255,255,255,0.5); font-style: italic; margin-top: 4px; }
+
+    .cta {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 18px 40px; border-radius: 50px;
+      background: var(--accent); border: 2px solid var(--accent);
+      color: #0a0a0a; font-family: inherit; font-size: 15px; font-weight: 700; letter-spacing: -0.01em;
+      cursor: pointer; transition: transform 0.35s var(--exp), box-shadow 0.35s var(--exp), background 0.3s ease;
+    }
+    .cta:hover { background: #FFCC00; color: #0a0a0a; transform: translateY(-2px); box-shadow: 0 16px 44px rgba(255,221,0,0.22); }
+
+    /* Marquee de herramientas — se mantiene */
+    .marq { margin-top: 96px; padding-top: 52px; border-top: 1px solid var(--rule); }
+    .marq__label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); text-align: center; margin: 0 0 26px; }
+    .marq__mask { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+    .marq__track { display: flex; gap: 52px; width: max-content; animation: slide 30s linear infinite; }
+    @keyframes slide { to { transform: translateX(-50%); } }
+    .marq__item { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 20px; font-weight: 500; color: rgba(255,255,255,0.4); white-space: nowrap; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .l-cmd { animation: none; width: 100%; }
+      .marq__track { animation: none; }
+    }
+  </style>
+</helmet>
+
+<div class="bp rec rec--n{{i}}">
+  <div class="wrap">
+    <div class="cols">
+
+      <div class="head">
+        <p class="label">RECURSOS GRATUITOS</p>
+        <h2 class="title">Probá antes de comprometerte</h2>
+        <p class="lede">Contenido real del programa, sin costo: una clase completa y dos skills listas para usar.</p>
+
+        <div class="ctrl">
+          <div class="ctrl__row">
+            <button class="nav" onClick="{{ prev }}" aria-label="Recurso anterior">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="15 6 9 12 15 18"></polyline></svg>
+            </button>
+            <button class="nav" onClick="{{ next }}" aria-label="Recurso siguiente">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>
+            </button>
+            <span class="count"><b>{{ human }}</b> / 03</span>
+          </div>
+          <div class="seg"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+
+      <div class="car">
+        <div class="car__track" style="transform: translateX({{ shift }})">
+
+          <div class="slide">
+            <span class="badge">Video clase · 11 min</span>
+            <h3>Cómo crear tu primera Skill con Claude</h3>
+            <p class="desc">Clase grabada completa: en 11 minutos aprendés a construir una skill personalizada para automatizar tareas repetitivas en tu estudio.</p>
+            <div class="term">
+              <p class="term__head">claude code</p>
+              <div class="term__body">
+                <span class="l-cmd">claude skill create</span>
+                <span class="l-in">&gt; una skill que arme reportes de obra</span>
+                <span class="l-ok">Analizando tu flujo de trabajo</span>
+                <span class="l-ok">Skill «reporte-obra» creada</span>
+                <span class="l-dim">→ .claude/skills/reporte-obra/</span>
+                <span class="l-done">Listo en 11 min</span>
+              </div>
+            </div>
+            <a class="cta" href="https://youtu.be/7vYDKHOzATY" target="_blank" rel="noopener">
+              Ver clase gratis
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+
+          <div class="slide">
+            <span class="badge badge--accent">Skill descargable · ZIP</span>
+            <h3>Skill de Presupuestos para Claude</h3>
+            <p class="desc">La skill completa con scripts, ejemplos y documentación. Automatizá presupuestos de obra directamente desde Claude Code.</p>
+            <div class="term">
+              <p class="term__head">skill · presupuestos</p>
+              <div class="term__body">
+                <span class="l-cmd">/presupuesto duplex-42m2.xlsx</span>
+                <span class="l-ok">148 ítems computados</span>
+                <span class="l-ok">Materiales + mano de obra</span>
+                <span class="l-dim">Subtotal &nbsp;&nbsp;$ 18.420.000</span>
+                <span class="l-val">Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ 22.310.000</span>
+                <span class="l-done">Generado en 38 s</span>
+              </div>
+            </div>
+            <button class="cta">
+              Recibir skill por email
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            </button>
+          </div>
+
+          <div class="slide">
+            <span class="badge">Skill descargable</span>
+            <h3>Skill de Reportes de Obra</h3>
+            <p class="desc">Generá reportes de avance de obra completos y profesionales en minutos. Documentación lista para entregar a clientes o contratistas.</p>
+            <div class="term">
+              <p class="term__head">skill · reportes</p>
+              <div class="term__body">
+                <span class="l-cmd">/reporte-obra semana-12</span>
+                <span class="l-ok">34 fotos procesadas</span>
+                <span class="l-val">Avance 62% &nbsp;(+8% vs S11)</span>
+                <span class="l-warn">! 3 desvíos detectados</span>
+                <span class="l-dim">→ reporte-s12.pdf</span>
+                <span class="l-done">Listo para enviar</span>
+              </div>
+            </div>
+            <button class="cta">
+              Recibir skill por email
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="marq">
+      <p class="marq__label">Herramientas que usamos en el programa</p>
+      <div class="marq__mask">
+        <div class="marq__track">
+          <span class="marq__item">Claude</span><span class="marq__item">Claude Code</span><span class="marq__item">NotebookLM</span>
+          <span class="marq__item">Gemini</span><span class="marq__item">AI Studio</span><span class="marq__item">Freepik</span><span class="marq__item">Abacus.ai</span>
+          <span class="marq__item">Claude</span><span class="marq__item">Claude Code</span><span class="marq__item">NotebookLM</span>
+          <span class="marq__item">Gemini</span><span class="marq__item">AI Studio</span><span class="marq__item">Freepik</span><span class="marq__item">Abacus.ai</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { i: 0 };
+  }
+  renderVals() {
+    const n = 3;
+    const i = this.state.i;
+    return {
+      i: i,
+      shift: (-100 * i) + '%',
+      human: '0' + (i + 1),
+      prev: () => this.setState({ i: (i - 1 + n) % n }),
+      next: () => this.setState({ i: (i + 1) % n })
+    };
+  }
+}
+</script>
+</body>
+</html>

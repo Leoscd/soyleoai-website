@@ -1,0 +1,35 @@
+MATERIAL DE LA SECCIÓN «SOBRE MÍ» Y «ASÍ TRABAJAMOS»
+=====================================================
+Actualizado: 23/08/2026 — material de Leo ya cargado y optimizado.
+
+EN USO EN EL SITIO
+------------------
+  expocon-escenario.jpg   Foto grande de #sobre-mi. ExpoCon, con micrófono.
+  fau-clase.mp4           Slot 1 de la tira. FAU UNT dando clase.
+  up-foro-retrato.jpg     Slot 2 de la tira. Backdrop Universidad de Palermo.
+  expocon-charla.mp4      Slot 3 de la tira. ExpoCon, plano de escenario.
+  sesion-revit-mcp.mp4    #modalidad · SESIÓN 01. Revit + MCP, control de documentación.
+  sesion-lagos-app.mp4    #modalidad · SESIÓN 02. App de envíos. DATOS DESENFOCADOS.
+
+DISPONIBLE, SIN USAR
+--------------------
+  fau-cierre.jpg          FAU, slide "Muchas gracias" con nombre y redes.
+                          Es redundante con fau-clase.mp4. Queda de reserva.
+
+_fuente/  — Originales sin optimizar (GIFs de hasta 87 MB + JPEG de cámara).
+            NO se versionan: están en .gitignore. No borrar, son la fuente
+            si hay que re-exportar con otro recorte o calidad.
+
+SOBRE EL DESENFOQUE DE sesion-lagos-app.mp4
+-------------------------------------------
+El desenfoque está QUEMADO EN EL VIDEO, no aplicado por CSS. Cubre:
+la tabla de órdenes/lotes, la URL de la app, la marca del cliente en el
+menú lateral y las dos etiquetas con su nombre en Google Meet.
+Si hay que rehacerlo, el comando ffmpeg está en el historial de la sesión
+del 23/08/2026; la fuente es _fuente/FRANCO.gif (800×440).
+
+SI SUMÁS MATERIAL NUEVO
+-----------------------
+  Dejalo acá con el nombre que sea y avisá qué es cada cosa.
+  Videos: se convierten a .mp4 H.264 y se sirven en mute + loop.
+  NO subir GIFs al sitio: el de ExpoCon pesaba 87 MB, en .mp4 pesa 2,9 MB.

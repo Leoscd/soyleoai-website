@@ -1,0 +1,244 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; background: #000000; }
+    a { color: #FFDD00; text-decoration: none; }
+    a:hover { color: #FFCC00; }
+
+    .bp {
+      --accent: #FFDD00;
+      --ink: #f0f0f0;
+      --dim: rgba(255,255,255,0.62);
+      --faint: rgba(255,255,255,0.34);
+      --rule: rgba(255,255,255,0.12);
+      --exp: cubic-bezier(0.16, 1, 0.3, 1);
+      --mono: 'JetBrains Mono', 'SF Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      position: relative; background: #000000; color: var(--ink);
+      font-family: 'Inter', system-ui, sans-serif; line-height: 1.6;
+      padding: 116px 0 112px; overflow: hidden;
+    }
+    .bp::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(255,255,255,0.10) 1px, transparent 0);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(ellipse 78% 60% at 50% 46%, #000 8%, transparent 74%);
+      -webkit-mask-image: radial-gradient(ellipse 78% 60% at 50% 46%, #000 8%, transparent 74%);
+    }
+    .wrap { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 48px; }
+
+    .head { text-align: center; }
+    .label { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin: 0 0 16px; }
+    .title { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 60px; font-weight: 700; line-height: 1.08; letter-spacing: -0.02em; margin: 0 0 34px; }
+
+    /* Cota tipo plano */
+    .cota { display: flex; align-items: center; gap: 14px; max-width: 700px; margin: 0 auto; }
+    .cota__end { width: 1px; height: 12px; background: rgba(255,221,0,0.7); flex: none; }
+    .cota__rule { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(255,221,0,0.15), rgba(255,221,0,0.5)); }
+    .cota__rule--r { background: linear-gradient(90deg, rgba(255,221,0,0.5), rgba(255,221,0,0.15)); }
+    .cota__txt { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,221,0,0.9); white-space: nowrap; }
+
+    /* ── Diagrama de nodos ── */
+    .diag { position: relative; margin: 96px 0 0; }
+    .diag__rail { position: absolute; top: 50px; left: 16.6%; right: 16.6%; height: 1px; background: var(--rule); }
+    .diag__rail::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(90deg, var(--accent), rgba(255,221,0,0.35));
+      transform: scaleX(0); transform-origin: left center;
+      animation: rail 1.5s var(--exp) 0.25s forwards;
+    }
+    @keyframes rail { to { transform: scaleX(1); } }
+
+    .diag__nodes { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .node {
+      display: flex; flex-direction: column; align-items: center;
+      background: none; border: 0; padding: 0 24px; cursor: pointer;
+      font-family: inherit; color: inherit;
+    }
+    .node__n { height: 30px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.22em; color: var(--faint); transition: color 0.4s var(--exp); }
+    .node__dot { height: 40px; display: grid; place-items: center; }
+    .node__dot i {
+      display: block; width: 13px; height: 13px; border-radius: 50%;
+      border: 1px solid var(--rule); background: #000000;
+      transition: background 0.45s var(--exp), border-color 0.45s var(--exp), box-shadow 0.45s var(--exp), transform 0.45s var(--exp);
+    }
+    .node__t {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-size: 21px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.25;
+      color: var(--faint); margin-top: 12px; text-align: center;
+      transition: color 0.4s var(--exp);
+    }
+    .node:hover .node__t { color: rgba(255,255,255,0.8); }
+    /* Línea de bajada punteada desde el nodo activo */
+    .node__drop {
+      width: 1px; height: 0; margin-top: 16px;
+      background: repeating-linear-gradient(180deg, rgba(255,221,0,0.75) 0 4px, transparent 4px 9px);
+      transition: height 0.5s var(--exp);
+    }
+    .prog--n0 .node[data-i="0"] .node__n, .prog--n1 .node[data-i="1"] .node__n, .prog--n2 .node[data-i="2"] .node__n { color: var(--accent); }
+    .prog--n0 .node[data-i="0"] .node__t, .prog--n1 .node[data-i="1"] .node__t, .prog--n2 .node[data-i="2"] .node__t { color: var(--ink); }
+    .prog--n0 .node[data-i="0"] .node__dot i, .prog--n1 .node[data-i="1"] .node__dot i, .prog--n2 .node[data-i="2"] .node__dot i {
+      background: var(--accent); border-color: var(--accent); transform: scale(1.25);
+      box-shadow: 0 0 0 5px rgba(255,221,0,0.14), 0 0 22px rgba(255,221,0,0.6);
+    }
+    .prog--n0 .node[data-i="0"] .node__drop, .prog--n1 .node[data-i="1"] .node__drop, .prog--n2 .node[data-i="2"] .node__drop { height: 52px; }
+
+    /* ── Panel de detalle ── */
+    .detail { display: grid; margin-top: 20px; }
+    .dpanel {
+      grid-area: 1 / 1;
+      display: grid; grid-template-columns: 96px 1fr; gap: 40px; align-items: start;
+      max-width: 880px; margin: 0 auto; padding-top: 44px;
+      border-top: 1px solid var(--rule);
+      opacity: 0; visibility: hidden; transform: translateY(14px);
+      transition: opacity 0.5s var(--exp), transform 0.5s var(--exp), visibility 0s linear 0.5s;
+    }
+    .prog--n0 .dpanel[data-i="0"], .prog--n1 .dpanel[data-i="1"], .prog--n2 .dpanel[data-i="2"] {
+      opacity: 1; visibility: visible; transform: none; transition-delay: 0.08s;
+    }
+    .dpanel__ico { color: var(--accent); }
+    .dpanel__ico svg * { stroke-dasharray: 240; stroke-dashoffset: 240; }
+    .prog--n0 .dpanel[data-i="0"] svg *, .prog--n1 .dpanel[data-i="1"] svg *, .prog--n2 .dpanel[data-i="2"] svg * {
+      animation: draw 1.3s var(--exp) 0.15s forwards;
+    }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    .dpanel h3 { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 27px; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 14px; }
+    .dpanel p { margin: 0 0 22px; color: var(--dim); font-size: 17px; line-height: 1.65; }
+    .tag { display: inline-flex; align-items: center; gap: 12px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,221,0,0.9); }
+    .tag::before { content: ''; width: 24px; height: 1px; background: rgba(255,221,0,0.6); }
+
+    .foot { text-align: center; margin-top: 88px; }
+    .cta {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 20px 48px; border-radius: 50px;
+      background: var(--accent); border: 2px solid var(--accent);
+      color: #0a0a0a; font-family: inherit; font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
+      cursor: pointer; transition: transform 0.35s var(--exp), box-shadow 0.35s var(--exp), background 0.3s ease;
+    }
+    .cta:hover { background: #FFCC00; transform: translateY(-2px); box-shadow: 0 16px 48px rgba(255,221,0,0.24); }
+    .foot p { margin: 18px 0 0; font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .diag__rail::after { animation: none; transform: scaleX(1); }
+      .dpanel svg * { stroke-dashoffset: 0 !important; animation: none !important; }
+    }
+  </style>
+</helmet>
+
+<div class="bp prog prog--n{{i}}">
+  <div class="wrap">
+
+    <div class="head">
+      <p class="label">EL PROGRAMA</p>
+      <h2 class="title">Un sistema construido para tu estudio</h2>
+      <div class="cota">
+        <span class="cota__end"></span>
+        <span class="cota__rule"></span>
+        <span class="cota__txt">6 semanas · 12 encuentros · Acompañamiento directo</span>
+        <span class="cota__rule cota__rule--r"></span>
+        <span class="cota__end"></span>
+      </div>
+    </div>
+
+    <div class="diag">
+      <div class="diag__rail"></div>
+      <div class="diag__nodes">
+        <button class="node" data-i="0" onClick="{{ p0 }}">
+          <span class="node__n">01</span>
+          <span class="node__dot"><i></i></span>
+          <span class="node__t">El programa</span>
+          <span class="node__drop"></span>
+        </button>
+        <button class="node" data-i="1" onClick="{{ p1 }}">
+          <span class="node__n">02</span>
+          <span class="node__dot"><i></i></span>
+          <span class="node__t">Aula + Comunidad</span>
+          <span class="node__drop"></span>
+        </button>
+        <button class="node" data-i="2" onClick="{{ p2 }}">
+          <span class="node__n">03</span>
+          <span class="node__dot"><i></i></span>
+          <span class="node__t">Acceso permanente</span>
+          <span class="node__drop"></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="detail">
+      <div class="dpanel" data-i="0">
+        <span class="dpanel__ico">
+          <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+        </span>
+        <div>
+          <h3>El programa</h3>
+          <p>Construimos juntos un sistema que se adapta a tu estudio o empresa, enfocado en eliminar las tareas repetitivas, tediosas y propensas a error humano. Con mi acompañamiento directo en cada encuentro.</p>
+          <span class="tag">12 encuentros · 6 semanas</span>
+        </div>
+      </div>
+
+      <div class="dpanel" data-i="1">
+        <span class="dpanel__ico">
+          <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </span>
+        <div>
+          <h3>Aula + Comunidad</h3>
+          <p>Accedés al aula Skool con clases grabadas y herramientas listas para usar desde el día uno. Más una comunidad exclusiva de arquitectos y empresas enfocados en optimizar sus procesos.</p>
+          <span class="tag">Acceso inmediato</span>
+        </div>
+      </div>
+
+      <div class="dpanel" data-i="2">
+        <span class="dpanel__ico">
+          <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+            <path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.133-8-12.739-8-4.585 0-4.585 8 0 8 5.606 0 7.644-8 12.739-8z"></path>
+          </svg>
+        </span>
+        <div>
+          <h3>Acceso permanente</h3>
+          <p>Cuando terminás tus 12 encuentros, el acceso no se corta. Seguís con todas las clases, recursos y actualizaciones futuras que incorpore el programa.</p>
+          <span class="tag">Sin fecha de vencimiento</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <button class="cta">Quiero transformar mi estudio</button>
+      <p>Próxima cohorte · Cupos limitados</p>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { i: 0 };
+  }
+  renderVals() {
+    const pick = (n) => () => this.setState({ i: n });
+    return { i: this.state.i, p0: pick(0), p1: pick(1), p2: pick(2) };
+  }
+}
+</script>
+</body>
+</html>
