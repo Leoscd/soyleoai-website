@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía gratis: tu Skill de Presupuestos · SoyLeo AI</title>
+<meta name="description" content="Armá tu asistente de cómputos y presupuestos en Claude, sin programar. Guía paso a paso gratuita del Arq. Leonardo Díaz.">
+<meta property="og:title" content="Armá tu propia Skill de Presupuestos en Claude">
+<meta property="og:description" content="Guía paso a paso gratuita para arquitectos y constructores. Sin programar.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://soyleoai.com/recursos/presupuestos">
+<link rel="canonical" href="https://soyleoai.com/recursos/presupuestos">
+<link rel="icon" href="/favicon.ico">
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E3NEPPHYCB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E3NEPPHYCB');
+</script>
+<!-- Microsoft Clarity -->
+<script>
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "w1hoo2jpu8");
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+  // ===== CONFIGURACIÓN — completá estos 3 valores =====
+  window.CONFIG = {
+    ENDPOINT: "",          // URL de la Web App de Google Apps Script (termina en /exec)
+    PIXEL_ID: "",          // ID del Pixel de Meta (solo números). Vacío = sin pixel
+    PDF_URL: "/recursos/presupuestos/guia-skill-presupuestos.pdf"
+  };
+</script>
+<script>
+  // Meta Pixel (solo carga si hay PIXEL_ID)
+  if (window.CONFIG.PIXEL_ID) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', window.CONFIG.PIXEL_ID);
+    fbq('track', 'PageView');
+  }
+</script>
+<style>
+  :root {
+    --gold: #C4981F; --gold-soft: #c4981f22;
+    --bg: #0b0b0b; --surface: #151515; --line: #2a2a2a;
+    --text: #f3f1ec; --muted: #a09c93; --error: #ff7a6b;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: var(--bg); color: var(--text); font: 16px/1.55 Inter, system-ui, sans-serif; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 32px 16px 64px; }
+  header.top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; font-size: 14px; color: var(--muted); }
+  .brand { text-decoration: none; font-family: "Space Grotesk"; font-weight: 700; color: var(--text); letter-spacing: .12em; }
+  .brand b { color: var(--gold); }
+  .grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+  @media (min-width: 900px) { .grid { grid-template-columns: 1fr 1.05fr; gap: 56px; align-items: start; } .hero { position: sticky; top: 32px; } }
+  .eyebrow { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); padding: 4px 10px; margin-bottom: 18px; }
+  h1 { font-family: "Space Grotesk"; font-size: clamp(32px, 6vw, 52px); line-height: 1.05; margin: 0 0 16px; letter-spacing: -.02em; }
+  h1 em { font-style: normal; color: var(--gold); }
+  .lead { color: var(--muted); font-size: 18px; margin: 0 0 28px; max-width: 46ch; }
+  ul.bul { list-style: none; padding: 0; margin: 0 0 28px; }
+  ul.bul li { padding: 10px 0 10px 30px; border-top: 1px solid var(--line); position: relative; }
+  ul.bul li::before { content: "→"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .author { font-size: 14px; color: var(--muted); }
+  .author strong { color: var(--text); }
+
+  .card { background: var(--surface); border: 1px solid var(--line); padding: 28px 20px; }
+  @media (min-width: 600px) { .card { padding: 36px; } }
+  .progress { display: flex; gap: 6px; margin-bottom: 8px; }
+  .progress span { flex: 1; height: 3px; background: var(--line); transition: background .3s; }
+  .progress span.on { background: var(--gold); }
+  .step-label { font-size: 12px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 20px; }
+  h2 { font-family: "Space Grotesk"; font-size: 24px; margin: 0 0 22px; }
+  fieldset { border: 0; padding: 0; margin: 0; }
+  .step { display: none; } .step.active { display: block; animation: fade .3s; }
+  @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .field { margin-bottom: 20px; }
+  .field > label, .field > legend { display: block; font-weight: 600; font-size: 15px; margin-bottom: 8px; }
+  .hint { font-weight: 400; color: var(--muted); font-size: 13px; }
+  input[type=text], input[type=email], input[type=tel], select {
+    width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--line);
+    padding: 13px 14px; font: inherit; border-radius: 0; appearance: none;
+  }
+  select { background-image: linear-gradient(45deg, transparent 50%, var(--gold) 50%), linear-gradient(135deg, var(--gold) 50%, transparent 50%);
+    background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
+  input:focus, select:focus { outline: none; border-color: var(--gold); }
+  .row2 { display: grid; grid-template-columns: 1fr; gap: 0 14px; }
+  @media (min-width: 600px) { .row2 { grid-template-columns: 1fr 1fr; } }
+  .opts { display: grid; gap: 8px; }
+  .opts.two { grid-template-columns: 1fr; }
+  @media (min-width: 600px) { .opts.two { grid-template-columns: 1fr 1fr; } }
+  .opt { position: relative; }
+  .opt input { position: absolute; opacity: 0; pointer-events: none; }
+  .opt span { display: block; border: 1px solid var(--line); padding: 11px 14px; cursor: pointer; font-size: 15px; transition: border-color .15s, background .15s; }
+  .opt span:hover { border-color: #555; }
+  .opt input:checked + span { border-color: var(--gold); background: var(--gold-soft); }
+  .opt input:focus-visible + span { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--muted); margin-bottom: 12px; cursor: pointer; }
+  .check input { accent-color: var(--gold); width: 18px; height: 18px; margin-top: 2px; flex: none; }
+  .actions { display: flex; gap: 10px; margin-top: 26px; }
+  button { font: 600 16px Inter, sans-serif; padding: 15px 22px; border: 0; cursor: pointer; border-radius: 0; }
+  .btn-primary { background: var(--gold); color: #0b0b0b; flex: 1; }
+  .btn-primary:hover { filter: brightness(1.08); }
+  .btn-primary:disabled { opacity: .6; cursor: wait; }
+  .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+  .err { color: var(--error); font-size: 13px; margin-top: 6px; display: none; }
+  .field.invalid .err { display: block; }
+  .field.invalid input, .field.invalid select { border-color: var(--error); }
+  .hidden { display: none !important; }
+  .privacy { font-size: 12px; color: var(--muted); margin-top: 14px; text-align: center; }
+  .done { text-align: center; padding: 12px 0; }
+  .done .big { font-size: 44px; color: var(--gold); }
+  .done a.btn-primary { color: #0b0b0b; font-weight: 600; display: block; text-decoration: none; padding: 16px; margin: 22px 0 12px; }
+  .done p { color: var(--muted); }
+  .done p a { color: var(--gold); }
+  .jump { display: block; text-align: center; text-decoration: none; padding: 15px; margin-bottom: 24px; font-weight: 600; }
+  @media (min-width: 900px) { .jump { display: none; } }
+  footer { text-align: center; font-size: 13px; color: var(--muted); margin-top: 48px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/">SOYLEO <b>AI</b></a>
+    <div>@soy.leo_ai</div>
+  </header>
+
+  <div class="grid">
+    <section class="hero">
+      <div class="eyebrow">Guía gratuita · PDF</div>
+      <h1>Armá tu propia <em>Skill de Presupuestos</em> en Claude</h1>
+      <p class="lead">Un asistente que calcula cómputos y presupuestos con <strong>tu</strong> base de precios y <strong>tus</strong> criterios. Sin programar.</p>
+      <ul class="bul">
+        <li>Paso a paso para activar Skills en Claude (sirve la cuenta Free)</li>
+        <li>Cómo armar tu base de precios en Excel para que Claude la lea</li>
+        <li>Plantilla del instructivo lista para copiar y adaptar</li>
+        <li>30 a 40 minutos la primera vez. Después, presupuestos en segundos</li>
+      </ul>
+      <a href="#lead" class="btn-primary jump">Quiero la guía gratis ↓</a>
+      <p class="author"><strong>Arq. Leonardo Díaz</strong> · Arquitecto y científico de datos. Ayudo a estudios y constructores a trabajar con IA.</p>
+    </section>
+
+    <section class="card" aria-live="polite">
+      <form id="lead" novalidate>
+        <div id="formHead">
+          <div class="progress"><span class="on"></span><span></span><span></span></div>
+          <div class="step-label" id="stepLabel">Paso 1 de 3</div>
+        </div>
+
+        <!-- PASO 1 -->
+        <fieldset class="step active" data-step="1">
+          <h2>¿A dónde te mando la guía?</h2>
+          <div class="field">
+            <label for="nombre">Nombre y apellido</label>
+            <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+            <div class="err">Contame tu nombre.</div>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+            <div class="err">Revisá el email, parece incompleto.</div>
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label for="pais">País</label>
+              <select id="pais" name="pais" required>
+                <option value="">Elegí…</option>
+                <option>Argentina</option><option>México</option><option>Colombia</option><option>Chile</option>
+                <option>Perú</option><option>Uruguay</option><option>Paraguay</option><option>Bolivia</option>
+                <option>Ecuador</option><option>Venezuela</option><option>Costa Rica</option><option>Panamá</option>
+                <option>Guatemala</option><option>República Dominicana</option><option>España</option>
+                <option>Estados Unidos</option><option>Otro</option>
+              </select>
+              <div class="err">Elegí tu país.</div>
+            </div>
+            <div class="field">
+              <label for="ciudad">Ciudad / provincia</label>
+              <input type="text" id="ciudad" name="ciudad" autocomplete="address-level2" required>
+              <div class="err">Indicá tu ciudad.</div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="whatsapp">WhatsApp <span class="hint">(opcional, con código de país)</span></label>
+            <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel" placeholder="+54 9 11 1234 5678">
+          </div>
+        </fieldset>
+
+        <!-- PASO 2 -->
+        <fieldset class="step" data-step="2">
+          <h2>Contame de tu trabajo</h2>
+          <div class="field" data-radio="perfil">
+            <legend>¿A qué te dedicás?</legend>
+            <div class="opts two">
+              <label class="opt"><input type="radio" name="perfil" value="Arquitecto/a independiente"><span>Arquitecto/a independiente</span></label>
+              <label class="opt"><input type="radio" name="perfil" value="Estudio de arquitectura"><span>Estudio de arquitectura</span></label>
+              <label class="opt"><input type="radio" name="perfil" value="Constructora / MMO / contratista"><span>Constructora / MMO</span></label>
+              <label class="opt"><input type="radio" name="perfil" value="Ingeniero/a / técnico/a"><span>Ingeniero/a / técnico/a</span></label>
+              <label class="opt"><input type="radio" name="perfil" value="Estudiante"><span>Estudiante</span></label>
+              <label class="opt"><input type="radio" name="perfil" value="Otro"><span>Otro</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="field" data-radio="equipo">
+            <legend>¿Cuántas personas trabajan con vos?</legend>
+            <div class="opts two">
+              <label class="opt"><input type="radio" name="equipo" value="Solo/a"><span>Trabajo solo/a</span></label>
+              <label class="opt"><input type="radio" name="equipo" value="2-5"><span>2 a 5</span></label>
+              <label class="opt"><input type="radio" name="equipo" value="6-15"><span>6 a 15</span></label>
+              <label class="opt"><input type="radio" name="equipo" value="+15"><span>Más de 15</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="field" data-radio="nivel_ia">
+            <legend>¿Cómo usás la IA hoy?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="nivel_ia" value="Nunca la usé"><span>Todavía no la uso</span></label>
+              <label class="opt"><input type="radio" name="nivel_ia" value="Ocasional (ChatGPT/Claude para textos)"><span>De vez en cuando, para textos o consultas</span></label>
+              <label class="opt"><input type="radio" name="nivel_ia" value="Frecuente en el trabajo"><span>Seguido, es parte de mi trabajo</span></label>
+              <label class="opt"><input type="radio" name="nivel_ia" value="Ya automatizo procesos"><span>Ya armé automatizaciones o asistentes</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="field" data-check="dolor">
+            <legend>¿Qué tareas te gustaría resolver con IA? <span class="hint">(elegí hasta 3)</span></legend>
+            <div class="opts two">
+              <label class="opt"><input type="checkbox" name="dolor" value="Cómputos y presupuestos"><span>Cómputos y presupuestos</span></label>
+              <label class="opt"><input type="checkbox" name="dolor" value="Documentación / planos (Revit, CAD)"><span>Documentación y planos</span></label>
+              <label class="opt"><input type="checkbox" name="dolor" value="Renders e imágenes"><span>Renders e imágenes</span></label>
+              <label class="opt"><input type="checkbox" name="dolor" value="Seguimiento de obra / reportes"><span>Seguimiento de obra</span></label>
+              <label class="opt"><input type="checkbox" name="dolor" value="Propuestas y atención a clientes"><span>Propuestas y clientes</span></label>
+              <label class="opt"><input type="checkbox" name="dolor" value="Marketing y redes"><span>Marketing y redes</span></label>
+              <label class="opt"><input type="checkbox" name="dolor" value="Normativa / cálculos técnicos"><span>Normativa y cálculos</span></label>
+              <label class="opt"><input type="checkbox" name="dolor" value="Administración / gestión del estudio"><span>Gestión del estudio</span></label>
+            </div>
+            <div class="err">Elegí entre 1 y 3.</div>
+          </div>
+          <div class="field">
+            <label for="software">¿Qué software usás principalmente?</label>
+            <select id="software" name="software">
+              <option value="">Elegí…</option>
+              <option>Revit</option><option>AutoCAD</option><option>ArchiCAD</option><option>SketchUp</option>
+              <option>Rhino</option><option>Solo Excel / planillas</option><option>Otro</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <!-- PASO 3 -->
+        <fieldset class="step" data-step="3">
+          <h2>Lo último: ¿qué te sirve más?</h2>
+          <div class="field" data-radio="preferencia">
+            <legend>Si pudieras tener tus propios sistemas con IA, preferirías…</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="preferencia" value="Aprender a armarlos"><span>Aprender a armarlos yo</span></label>
+              <label class="opt"><input type="radio" name="preferencia" value="Contratarlos armados"><span>Que me los armen listos para usar</span></label>
+              <label class="opt"><input type="radio" name="preferencia" value="Ambas"><span>Las dos: que me lo armen y aprender a mantenerlo</span></label>
+              <label class="opt"><input type="radio" name="preferencia" value="Explorando"><span>Por ahora solo estoy explorando</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="field hidden" data-radio="inversion_capacitacion" id="qCap">
+            <legend>¿Cuánto invertirías en una capacitación práctica? <span class="hint">(USD)</span></legend>
+            <div class="opts two">
+              <label class="opt"><input type="radio" name="inversion_capacitacion" value="<300"><span>Hasta 300</span></label>
+              <label class="opt"><input type="radio" name="inversion_capacitacion" value="300-500"><span>300 a 500</span></label>
+              <label class="opt"><input type="radio" name="inversion_capacitacion" value="500-800"><span>500 a 800</span></label>
+              <label class="opt"><input type="radio" name="inversion_capacitacion" value="800+"><span>Más de 800</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="field hidden" data-radio="inversion_sistema" id="qSis">
+            <legend>¿Cuánto invertirías en un sistema a medida para tu estudio? <span class="hint">(USD)</span></legend>
+            <div class="opts two">
+              <label class="opt"><input type="radio" name="inversion_sistema" value="<1000"><span>Hasta 1.000</span></label>
+              <label class="opt"><input type="radio" name="inversion_sistema" value="1000-2000"><span>1.000 a 2.000</span></label>
+              <label class="opt"><input type="radio" name="inversion_sistema" value="2000-3000"><span>2.000 a 3.000</span></label>
+              <label class="opt"><input type="radio" name="inversion_sistema" value="3000+"><span>Más de 3.000</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="field" data-radio="plazo">
+            <legend>¿Cuándo te gustaría empezar?</legend>
+            <div class="opts two">
+              <label class="opt"><input type="radio" name="plazo" value="Este mes"><span>Este mes</span></label>
+              <label class="opt"><input type="radio" name="plazo" value="1-3 meses"><span>En 1 a 3 meses</span></label>
+              <label class="opt"><input type="radio" name="plazo" value="+3 meses"><span>Más adelante</span></label>
+              <label class="opt"><input type="radio" name="plazo" value="Sin fecha"><span>No lo tengo definido</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="field">
+            <label for="origen">¿Cómo llegaste acá?</label>
+            <select id="origen" name="origen">
+              <option value="">Elegí…</option>
+              <option>Instagram</option><option>Anuncio</option><option>Me lo recomendaron</option>
+              <option>Google</option><option>LinkedIn</option><option>YouTube</option><option>Otro</option>
+            </select>
+          </div>
+          <label class="check"><input type="checkbox" name="quiere_llamada" value="si"> Quiero una videollamada gratuita de 20 min para ver qué podría automatizar en mi trabajo.</label>
+          <div class="field" data-consent>
+            <label class="check"><input type="checkbox" name="consentimiento" value="si" id="consent"> Acepto recibir la guía y novedades de SoyLeo AI por email. Me puedo dar de baja cuando quiera.</label>
+            <div class="err">Necesitamos tu OK para enviarte la guía.</div>
+          </div>
+        </fieldset>
+
+        <!-- ocultos: atribución -->
+        <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium">
+        <input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content">
+        <input type="hidden" name="fbclid"><input type="hidden" name="recurso" value="guia-skill-presupuestos">
+        <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off"><!-- honeypot -->
+
+        <div class="actions" id="actions">
+          <button type="button" class="btn-ghost hidden" id="back">Atrás</button>
+          <button type="submit" class="btn-primary" id="next">Continuar</button>
+        </div>
+        <p class="privacy">Tus datos no se comparten con nadie.</p>
+      </form>
+
+      <div class="done hidden" id="done">
+        <div class="big">✓</div>
+        <h2>¡Listo, <span id="doneName"></span>!</h2>
+        <p>Tu guía ya está disponible. También te la mandé por email.</p>
+        <a class="btn-primary" id="dl" href="#" download>Descargar la guía (PDF)</a>
+        <p>Mientras tanto, en <a href="https://instagram.com/soy.leo_ai" target="_blank" rel="noopener">@soy.leo_ai</a> comparto cómo aplicarla en casos reales.</p>
+      </div>
+    </section>
+  </div>
+  <footer>© SoyLeo AI · Arq. Leonardo Díaz</footer>
+</div>
+
+<script>
+(() => {
+  const form = document.getElementById('lead');
+  const steps = [...form.querySelectorAll('.step')];
+  const bars = [...document.querySelectorAll('.progress span')];
+  const back = document.getElementById('back'), next = document.getElementById('next');
+  let cur = 0;
+
+  // UTM / fbclid
+  const qs = new URLSearchParams(location.search);
+  ['utm_source','utm_medium','utm_campaign','utm_content','fbclid'].forEach(k => {
+    if (qs.get(k)) form.elements[k].value = qs.get(k);
+  });
+
+  // Preguntas condicionales de inversión
+  const qCap = document.getElementById('qCap'), qSis = document.getElementById('qSis');
+  form.querySelectorAll('input[name=preferencia]').forEach(r => r.addEventListener('change', () => {
+    const v = r.value;
+    qCap.classList.toggle('hidden', v === 'Contratarlos armados');
+    qSis.classList.toggle('hidden', v === 'Aprender a armarlos');
+  }));
+
+  // Máximo 3 tareas
+  const dolor = [...form.querySelectorAll('input[name=dolor]')];
+  dolor.forEach(c => c.addEventListener('change', () => {
+    const n = dolor.filter(x => x.checked).length;
+    dolor.forEach(x => { if (!x.checked) x.disabled = n >= 3; x.nextElementSibling.style.opacity = x.disabled ? .4 : 1; });
+  }));
+
+  function validate(step) {
+    let ok = true;
+    step.querySelectorAll('.field').forEach(f => {
+      if (f.classList.contains('hidden')) return;
+      let valid = true;
+      const input = f.querySelector('input[required], select[required]');
+      if (input) valid = input.type === 'email' ? /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(input.value.trim()) : input.value.trim() !== '';
+      if (f.dataset.radio) valid = !!f.querySelector('input:checked');
+      if (f.dataset.check) { const n = f.querySelectorAll('input:checked').length; valid = n >= 1 && n <= 3; }
+      if ('consent' in f.dataset) valid = document.getElementById('consent').checked;
+      f.classList.toggle('invalid', !valid);
+      if (!valid && ok) { ok = false; f.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    });
+    return ok;
+  }
+  form.addEventListener('change', e => { const f = e.target.closest('.field'); if (f) f.classList.remove('invalid'); });
+
+  function show(i) {
+    steps[cur].classList.remove('active');
+    cur = i;
+    steps[cur].classList.add('active');
+    bars.forEach((b, j) => b.classList.toggle('on', j <= cur));
+    document.getElementById('stepLabel').textContent = `Paso ${cur + 1} de ${steps.length}`;
+    back.classList.toggle('hidden', cur === 0);
+    next.textContent = cur === steps.length - 1 ? 'Descargar la guía' : 'Continuar';
+    form.closest('.card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  back.addEventListener('click', () => show(cur - 1));
+
+  function collect() {
+    const data = {};
+    new FormData(form).forEach((v, k) => { data[k] = data[k] ? data[k] + ' | ' + v : v; });
+    if (qCap.classList.contains('hidden')) delete data.inversion_capacitacion;
+    if (qSis.classList.contains('hidden')) delete data.inversion_sistema;
+    data.pagina = location.href.split('?')[0];
+    return data;
+  }
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!validate(steps[cur])) return;
+    if (cur < steps.length - 1) {
+      if (cur === 0 && window.fbq) fbq('trackCustom', 'LeadPaso1');
+      return show(cur + 1);
+    }
+    const data = collect();
+    if (data.website) return; // bot
+    next.disabled = true; next.textContent = 'Enviando…';
+    try {
+      if (window.CONFIG.ENDPOINT) {
+        await fetch(window.CONFIG.ENDPOINT, {
+          method: 'POST', mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(data)
+        });
+      } else {
+        console.warn('Sin ENDPOINT configurado. Datos:', data);
+      }
+    } catch (err) { console.error(err); }
+    if (window.fbq) fbq('track', 'Lead', {
+      content_name: 'guia-skill-presupuestos',
+      preferencia: data.preferencia, perfil: data.perfil, pais: data.pais,
+      inversion_sistema: data.inversion_sistema || '', inversion_capacitacion: data.inversion_capacitacion || ''
+    });
+    if (window.gtag) gtag('event', 'generate_lead', { lead_source: 'guia-skill-presupuestos', preferencia: data.preferencia || '' });
+    form.classList.add('hidden');
+    document.getElementById('doneName').textContent = (data.nombre || '').split(' ')[0];
+    document.getElementById('dl').href = window.CONFIG.PDF_URL;
+    document.getElementById('done').classList.remove('hidden');
+  });
+})();
+</script>
+</body>
+</html>
