@@ -10,7 +10,23 @@
       "Plantilla del instructivo lista para copiar y adaptar",
       "30 a 40 minutos la primera vez. Después, presupuestos en segundos"
     ],
-    "pdf": "/recursos/archivos/presupuestos.pdf",
-    "fecha": "2026-09-17"
+    "fecha": "2026-09-17",
+    "archivo": "/recursos/archivos/presupuestos.pdf",
+    "formato": "PDF"
+  },
+  {
+    "slug": "exportar-cad",
+    "etiqueta": "Herramienta gratuita · ZIP",
+    "titulo": "Exportá de *Revit a AutoCAD* sin configurar nada",
+    "bajada": "Un botón para pyRevit que exporta láminas y vistas a DWG con las capas agrupadas y la expresión gráfica de Revit intacta.",
+    "bullets": [
+      "Exporta láminas completas o vistas sueltas, en un solo paso",
+      "36 grupos de capas ya armados (MUROS, CARP-PUERTAS, ROTULO…) y editables desde un archivo de texto",
+      "Colores, halftones y grosores correctos: en AutoCAD no configurás nada",
+      "Instalación en 3 pasos. Necesitás Revit 2020–2026 y pyRevit (gratis)"
+    ],
+    "archivo": "/recursos/archivos/exportar-cad.zip",
+    "formato": "ZIP",
+    "fecha": "2026-09-18"
   }
 ]

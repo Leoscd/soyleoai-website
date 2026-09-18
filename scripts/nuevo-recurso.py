@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""Agrega un recurso descargable a soyleoai.com/recursos.
+"""Agrega un recurso descargable (PDF, ZIP, XLSX...) a soyleoai.com/recursos.
 
 Uso mínimo (todo lo demás se pregunta):
     python scripts/nuevo-recurso.py "C:/Users/leona/Downloads/Mi-Guia.pdf"
+    python scripts/nuevo-recurso.py "C:/Users/leona/Downloads/Herramienta.zip"
 
 Uso directo:
     python scripts/nuevo-recurso.py archivo.pdf --slug revit --titulo "Automatizá *Revit* con IA" \
@@ -44,15 +45,15 @@ def preguntar(etiqueta, obligatorio=True, defecto=""):
 
 def main():
     p = argparse.ArgumentParser(description="Agrega un recurso descargable a /recursos")
-    p.add_argument("pdf", help="Ruta al PDF que querés entregar")
+    p.add_argument("archivo", help="Ruta al archivo que querés entregar (PDF, ZIP, XLSX...)")
     p.add_argument("--slug", help="Parte final de la URL, ej: revit")
     p.add_argument("--titulo", help="Título del hero. Usá *asteriscos* para la parte dorada")
     p.add_argument("--bajada", help="Frase debajo del título")
     p.add_argument("--bullet", action="append", default=[], help="Viñeta (repetir la opción)")
-    p.add_argument("--etiqueta", default="Guía gratuita · PDF", help="Texto del recuadro superior")
+    p.add_argument("--etiqueta", help="Texto del recuadro superior (por defecto según el formato)")
     args = p.parse_args()
 
-    origen = Path(args.pdf).expanduser()
+    origen = Path(args.archivo).expanduser()
     if not origen.is_file():
         sys.exit(f"No encuentro el archivo: {origen}")
 
@@ -73,16 +74,19 @@ def main():
             bullets.append(b)
 
     ARCHIVOS.mkdir(parents=True, exist_ok=True)
-    destino = ARCHIVOS / f"{slug}.pdf"
+    extension = origen.suffix.lower()
+    formato = extension.lstrip(".").upper()
+    destino = ARCHIVOS / f"{slug}{extension}"
     shutil.copyfile(origen, destino)
 
     catalogo.append({
         "slug": slug,
-        "etiqueta": args.etiqueta,
+        "etiqueta": args.etiqueta or ("Herramienta gratuita · ZIP" if formato == "ZIP" else f"Guía gratuita · {formato}"),
         "titulo": titulo,
         "bajada": bajada,
         "bullets": bullets,
-        "pdf": f"/recursos/archivos/{slug}.pdf",
+        "archivo": f"/recursos/archivos/{slug}{extension}",
+        "formato": formato,
         "fecha": date.today().isoformat(),
     })
     CATALOGO.write_text(json.dumps(catalogo, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
