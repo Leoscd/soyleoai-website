@@ -4,9 +4,9 @@
  *
  * Configurá PDF_LINK con un link público (Drive "cualquiera con el link" o la URL del PDF en tu subdominio).
  */
-// El PDF de cada recurso vive en https://soyleoai.com/recursos/archivos/<recurso>.pdf
-// (lo copia ahí el script nuevo-recurso.py). No hay que tocar nada al agregar un recurso.
-const PDF_BASE = 'https://soyleoai.com/recursos/archivos/';
+// Los archivos de cada recurso viven en https://soyleoai.com/recursos/archivos/
+// (los copia ahí el script nuevo-recurso.py). No hay que tocar nada al agregar un recurso.
+const BASE_ARCHIVOS = 'https://soyleoai.com/recursos/archivos/';
 const AVISO_EMAIL = 'leodiazdt@gmail.com'; // te avisa de leads calientes. Vacío = sin aviso
 
 const COLUMNAS = [
@@ -63,17 +63,21 @@ function scoreLead_(d) {
 function enviarGuia_(d) {
   const nombre = (d.nombre || '').split(' ')[0];
   const titulo = d.titulo || 'Armá tu propia Skill de Presupuestos';
-  const link = PDF_BASE + (d.recurso || 'presupuestos') + '.pdf';
+  // La página manda la ruta del archivo; solo se acepta si cuelga de /recursos/archivos/
+  const ruta = String(d.archivo || '').replace(/^https?:\/\/soyleoai\.com/, '');
+  const link = /^\/recursos\/archivos\/[A-Za-z0-9._-]+$/.test(ruta)
+    ? 'https://soyleoai.com' + ruta
+    : BASE_ARCHIVOS + (d.recurso || 'presupuestos') + '.pdf';
   const html = `
     <div style="font-family:Arial,sans-serif;max-width:520px;color:#111">
       <p>Hola ${nombre},</p>
-      <p>Acá tenés tu guía <b>“${titulo}”</b>:</p>
-      <p><a href="${link}" style="background:#C4981F;color:#000;padding:12px 20px;text-decoration:none;font-weight:bold;display:inline-block">Descargar la guía</a></p>
+      <p>Acá tenés tu descarga <b>“${titulo}”</b>:</p>
+      <p><a href="${link}" style="background:#C4981F;color:#000;padding:12px 20px;text-decoration:none;font-weight:bold;display:inline-block">Descargar</a></p>
       <p>Si te trabás en algún paso, respondé este mail y te doy una mano.</p>
       <p>Leo<br><span style="color:#777">Arq. Leonardo Díaz · SoyLeo AI · @soy.leo_ai</span></p>
       <p style="font-size:11px;color:#999">Recibís este correo porque lo pediste en soyleoai.com. Si no querés recibir más emails, respondé “BAJA”.</p>
     </div>`;
-  MailApp.sendEmail({ to: d.email, subject: 'Tu guía: ' + titulo, htmlBody: html, name: 'Leo · SoyLeo AI' });
+  MailApp.sendEmail({ to: d.email, subject: 'Tu descarga: ' + titulo, htmlBody: html, name: 'Leo · SoyLeo AI' });
 }
 
 function getSheet_() {

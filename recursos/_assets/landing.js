@@ -22,12 +22,17 @@
     `<link rel="canonical" href="${url}"><meta property="og:url" content="${url}">` +
     `<meta property="og:title" content="${recurso.titulo.replace(/\*/g, '')}">` +
     `<meta property="og:description" content="${recurso.bajada.replace(/\*/g, '')}">`);
-  window.CONFIG.PDF_URL = recurso.pdf;
+  const archivo = recurso.archivo || recurso.pdf;
+  window.CONFIG.PDF_URL = archivo;
+  const formato = recurso.formato || 'PDF';
+  document.querySelector('.jump').textContent = `Quiero ${recurso.formato === 'ZIP' ? 'la herramienta' : 'el recurso'} gratis ↓`;
+  document.getElementById('dl').textContent = `Descargar (${formato})`;
 
   const form = document.getElementById('lead');
   form.elements.recurso.value = recurso.slug;
   form.insertAdjacentHTML('beforeend',
-    `<input type="hidden" name="titulo" value="${recurso.titulo.replace(/\*/g, '')}">`);
+    `<input type="hidden" name="titulo" value="${recurso.titulo.replace(/\*/g, '')}">` +
+    `<input type="hidden" name="archivo" value="${archivo}">`);
   const steps = [...form.querySelectorAll('.step')];
   const bars = [...document.querySelectorAll('.progress span')];
   const back = document.getElementById('back'), next = document.getElementById('next');

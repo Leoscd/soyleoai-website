@@ -6,7 +6,7 @@ Cada recurso es **una ficha en `recursos.json` + un PDF en `archivos/`**. No se 
 ## Agregar un recurso nuevo
 
 ```bash
-python scripts/nuevo-recurso.py "C:/Users/leona/Downloads/Mi-Guia.pdf"
+python scripts/nuevo-recurso.py "C:/Users/leona/Downloads/Mi-Guia.pdf"   # o .zip, .xlsx...
 ```
 
 Pregunta la URL, el título, la bajada y las viñetas; copia el PDF y agrega la ficha.
@@ -32,7 +32,7 @@ que arma el link como `https://soyleoai.com/recursos/archivos/<recurso>.pdf`.
 | Archivo | Para qué |
 |---|---|
 | `recursos.json` | La ficha de cada recurso (lo edita el script) |
-| `archivos/<slug>.pdf` | El PDF que se entrega |
+| `archivos/<slug>.<ext>` | El archivo que se entrega (PDF, ZIP, XLSX...) |
 | `_plantilla/index.html` | La página que se muestra en `/recursos/<slug>` |
 | `_assets/landing.css` · `landing.js` | Diseño y lógica del formulario, comunes a todos |
 | `_assets/config.js` | URL del Apps Script y ID del Pixel de Meta |
