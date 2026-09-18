@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recursos gratuitos · SoyLeo AI</title>
+<meta name="description" content="Guías gratuitas de IA aplicada a la arquitectura: presupuestos, documentación y más. Arq. Leonardo Díaz.">
+<link rel="canonical" href="https://soyleoai.com/recursos">
+<link rel="icon" href="/favicon.ico">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E3NEPPHYCB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E3NEPPHYCB');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/recursos/_assets/landing.css">
+<style>
+  .lista { display: grid; gap: 16px; grid-template-columns: 1fr; margin-top: 32px; }
+  @media (min-width: 760px) { .lista { grid-template-columns: 1fr 1fr; } }
+  .item { display: block; text-decoration: none; color: inherit; background: var(--surface); border: 1px solid var(--line); padding: 26px; transition: border-color .15s; }
+  .item:hover { border-color: var(--gold); }
+  .item .eyebrow { margin-bottom: 14px; }
+  .item h2 { font-family: "Space Grotesk"; font-size: 22px; margin: 0 0 10px; }
+  .item p { color: var(--muted); margin: 0 0 16px; }
+  .item span.cta { color: var(--gold); font-weight: 600; font-size: 15px; }
+  .intro { color: var(--muted); font-size: 18px; max-width: 52ch; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/">SOYLEO <b>AI</b></a>
+    <div>@soy.leo_ai</div>
+  </header>
+  <div class="eyebrow">Recursos gratuitos</div>
+  <h1>Guías para trabajar con <em>IA</em> en arquitectura</h1>
+  <p class="intro">Material práctico para aplicar hoy en tu estudio o tu obra. Descarga gratuita.</p>
+  <div class="lista" id="lista"></div>
+  <footer>© SoyLeo AI · Arq. Leonardo Díaz</footer>
+</div>
+<script>
+(async () => {
+  const cat = await (await fetch('/recursos/recursos.json', { cache: 'no-cache' })).json();
+  document.getElementById('lista').innerHTML = cat.map(r => `
+    <a class="item" href="/recursos/${r.slug}">
+      <div class="eyebrow">${r.etiqueta || 'Recurso gratuito'}</div>
+      <h2>${r.titulo.replace(/\*(.+?)\*/g, '<em style="font-style:normal;color:var(--gold)">$1</em>')}</h2>
+      <p>${r.bajada.replace(/\*/g, '')}</p>
+      <span class="cta">Descargar gratis →</span>
+    </a>`).join('');
+})();
+</script>
+</body>
+</html>
