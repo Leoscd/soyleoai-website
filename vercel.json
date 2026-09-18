@@ -1,9 +1,20 @@
 {
   "version": 2,
+  "redirects": [
+    {
+      "source": "/recursos/presupuestos/guia-skill-presupuestos.pdf",
+      "destination": "/recursos/archivos/presupuestos.pdf",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/",
       "destination": "/index.html"
+    },
+    {
+      "source": "/recursos/:slug",
+      "destination": "/recursos/_plantilla/index.html"
     }
   ],
   "headers": [
