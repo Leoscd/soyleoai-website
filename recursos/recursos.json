@@ -31,14 +31,14 @@
   },
   {
     "slug": "autocad",
-    "etiqueta": "Guía gratuita · PDF",
+    "etiqueta": "Guía de inicio · PDF",
     "titulo": "Tu propio *botón en AutoCAD*",
-    "bajada": "Lo que tenés que saber antes de automatizar tus planos con Claude Code: láminas a escala, carátula y cotas con un clic.",
+    "bajada": "Cómo empezar con Claude Code para automatizar tus planos: láminas a escala, carátula y cotas con un clic. Sin saber programar.",
     "bullets": [
-      "Qué hace el botón: elige la hoja, pone tu carátula, escala exacta, título, norte y cotas por local",
-      "Cómo funciona: vos pedís en lenguaje natural, Claude Code arma la herramienta y AutoCAD la ejecuta",
-      "Las 7 claves para que funcione de verdad (y el error más común en planos heredados)",
-      "Sin saber programar y con el estándar de tu estudio. Requiere AutoCAD completo (no LT)"
+      "Qué se puede lograr: la hoja justa, tu carátula, escala exacta, título, norte y cotas por local",
+      "Qué necesitás (AutoCAD completo y Claude Pro) y los primeros pasos, sin tecnicismos",
+      "Tus primeros 3 pedidos listos para copiar, que no modifican tus planos",
+      "Cómo hablarle a Claude y las 7 claves para que funcione de verdad"
     ],
     "archivo": "/recursos/archivos/autocad.pdf",
     "formato": "PDF",
