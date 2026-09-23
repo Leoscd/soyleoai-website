@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tu propio botón en AutoCAD · SoyLeo AI</title>
+<meta name="description" content="Lo que tenés que saber antes de automatizar tus planos con Claude Code: láminas a escala, carátula y cotas con un clic.">
+<link rel="canonical" href="https://soyleoai.com/recursos/autocad">
+<meta property="og:title" content="Tu propio botón en AutoCAD">
+<meta property="og:description" content="Lo que tenés que saber antes de automatizar tus planos con Claude Code: láminas a escala, carátula y cotas con un clic.">
+<meta property="og:url" content="https://soyleoai.com/recursos/autocad">
+<meta property="og:image" content="https://soyleoai.com/images/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="website">
+<link rel="icon" href="/favicon.ico">
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E3NEPPHYCB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E3NEPPHYCB');
+</script>
+<!-- Microsoft Clarity -->
+<script>
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "w1hoo2jpu8");
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/recursos/_assets/landing.css">
+<script src="/recursos/_assets/config.js"></script>
+<script>
+  // Meta Pixel (solo carga si hay PIXEL_ID en config.js)
+  if (window.CONFIG.PIXEL_ID) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', window.CONFIG.PIXEL_ID);
+    fbq('track', 'PageView');
+  }
+</script>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/">SOYLEO <b>AI</b></a>
+    <div>@soy.leo_ai</div>
+  </header>
+
+  <div class="grid">
+    <section class="hero">
+      <div class="eyebrow" id="eyebrow">Recurso gratuito</div>
+      <h1 id="titulo"></h1>
+      <p class="lead" id="bajada"></p>
+      <ul class="bul" id="bullets"></ul>
+      <a href="#lead" class="btn-primary jump">Quiero el recurso gratis ↓</a>
+      <p class="author"><strong>Arq. Leonardo Díaz</strong> · Arquitecto y científico de datos. Ayudo a estudios y constructores a trabajar con IA.</p>
+    </section>
+
+    <section class="card" aria-live="polite">
+      <form id="lead" novalidate>
+        <div id="formHead">
+          <div class="progress"><span class="on"></span><span></span><span></span></div>
+          <div class="step-label" id="stepLabel">Paso 1 de 3</div>
+        </div>
+
+        <!-- PASO 1 -->
+        <fieldset class="step active" data-step="1">
+          <h2>¿A dónde te mando la guía?</h2>
+          <div class="field">
+            <label for="nombre">Nombre y apellido</label>
+            <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+            <div class="err">Contame tu nombre.</div>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+            <div class="err">Revisá el email, parece incompleto.</div>
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label for="pais">País</label>
+              <select id="pais" name="pais" required>
+                <option value="">Elegí…</option>
+                <option>Argentina</option><option>México</option><option>Colombia</option><option>Chile</option>
+                <option>Perú</option><option>Uruguay</option><option>Paraguay</option><option>Bolivia</option>
+                <option>Ecuador</option><option>Venezuela</option><option>Costa Rica</option><option>Panamá</option>
+                <option>Guatemala</option><option>República Dominicana</option><option>España</option>
+                <option>Estados Unidos</option><option>Otro</option>
+              </select>
+              <div class="err">Elegí tu país.</div>
+            </div>
+            <div class="field">
+              <label for="ciudad">Ciudad / provincia</label>
+              <input type="text" id="ciudad" name="ciudad" autocomplete="address-level2" required>
+              <div class="err">Indicá tu ciudad.</div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="whatsapp">WhatsApp <span class="hint">(opcional, con código de país)</span></label>
+            <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel" placeholder="+54 9 11 1234 5678">
+          </div>
+        </fieldset>
+
+        <!-- PASO 2 -->
+        <fieldset class="step" data-step="2">
+          <h2>Contame de tu trabajo</h2>
+          <div class="field" data-radio="perfil">
+            <legend>¿A qué te dedicás?</legend>
+            <div class="opts two">
+              <label class="opt"><input type="radio" name="perfil" value="Arquitecto/a independiente"><span>Arquitecto/a independiente</span></label>
+              <label class="opt"><input type="radio" name="perfil" value="Estudio de arquitectura"><span>Estudio de arquitectura</span></label>
+              <label class="opt"><input type="radio" name="perfil" value="Constructora / MMO / contratista"><span>Constructora / MMO</span></label>
+              <label class="opt"><input type="radio" name="perfil" value="Ingeniero/a / técnico/a"><span>Ingeniero/a / técnico/a</span></label>
+              <label class="opt"><input type="radio" name="perfil" value="Estudiante"><span>Estudiante</span></label>
+              <label class="opt"><input type="radio" name="perfil" value="Otro"><span>Otro</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="field" data-radio="equipo">
+            <legend>¿Cuántas personas trabajan con vos?</legend>
+            <div class="opts two">
+              <label class="opt"><input type="radio" name="equipo" value="Solo/a"><span>Trabajo solo/a</span></label>
+              <label class="opt"><input type="radio" name="equipo" value="2-5"><span>2 a 5</span></label>
+              <label class="opt"><input type="radio" name="equipo" value="6-15"><span>6 a 15</span></label>
+              <label class="opt"><input type="radio" name="equipo" value="+15"><span>Más de 15</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="field" data-radio="nivel_ia">
+            <legend>¿Cómo usás la IA hoy?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="nivel_ia" value="Nunca la usé"><span>Todavía no la uso</span></label>
+              <label class="opt"><input type="radio" name="nivel_ia" value="Ocasional (ChatGPT/Claude para textos)"><span>De vez en cuando, para textos o consultas</span></label>
+              <label class="opt"><input type="radio" name="nivel_ia" value="Frecuente en el trabajo"><span>Seguido, es parte de mi trabajo</span></label>
+              <label class="opt"><input type="radio" name="nivel_ia" value="Ya automatizo procesos"><span>Ya armé automatizaciones o asistentes</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="field" data-check="dolor">
+            <legend>¿Qué tareas te gustaría resolver con IA? <span class="hint">(elegí hasta 3)</span></legend>
+            <div class="opts two">
+              <label class="opt"><input type="checkbox" name="dolor" value="Cómputos y presupuestos"><span>Cómputos y presupuestos</span></label>
+              <label class="opt"><input type="checkbox" name="dolor" value="Documentación / planos (Revit, CAD)"><span>Documentación y planos</span></label>
+              <label class="opt"><input type="checkbox" name="dolor" value="Renders e imágenes"><span>Renders e imágenes</span></label>
+              <label class="opt"><input type="checkbox" name="dolor" value="Seguimiento de obra / reportes"><span>Seguimiento de obra</span></label>
+              <label class="opt"><input type="checkbox" name="dolor" value="Propuestas y atención a clientes"><span>Propuestas y clientes</span></label>
+              <label class="opt"><input type="checkbox" name="dolor" value="Marketing y redes"><span>Marketing y redes</span></label>
+              <label class="opt"><input type="checkbox" name="dolor" value="Normativa / cálculos técnicos"><span>Normativa y cálculos</span></label>
+              <label class="opt"><input type="checkbox" name="dolor" value="Administración / gestión del estudio"><span>Gestión del estudio</span></label>
+            </div>
+            <div class="err">Elegí entre 1 y 3.</div>
+          </div>
+          <div class="field">
+            <label for="software">¿Qué software usás principalmente?</label>
+            <select id="software" name="software">
+              <option value="">Elegí…</option>
+              <option>Revit</option><option>AutoCAD</option><option>ArchiCAD</option><option>SketchUp</option>
+              <option>Rhino</option><option>Solo Excel / planillas</option><option>Otro</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <!-- PASO 3 -->
+        <fieldset class="step" data-step="3">
+          <h2>Lo último: ¿qué te sirve más?</h2>
+          <div class="field" data-radio="preferencia">
+            <legend>Si pudieras tener tus propios sistemas con IA, preferirías…</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="preferencia" value="Aprender a armarlos"><span>Aprender a armarlos yo</span></label>
+              <label class="opt"><input type="radio" name="preferencia" value="Contratarlos armados"><span>Que me los armen listos para usar</span></label>
+              <label class="opt"><input type="radio" name="preferencia" value="Ambas"><span>Las dos: que me lo armen y aprender a mantenerlo</span></label>
+              <label class="opt"><input type="radio" name="preferencia" value="Explorando"><span>Por ahora solo estoy explorando</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="field hidden" data-radio="inversion_capacitacion" id="qCap">
+            <legend>¿Cuánto invertirías en una capacitación práctica? <span class="hint">(USD)</span></legend>
+            <div class="opts two">
+              <label class="opt"><input type="radio" name="inversion_capacitacion" value="<300"><span>Hasta 300</span></label>
+              <label class="opt"><input type="radio" name="inversion_capacitacion" value="300-500"><span>300 a 500</span></label>
+              <label class="opt"><input type="radio" name="inversion_capacitacion" value="500-800"><span>500 a 800</span></label>
+              <label class="opt"><input type="radio" name="inversion_capacitacion" value="800+"><span>Más de 800</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="field hidden" data-radio="inversion_sistema" id="qSis">
+            <legend>¿Cuánto invertirías en un sistema a medida para tu estudio? <span class="hint">(USD)</span></legend>
+            <div class="opts two">
+              <label class="opt"><input type="radio" name="inversion_sistema" value="<1000"><span>Hasta 1.000</span></label>
+              <label class="opt"><input type="radio" name="inversion_sistema" value="1000-2000"><span>1.000 a 2.000</span></label>
+              <label class="opt"><input type="radio" name="inversion_sistema" value="2000-3000"><span>2.000 a 3.000</span></label>
+              <label class="opt"><input type="radio" name="inversion_sistema" value="3000+"><span>Más de 3.000</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="field" data-radio="plazo">
+            <legend>¿Cuándo te gustaría empezar?</legend>
+            <div class="opts two">
+              <label class="opt"><input type="radio" name="plazo" value="Este mes"><span>Este mes</span></label>
+              <label class="opt"><input type="radio" name="plazo" value="1-3 meses"><span>En 1 a 3 meses</span></label>
+              <label class="opt"><input type="radio" name="plazo" value="+3 meses"><span>Más adelante</span></label>
+              <label class="opt"><input type="radio" name="plazo" value="Sin fecha"><span>No lo tengo definido</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="field">
+            <label for="origen">¿Cómo llegaste acá?</label>
+            <select id="origen" name="origen">
+              <option value="">Elegí…</option>
+              <option>Instagram</option><option>Anuncio</option><option>Me lo recomendaron</option>
+              <option>Google</option><option>LinkedIn</option><option>YouTube</option><option>Otro</option>
+            </select>
+          </div>
+          <label class="check"><input type="checkbox" name="quiere_llamada" value="si"> Quiero una videollamada gratuita de 20 min para ver qué podría automatizar en mi trabajo.</label>
+          <div class="field" data-consent>
+            <label class="check"><input type="checkbox" name="consentimiento" value="si" id="consent"> Acepto recibir la guía y novedades de SoyLeo AI por email. Me puedo dar de baja cuando quiera.</label>
+            <div class="err">Necesitamos tu OK para enviarte la guía.</div>
+          </div>
+        </fieldset>
+
+        <!-- ocultos: atribución -->
+        <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium">
+        <input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content">
+        <input type="hidden" name="fbclid"><input type="hidden" name="recurso" value="guia-skill-presupuestos">
+        <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off"><!-- honeypot -->
+
+        <div class="actions" id="actions">
+          <button type="button" class="btn-ghost hidden" id="back">Atrás</button>
+          <button type="submit" class="btn-primary" id="next">Continuar</button>
+        </div>
+        <p class="privacy">Tus datos no se comparten con nadie.</p>
+      </form>
+
+      <div class="done hidden" id="done">
+        <div class="big">✓</div>
+        <h2>¡Listo, <span id="doneName"></span>!</h2>
+        <p>Tu descarga ya está disponible. También te la mandé por email.</p>
+        <a class="btn-primary" id="dl" href="#" download>Descargar</a>
+        <p>Mientras tanto, en <a href="https://instagram.com/soy.leo_ai" target="_blank" rel="noopener">@soy.leo_ai</a> comparto cómo aplicarla en casos reales.</p>
+      </div>
+    </section>
+  </div>
+  <footer>© SoyLeo AI · <a href="/recursos" style="color:inherit">Todos los recursos</a></footer>
+</div>
+<script src="/recursos/_assets/landing.js"></script>
+</body>
+</html>
