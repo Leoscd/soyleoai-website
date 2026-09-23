@@ -34,8 +34,10 @@ function doPost(e) {
     sheet.appendRow(COLUMNAS.map(c => d[c] || ''));
 
     enviarGuia_(d);
-    if (AVISO_EMAIL && s.score >= 7) {
-      MailApp.sendEmail(AVISO_EMAIL, `🔥 Lead caliente: ${d.nombre} (${d.pais})`,
+    // Aviso de cada descarga (🔥 si el score es 7 o más)
+    if (AVISO_EMAIL) {
+      const caliente = s.score >= 7 ? '🔥 Lead caliente' : 'Nueva descarga';
+      MailApp.sendEmail(AVISO_EMAIL, `${caliente}: ${d.nombre} (${d.pais}) · ${d.recurso || ''}`,
         COLUMNAS.map(c => `${c}: ${d[c] || ''}`).join('\n'));
     }
     return ok_();
