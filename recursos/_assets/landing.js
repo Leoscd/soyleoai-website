@@ -18,7 +18,8 @@
   document.getElementById('bajada').innerHTML = gold(recurso.bajada);
   document.getElementById('bullets').innerHTML = recurso.bullets.map(b => `<li>${b}</li>`).join('');
   const url = `https://soyleoai.com/recursos/${recurso.slug}`;
-  document.head.insertAdjacentHTML('beforeend',
+  // Las páginas generadas por nuevo-recurso.py ya traen estas etiquetas en el HTML
+  if (!document.querySelector('link[rel=canonical]')) document.head.insertAdjacentHTML('beforeend',
     `<link rel="canonical" href="${url}"><meta property="og:url" content="${url}">` +
     `<meta property="og:title" content="${recurso.titulo.replace(/\*/g, '')}">` +
     `<meta property="og:description" content="${recurso.bajada.replace(/\*/g, '')}">`);
@@ -30,6 +31,10 @@
 
   const form = document.getElementById('lead');
   form.elements.recurso.value = recurso.slug;
+  // Primer interacción con el formulario = empezó el paso 1
+  form.addEventListener('focusin', () => {
+    if (window.gtag) gtag('event', 'form_paso', { paso: 1, recurso: recurso.slug });
+  }, { once: true });
   form.insertAdjacentHTML('beforeend',
     `<input type="hidden" name="titulo" value="${recurso.titulo.replace(/\*/g, '')}">` +
     `<input type="hidden" name="archivo" value="${archivo}">`);
@@ -83,7 +88,9 @@
     bars.forEach((b, j) => b.classList.toggle('on', j <= cur));
     document.getElementById('stepLabel').textContent = `Paso ${cur + 1} de ${steps.length}`;
     back.classList.toggle('hidden', cur === 0);
-    next.textContent = cur === steps.length - 1 ? 'Descargar la guía' : 'Continuar';
+    next.textContent = cur === steps.length - 1 ? 'Descargar' : 'Continuar';
+    // En GA4: cuánta gente llega a cada paso (para ver dónde abandonan)
+    if (window.gtag) gtag('event', 'form_paso', { paso: cur + 1, recurso: recurso.slug });
     form.closest('.card').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
   back.addEventListener('click', () => show(cur - 1));

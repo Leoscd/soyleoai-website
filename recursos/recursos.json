@@ -28,5 +28,20 @@
     "archivo": "/recursos/archivos/exportar-cad.zip",
     "formato": "ZIP",
     "fecha": "2026-09-18"
+  },
+  {
+    "slug": "autocad",
+    "etiqueta": "Guía gratuita · PDF",
+    "titulo": "Tu propio *botón en AutoCAD*",
+    "bajada": "Lo que tenés que saber antes de automatizar tus planos con Claude Code: láminas a escala, carátula y cotas con un clic.",
+    "bullets": [
+      "Qué hace el botón: elige la hoja, pone tu carátula, escala exacta, título, norte y cotas por local",
+      "Cómo funciona: vos pedís en lenguaje natural, Claude Code arma la herramienta y AutoCAD la ejecuta",
+      "Las 7 claves para que funcione de verdad (y el error más común en planos heredados)",
+      "Sin saber programar y con el estándar de tu estudio. Requiere AutoCAD completo (no LT)"
+    ],
+    "archivo": "/recursos/archivos/autocad.pdf",
+    "formato": "PDF",
+    "fecha": "2026-09-23"
   }
 ]
