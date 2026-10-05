@@ -1,0 +1,34 @@
+/* Agregados al diseño de las landings de recursos (landing.css) para el diagnóstico. */
+textarea, input[type=number] {
+  width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--line);
+  padding: 13px 14px; font: inherit; border-radius: 0; appearance: none;
+}
+textarea { min-height: 96px; resize: vertical; }
+input[type=number] { -moz-appearance: textfield; }
+input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+textarea:focus, input[type=number]:focus { outline: none; border-color: var(--gold); }
+.field.invalid textarea, .field.invalid input[type=number] { border-color: var(--error); }
+.field > .hint-block { color: var(--muted); font-size: 13px; margin: -4px 0 10px; }
+
+/* "Otra" con texto libre */
+.otra-txt { margin-top: 8px; }
+
+/* Horas: número corto + unidad */
+.horas { display: flex; align-items: center; gap: 10px; }
+.horas input { max-width: 120px; }
+.horas span { color: var(--muted); font-size: 14px; }
+
+/* Escala 1–5 / 0–10 */
+.escala { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 6px; }
+.escala .opt span { text-align: center; padding: 11px 0; font-variant-numeric: tabular-nums; }
+.escala-labels { display: flex; justify-content: space-between; gap: 12px; font-size: 12px; color: var(--muted); margin-top: 6px; }
+
+/* Grilla: una fila por trabajo con su tiempo */
+.grilla { display: grid; gap: 10px; }
+.grilla-fila { display: grid; grid-template-columns: 1fr; gap: 6px; padding-top: 10px; border-top: 1px solid var(--line); }
+.grilla-fila label { font-size: 14px; }
+@media (min-width: 600px) { .grilla-fila { grid-template-columns: 1fr 190px; align-items: center; } }
+
+.paso-intro { color: var(--muted); font-size: 14px; margin: -12px 0 22px; }
+.cargando { color: var(--muted); text-align: center; padding: 24px 0; }
+.err-envio { color: var(--error); font-size: 14px; margin: 16px 0 0; }

@@ -15,6 +15,10 @@
     {
       "source": "/recursos/:slug",
       "destination": "/recursos/_plantilla/index.html"
+    },
+    {
+      "source": "/diagnostico/:codigo",
+      "destination": "/diagnostico/_form/index.html"
     }
   ],
   "headers": [

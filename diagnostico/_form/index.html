@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnóstico de procesos e IA · SoyLeo AI</title>
+<meta name="description" content="Diagnóstico de procesos e inteligencia artificial para equipos de trabajo.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/recursos/_assets/landing.css">
+<link rel="stylesheet" href="/diagnostico/_assets/diagnostico.css">
+<script src="/diagnostico/_assets/config.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/">SOYLEO <b>AI</b></a>
+    <div>@soy.leo_ai</div>
+  </header>
+
+  <div class="grid">
+    <section class="hero">
+      <div class="eyebrow" id="eyebrow">Diagnóstico</div>
+      <h1 id="titulo">Diagnóstico de procesos e IA</h1>
+      <p class="lead" id="bajada"></p>
+      <ul class="bul" id="bullets"></ul>
+      <a href="#diag" class="btn-primary jump">Empezar ↓</a>
+      <p class="author"><strong>Arq. Leonardo Díaz</strong> · Arquitecto y científico de datos. Ayudo a estudios y constructoras a trabajar con IA.</p>
+    </section>
+
+    <section class="card" aria-live="polite">
+      <p class="cargando" id="cargando">Cargando el formulario…</p>
+
+      <form id="diag" class="hidden" novalidate>
+        <div id="formHead">
+          <div class="progress" id="progress"></div>
+          <div class="step-label" id="stepLabel"></div>
+        </div>
+        <div id="pasos"></div>
+        <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true"><!-- honeypot -->
+        <p class="err-envio hidden" id="errEnvio" role="alert"></p>
+        <div class="actions">
+          <button type="button" class="btn-ghost hidden" id="back">Atrás</button>
+          <button type="submit" class="btn-primary" id="next">Continuar</button>
+        </div>
+        <p class="privacy">Tus respuestas se usan solo para este diagnóstico. Se guardan solas en este dispositivo hasta que las envíes.</p>
+      </form>
+
+      <div class="done hidden" id="done">
+        <div class="big">✓</div>
+        <h2>¡Gracias, <span id="doneName"></span>!</h2>
+        <p id="doneText"></p>
+      </div>
+
+      <div class="done hidden" id="aviso">
+        <h2 id="avisoTitulo"></h2>
+        <p id="avisoTexto"></p>
+      </div>
+    </section>
+  </div>
+  <footer>© SoyLeo AI · soyleoai.com</footer>
+</div>
+<script src="/diagnostico/_assets/diagnostico.js"></script>
+</body>
+</html>
