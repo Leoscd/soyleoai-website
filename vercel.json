@@ -19,6 +19,10 @@
     {
       "source": "/diagnostico/:codigo",
       "destination": "/diagnostico/_form/index.html"
+    },
+    {
+      "source": "/diagnostico/:codigo/",
+      "destination": "/diagnostico/_form/index.html"
     }
   ],
   "headers": [

@@ -20,7 +20,7 @@
 
   // ---- código del link ----
   const partes = location.pathname.replace(/\/+$/, '').split('/').filter(Boolean);
-  const codigo = (partes[1] === '_form' ? new URLSearchParams(location.search).get('t') : partes[1]) || '';
+  const codigo = ((partes[1] === '_form' ? new URLSearchParams(location.search).get('t') : partes[1]) || '').trim().toLowerCase();
   const NO_EXISTE = ['No encontramos este diagnóstico', 'Revisá que el link esté completo o pedíselo de nuevo a quien te lo mandó.'];
   if (!/^[a-z0-9]{16}$/.test(codigo) || partes.length > 2 && partes[1] !== '_form') return aviso(...NO_EXISTE);
 
