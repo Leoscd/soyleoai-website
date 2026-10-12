@@ -261,8 +261,7 @@ ia-arquitectos-website/
 - [x] ~~Fotos de Santiago, Horacio, Jose Inigo~~ — las 6 están en `images/testimonials/*.jpg`
 - [x] ~~Roles de los 6 testimoniales~~ — completos en `data/testimonials.json`
 - [ ] Nombres reales de las 3-4 empresas para reemplazar los ficticios del carrusel
-- [ ] Calendly: los 5 CTA de «Agendar consulta» siguen yendo a `#contacto`, no a
-      https://calendly.com/leodiazdt/consultas (Fase 4, decisión de Leo)
+- [x] ~~Calendly~~ — reemplazado por agenda de citas de Google Calendar (12/10/2026, ver Fase 4)
 
 ---
 
@@ -324,9 +323,16 @@ Flujo: usuario ingresa email → Web3Forms notifica a Leo → usuario ve link de
 ### FASE 3 — PASARELAS DE PAGO ~~(CANCELADA — se usa Skool)~~
 
 ### FASE 4 — SISTEMA DE RESERVAS
-- [ ] Verificar que Calendly siga activo y conectado a Google Calendar
-- [ ] Crear `reservas.html` con widget de Calendly embebido
-- [ ] Botón "Agendar consultoría" → apuntar a `/reservas.html` (actualmente va a #contacto)
+- [x] **Agenda de citas de Google Calendar** «Videollamada con Leo — IA para arquitectos»
+      (12/10/2026): 30 min, lun–vie 10:30–13 y 16:30–20, Meet automático, 4 h de anticipación.
+      Revisa conflictos en los 3 calendarios. Sin Calendly ni `reservas.html`.
+- [x] Las clases fijas están como eventos semanales «Clase — …» (Ocupado) en el calendario
+      principal: si cambia un horario de clase, editarlo ahí o la agenda ofrece ese hueco.
+- [x] Los 4 CTA «Agendar…» + el bloque nuevo en `#contacto` abren la agenda. La URL vive en
+      **una sola constante: `AGENDA_URL` en `js/main-v2.js`**. Vacía → todo vuelve a `#contacto`.
+- [x] El formulario ya no se llama «solicitud de videollamada» (no pide horario) y tras
+      enviarlo ofrece elegir horario. Clics en «Agendar» → evento GA4 `agendar_click`.
+- [ ] Páginas de `recursos/`: la casilla «Quiero una videollamada» tampoco pide horario
 
 ### FASE 5 — BLOG Y SEO ✅ COMPLETADA
 - [x] sitemap.xml, robots.txt, Open Graph, Twitter Card, Schema JSON-LD, canonical

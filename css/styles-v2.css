@@ -5070,3 +5070,31 @@ button {
     color: rgba(255, 255, 255, 0.45);
     text-align: center;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ███  AGENDA — reserva de videollamada (12/10/2026)
+   El bloque nace con [hidden]; initAgenda() lo muestra sólo si hay URL.
+   ═══════════════════════════════════════════════════════════════════════ */
+.contacto-agenda {
+    margin-top: 16px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.contacto-agenda[hidden] {
+    display: none;
+}
+
+.contacto-agenda p {
+    margin: 8px 0 24px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+}
+
+.form-message a {
+    display: inline-block;
+    margin-top: 8px;
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}

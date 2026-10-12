@@ -84,7 +84,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="css/styles-v2.css?v=20260823b">
+    <link rel="stylesheet" href="css/styles-v2.css?v=20261012">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -215,7 +215,7 @@
             <p class="hero-subtitle-large" data-stagger="3">Automatiz&aacute;. Present&aacute;. Gan&aacute;s proyectos.</p>
 
             <div class="hero-cta" data-stagger="4">
-                <a href="#contacto" class="btn-primary-large">Agendar consulta</a>
+                <a href="#contacto" class="btn-primary-large" data-agendar="hero">Agendar consulta</a>
                 <a href="#recursos" class="btn-ghost-large">Ver recursos gratis</a>
             </div>
 
@@ -1091,7 +1091,7 @@
                         <h3>¿Listo para transformar tu práctica?</h3>
                         <p>Sumate a la comunidad y empezá a construir tus sistemas con IA</p>
                         <div class="cta-buttons">
-                            <a href="#contacto" class="btn-primary-large">Agendar consulta gratuita</a>
+                            <a href="#contacto" class="btn-primary-large" data-agendar="modal-curso">Agendar consulta gratuita</a>
                             <!-- El acceso a Skool es posterior al pago, así que no hay URL pública
                                  que linkear acá. El botón lleva al contacto, que es el paso real. -->
                             <a href="#contacto" class="btn-secondary-large" id="link-skool">Quiero sumarme →</a>
@@ -1153,7 +1153,7 @@
         </div>
 
         <div class="cons-foot">
-          <a href="#contacto" class="btn-primary-large">
+          <a href="#contacto" class="btn-primary-large" data-agendar="consultoria">
             Agendar consultoría
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
@@ -1204,7 +1204,7 @@
         </div>
 
         <div class="emp-foot">
-          <a href="#contacto" class="btn-primary-large">
+          <a href="#contacto" class="btn-primary-large" data-agendar="empresas">
             Agendar consulta gratuita
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
@@ -1332,12 +1332,20 @@
                             <a href="https://www.instagram.com/soy.leo_ai/" target="_blank">@soy.leo_ai</a>
                         </div>
                     </div>
+
+                    <!-- Reserva de videollamada. Queda oculto hasta que initAgenda()
+                         (main-v2.js) tenga AGENDA_URL: sin agenda real, no se promete. -->
+                    <div class="contacto-agenda" data-agenda-only hidden>
+                        <span class="detail-label">Videollamada</span>
+                        <p>¿Preferís hablarlo en vivo? Elegí día y horario en mi agenda y te llega la confirmación con el link de Meet.</p>
+                        <a href="#contacto" class="btn-primary-large" data-agendar="contacto">Elegir horario</a>
+                    </div>
                 </div>
 
                 <form class="contacto-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
                     <!-- Configuración Web3Forms -->
                     <input type="hidden" name="access_key" value="d13a018a-540d-4e02-ac1c-6554d017cfb1">
-                    <input type="hidden" name="subject" value="Nueva solicitud de videollamada - SoyLeoAI">
+                    <input type="hidden" name="subject" value="Nueva consulta desde la web (sin horario) - SoyLeoAI">
                     <input type="hidden" name="redirect" value="https://soyleoai.com">
 
                     <!-- Mensaje de estado del formulario -->
@@ -1482,7 +1490,7 @@
         </div>
     </footer>
 
-    <script src="js/main-v2.js?v=20260823b" defer></script>
+    <script src="js/main-v2.js?v=20261012" defer></script>
 
 </body>
 </html><!-- Updated: Mon Oct 27 18:37:10 -03 2025 -->
