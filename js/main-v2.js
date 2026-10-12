@@ -68,8 +68,10 @@ document.addEventListener('keydown', (e) => {
 // ===========================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+        // El href se lee al hacer clic: initAgenda() cambia el de los [data-agendar]
+        // a la URL de la agenda, y esos tienen que navegar, no hacer scroll.
         const href = this.getAttribute('href');
-        if (href !== '#' && href !== '') {
+        if (href && href.startsWith('#') && href !== '#') {
             e.preventDefault();
             const target = document.querySelector(href);
             if (target) {
