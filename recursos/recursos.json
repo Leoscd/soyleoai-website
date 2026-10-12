@@ -58,5 +58,20 @@
     "archivo": "/recursos/archivos/revit.pdf",
     "formato": "PDF",
     "fecha": "2026-10-01"
+  },
+  {
+    "slug": "croquis",
+    "etiqueta": "Guía práctica · PDF",
+    "titulo": "Del croquis al *modelo 3D y los planos*, con IA",
+    "bajada": "Cómo pasar de un croquis acotado a un modelo en <strong>SketchUp</strong> y planos en <strong>AutoCAD</strong>, con herramientas reutilizables y puntos de control.",
+    "bullets": [
+      "Qué instalar y cómo organizar la carpeta del proyecto antes de pedir nada",
+      "Pedidos listos para copiar: del primer modelo a las láminas A3 a 1:100",
+      "Las 8 herramientas para tener control: medir, acotar, superficies, presentar y PDF",
+      "Puntos de control para comprobar medidas y cambios, con el caso real de una residencia"
+    ],
+    "archivo": "/recursos/archivos/croquis.pdf",
+    "formato": "PDF",
+    "fecha": "2026-10-12"
   }
 ]
