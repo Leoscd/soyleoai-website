@@ -228,6 +228,34 @@ function loadPlaceholderTestimonials() {
 }
 
 // ===========================
+// Agenda de videollamadas — página de reservas de Google Calendar
+// ===========================
+// Hasta el 12/10/2026 los botones «Agendar…» sólo bajaban al formulario, que no
+// pide fecha ni hora: nadie elegía horario. Con AGENDA_URL cargada, todos los
+// [data-agendar] abren la página de reservas y se muestran los [data-agenda-only].
+// Vacía, todo vuelve al comportamiento anterior (#contacto): nunca queda un link roto.
+const AGENDA_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1htYM53qblnyE9lUoDJhMdrVzGp-0IDinz5mTJpFWczI2V5EYlyvnz8wqJG0fRNUVUx2yoC1Z9';
+
+function initAgenda() {
+    if (!AGENDA_URL) return;
+
+    document.querySelectorAll('[data-agendar]').forEach(link => {
+        link.href = AGENDA_URL;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.addEventListener('click', () => {
+            if (typeof gtag === 'function') {
+                gtag('event', 'agendar_click', { origen: link.dataset.agendar });
+            }
+        });
+    });
+
+    document.querySelectorAll('[data-agenda-only]').forEach(el => { el.hidden = false; });
+}
+
+document.addEventListener('DOMContentLoaded', initAgenda);
+
+// ===========================
 // Formulario de Contacto - Web3Forms (fetch API)
 // ===========================
 const contactForm = document.getElementById('contact-form');
@@ -306,7 +334,16 @@ if (contactForm) {
 
             if (response.ok && data.success) {
                 // Estado: éxito
-                showFormMessage('success', '¡Mensaje enviado correctamente! Me pondre en contacto con vos pronto.');
+                showFormMessage('success', '¡Mensaje enviado! Te respondo por mail en menos de 24 h.');
+                if (AGENDA_URL) {
+                    // El formulario no reserva: si quiere hablar en vivo, que elija horario acá.
+                    const agendar = document.createElement('a');
+                    agendar.href = AGENDA_URL;
+                    agendar.target = '_blank';
+                    agendar.rel = 'noopener';
+                    agendar.textContent = 'Si querés una videollamada, elegí tu horario →';
+                    formMessage.append(document.createElement('br'), agendar);
+                }
                 contactForm.reset();
                 submitBtn.textContent = 'Mensaje enviado';
                 // Restaurar botón después de 4 segundos
