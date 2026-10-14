@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taller en vivo gratis: IA para arquitectos · SoyLeo AI</title>
+<meta name="description" content="Taller gratuito por Google Meet. Viernes 30/10, 19 h (Argentina). Construimos juntos una skill de presupuestos con IA y la conectamos con Revit. Cupos limitados.">
+<!-- Página privada: se comparte solo por mensaje directo, no se indexa -->
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://soyleoai.com/taller">
+<meta property="og:title" content="Taller en vivo gratis: IA para arquitectos">
+<meta property="og:description" content="Viernes 30/10, 19 h (Argentina), por Google Meet. Construimos juntos una skill de presupuestos y la conectamos con Revit. Cupos limitados.">
+<meta property="og:image" content="https://soyleoai.com/images/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico">
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E3NEPPHYCB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E3NEPPHYCB');
+</script>
+<!-- Microsoft Clarity -->
+<script>
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "w1hoo2jpu8");
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/recursos/_assets/landing.css">
+<style>
+  .when { font-size: 15px; margin: 0 0 24px; padding: 14px 16px; border: 1px solid var(--line); background: var(--surface); }
+  .when strong { color: var(--gold); }
+  .when .local { display: block; color: var(--muted); font-size: 13px; margin-top: 4px; }
+  ol.agenda { list-style: none; counter-reset: p; padding: 0; margin: 0 0 28px; }
+  ol.agenda li { counter-increment: p; padding: 12px 0 12px 44px; border-top: 1px solid var(--line); position: relative; }
+  ol.agenda li::before { content: counter(p); position: absolute; left: 0; top: 10px; width: 28px; height: 28px; border: 1px solid var(--gold); color: var(--gold); font: 700 14px/26px "Space Grotesk"; text-align: center; }
+  .agenda-t { font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+  .opts.three { grid-template-columns: 1fr 1fr; }
+  @media (min-width: 600px) { .opts.three { grid-template-columns: 1fr 1fr 1fr; } }
+  input[type=text].otro { margin-top: 8px; }
+  .done .next-steps { text-align: left; border-top: 1px solid var(--line); margin-top: 20px; padding-top: 16px; font-size: 14px; }
+  .done .next-steps li { margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/">SOYLEO <b>AI</b></a>
+    <div>@soy.leo_ai</div>
+  </header>
+
+  <div class="grid">
+    <section class="hero">
+      <div class="eyebrow">Taller en vivo · gratis</div>
+      <h1>IA para arquitectos: de la teoría a <em>Revit</em>, en una noche</h1>
+      <p class="when">
+        <strong>Viernes 30 de octubre · 19 h (Argentina)</strong> · Google Meet · Cupos limitados
+        <span class="local" id="horaLocal"></span>
+      </p>
+      <p class="agenda-t">Lo que vamos a hacer</p>
+      <ol class="agenda">
+        <li>Clase rápida: qué es la IA, qué no es y por qué inventa.</li>
+        <li>Construimos juntos una skill de presupuestos.</li>
+        <li>La metemos en un flujo de trabajo.</li>
+        <li>Revit + Claude: le pedís algo en castellano y Revit lo hace.</li>
+      </ol>
+      <a href="#lead" class="btn-primary jump">Reservar mi lugar ↓</a>
+      <p class="author"><strong>Arq. Leonardo Díaz</strong> · Arquitecto y científico de datos. Ayudo a estudios y constructores a trabajar con IA.</p>
+    </section>
+
+    <section class="card" aria-live="polite">
+      <form id="lead" novalidate>
+        <div id="formHead">
+          <div class="progress"><span class="on"></span><span></span></div>
+          <div class="step-label" id="stepLabel">Paso 1 de 2</div>
+        </div>
+
+        <!-- PASO 1: inscripción (se guarda al terminar este paso) -->
+        <fieldset class="step active">
+          <h2>Reservá tu lugar</h2>
+          <div class="field">
+            <label for="nombre">Nombre y apellido</label>
+            <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+            <div class="err">Escribí tu nombre.</div>
+          </div>
+          <div class="field">
+            <label for="email">Email <span class="hint">(acá te llega el link del Meet)</span></label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+            <div class="err">Revisá el email.</div>
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label for="pais">País</label>
+              <select id="pais" name="pais" required>
+                <option value="">Elegí…</option>
+                <option>Argentina</option><option>México</option><option>Colombia</option><option>Chile</option>
+                <option>Perú</option><option>Uruguay</option><option>Paraguay</option><option>Bolivia</option>
+                <option>Ecuador</option><option>Venezuela</option><option>Costa Rica</option><option>Panamá</option>
+                <option>Guatemala</option><option>República Dominicana</option><option>España</option>
+                <option>Estados Unidos</option><option>Otro</option>
+              </select>
+              <div class="err">Elegí tu país.</div>
+            </div>
+            <div class="field">
+              <label for="whatsapp">WhatsApp <span class="hint">(opcional)</span></label>
+              <input type="tel" id="whatsapp" name="whatsapp" autocomplete="tel" placeholder="+54 9 11 1234 5678">
+            </div>
+          </div>
+          <div class="field" data-consent>
+            <label class="check"><input type="checkbox" name="consentimiento" value="si" id="consent"> Acepto recibir por email los recordatorios y el link del taller, y novedades de SoyLeo AI. Me puedo dar de baja cuando quiera.</label>
+            <div class="err">Necesitamos tu OK para mandarte el link del taller.</div>
+          </div>
+        </fieldset>
+
+        <!-- PASO 2: perfil (para preparar el taller y el seguimiento) -->
+        <fieldset class="step">
+          <h2>¡Lugar reservado! Contame de tu trabajo</h2>
+          <p class="hint" style="margin:-12px 0 20px">Así preparo los ejemplos del taller con tus programas y tus problemas reales.</p>
+          <div class="field" data-radio>
+            <legend>¿Cómo trabajás?</legend>
+            <div class="opts two">
+              <label class="opt"><input type="radio" name="perfil" value="Arquitecto/a independiente"><span>Arquitecto/a independiente</span></label>
+              <label class="opt"><input type="radio" name="perfil" value="Estudio o empresa"><span>En un estudio o empresa</span></label>
+              <label class="opt"><input type="radio" name="perfil" value="Constructora / MMO"><span>Constructora / MMO</span></label>
+              <label class="opt"><input type="radio" name="perfil" value="Ingeniero/a / técnico/a"><span>Ingeniero/a / técnico/a</span></label>
+              <label class="opt"><input type="radio" name="perfil" value="Estudiante"><span>Estudiante</span></label>
+              <label class="opt"><input type="radio" name="perfil" value="Otro"><span>Otro</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="field" data-radio>
+            <legend>¿Cuántas personas son en tu equipo?</legend>
+            <div class="opts two">
+              <label class="opt"><input type="radio" name="equipo" value="Solo/a"><span>Trabajo solo/a</span></label>
+              <label class="opt"><input type="radio" name="equipo" value="2-5"><span>2 a 5</span></label>
+              <label class="opt"><input type="radio" name="equipo" value="6-15"><span>6 a 15</span></label>
+              <label class="opt"><input type="radio" name="equipo" value="+15"><span>Más de 15</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="field" data-check>
+            <legend>¿Qué programas usás? <span class="hint">(marcá todos los de tu día a día)</span></legend>
+            <div class="opts three">
+              <label class="opt"><input type="checkbox" name="stack" value="Revit"><span>Revit</span></label>
+              <label class="opt"><input type="checkbox" name="stack" value="AutoCAD"><span>AutoCAD</span></label>
+              <label class="opt"><input type="checkbox" name="stack" value="ArchiCAD"><span>ArchiCAD</span></label>
+              <label class="opt"><input type="checkbox" name="stack" value="SketchUp"><span>SketchUp</span></label>
+              <label class="opt"><input type="checkbox" name="stack" value="Rhino / Grasshopper"><span>Rhino / Grasshopper</span></label>
+              <label class="opt"><input type="checkbox" name="stack" value="3ds Max"><span>3ds Max</span></label>
+              <label class="opt"><input type="checkbox" name="stack" value="Render (Lumion, Enscape, D5, V-Ray, Twinmotion)"><span>Lumion / Enscape / D5 / V-Ray</span></label>
+              <label class="opt"><input type="checkbox" name="stack" value="Excel / Google Sheets"><span>Excel / Sheets</span></label>
+              <label class="opt"><input type="checkbox" name="stack" value="Software de presupuestos (Presto, etc.)"><span>Presto u otro de presupuestos</span></label>
+              <label class="opt"><input type="checkbox" name="stack" value="Photoshop / Illustrator"><span>Photoshop / Illustrator</span></label>
+              <label class="opt"><input type="checkbox" name="stack" value="ChatGPT / Claude / Gemini"><span>ChatGPT / Claude / Gemini</span></label>
+              <label class="opt"><input type="checkbox" name="stack" value="Midjourney / IA de imágenes"><span>Midjourney / IA de imágenes</span></label>
+            </div>
+            <input type="text" class="otro" name="stack_otros" placeholder="Otros (por ejemplo: Civil 3D, Navisworks, Notion)" aria-label="Otros programas">
+            <div class="err">Marcá al menos un programa.</div>
+          </div>
+          <div class="field" data-check>
+            <legend>¿Qué te gustaría resolver con IA?</legend>
+            <div class="opts two">
+              <label class="opt"><input type="checkbox" name="objetivo" value="Cómputos y presupuestos"><span>Cómputos y presupuestos</span></label>
+              <label class="opt"><input type="checkbox" name="objetivo" value="Documentación y planos"><span>Documentación y planos</span></label>
+              <label class="opt"><input type="checkbox" name="objetivo" value="Renders e imágenes"><span>Renders e imágenes</span></label>
+              <label class="opt"><input type="checkbox" name="objetivo" value="Seguimiento de obra"><span>Seguimiento de obra</span></label>
+              <label class="opt"><input type="checkbox" name="objetivo" value="Propuestas y clientes"><span>Propuestas y clientes</span></label>
+              <label class="opt"><input type="checkbox" name="objetivo" value="Gestión del estudio"><span>Gestión del estudio</span></label>
+            </div>
+            <div class="err">Marcá al menos una opción.</div>
+          </div>
+          <div class="field" data-radio>
+            <legend>¿Usás IA hoy en tu trabajo?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="nivel_ia" value="Todavía no"><span>Todavía no</span></label>
+              <label class="opt"><input type="radio" name="nivel_ia" value="A veces, para textos o consultas"><span>A veces, para textos o consultas</span></label>
+              <label class="opt"><input type="radio" name="nivel_ia" value="Seguido, es parte de mi trabajo"><span>Seguido, es parte de mi trabajo</span></label>
+              <label class="opt"><input type="radio" name="nivel_ia" value="Ya automatizo procesos"><span>Ya armé automatizaciones o asistentes</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <label class="check"><input type="checkbox" name="quiere_llamada" value="si"> Después del taller, quiero una llamada gratis de 20 min para ver cómo aplicarlo en mi trabajo.</label>
+        </fieldset>
+
+        <!-- ocultos -->
+        <input type="hidden" name="id">
+        <input type="hidden" name="tz">
+        <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium">
+        <input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content">
+        <input type="hidden" name="fbclid">
+        <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off"><!-- honeypot -->
+
+        <div class="actions" id="actions">
+          <button type="submit" class="btn-primary" id="next">Reservar mi lugar</button>
+        </div>
+        <p class="privacy">Tus datos no se comparten con nadie.</p>
+      </form>
+
+      <div class="done hidden" id="done">
+        <div class="big">✓</div>
+        <h2>¡Nos vemos el viernes, <span id="doneName"></span>!</h2>
+        <p>Te mandé un email de confirmación. Si no lo ves, revisá Promociones o Spam.</p>
+        <a class="btn-primary" id="cal" href="#" target="_blank" rel="noopener">Agregar a mi calendario</a>
+        <ul class="next-steps">
+          <li>El jueves 29 te llega un recordatorio.</li>
+          <li>El viernes, 1 hora antes, te mando el link del Meet.</li>
+          <li>Conectate desde la compu: vamos a trabajar en vivo.</li>
+        </ul>
+        <p>Mientras tanto, en <a href="https://instagram.com/soy.leo_ai" target="_blank" rel="noopener">@soy.leo_ai</a> hay ejemplos de lo que vamos a ver.</p>
+      </div>
+    </section>
+  </div>
+  <footer>© SoyLeo AI</footer>
+</div>
+<script src="/taller/taller.js"></script>
+</body>
+</html>
