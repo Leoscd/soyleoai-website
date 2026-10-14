@@ -84,7 +84,7 @@ function inscribir_(sh, d) {
 function completarPerfil_(sh, d) {
   const fila = buscarFila_(sh, 'id', d.id) || buscarFila_(sh, 'email', String(d.email || '').trim().toLowerCase());
   if (!fila) return;
-  const p = pick_(d, PASO2);
+  const p = Object.fromEntries(PASO2.map(c => [c, celda_(String(d[c] || ''))])); // pisa también lo que quedó vacío
   const empresa = ['Estudio o empresa', 'Constructora / MMO'].includes(p.perfil) || ['6-15', '+15'].includes(p.equipo);
   p.destino = p.perfil === 'Estudiante' ? 'estudiante' : empresa ? 'diagnóstico empresa' : 'curso';
   let score = 0;
