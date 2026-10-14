@@ -4,7 +4,7 @@
 (() => {
   const CONFIG = {
     // Web App del Apps Script del taller (docs/apps-script-taller.gs), termina en /exec
-    ENDPOINT: "",
+    ENDPOINT: "https://script.google.com/macros/s/AKfycbzx3b-DbvtP9ohkN3TJCY-iWd5Xshjld5LEANLaFZvmCo8y9D3r-LvOsGPJKCKpgu0/exec",
     // Viernes 30/10/2026, 19 a 21 h de Argentina (UTC-3)
     INICIO: '2026-10-30T22:00:00Z',
     FIN: '2026-10-31T00:00:00Z',
