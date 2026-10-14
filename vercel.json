@@ -27,6 +27,15 @@
   ],
   "headers": [
     {
+      "source": "/taller(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
       "source": "/images/(.*)",
       "headers": [
         {
