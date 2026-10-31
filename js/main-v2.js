@@ -258,6 +258,36 @@ function initAgenda() {
 document.addEventListener('DOMContentLoaded', initAgenda);
 
 // ===========================
+// Métricas — ÚNICO lugar donde se actualizan los números
+// ===========================
+// Cada [data-metrica="clave"] del HTML toma su valor de acá: la frase del hero,
+// los contadores del hero y los de #sobre-mi. Para actualizar, cambiar el número
+// y subir el ?v= de main-v2.js en index.html. El HTML lleva el mismo número
+// escrito como respaldo (por si el JS no carga): conviene actualizarlo también.
+const METRICAS = {
+    arquitectos: 140,
+    empresas: 25,
+};
+
+function initMetricas() {
+    document.querySelectorAll('[data-metrica]').forEach(el => {
+        const n = METRICAS[el.dataset.metrica];
+        if (n === undefined) return;
+
+        if ('countTo' in el.dataset) {
+            // Contador animado: initCounters() lo lleva de 0 a n
+            el.dataset.countTo = n;
+            if (el.textContent.trim() !== '0') el.textContent = n + (el.dataset.countSuffix || '');
+        } else {
+            el.textContent = (el.dataset.metricaPrefix || '') + n;
+        }
+    });
+}
+
+// Se registra antes que initCounters(): los contadores arrancan con el número nuevo
+document.addEventListener('DOMContentLoaded', initMetricas);
+
+// ===========================
 // Formulario de Contacto - Web3Forms (fetch API)
 // ===========================
 const contactForm = document.getElementById('contact-form');

@@ -265,6 +265,16 @@ ia-arquitectos-website/
 
 ---
 
+## MÉTRICAS (arquitectos formados / empresas)
+
+Hoy: **140+ arquitectos · 25+ empresas** (31/10/2026; antes 100+/20+).
+Se cambian en **un solo lugar: `METRICAS` en `js/main-v2.js`** — alimenta la frase del
+hero, los 2 contadores del hero y los 2 de `#sobre-mi` (todo `[data-metrica]`).
+Después: subir el `?v=` de `main-v2.js` en `index.html` y, si se puede, el número de
+respaldo escrito en esos 5 `[data-metrica]` (es lo que se ve si el JS no carga).
+
+---
+
 ## ORDEN DE SECCIONES ACTUAL (index.html)
 
 1. HERO (celosía paramétrica CSS)
