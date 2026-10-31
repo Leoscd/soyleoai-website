@@ -265,6 +265,35 @@ ia-arquitectos-website/
 
 ---
 
+## INCIDENTE DNS — 31/10/2026 (sitio caído)
+
+**Síntoma:** soyleoai.com no cargaba para nadie (timeout). Todas las subpáginas también.
+**Causa:** el registro A `@` en GoDaddy apuntaba a `216.198.79.1` (la IP que Vercel
+recomienda para dominios nuevos), y esa IP dejó de responder. Vercel y el código
+estaban bien: el sitio respondía 200 pedido directo a `76.76.21.21`.
+**Arreglo:** registro A `@` → **`76.76.21.21`** (TTL 600). Volvió en minutos.
+
+- Si Vercel muestra «Invalid Configuration» por usar `76.76.21.21`, es cosmético: la IP
+  sigue siendo de Vercel. **Manda que la página cargue, no el cartel.**
+- GoDaddy rechaza la IP con un **punto final** (`76.76.21.21.`) con el error «El dominio
+  tiene algunos registros inválidos». Las IP van sin punto.
+- **No tocar** el resto de los registros DNS: `cursos` (A → 129.121.60.59, plataforma de
+  cursos), `email`, `rsend` y los `_domainkey` son del correo.
+- `www.soyleoai.com` da error de certificado: falta agregar `www` en Vercel → Domains
+  (con redirect a `soyleoai.com`). **Pendiente.**
+- **Monitor:** `.github/workflows/monitor-sitio.yml` chequea home, blog, recursos y cv
+  cada 30 min. Si algo cae: falla el workflow (mail de GitHub) + issue «🔴 soyleoai.com
+  caído» con la IP actual. Lo cierra solo al volver. Correrlo a mano: Actions → Run workflow.
+
+**Diagnóstico rápido si vuelve a caer:**
+```bash
+dig +short soyleoai.com A                                        # ¿76.76.21.21?
+curl -sI --resolve soyleoai.com:443:76.76.21.21 https://soyleoai.com | head -1  # ¿Vercel sirve?
+```
+Si el segundo da 200 y el sitio no carga → es DNS. Si el segundo falla → es Vercel.
+
+---
+
 ## ORDEN DE SECCIONES ACTUAL (index.html)
 
 1. HERO (celosía paramétrica CSS)
