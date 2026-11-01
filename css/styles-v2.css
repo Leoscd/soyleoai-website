@@ -5107,3 +5107,16 @@ button {
    ═══════════════════════════════════════════════════════════════════════ */
 [data-metrica][data-count-to] { transition: color 0.9s ease; }
 [data-metrica][data-count-to].is-ticking { color: var(--color-accent); transition-duration: 0.15s; }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ███  LOGO «Leo IA» en Montserrat ExtraBold (31/10/2026)
+   Tipografía del logo oficial de Leo (archivo de Illustrator). Se carga sólo
+   con las letras del logo vía &text= de Google Fonts.
+   ═══════════════════════════════════════════════════════════════════════ */
+.logo-minimal .logo-text,
+.logo-minimal .logo-text span {
+    font-family: 'Montserrat', var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
