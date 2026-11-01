@@ -267,15 +267,9 @@ document.addEventListener('DOMContentLoaded', initAgenda);
 const METRICAS = {
     arquitectos: 140,
     empresas: 25,
-    actualizado: '2026-10',   // año-mes: alimenta «Actualizado · oct 2026»
 };
 
 function initMetricas() {
-    const [anio, mes] = METRICAS.actualizado.split('-').map(Number);
-    const fecha = new Date(anio, mes - 1, 1)
-        .toLocaleDateString('es-AR', { month: 'short', year: 'numeric' })
-        .replace('.', '').replace(' de ', ' ');
-    document.querySelectorAll('[data-metrica-fecha]').forEach(el => { el.textContent = fecha; });
 
     document.querySelectorAll('[data-metrica]').forEach(el => {
         const n = METRICAS[el.dataset.metrica];
