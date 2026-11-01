@@ -5098,3 +5098,29 @@ button {
     text-decoration: underline;
     text-underline-offset: 3px;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ███  MÉTRICAS VIVAS (31/10/2026)
+   Los contadores [data-metrica] «laten» cada ~7 s (initLiveTick): repasan
+   los últimos números y caen en el valor real con un destello amarillo.
+   La etiqueta «Actualizado · mes año» sale de METRICAS.actualizado.
+   ═══════════════════════════════════════════════════════════════════════ */
+[data-metrica][data-count-to] { transition: color 0.9s ease; }
+[data-metrica][data-count-to].is-ticking { color: var(--color-accent); transition-duration: 0.15s; }
+
+.metric-live {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    margin: 18px 0 0;
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: rgba(255,255,255,0.4);
+}
+.metric-live b { color: var(--color-accent); font-weight: 500; }
+.metric-live--left { justify-content: flex-start; margin-top: 26px; }
+
+@media (min-width: 769px) and (max-height: 760px) {
+    .metric-live { margin-top: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .metric-live .pt-dot { animation: none; }
+}

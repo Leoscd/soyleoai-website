@@ -270,6 +270,10 @@ ia-arquitectos-website/
 Hoy: **140+ arquitectos · 25+ empresas** (31/10/2026; antes 100+/20+).
 Se cambian en **un solo lugar: `METRICAS` en `js/main-v2.js`** — alimenta la frase del
 hero, los 2 contadores del hero y los 2 de `#sobre-mi` (todo `[data-metrica]`).
+**Al cambiar un número, cambiar también `actualizado: 'AAAA-MM'`**: alimenta la etiqueta
+«● Actualizado · oct 2026» que va bajo los contadores.
+Los contadores «laten» cada ~7 s (`initLiveTick`): repasan los últimos 4 números y caen
+SIEMPRE en el valor real. Decisión: nunca mostrar un número mayor al real.
 Después: subir el `?v=` de `main-v2.js` en `index.html` y, si se puede, el número de
 respaldo escrito en esos 5 `[data-metrica]` (es lo que se ve si el JS no carga).
 

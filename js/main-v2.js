@@ -267,9 +267,16 @@ document.addEventListener('DOMContentLoaded', initAgenda);
 const METRICAS = {
     arquitectos: 140,
     empresas: 25,
+    actualizado: '2026-10',   // año-mes: alimenta «Actualizado · oct 2026»
 };
 
 function initMetricas() {
+    const [anio, mes] = METRICAS.actualizado.split('-').map(Number);
+    const fecha = new Date(anio, mes - 1, 1)
+        .toLocaleDateString('es-AR', { month: 'short', year: 'numeric' })
+        .replace('.', '').replace(' de ', ' ');
+    document.querySelectorAll('[data-metrica-fecha]').forEach(el => { el.textContent = fecha; });
+
     document.querySelectorAll('[data-metrica]').forEach(el => {
         const n = METRICAS[el.dataset.metrica];
         if (n === undefined) return;
@@ -1017,6 +1024,7 @@ function initCounters() {
             const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
             el.textContent = Math.round(target * eased) + suffix;
             if (p < 1) requestAnimationFrame(frame);
+            else if (el.dataset.metrica) initLiveTick(el, target, suffix);
         })(startTs);
     };
 
@@ -1029,6 +1037,32 @@ function initCounters() {
     }, { threshold: 0.6 });
 
     counters.forEach(el => io.observe(el));
+}
+
+// «Latido» de las métricas: cada ~7 s repasa los últimos 4 números y cae
+// SIEMPRE en el valor real (nunca lo supera). Sólo late en pantalla y con la
+// pestaña visible; con prefers-reduced-motion no arranca.
+function initLiveTick(el, target, suffix) {
+    if (prefersReducedMotion()) return;
+
+    let visible = true;
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(el);
+
+    const from = Math.max(0, target - 4);
+    const tick = () => {
+        if (!visible || document.hidden) return;
+        el.classList.add('is-ticking');
+        const t0 = performance.now();
+        (function frame(now) {
+            const p = Math.min((now - t0) / 900, 1);
+            el.textContent = Math.round(from + (target - from) * (1 - Math.pow(1 - p, 3))) + suffix;
+            if (p < 1) requestAnimationFrame(frame);
+            else el.classList.remove('is-ticking');
+        })(t0);
+    };
+
+    // Desfase al azar para que los contadores no laten todos a la vez
+    setTimeout(() => { tick(); setInterval(tick, 7000); }, 3000 + Math.random() * 3000);
 }
 
 
