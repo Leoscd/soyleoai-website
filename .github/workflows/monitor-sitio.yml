@@ -1,0 +1,85 @@
+# Vigilante de soyleoai.com
+# Cada 30 min pide la home y las secciones principales. Si alguna no responde:
+#   1. el workflow falla → GitHub manda un mail
+#   2. se abre un issue «🔴 soyleoai.com caído» con el diagnóstico (una sola vez)
+# Cuando el sitio vuelve, cierra el issue solo.
+#
+# Contexto: el 31/10/2026 el sitio estuvo caído porque el registro A de GoDaddy
+# apuntaba a 216.198.79.1, una IP de Vercel que dejó de responder. Ver CLAUDE.md.
+
+name: Monitor del sitio
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+concurrency:
+  group: monitor-sitio
+
+jobs:
+  chequear:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Chequear páginas
+        id: check
+        run: |
+          urls="https://soyleoai.com/ https://soyleoai.com/blog/ https://soyleoai.com/recursos/ https://soyleoai.com/cv/"
+          fallas=""
+          for u in $urls; do
+            # 2 intentos para no alertar por un hipo de red
+            for intento in 1 2; do
+              code=$(curl -sS -o /dev/null --max-time 20 -w "%{http_code}" "$u" 2>/dev/null) || code="000"
+              [ "$code" = "200" ] && break
+              sleep 10
+            done
+            echo "$u → $code"
+            [ "$code" = "200" ] || fallas="$fallas\n- \`$u\` → HTTP $code"
+          done
+          ip=$(dig +short soyleoai.com A | tr '\n' ' ')
+          echo "Registro A actual: $ip"
+          {
+            echo "ip=$ip"
+            echo "fallas<<FIN"
+            printf "%b\n" "$fallas"
+            echo "FIN"
+          } >> "$GITHUB_OUTPUT"
+          [ -z "$fallas" ] || exit 1
+
+      - name: Abrir issue si está caído
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          FALLAS: ${{ steps.check.outputs.fallas }}
+          IP: ${{ steps.check.outputs.ip }}
+        run: |
+          abierto=$(gh issue list --state open --search "in:title soyleoai.com caído" --json number --jq '.[0].number')
+          if [ -n "$abierto" ]; then
+            gh issue comment "$abierto" --body "Sigue caído — $(date -u '+%d/%m %H:%M') UTC"
+            exit 0
+          fi
+          {
+            echo "Páginas que no respondieron:"
+            echo "$FALLAS"
+            echo
+            echo "Registro A actual de soyleoai.com: \`$IP\`"
+            echo
+            echo "**Primero revisar:** si el registro A **no** es \`76.76.21.21\`, cambiarlo en"
+            echo "GoDaddy → DNS → fila A · @ (sin punto al final). Ver CLAUDE.md → «Incidente DNS»."
+            echo "Si la IP es la correcta, mirar https://www.vercel-status.com"
+          } > body.md
+          gh issue create --title "🔴 soyleoai.com caído" --body-file body.md
+
+      - name: Cerrar issue si volvió
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          for n in $(gh issue list --state open --search "in:title soyleoai.com caído" --json number --jq '.[].number'); do
+            gh issue close "$n" --comment "✅ El sitio volvió — $(date -u '+%d/%m %H:%M') UTC"
+          done
