@@ -5115,7 +5115,9 @@ button {
    con las letras del logo vía &text= de Google Fonts.
    ═══════════════════════════════════════════════════════════════════════ */
 .logo-minimal .logo-text,
-.logo-minimal .logo-text span {
+.logo-minimal .logo-text span,
+.footer-logo,
+.footer-logo span {
     font-family: 'Montserrat', var(--font-display);
     font-weight: 800;
     letter-spacing: -0.01em;
