@@ -258,6 +258,37 @@ function initAgenda() {
 document.addEventListener('DOMContentLoaded', initAgenda);
 
 // ===========================
+// Métricas — ÚNICO lugar donde se actualizan los números
+// ===========================
+// Cada [data-metrica="clave"] del HTML toma su valor de acá: la frase del hero,
+// los contadores del hero y los de #sobre-mi. Para actualizar, cambiar el número
+// y subir el ?v= de main-v2.js en index.html. El HTML lleva el mismo número
+// escrito como respaldo (por si el JS no carga): conviene actualizarlo también.
+const METRICAS = {
+    arquitectos: 140,
+    empresas: 25,
+};
+
+function initMetricas() {
+
+    document.querySelectorAll('[data-metrica]').forEach(el => {
+        const n = METRICAS[el.dataset.metrica];
+        if (n === undefined) return;
+
+        if ('countTo' in el.dataset) {
+            // Contador animado: initCounters() lo lleva de 0 a n
+            el.dataset.countTo = n;
+            if (el.textContent.trim() !== '0') el.textContent = n + (el.dataset.countSuffix || '');
+        } else {
+            el.textContent = (el.dataset.metricaPrefix || '') + n;
+        }
+    });
+}
+
+// Se registra antes que initCounters(): los contadores arrancan con el número nuevo
+document.addEventListener('DOMContentLoaded', initMetricas);
+
+// ===========================
 // Formulario de Contacto - Web3Forms (fetch API)
 // ===========================
 const contactForm = document.getElementById('contact-form');
@@ -987,6 +1018,7 @@ function initCounters() {
             const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
             el.textContent = Math.round(target * eased) + suffix;
             if (p < 1) requestAnimationFrame(frame);
+            else if (el.dataset.metrica) initLiveTick(el, target, suffix);
         })(startTs);
     };
 
@@ -999,6 +1031,32 @@ function initCounters() {
     }, { threshold: 0.6 });
 
     counters.forEach(el => io.observe(el));
+}
+
+// «Latido» de las métricas: cada ~7 s repasa los últimos 4 números y cae
+// SIEMPRE en el valor real (nunca lo supera). Sólo late en pantalla y con la
+// pestaña visible; con prefers-reduced-motion no arranca.
+function initLiveTick(el, target, suffix) {
+    if (prefersReducedMotion()) return;
+
+    let visible = true;
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(el);
+
+    const from = Math.max(0, target - 4);
+    const tick = () => {
+        if (!visible || document.hidden) return;
+        el.classList.add('is-ticking');
+        const t0 = performance.now();
+        (function frame(now) {
+            const p = Math.min((now - t0) / 900, 1);
+            el.textContent = Math.round(from + (target - from) * (1 - Math.pow(1 - p, 3))) + suffix;
+            if (p < 1) requestAnimationFrame(frame);
+            else el.classList.remove('is-ticking');
+        })(t0);
+    };
+
+    // Desfase al azar para que los contadores no laten todos a la vez
+    setTimeout(() => { tick(); setInterval(tick, 7000); }, 3000 + Math.random() * 3000);
 }
 
 

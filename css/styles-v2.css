@@ -5098,3 +5098,27 @@ button {
     text-decoration: underline;
     text-underline-offset: 3px;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ███  MÉTRICAS VIVAS (31/10/2026)
+   Los contadores [data-metrica] «laten» cada ~7 s (initLiveTick): repasan
+   los últimos números y caen en el valor real con un destello amarillo.
+   ═══════════════════════════════════════════════════════════════════════ */
+[data-metrica][data-count-to] { transition: color 0.9s ease; }
+[data-metrica][data-count-to].is-ticking { color: var(--color-accent); transition-duration: 0.15s; }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ███  LOGO «Leo IA» en Montserrat ExtraBold (31/10/2026)
+   Tipografía del logo oficial de Leo (archivo de Illustrator). Se carga sólo
+   con las letras del logo vía &text= de Google Fonts.
+   ═══════════════════════════════════════════════════════════════════════ */
+.logo-minimal .logo-text,
+.logo-minimal .logo-text span,
+.footer-logo,
+.footer-logo span {
+    font-family: 'Montserrat', var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}

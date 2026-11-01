@@ -294,6 +294,22 @@ Si el segundo da 200 y el sitio no carga → es DNS. Si el segundo falla → es 
 
 ---
 
+## MÉTRICAS (arquitectos formados / empresas)
+
+Hoy: **140+ arquitectos · 25+ empresas** (31/10/2026; antes 100+/20+).
+Se cambian en **un solo lugar: `METRICAS` en `js/main-v2.js`** — alimenta la frase del
+hero, los 2 contadores del hero y los 2 de `#sobre-mi` (todo `[data-metrica]`).
+Los contadores «laten» cada ~7 s (`initLiveTick`): repasan los últimos 4 números y caen
+SIEMPRE en el valor real. Decisión: nunca mostrar un número mayor al real.
+Sin etiqueta «Actualizado»: se probó y Leo la descartó (31/10/2026); el latido alcanza.
+Después: subir el `?v=` de `main-v2.js` en `index.html` y, si se puede, el número de
+respaldo escrito en esos 5 `[data-metrica]` (es lo que se ve si el JS no carga).
+
+**Logo:** «Leo IA» (no «LEO IA») en **Montserrat ExtraBold**, arriba y en el footer —
+tipografía del logo oficial de Leo. Se carga con `&text=Leo%20IA` (~2 KB).
+
+---
+
 ## ORDEN DE SECCIONES ACTUAL (index.html)
 
 1. HERO (celosía paramétrica CSS)
