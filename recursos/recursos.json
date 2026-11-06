@@ -73,5 +73,20 @@
     "archivo": "/recursos/archivos/croquis.pdf",
     "formato": "PDF",
     "fecha": "2026-10-12"
+  },
+  {
+    "slug": "mesada",
+    "etiqueta": "Guía de ejercicio · PDF",
+    "titulo": "Mesada e isla en *Revit* con Claude Code",
+    "bajada": "Familias paramétricas de cocina, de la planta a la hoja de detalle acotada: el ejercicio completo con los pedidos para copiar.",
+    "bullets": [
+      "El ejercicio completo: mesada, isla y extractor como familias paramétricas, ubicadas en el modelo",
+      "Qué tener instalado y qué tiene que tener el modelo antes de empezar",
+      "Los 6 pasos con los pedidos para copiar, del borrador a la hoja A2 acotada a 1:25",
+      "Los 8 puntos de control y las trampas que Revit no avisa"
+    ],
+    "archivo": "/recursos/archivos/mesada.pdf",
+    "formato": "PDF",
+    "fecha": "2026-11-06"
   }
 ]
