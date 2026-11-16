@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>¿Cómo te fue con la IA? · SoyLeo AI</title>
+<meta name="description" content="Encuesta para alumnos de SoyLeo AI: contanos cómo estás aplicando la IA en tu trabajo.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="¿Cómo te fue aplicando la IA en tu trabajo?">
+<meta property="og:description" content="5 minutos para contarle a Leo tus resultados después del curso.">
+<meta property="og:image" content="https://soyleoai.com/images/og-image.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="/favicon.ico">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E3NEPPHYCB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E3NEPPHYCB');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/recursos/_assets/landing.css">
+<style>
+  .scale { display: grid; gap: 6px; }
+  .scale.s5 { grid-template-columns: repeat(5, 1fr); }
+  .scale.s11 { grid-template-columns: repeat(6, 1fr); }
+  @media (min-width: 600px) { .scale.s11 { grid-template-columns: repeat(11, 1fr); } }
+  .scale .opt span { text-align: center; padding: 11px 0; }
+  .scale-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-top: 6px; }
+  textarea { width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--line); padding: 13px 14px; font: inherit; border-radius: 0; min-height: 96px; resize: vertical; }
+  textarea:focus { outline: none; border-color: var(--gold); }
+  .field.invalid textarea { border-color: var(--error); }
+  .row3 { display: grid; grid-template-columns: 1fr; gap: 0 14px; }
+  @media (min-width: 600px) { .row3 { grid-template-columns: 1.4fr 1fr 1fr; } }
+  .done .big { font-size: 44px; color: var(--gold); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/">SOYLEO <b>AI</b></a>
+    <div>@soy.leo_ai</div>
+  </header>
+
+  <div class="grid">
+    <section class="hero">
+      <div class="eyebrow">Encuesta para alumnos · 5 min</div>
+      <h1>¿Cómo te está yendo con la <em>IA</em> en tu trabajo?</h1>
+      <p class="lead">Quiero saber qué cambió desde que hiciste el curso: qué aplicaste, cuánto tiempo recuperaste y qué te falta. Me sirve para mejorar el programa y para mostrar resultados reales.</p>
+      <ul class="bul">
+        <li>Son 3 pasos cortos</li>
+        <li>Vos elegís si tu comentario se puede publicar y cómo (con nombre, solo nombre o anónimo)</li>
+        <li>Si algo todavía no lo aplicaste, contámelo igual: también es un dato útil</li>
+      </ul>
+      <p class="author"><strong>Arq. Leonardo Díaz</strong> · Gracias por tomarte el tiempo.</p>
+    </section>
+
+    <section class="card" aria-live="polite">
+      <form id="encuesta" novalidate>
+        <div class="progress"><span class="on"></span><span></span><span></span></div>
+        <div class="step-label" id="stepLabel">Paso 1 de 3</div>
+
+        <!-- PASO 1 -->
+        <fieldset class="step active" data-step="1">
+          <h2>Sobre vos</h2>
+          <div class="row2">
+            <div class="field">
+              <label for="nombre">Nombre y apellido</label>
+              <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+              <div class="err">Contame tu nombre.</div>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+              <div class="err">Revisá el email.</div>
+            </div>
+          </div>
+          <div class="field" data-radio="rol">
+            <legend>¿A qué te dedicás?</legend>
+            <div class="opts two">
+              <label class="opt"><input type="radio" name="rol" value="Arquitecto/a independiente"><span>Arquitecto/a independiente</span></label>
+              <label class="opt"><input type="radio" name="rol" value="Estudio de arquitectura"><span>Estudio de arquitectura</span></label>
+              <label class="opt"><input type="radio" name="rol" value="Constructora / MMO"><span>Constructora / MMO</span></label>
+              <label class="opt"><input type="radio" name="rol" value="Ingeniería / técnico"><span>Ingeniería / técnico</span></label>
+              <label class="opt"><input type="radio" name="rol" value="Interiorismo / diseño"><span>Interiorismo / diseño</span></label>
+              <label class="opt"><input type="radio" name="rol" value="Otro"><span>Otro</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="row3">
+            <div class="field">
+              <label for="empresa">Estudio o empresa <span class="hint">(opcional)</span></label>
+              <input type="text" id="empresa" name="empresa" autocomplete="organization">
+            </div>
+            <div class="field">
+              <label for="pais">País</label>
+              <input type="text" id="pais" name="pais" autocomplete="country-name" required>
+              <div class="err">Indicá tu país.</div>
+            </div>
+            <div class="field">
+              <label for="ciudad">Ciudad</label>
+              <input type="text" id="ciudad" name="ciudad" autocomplete="address-level2">
+            </div>
+          </div>
+          <div class="field" data-radio="equipo">
+            <legend>¿Cuántas personas trabajan con vos?</legend>
+            <div class="opts two">
+              <label class="opt"><input type="radio" name="equipo" value="Solo/a"><span>Trabajo solo/a</span></label>
+              <label class="opt"><input type="radio" name="equipo" value="2-5"><span>2 a 5</span></label>
+              <label class="opt"><input type="radio" name="equipo" value="6-15"><span>6 a 15</span></label>
+              <label class="opt"><input type="radio" name="equipo" value="+15"><span>Más de 15</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="field" data-radio="edicion">
+            <legend>¿Qué hiciste conmigo?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="edicion" value="Curso completo"><span>El curso completo (6 semanas)</span></label>
+              <label class="opt"><input type="radio" name="edicion" value="Taller en vivo"><span>El taller en vivo gratuito</span></label>
+              <label class="opt"><input type="radio" name="edicion" value="Mentoría / consultoría"><span>Mentoría o consultoría para mi estudio</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+        </fieldset>
+
+        <!-- PASO 2 -->
+        <fieldset class="step" data-step="2">
+          <h2>Tus resultados</h2>
+          <div class="field" data-radio="aplica">
+            <legend>¿Estás aplicando lo que aprendiste?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="aplica" value="Sí, todos los días"><span>Sí, todos los días</span></label>
+              <label class="opt"><input type="radio" name="aplica" value="Sí, en algunos proyectos"><span>Sí, en algunos proyectos</span></label>
+              <label class="opt"><input type="radio" name="aplica" value="Lo estoy probando"><span>Lo estoy probando, todavía no es parte de mi rutina</span></label>
+              <label class="opt"><input type="radio" name="aplica" value="Todavía no"><span>Todavía no lo apliqué</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="field">
+            <legend>¿En qué tareas lo usás? <span class="hint">(marcá todas las que apliquen)</span></legend>
+            <div class="opts two">
+              <label class="opt"><input type="checkbox" name="tareas" value="Presupuestos y cómputos"><span>Presupuestos y cómputos</span></label>
+              <label class="opt"><input type="checkbox" name="tareas" value="Revit"><span>Revit (modelo, familias, láminas)</span></label>
+              <label class="opt"><input type="checkbox" name="tareas" value="AutoCAD"><span>AutoCAD (planos, cotas, presentación)</span></label>
+              <label class="opt"><input type="checkbox" name="tareas" value="Renders e imágenes"><span>Renders e imágenes</span></label>
+              <label class="opt"><input type="checkbox" name="tareas" value="Propuestas y clientes"><span>Propuestas y atención a clientes</span></label>
+              <label class="opt"><input type="checkbox" name="tareas" value="Seguimiento de obra"><span>Seguimiento de obra e informes</span></label>
+              <label class="opt"><input type="checkbox" name="tareas" value="Normativa y cálculos"><span>Normativa y cálculos</span></label>
+              <label class="opt"><input type="checkbox" name="tareas" value="Gestión y administración"><span>Gestión del estudio</span></label>
+              <label class="opt"><input type="checkbox" name="tareas" value="Marketing y redes"><span>Marketing y redes</span></label>
+              <label class="opt"><input type="checkbox" name="tareas" value="Otra"><span>Otra</span></label>
+            </div>
+          </div>
+          <div class="field" data-radio="horas_semana">
+            <legend>¿Cuántas horas por semana estimás que te ahorra?</legend>
+            <div class="opts two">
+              <label class="opt"><input type="radio" name="horas_semana" value="0"><span>Ninguna todavía</span></label>
+              <label class="opt"><input type="radio" name="horas_semana" value="1-3"><span>1 a 3 horas</span></label>
+              <label class="opt"><input type="radio" name="horas_semana" value="4-8"><span>4 a 8 horas</span></label>
+              <label class="opt"><input type="radio" name="horas_semana" value="9-15"><span>9 a 15 horas</span></label>
+              <label class="opt"><input type="radio" name="horas_semana" value="+15"><span>Más de 15 horas</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="field">
+            <label for="tarea_ejemplo">Un ejemplo concreto: ¿qué tarea hacés distinto ahora? <span class="hint">(opcional)</span></label>
+            <input type="text" id="tarea_ejemplo" name="tarea_ejemplo" placeholder="Ej: el presupuesto de una vivienda de 120 m²">
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label for="antes">¿Cuánto te llevaba antes?</label>
+              <input type="text" id="antes" name="antes" placeholder="Ej: 2 días">
+            </div>
+            <div class="field">
+              <label for="ahora">¿Y ahora?</label>
+              <input type="text" id="ahora" name="ahora" placeholder="Ej: 2 horas">
+            </div>
+          </div>
+          <div class="field" data-radio="nuevo_negocio">
+            <legend>¿Te ayudó a ganar un cliente, un proyecto o a cobrar mejor?</legend>
+            <div class="opts two">
+              <label class="opt"><input type="radio" name="nuevo_negocio" value="Sí"><span>Sí</span></label>
+              <label class="opt"><input type="radio" name="nuevo_negocio" value="Todavía no"><span>Todavía no</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="field hidden" id="qNegocio">
+            <label for="nuevo_negocio_detalle">Contame un poco más</label>
+            <input type="text" id="nuevo_negocio_detalle" name="nuevo_negocio_detalle" placeholder="Ej: entregué la propuesta en un día y la aprobaron">
+          </div>
+          <div class="field" data-radio="confianza_antes">
+            <legend>Antes del curso, ¿qué tan cómodo/a te sentías usando IA en tu trabajo?</legend>
+            <div class="scale s5 opts">
+              <label class="opt"><input type="radio" name="confianza_antes" value="1"><span>1</span></label>
+              <label class="opt"><input type="radio" name="confianza_antes" value="2"><span>2</span></label>
+              <label class="opt"><input type="radio" name="confianza_antes" value="3"><span>3</span></label>
+              <label class="opt"><input type="radio" name="confianza_antes" value="4"><span>4</span></label>
+              <label class="opt"><input type="radio" name="confianza_antes" value="5"><span>5</span></label>
+            </div>
+            <div class="scale-labels"><span>Nada</span><span>Muy cómodo/a</span></div>
+            <div class="err">Elegí un número.</div>
+          </div>
+          <div class="field" data-radio="confianza_ahora">
+            <legend>¿Y hoy?</legend>
+            <div class="scale s5 opts">
+              <label class="opt"><input type="radio" name="confianza_ahora" value="1"><span>1</span></label>
+              <label class="opt"><input type="radio" name="confianza_ahora" value="2"><span>2</span></label>
+              <label class="opt"><input type="radio" name="confianza_ahora" value="3"><span>3</span></label>
+              <label class="opt"><input type="radio" name="confianza_ahora" value="4"><span>4</span></label>
+              <label class="opt"><input type="radio" name="confianza_ahora" value="5"><span>5</span></label>
+            </div>
+            <div class="scale-labels"><span>Nada</span><span>Muy cómodo/a</span></div>
+            <div class="err">Elegí un número.</div>
+          </div>
+        </fieldset>
+
+        <!-- PASO 3 -->
+        <fieldset class="step" data-step="3">
+          <h2>Tu palabra</h2>
+          <div class="field" data-radio="nps">
+            <legend>Del 0 al 10, ¿qué tan probable es que recomiendes el curso a un colega?</legend>
+            <div class="scale s11 opts">
+              <label class="opt"><input type="radio" name="nps" value="0"><span>0</span></label>
+              <label class="opt"><input type="radio" name="nps" value="1"><span>1</span></label>
+              <label class="opt"><input type="radio" name="nps" value="2"><span>2</span></label>
+              <label class="opt"><input type="radio" name="nps" value="3"><span>3</span></label>
+              <label class="opt"><input type="radio" name="nps" value="4"><span>4</span></label>
+              <label class="opt"><input type="radio" name="nps" value="5"><span>5</span></label>
+              <label class="opt"><input type="radio" name="nps" value="6"><span>6</span></label>
+              <label class="opt"><input type="radio" name="nps" value="7"><span>7</span></label>
+              <label class="opt"><input type="radio" name="nps" value="8"><span>8</span></label>
+              <label class="opt"><input type="radio" name="nps" value="9"><span>9</span></label>
+              <label class="opt"><input type="radio" name="nps" value="10"><span>10</span></label>
+            </div>
+            <div class="scale-labels"><span>Nada probable</span><span>Seguro que sí</span></div>
+            <div class="err">Elegí un número.</div>
+          </div>
+          <div class="field" data-text>
+            <label for="cambio">En una o dos frases: ¿qué cambió en tu forma de trabajar?</label>
+            <textarea id="cambio" name="cambio" required placeholder="Contalo como se lo contarías a un colega"></textarea>
+            <div class="err">Contame aunque sea una frase.</div>
+          </div>
+          <div class="field">
+            <label for="lo_mas_valioso">¿Qué fue lo más valioso del curso? <span class="hint">(opcional)</span></label>
+            <textarea id="lo_mas_valioso" name="lo_mas_valioso"></textarea>
+          </div>
+          <div class="field">
+            <label for="mejorar">¿Qué mejorarías o qué te faltó? <span class="hint">(opcional, esto queda solo para mí)</span></label>
+            <textarea id="mejorar" name="mejorar"></textarea>
+          </div>
+          <div class="field" data-radio="permiso_publicar">
+            <legend>¿Puedo compartir tu comentario en redes (Instagram, LinkedIn)?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="permiso_publicar" value="Con nombre y empresa"><span>Sí, con mi nombre y mi estudio o empresa</span></label>
+              <label class="opt"><input type="radio" name="permiso_publicar" value="Solo con nombre"><span>Sí, solo con mi nombre</span></label>
+              <label class="opt"><input type="radio" name="permiso_publicar" value="Anónimo"><span>Sí, pero de forma anónima</span></label>
+              <label class="opt"><input type="radio" name="permiso_publicar" value="No"><span>No, es solo para vos</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
+          <div class="field hidden" id="qRed">
+            <label for="red_social">Tu usuario de Instagram o LinkedIn, para etiquetarte <span class="hint">(opcional)</span></label>
+            <input type="text" id="red_social" name="red_social" placeholder="@usuario o link de LinkedIn">
+          </div>
+          <label class="check"><input type="checkbox" name="video" value="Sí"> Me animo a grabar un video corto (30 segundos) contando mi experiencia.</label>
+        </fieldset>
+
+        <input type="hidden" name="utm_source">
+        <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off">
+
+        <div class="actions">
+          <button type="button" class="btn-ghost hidden" id="back">Atrás</button>
+          <button type="submit" class="btn-primary" id="next">Continuar</button>
+        </div>
+        <p class="privacy">Tus datos no se comparten con nadie. Solo publico lo que vos autorices.</p>
+      </form>
+
+      <div class="done hidden" id="done">
+        <div class="big">✓</div>
+        <h2>¡Gracias, <span id="doneName"></span>!</h2>
+        <p>Tu respuesta me ayuda muchísimo. Si marcaste lo del video, te escribo para coordinarlo.</p>
+        <p>Seguimos en <a href="https://instagram.com/soy.leo_ai" target="_blank" rel="noopener">@soy.leo_ai</a>.</p>
+      </div>
+    </section>
+  </div>
+  <footer>© SoyLeo AI · Arq. Leonardo Díaz</footer>
+</div>
+
+<script>
+// URL de la Web App de Apps Script de la Sheet "Encuesta alumnos SoyLeo AI" (termina en /exec)
+const ENDPOINT = "";
+
+(() => {
+  const form = document.getElementById('encuesta');
+  const steps = [...form.querySelectorAll('.step')];
+  const bars = [...document.querySelectorAll('.progress span')];
+  const back = document.getElementById('back'), next = document.getElementById('next');
+  let cur = 0;
+
+  const qs = new URLSearchParams(location.search);
+  if (qs.get('utm_source')) form.elements.utm_source.value = qs.get('utm_source');
+
+  // Preguntas que aparecen según la respuesta
+  const qNegocio = document.getElementById('qNegocio'), qRed = document.getElementById('qRed');
+  form.addEventListener('change', e => {
+    if (e.target.name === 'nuevo_negocio') qNegocio.classList.toggle('hidden', e.target.value !== 'Sí');
+    if (e.target.name === 'permiso_publicar') qRed.classList.toggle('hidden', !/nombre/.test(e.target.value));
+    const f = e.target.closest('.field'); if (f) f.classList.remove('invalid');
+  });
+
+  function validate(step) {
+    let ok = true;
+    step.querySelectorAll('.field').forEach(f => {
+      if (f.classList.contains('hidden')) return;
+      let valid = true;
+      const input = f.querySelector('input[required], textarea[required]');
+      if (input) valid = input.type === 'email'
+        ? /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(input.value.trim())
+        : input.value.trim() !== '';
+      if (f.dataset.radio) valid = !!f.querySelector('input:checked');
+      f.classList.toggle('invalid', !valid);
+      if (!valid && ok) { ok = false; f.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    });
+    return ok;
+  }
+
+  function show(i) {
+    steps[cur].classList.remove('active');
+    cur = i;
+    steps[cur].classList.add('active');
+    bars.forEach((b, j) => b.classList.toggle('on', j <= cur));
+    document.getElementById('stepLabel').textContent = `Paso ${cur + 1} de ${steps.length}`;
+    back.classList.toggle('hidden', cur === 0);
+    next.textContent = cur === steps.length - 1 ? 'Enviar' : 'Continuar';
+    form.closest('.card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (window.gtag) gtag('event', 'encuesta_paso', { paso: cur + 1 });
+  }
+  back.addEventListener('click', () => show(cur - 1));
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!validate(steps[cur])) return;
+    if (cur < steps.length - 1) return show(cur + 1);
+
+    const data = {};
+    new FormData(form).forEach((v, k) => { data[k] = data[k] ? data[k] + ' | ' + v : v; });
+    if (data.website) return;
+    if (qNegocio.classList.contains('hidden')) delete data.nuevo_negocio_detalle;
+    if (qRed.classList.contains('hidden')) delete data.red_social;
+    data.pagina = location.href.split('?')[0];
+
+    next.disabled = true; next.textContent = 'Enviando…';
+    try {
+      if (ENDPOINT) {
+        await fetch(ENDPOINT, {
+          method: 'POST', mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(data)
+        });
+      } else {
+        console.warn('Sin ENDPOINT configurado. Datos:', data);
+      }
+    } catch (err) { console.error(err); }
+    if (window.gtag) gtag('event', 'encuesta_enviada', { nps: data.nps, aplica: data.aplica });
+    form.classList.add('hidden');
+    document.getElementById('doneName').textContent = (data.nombre || '').split(' ')[0];
+    document.getElementById('done').classList.remove('hidden');
+  });
+})();
+</script>
+</body>
+</html>
