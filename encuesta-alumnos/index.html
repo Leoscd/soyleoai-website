@@ -77,8 +77,16 @@
               <div class="err">Revisá el email.</div>
             </div>
           </div>
+          <div class="field" data-radio="participacion">
+            <legend>¿Cómo participaste?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="participacion" value="Por mi cuenta"><span>Por mi cuenta (independiente o dueño/a de estudio o empresa)</span></label>
+              <label class="opt"><input type="radio" name="participacion" value="Empleado/a de la empresa"><span>Como empleado/a o integrante del equipo de una empresa</span></label>
+            </div>
+            <div class="err">Elegí una opción.</div>
+          </div>
           <div class="field" data-radio="rol">
-            <legend>¿A qué te dedicás?</legend>
+            <legend id="lRol">¿A qué te dedicás?</legend>
             <div class="opts two">
               <label class="opt"><input type="radio" name="rol" value="Arquitecto/a independiente"><span>Arquitecto/a independiente</span></label>
               <label class="opt"><input type="radio" name="rol" value="Estudio de arquitectura"><span>Estudio de arquitectura</span></label>
@@ -91,8 +99,9 @@
           </div>
           <div class="row3">
             <div class="field">
-              <label for="empresa">Estudio o empresa <span class="hint">(opcional)</span></label>
+              <label for="empresa" id="lEmpresa">Estudio o empresa <span class="hint">(opcional)</span></label>
               <input type="text" id="empresa" name="empresa" autocomplete="organization">
+              <div class="err">Indicá la empresa donde trabajás.</div>
             </div>
             <div class="field">
               <label for="pais">País</label>
@@ -104,8 +113,13 @@
               <input type="text" id="ciudad" name="ciudad" autocomplete="address-level2">
             </div>
           </div>
+          <div class="field hidden" id="qPuesto">
+            <label for="puesto">Tu puesto o área</label>
+            <input type="text" id="puesto" name="puesto" autocomplete="organization-title" placeholder="Ej: proyectista, dibujante, jefe/a de obra, cómputos">
+            <div class="err">Contame tu puesto o área.</div>
+          </div>
           <div class="field" data-radio="equipo">
-            <legend>¿Cuántas personas trabajan con vos?</legend>
+            <legend id="lEquipo">¿Cuántas personas trabajan con vos?</legend>
             <div class="opts two">
               <label class="opt"><input type="radio" name="equipo" value="Solo/a"><span>Trabajo solo/a</span></label>
               <label class="opt"><input type="radio" name="equipo" value="2-5"><span>2 a 5</span></label>
@@ -180,7 +194,7 @@
             </div>
           </div>
           <div class="field" data-radio="nuevo_negocio">
-            <legend>¿Te ayudó a ganar un cliente, un proyecto o a cobrar mejor?</legend>
+            <legend>¿Te ayudó a lograr un resultado concreto? <span class="hint">(un cliente, un proyecto aprobado, entregar antes, menos errores, cobrar mejor)</span></legend>
             <div class="opts two">
               <label class="opt"><input type="radio" name="nuevo_negocio" value="Sí"><span>Sí</span></label>
               <label class="opt"><input type="radio" name="nuevo_negocio" value="Todavía no"><span>Todavía no</span></label>
@@ -248,7 +262,7 @@
             <textarea id="lo_mas_valioso" name="lo_mas_valioso"></textarea>
           </div>
           <div class="field">
-            <label for="mejorar">¿Qué mejorarías o qué te faltó? <span class="hint">(opcional, esto queda solo para mí)</span></label>
+            <label for="mejorar">¿Qué mejorarías o qué te faltó? <span class="hint">(opcional, esto no se publica)</span></label>
             <textarea id="mejorar" name="mejorar"></textarea>
           </div>
           <div class="field" data-radio="permiso_publicar">
@@ -305,7 +319,22 @@ const ENDPOINT = "";
 
   // Preguntas que aparecen según la respuesta
   const qNegocio = document.getElementById('qNegocio'), qRed = document.getElementById('qRed');
+  const qPuesto = document.getElementById('qPuesto'), empresa = document.getElementById('empresa');
+
+  // Empleados de una empresa: la empresa y el puesto pasan a ser obligatorios
+  // y las preguntas se refieren a la empresa / al equipo, no a "tu estudio".
+  function modoEmpleado(esEmpleado) {
+    document.getElementById('lRol').textContent = esEmpleado ? '¿A qué se dedica la empresa donde trabajás?' : '¿A qué te dedicás?';
+    document.getElementById('lEquipo').textContent = esEmpleado ? '¿Cuántas personas hay en tu equipo o área?' : '¿Cuántas personas trabajan con vos?';
+    document.getElementById('lEmpresa').innerHTML = esEmpleado ? 'Empresa donde trabajás' : 'Estudio o empresa <span class="hint">(opcional)</span>';
+    empresa.required = esEmpleado;
+    document.getElementById('puesto').required = esEmpleado;
+    qPuesto.classList.toggle('hidden', !esEmpleado);
+    if (!esEmpleado) empresa.closest('.field').classList.remove('invalid');
+  }
+
   form.addEventListener('change', e => {
+    if (e.target.name === 'participacion') modoEmpleado(e.target.value !== 'Por mi cuenta');
     if (e.target.name === 'nuevo_negocio') qNegocio.classList.toggle('hidden', e.target.value !== 'Sí');
     if (e.target.name === 'permiso_publicar') qRed.classList.toggle('hidden', !/nombre/.test(e.target.value));
     const f = e.target.closest('.field'); if (f) f.classList.remove('invalid');
@@ -350,6 +379,7 @@ const ENDPOINT = "";
     if (data.website) return;
     if (qNegocio.classList.contains('hidden')) delete data.nuevo_negocio_detalle;
     if (qRed.classList.contains('hidden')) delete data.red_social;
+    if (qPuesto.classList.contains('hidden')) delete data.puesto;
     data.pagina = location.href.split('?')[0];
 
     next.disabled = true; next.textContent = 'Enviando…';
