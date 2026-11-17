@@ -88,5 +88,20 @@
     "archivo": "/recursos/archivos/mesada.pdf",
     "formato": "PDF",
     "fecha": "2026-11-06"
+  },
+  {
+    "slug": "estructuras",
+    "etiqueta": "Guía de estructura · PDF",
+    "titulo": "Tu skill de *estructura en AutoCAD*",
+    "bajada": "Cómo crear con Claude Code un proceso de estructura de fundación con los criterios de tu estudio: de la planta de arquitectura al plano de bases, el cómputo y los detalles.",
+    "bullets": [
+      "Tus criterios por escrito: zona sísmica, reglamento, medidas y dónde van las columnas",
+      "La propuesta para aprobar antes de dibujar, el plano de bases con su lámina y el cómputo en Excel",
+      "Los 7 pasos con los pedidos para copiar en Claude Code, hasta tener tu propio comando /estructura",
+      "Las lecciones que ahorran días. Requiere AutoCAD completo (no LT) y Claude Pro"
+    ],
+    "archivo": "/recursos/archivos/estructuras.pdf",
+    "formato": "PDF",
+    "fecha": "2026-11-16"
   }
 ]
